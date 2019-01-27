@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" class="js">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<title>Weather Clock by Baldurs Photography</title>
+		<link rel="stylesheet" type="text/css" href="css/weather.min.css">
+	</head>
+	<body>
+		<main id="container" class="nightmode">
+			<div id="sunlayer"></div>
+			<div id="clearnightlayer"></div>
+			<div id="rainlayer"></div>
+			<div id="snowlayer"></div>
+			<div id="mistlayer"></div>
+			<div id="cloudlayer">
+				<div class="x1">
+					<div class="cloud"></div>
+				</div>
+				<div class="x2">
+					<div class="cloud"></div>
+				</div>
+			</div>
+
+			<article id="clocklayer">
+				<header id="gps" class="dataText"></header>
+				<section id="clock">
+					<time id="time" class="text" datetime=""></time>
+					<time id="date" class="text" datetime=""></time>
+				</section>
+				<section id="forecast">
+					<button id="gpsbutton">Get Location and Weather</button>
+					<span id="weather"></span>
+					<span id="icon">
+						<svg class="svgIcon" role="img"><use xlink:href="#01d" /></svg>
+					</span><span id="beaufort" data-hover>
+						<svg class="svgIcon" role="img"><use xlink:href="#bf1" /></svg>
+					</span>
+				</section>
+				<details id="details">
+					<summary class="" data-hover>
+						<svg class="svgIcon arrow" role="img"><use xlink:href="#summaryarrow" /></svg>
+						Weather Details
+					</summary>
+					<ul id="weatherdetails"></ul>
+				</details>
+			</article>
+		</main>
+		<div class="cursor">
+			<div class="cursor__inner cursor__inner--circle"></div>
+			<div class="cursor__inner cursor__inner--dot"></div>
+		</div>
+		<script async src="js/mouse.js1"></script>
+		<script async src="js/suncalc.min.js"></script>
+		<script defer src="js/weather.min.js"></script>
+	</body>
+</html>
