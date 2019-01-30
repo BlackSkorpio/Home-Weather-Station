@@ -587,8 +587,19 @@
 		//console.log(sunPosition);
 
 		//var svgStyle = '<style id="svgValues">symbol{';
+		var svgStyle = ':root{';
 			//svgStyle += '--hPa:' + kPaOut.trim() +'deg;';
+			/*if (data.wind.speed <= 1 ) {
+				wSpeed = 1
+			} else {
+				wSpeed = data.wind.speed
+			};*/
+			svgStyle += '--hPa:'+kPaOut+'deg;';
+			svgStyle += '--windeg:'+data.wind.deg+'deg;';
+			( data.wind.speed <= 1 ) ? wSpeed = 1 : wSpeed = data.wind.speed;
+			svgStyle += '--windspeed:'+wSpeed+';';
 			svgStyle += '--sunPosition:'+sunPosition+'%;';
+			svgStyle += '}';
 			//svgStyle += '}</style>';
 		sStyles.innerHTML = svgStyle;
 
