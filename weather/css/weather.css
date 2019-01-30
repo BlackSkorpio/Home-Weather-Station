@@ -1672,6 +1672,16 @@ Animated cloud code adapted from Mark Bowley's CodePen at https://codepen.io/Mar
 }
 /* ANIMATIONS */
 .x1, .x2 {
+#fog1 {
+	-webkit-animation: animatedMist 60s linear infinite;
+	        animation: animatedMist 60s linear infinite;
+}
+#fog2 {
+	-webkit-animation: animatedMist 30s linear infinite;
+	        animation: animatedMist 30s linear infinite;
+	-webkit-animation-delay: 8s;
+	        animation-delay: 8s;
+}
 	margin-top: 2vmax;
 }
 .x1 {
