@@ -825,7 +825,7 @@
 			isRainy = (weather.description.indexOf(rainTxt) >= 0);
 			//isRainy = false; //for testing
 			rainlayer.style.display = isRainy ? "block" : "none";
-			rainlayer.style.opacity = isDark || isDusk ? 0.05 : 0.1;
+			rainlayer.style.opacity = isDark || isDusk ? 0.75 : 1;
 
 			isSnowy = (weather.description.indexOf(snowTxt) >= 0);
 			//isSnowy = true; //for testing
@@ -898,6 +898,7 @@
 	var doc = document;
 	var cleanGps = doc.getElementById("gps");
 	var cleanForecast = doc.getElementById("forecast");
+	var cleanRain = doc.getElementById("rain");
 	utils.clean = function(node) {
 		var child, i, len = node.childNodes.length;
 		if (len === 0) { return; }
@@ -918,5 +919,6 @@
 		//document.documentElement.className='cText';
 		utils.clean(cleanGps);
 		utils.clean(cleanForecast);
+		utils.clean(cleanRain);
 	}, 2000);
 })();
