@@ -1882,25 +1882,19 @@ i {
 }
 */
 .animate-left-slow, .cldS {
-	/*-webkit-animation: animateCloudHorizontal 65s linear infinite;
-	        animation: animateCloudHorizontal 65s linear infinite;*/
-	/* NOTE division made on 4.1m/s * 15.8535 = 64.9s */
-	-webkit-animation: animateCloudHorizontal calc(var(--windspeed) * 15.8535s) linear infinite;
-	        animation: animateCloudHorizontal calc(var(--windspeed) * 15.8535s) linear infinite;
+	/*animation: animateCloudHorizontal 65s linear infinite;*/
+	-webkit-animation: animateCloudHorizontal var(--windspeed-s) linear infinite;
+	        animation: animateCloudHorizontal var(--windspeed-s) linear infinite;
 }
 .animate-left-medium, .cldM {
-	/*-webkit-animation: animateCloudHorizontal 45s linear infinite;
-	        animation: animateCloudHorizontal 45s linear infinite;*/
-	/* NOTE division made on 4.1m/s * 11 = 45.1s */
-	-webkit-animation: animateCloudHorizontal calc(var(--windspeed) * 11s) linear infinite;
-	        animation: animateCloudHorizontal calc(var(--windspeed) * 11s) linear infinite;
+	/*animation: animateCloudHorizontal 45s linear infinite;*/
+	-webkit-animation: animateCloudHorizontal var(--windspeed-m) linear infinite;
+	        animation: animateCloudHorizontal var(--windspeed-m) linear infinite;
 }
 .animate-left-fast, .cldL {
-	/*-webkit-animation: animateCloudHorizontal 35s linear infinite;
-	        animation: animateCloudHorizontal 35s linear infinite;*/
-	/* NOTE division made on 4.1m/s * 16 =  35s */
-	-webkit-animation: animateCloudHorizontal calc(var(--windspeed) * 8.55s) linear infinite;
-	        animation: animateCloudHorizontal calc(var(--windspeed) * 8.55s) linear infinite;
+	/*animation: animateCloudHorizontal 35s linear infinite;*/
+	-webkit-animation: animateCloudHorizontal var(--windspeed-f) linear infinite;
+	        animation: animateCloudHorizontal var(--windspeed-f) linear infinite;
 }
 .cloud {
 	position: absolute;

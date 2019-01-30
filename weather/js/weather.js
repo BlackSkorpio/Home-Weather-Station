@@ -32,10 +32,10 @@
 	var unitsFormat			= "metric";
 	var gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt;
 	var wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt;
-	var months, days, directionsTxt, beaufortScale, wd_ws, wd_bf, bfSvgId, wd_LB;
+	var months, days, directionsTxt, beaufortScale, wd_ws, wd_bf, bfSvgId, wd_LB, ws_s, ws_m, ws_f;
 	var tempForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm;
 	var svgPrefix, titlePrefix, titleSuffix, usePrefix, useSuffix, textSpanPrefix, textSpanSuffix, timePrefix, timePrefixEnd, timeSuffix;
-	var useCompass, useLocation, useSunRise, useSunSet, useGoldenHour, useMoonRise, useMoonSet, useHumidity, useWindspeed, usePressure, useTemprature, useWindRose, useWeatherDude
+	var useCompass, useLocation, useSunRise, useSunSet, useGoldenHour, useMoonRise, useMoonSet, useHumidity, useWindspeed, usePressure, useTemprature, useWindRose, useWeatherDude;
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
 		case "se":
@@ -589,15 +589,8 @@
 		//var svgStyle = '<style id="svgValues">symbol{';
 		var svgStyle = ':root{';
 			//svgStyle += '--hPa:' + kPaOut.trim() +'deg;';
-			/*if (data.wind.speed <= 1 ) {
-				wSpeed = 1
-			} else {
-				wSpeed = data.wind.speed
-			};*/
 			svgStyle += '--hPa:'+kPaOut+'deg;';
 			svgStyle += '--windeg:'+data.wind.deg+'deg;';
-			( data.wind.speed <= 1 ) ? wSpeed = 1 : wSpeed = data.wind.speed;
-			svgStyle += '--windspeed:'+wSpeed+';';
 			svgStyle += '--sunPosition:'+sunPosition+'%;';
 			svgStyle += '}';
 			//svgStyle += '}</style>';
@@ -785,12 +778,12 @@
 			wd_bf = 17;
 			wd_bfTxt = bfs17Txt + wd_LB + bfs26Txt;
 		}
-		if ( wd_bf >=    0 && wd_bf <=    2 ) bfSvgId = 0;
-		if ( wd_bf >=    3 && wd_bf <=    4 ) bfSvgId = 1;
-		if ( wd_bf >=    5 && wd_bf <=    6 ) bfSvgId = 2;
-		if ( wd_bf >=    7 && wd_bf <=    8 ) bfSvgId = 3;
-		if ( wd_bf >=    9 && wd_bf <=   10 ) bfSvgId = 4;
-		if ( wd_bf >=   11 && wd_bf <=   17 ) bfSvgId = 5;
+		if ( wd_bf >=    0 && wd_bf <=    2 ) bfSvgId = 0, ws_s = 65, ws_m = 45, ws_f = 35;
+		if ( wd_bf >=    3 && wd_bf <=    4 ) bfSvgId = 1, ws_s = 65, ws_m = 45, ws_f = 35;
+		if ( wd_bf >=    5 && wd_bf <=    6 ) bfSvgId = 2, ws_s = 65, ws_m = 45, ws_f = 35;
+		if ( wd_bf >=    7 && wd_bf <=    8 ) bfSvgId = 3, ws_s = 55, ws_m = 35, ws_f = 25;
+		if ( wd_bf >=    9 && wd_bf <=   10 ) bfSvgId = 4, ws_s = 45, ws_m = 25, ws_f = 15;
+		if ( wd_bf >=   11 && wd_bf <=   17 ) bfSvgId = 5, ws_s = 35, ws_m = 15, ws_f =  5;
 
 		var wd_beaufortTitle = bfsHeadTxt + wd_bf + beaufortForm + wd_LB + wd_bfTxt;
 		var beaufortSVG = svgPrefix;
@@ -800,6 +793,7 @@
 			beaufortSVG += usePrefix;
 			beaufortSVG += "bf" + bfSvgId;
 			beaufortSVG += useSuffix;
+			beaufortSVG += "<style>.cloud{--windspeed-s:"+ws_s+"s;--windspeed-m:"+ws_m+"s;--windspeed-f:"+ws_f+"s;}</style>";
 
 		beaufort.className = "windspeed i-" + wd_bf + "bf";
 		beaufort.innerHTML = beaufortSVG;
