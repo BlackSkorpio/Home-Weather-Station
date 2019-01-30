@@ -1725,6 +1725,26 @@ i {
 	background-size: 100% 100%;
 }
 /* KEYFRAMES */
+@-webkit-keyframes animateCloudHorizontal {
+	0% {
+		-webkit-transform: translateX(0px);
+		        transform: translateX(0px);
+	}
+	100% {
+		-webkit-transform: translateX(calc(-100vw - 100%));
+		        transform: translateX(calc(-100vw - 100%));
+	}
+}
+@keyframes animateCloudHorizontal {
+	0% {
+		-webkit-transform: translateX(0px);
+		        transform: translateX(0px);
+	}
+	100% {
+		-webkit-transform: translateX(calc(-100vw - 100%));
+		        transform: translateX(calc(-100vw - 100%));
+	}
+}
 @-webkit-keyframes animateCloud {
 	0% {
 		margin-left: -500px;
@@ -1819,7 +1839,6 @@ i {
 	}
 }
 /* ANIMATIONS */
-.x1, .x2 {
 #fog1 {
 	-webkit-animation: animatedMist 60s linear infinite;
 	        animation: animatedMist 60s linear infinite;
@@ -1830,6 +1849,7 @@ i {
 	-webkit-animation-delay: 8s;
 	        animation-delay: 8s;
 }
+/*.x1, .x2 {
 	margin-top: 2vmax;
 }
 .x1 {
@@ -1839,8 +1859,9 @@ i {
 .x2 {
 	-webkit-animation: animateCloud 50s linear infinite;
 	        animation: animateCloud 50s linear infinite;
-}
+}*/
 /* OBJECTS */
+/*
 .cloud {
 	position: relative;
 	top: 30px;
@@ -1860,17 +1881,45 @@ i {
 .cursor__inner {
 	z-index: 9999;
 	pointer-events: none;
+*/
+.animate-left-slow, .cldS {
+	/*-webkit-animation: animateCloudHorizontal 65s linear infinite;
+	        animation: animateCloudHorizontal 65s linear infinite;*/
+	/* NOTE division made on 4.1m/s * 15.8535 = 64.9s */
+	-webkit-animation: animateCloudHorizontal calc(var(--windspeed) * 15.8535s) linear infinite;
+	        animation: animateCloudHorizontal calc(var(--windspeed) * 15.8535s) linear infinite;
+}
+.animate-left-medium, .cldM {
+	/*-webkit-animation: animateCloudHorizontal 45s linear infinite;
+	        animation: animateCloudHorizontal 45s linear infinite;*/
+	/* NOTE division made on 4.1m/s * 11 = 45.1s */
+	-webkit-animation: animateCloudHorizontal calc(var(--windspeed) * 11s) linear infinite;
+	        animation: animateCloudHorizontal calc(var(--windspeed) * 11s) linear infinite;
+}
+.animate-left-fast, .cldL {
+	/*-webkit-animation: animateCloudHorizontal 35s linear infinite;
+	        animation: animateCloudHorizontal 35s linear infinite;*/
+	/* NOTE division made on 4.1m/s * 16 =  35s */
+	-webkit-animation: animateCloudHorizontal calc(var(--windspeed) * 8.55s) linear infinite;
+	        animation: animateCloudHorizontal calc(var(--windspeed) * 8.55s) linear infinite;
+}
+.cloud {
 	position: absolute;
-	top: 0;
-	left: 0;
 	mix-blend-mode: difference;
-	border-radius: 50%;
+	width: 180px;
+	width: 18vh;
+	height: auto;
+	-webkit-filter: drop-shadow(0.1em 0.1em 0.2em var(--dG));
+	        filter: drop-shadow(0.1em 0.1em 0.2em var(--dG));
 }
 
 .cursor__inner--dot {
 	width: 6px;
 	height: 6px;
 	background: #fff;
+.cldS {
+	width: 90px;
+	width: 13vh;
 }
 
 .cursor__inner--circle {
@@ -1891,6 +1940,67 @@ i {
 		-webkit-transform: none !important;
 		        transform: none !important;
 	}
+.cldM {
+	width: 180px;
+	width: 18vh;
+}
+.cldL {
+	width: 260px;
+	width: 26vh;
+}
+.cld1 {
+	top: 55%;
+	left: 100vw;
+	-webkit-animation-delay: -8s !important;
+	        animation-delay: -8s !important;
+}
+.cld2 {
+	top: 70%;
+	left: 100vw;
+	-webkit-animation-delay: -2s !important;
+	        animation-delay: -2s !important;
+}
+.cld3 {
+	top: 25%;
+	left: 100vw;
+	-webkit-animation-delay: -38s !important;
+	        animation-delay: -38s !important;
+}
+.cld4 {
+	top: 70%;
+	left: 100vw;
+	-webkit-animation-delay: -9s !important;
+	        animation-delay: -9s !important;
+}
+.cld5 {
+	top: 10%;
+	left: 100vw;
+	-webkit-animation-delay: -15s !important;
+	        animation-delay: -15s !important;
+}
+.cld6 {
+	top: 42%;
+	left: 100vw;
+	-webkit-animation-delay: -2s !important;
+	        animation-delay: -2s !important;
+}
+.cld7 {
+	top: 60%;
+	left: 100vw;
+	-webkit-animation-delay: -25s !important;
+	        animation-delay: -25s !important;
+}
+.cld8 {
+	top: 5%;
+	left: 100vw;
+	-webkit-animation-delay: -1s !important;
+	        animation-delay: -1s !important;
+}
+.cld9 {
+	top: 10%;
+	left: 100vw;
+	-webkit-animation-delay: -2s !important;
+	        animation-delay: -2s !important;
 }
 /*390px*/
 @media ( max-width: 24.375em ) {
