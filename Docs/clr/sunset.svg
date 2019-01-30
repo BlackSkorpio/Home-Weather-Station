@@ -1,11 +1,17 @@
 <svg id="sunset" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" xml:space="preserve">
 	<defs>
+		<radialGradient id="sunCore" gradientUnits="userSpaceOnUse" r="95" spreadMethod="pad">
+			<stop class="s1" stop-color="#FFF76B" offset="0"/>
+			<stop class="s2" stop-color="#FFF845" offset="10%"/>
+			<stop class="s3" stop-color="#FFDA4E" offset="30%"/>
+			<stop class="s4" stop-color="#FB8933" offset="100%"/>
+		</radialGradient>
 		<linearGradient id="bkgrd" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="0%" y2="100%">
 			<stop stop-color="#f8b62d" offset="35%"/>
 			<stop stop-color="#808083" offset="75%"/>
 		</linearGradient>
 	</defs>
-	<g fill="#FCE6B1">
+	<g fill="url(#sunCore)">
 		<path d="M320.17,298.35a81.5,81.5,0,0,0-54.33-121.91c-33.28-6.74-68.23,8.91-85.76,37.86a82.85,82.85,0,0,0-.52,84.06H320.17Z"/>
 	</g>
 	<g fill="url(#bkgrd)" stroke="url(#bkgrd)">

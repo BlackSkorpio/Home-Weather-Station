@@ -1,12 +1,41 @@
 <svg id="windirection" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1900" xml:space="preserve">
-	<title>Wind direction</title>
-	<path id="N" fill="none" stroke="#80b3cd" stroke-width="30" d="M 720 285 l 0 -245 1 0 178 230 1 0 0 -245"/>
-	<g id="windrose" fill="#80b3cd" stroke="none" stroke-width="0">
+	<defs>
+		<style>
+			svg, symbol {
+			 	--wh: #dff0fe;
+			 	--bl: #000;
+			 	--rd: #ff0000;
+			 	--lB: #98ccfd;
+			 	--dB: #4788c7;
+			 	--lG: #a5a5a5;
+			 	--dG: #808083;
+			 	--lY: #fce6b1;
+			 	--dY: #ffc843;
+			 	--bY: #3f3a02;
+			 	--s1: #fff76b;
+			 	--s2: #fff845;
+			 	--s3: #ffda4e;
+			 	--s4: #fb8933;
+			 	--s5: #fdc830;
+			 	--s6: #f37335;
+				--bf0: #99ffcc;/*BF2*/
+				--bf1: #99ff66;/*BF3*/
+				--bf2: #ccff00;/*BF6*/
+				--bf3: #ffcc00;/*BF8*/
+				--bf4: #ff6600;/*BF10*/
+				--bf5: var(--rd);/*BF12*/
+				/*--bfs: #065381;*/
+				--bfs: var(--lB)
+			}
+		</style>
+	</defs>
+	<path id="N" fill="none" stroke="var(--dB)" stroke-width="30" d="M 720 285 l 0 -245 1 0 178 230 1 0 0 -245"/>
+	<g id="windrose" fill="var(--lB)" stroke="var(--dB)" stroke-width="30">
 		<path id="tips" d="M 800 300 1000 900 1600 1100 1000 1300 800 1900 600 1300 0 1100 600 900 800 300"/>
 		<ellipse id="circle" cx="800" cy="1100" rx="600" ry="600"/>
 	</g>
-	<g id="arrow" stroke="none" transform="rotate(11.25, 800, 1100)">
-		<path fill="black" d="M 800,1100 300,1600 800,400 1300,1600 800,1100"/>
-		<path fill="white" d="M 800,1060 375,1490 800,470 800,1060"/>
+	<g id="arrow" stroke="none">
+		<path fill="var(--dB)" d="M 800,1100 300,1600 800,400 1300,1600 800,1100"/>
+		<path fill="var(--wh)" d="M 800,1060 375,1490 800,470 800,1060"/>
 	</g>
 </svg>
