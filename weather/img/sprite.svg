@@ -1,7 +1,7 @@
 <svg id="Wsprite" class="weather-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="position:absolute;width:0;height:0;visibility:hidden;">
 	<defs>
 		<style>
-			svg, symbol {
+			svg, symbol, .cloud {
 				--wh:#dff0fe;
 				--pw:#fff;
 				--bl:#000;
