@@ -571,8 +571,24 @@
 		//var hPaOut = hPaData.match(/.{1,3}/g);
 		//var kPaOut = hPaOut.join(".");
 
+		// NOTE Get sun position
+		var sunUpRaw, sunDownRaw, sunNowRaw, sunUp, sunNow, sunDown, sunLeft, sunHours, sunLeftCalc, sunPosition;
+		var sunUpRaw	= new Date(data.sys.sunrise * 1000);
+		var sunNowRaw	= new Date();
+		var sunDownRaw	= new Date(data.sys.sunset * 1000);
+		var sunUp		= sunUpRaw.getHours()+'.'+sunUpRaw.getMinutes();	/* A */
+		var sunNow		= sunNowRaw.getHours()+'.'+sunNowRaw.getMinutes();	/* B */
+		var sunDown		= sunDownRaw.getHours()+'.'+sunDownRaw.getMinutes();/* C*/
+		var sunLeft		= sunDown - sunNow;	/* D = C - B */
+		var sunHours	= sunDown - sunUp;	/* X = C - A */
+		var sunLeftCalc	= sunLeft * 100;	/* Y = D * 100 */
+		/* Z = Y * 100 / X */
+		var sunPosition	= sunLeftCalc / sunHours;
+		//console.log(sunPosition);
+
 		//var svgStyle = '<style id="svgValues">symbol{';
 			//svgStyle += '--hPa:' + kPaOut.trim() +'deg;';
+			svgStyle += '--sunPosition:'+sunPosition+'%;';
 			//svgStyle += '}</style>';
 		sStyles.innerHTML = svgStyle;
 
