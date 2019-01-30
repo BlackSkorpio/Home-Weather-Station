@@ -279,7 +279,7 @@
 	var useWindRose			= svgPrefix + usePrefix + "windirection" + useSuffix;
 	var useWeatherDude		= '<svg class="getting" role="img">' + titlePrefix + gettingTxt + titleSuffix + usePrefix + "weatherDude" + useSuffix;
 
-	var container, now, dd, td, details, wd_summary;
+	var container, sStyles, now, dd, td, details, wd_summary;
 	var lat, lon, region, gd, gpsbutton;
 	var city = "";
 	var weatherurl, wd, icon, beaufort;
@@ -312,6 +312,7 @@
 		}
 		document.getElementsByTagName("html")[0].setAttribute("lang", langCode);
 		container = document.getElementById("container");
+		sStyles = document.getElementById('svgValues');
 		dd = document.getElementById("date");
 		td = document.getElementById("time");
 		wd = document.getElementById("weather");
@@ -416,7 +417,7 @@
 							city = json.city;
 							region = json.region;
 							country = json.countryCode;
-							gd.innerHTML = "<span id='city'>" + city + ",</span><span id='region'> " + region + "</span><span id='country'> (" + country + ")</span> <span class='svgIcon' id='gps_compass'>" + useCompass + "</span>";
+							//gd.innerHTML = "<span id='city'>" + city + ",</span><span id='region'> " + region + "</span><span id='country'> (" + country + ")</span> <span class='svgIcon' id='gps_compass'>" + useCompass + "</span>";
 							gpsbutton.style.display = "none";
 							showPosition();
 						} else {
@@ -569,15 +570,10 @@
 		//var hPaOut = hPaData.match(/.{1,3}/g);
 		//var kPaOut = hPaOut.join(".");
 
-		var svgStyle = '<style id="svgValues">symbol{';
+		//var svgStyle = '<style id="svgValues">symbol{';
 			//svgStyle += '--hPa:' + kPaOut.trim() +'deg;';
-			svgStyle += '--hPa:';
-			svgStyle += kPaOut;
-			svgStyle += 'deg;';
-			svgStyle += '--windeg:';
-			svgStyle += data.wind.deg;
-			svgStyle += 'deg;';
-			svgStyle += '}</style>';
+			//svgStyle += '}</style>';
+		sStyles.innerHTML = svgStyle;
 
 		var hilowline = '<li id="wd_hilowtemp">';
 			hilowline += textSpanPrefix;
@@ -655,7 +651,8 @@
 			sunsetline += new Date(data.sys.sunset * 1000).toLocaleTimeString(timeForm);
 			sunsetline += textSpanSuffix;
 
-		details.innerHTML = svgStyle + windline + pressureline + humidityline + sunriseline + sunsetline + gpsline;
+		details.innerHTML = windline + pressureline + humidityline + sunriseline + sunsetline + gpsline;
+		//details.innerHTML = svgStyle + windline + pressureline + humidityline + sunriseline + sunsetline + gpsline;
 		//details.innerHTML = svgStyle + windline + pressureline + humidityline + sunriseline + morningHourline + moonsetline + sunsetline + eveningHourline + moonriseline + gpsline;
 		// NOTE Set the details section to display block
 		wd_summary.className = "visible";
