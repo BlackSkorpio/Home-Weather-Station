@@ -487,6 +487,7 @@
 	}
 
 	function processWeather(data) {
+		//console.log('Weather id: '+weather.id);
 		// NOTE SunCalc
 		//var SunCalc;
 		/*
