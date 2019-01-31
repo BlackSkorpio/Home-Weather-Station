@@ -204,22 +204,31 @@ details#details {
 details#details.visible {
 	display: block;
 }
+summary span,
+summary::before {
+	cursor: pointer;
+}
+details summary::-webkit-details-marker {
+	list-style: none;
+	display: none;
+}
 details summary {
 	list-style: none;
 }
-details summary svg.svgIcon.arrow {
-	height: 0.8em;
-	width: 0.8em;
+summary:before {
+	display: inline-block;
+	width: 1em;
+	content: "+";
+	font-weight: 700;
+	margin: 0;
+	padding: 0 0.2em 0 0;
+	vertical-align: middle;
 	-webkit-transition: all 0.3s ease-in-out;
 	        transition: all 0.3s ease-in-out;
-	-webkit-filter: drop-shadow(.1em .1em .0em #4788c7);
-	        filter: drop-shadow(.1em .1em .0em #4788c7);
 }
-details[open] summary svg.svgIcon.arrow {
-	-webkit-transform: rotate(90deg);
-	        transform: rotate(90deg);
-	-webkit-filter: drop-shadow(.1em .0em .0em #4788c7);
-	        filter: drop-shadow(.1em .0em .0em #4788c7);
+details[open] summary:before {
+	content: "-";
+	vertical-align: initial;
 }
 details[open] summary ~ * {
 	-webkit-animation: sweep .5s ease-in-out;
