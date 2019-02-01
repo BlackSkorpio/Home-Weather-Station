@@ -21,3 +21,10 @@ Other then the above I'm planing on extending it further with some photography r
 * Make it a [Koken plugin](https://kokensupport.com)
 
 ## Credits
+* [Steven Estrella](https://www.shearspiremedia.com) for he's initial work
+* Jhey for his work on [Starry Sky Generator](https://codepen.io/jh3y/pen/XoXgPP)
+* Chris Coyier for creating [Sky gradients](https://codepen.io/chriscoyier/pen/xjgdG)
+* Jerry Jones for he's Pen [Night Sky](https://codepen.io/jeryj/pen/YqyaJJ)
+* Codeconvey for there Pen [CSS Snow Animation Effect](https://codepen.io/codeconvey/pen/xRzQay)
+
+There are probably a bunch of people that I have missed right of the batt, but when I get reminded I'll add them to the list ;)
