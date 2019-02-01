@@ -1,4 +1,13 @@
 /* minifyOnSave, checkOutputFileAlreadyExists: false, checkAlreadyMinifiedFile: false, filenamePattern: $1.min.$2 */
+/*! Weather Clock weather.js
+ *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
+ *  License: MIT
+ *  @author Bjarne Varoystrand (@black_skorpio)
+ *  @version 1.1.0
+ *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
+ *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
+ *  http://varoystrand.se | http://kokensupport.com
+**/
 (function() {
 	//NOTE: ES5 chosen instead of ES6 for compatibility with older mobile devices
 	var usephp				= true; // set to true to use a PHP document to hide your api key
