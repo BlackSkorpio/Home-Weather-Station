@@ -11,6 +11,9 @@ The difference between the above and my fork is essentially:
 * Supports the Beaufort scale
 * Weather conditions is represented better with animation of the background layers
 
+## Demo
+It can bee seen running at [my own site](https://varoystrand.se/weather/)
+
 ## Todo
 Other then the above I'm planing on extending it further with some photography related info:
 * Moonrise
