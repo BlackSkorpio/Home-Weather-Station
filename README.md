@@ -1,4 +1,4 @@
-# Weather Clock
+# Home Weather Station
 ![Home Weather Station](weather/img/weatherLogo.svg)
 
 This is a fork of Steven Estrella's original work, that you can [see here](https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/).
