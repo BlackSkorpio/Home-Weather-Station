@@ -580,7 +580,11 @@
 		//var hPaOut = hPaData.match(/.{1,3}/g);
 		//var kPaOut = hPaOut.join(".");
 
-		// NOTE Get sun position
+		// NOTE Calculate sun position
+		/*https://stackoverflow.com/a/18358056/6820262*/
+		function roundToTwo(num) {
+			return +(Math.round(num + "e+2")  + "e-2");
+		}
 		var sunUpRaw, sunDownRaw, sunNowRaw, sunUp, sunNow, sunDown, sunLeft, sunHours, sunLeftCalc, sunPosition;
 		var sunUpRaw	= new Date(data.sys.sunrise * 1000);
 		var sunNowRaw	= new Date();
@@ -588,21 +592,27 @@
 		var sunUp		= sunUpRaw.getHours()+'.'+sunUpRaw.getMinutes();	/* A */
 		var sunNow		= sunNowRaw.getHours()+'.'+sunNowRaw.getMinutes();	/* B */
 		var sunDown		= sunDownRaw.getHours()+'.'+sunDownRaw.getMinutes();/* C*/
-		var sunLeft		= sunDown - sunNow;	/* D = C - B */
-		var sunHours	= sunDown - sunUp;	/* X = C - A */
-		var sunLeftCalc	= sunLeft * 100;	/* Y = D * 100 */
-		/* Z = Y * 100 / X */
-		var sunPosition	= sunLeftCalc / sunHours;
-		//console.log(sunPosition);
+		var sunLeft		= sunDown - sunNow;	/* X = C - B */
+		var sunHours	= sunDown - sunUp;	/* Y = C - A */
+		/* Z = X / Y * 100 */
+		var sunPosition	= roundToTwo(sunLeft) / roundToTwo(sunHours) * 100;
+		var sunPlacement = 'right ' + roundToTwo(sunPosition);
+		/*console.log('sunUpRaw: '+sunUpRaw +'\n'+
+			'sunNowRaw: '+sunNowRaw +'\n'+
+			'sunDownRaw: '+sunDownRaw +'\n'+
+			'sunUp: '+sunUp +'\n'+
+			'sunNow: '+sunNow +'\n'+
+			'sunDown: '+sunDown +'\n'+
+			'sunLeft: '+sunDown+' - '+sunNow+' = '+roundToTwo(sunLeft) +'\n'+
+			'sunHours: '+sunDown+' - '+sunUp +' = '+roundToTwo(sunHours) +'\n'+
+			'sunPosition: '+roundToTwo(sunLeft)+' / '+roundToTwo(sunHours)+' * 100 = '+roundToTwo(sunPosition));*/
 
-		//var svgStyle = '<style id="svgValues">symbol{';
 		var svgStyle = ':root{';
 			//svgStyle += '--hPa:' + kPaOut.trim() +'deg;';
 			svgStyle += '--hPa:'+kPaOut+'deg;';
 			svgStyle += '--windeg:'+data.wind.deg+'deg;';
-			svgStyle += '--sunPosition:'+sunPosition+'%;';
+			svgStyle += '--sunPosition:'+sunPlacement+'%;';
 			svgStyle += '}';
-			//svgStyle += '}</style>';
 		sStyles.innerHTML = svgStyle;
 
 		var hilowline = '<li id="wd_hilowtemp">';
@@ -787,9 +797,9 @@
 			wd_bf = 17;
 			wd_bfTxt = bfs17Txt + wd_LB + bfs26Txt;
 		}
-		if ( wd_bf >=    0 && wd_bf <=    2 ) bfSvgId = 0, ws_s = 65, ws_m = 45, ws_f = 35;
+		if ( wd_bf >=    0 && wd_bf <=    2 ) bfSvgId = 0, ws_s = 75, ws_m = 55, ws_f = 35;
 		if ( wd_bf >=    3 && wd_bf <=    4 ) bfSvgId = 1, ws_s = 65, ws_m = 45, ws_f = 35;
-		if ( wd_bf >=    5 && wd_bf <=    6 ) bfSvgId = 2, ws_s = 65, ws_m = 45, ws_f = 35;
+		if ( wd_bf >=    5 && wd_bf <=    6 ) bfSvgId = 2, ws_s = 60, ws_m = 40, ws_f = 30;
 		if ( wd_bf >=    7 && wd_bf <=    8 ) bfSvgId = 3, ws_s = 55, ws_m = 35, ws_f = 25;
 		if ( wd_bf >=    9 && wd_bf <=   10 ) bfSvgId = 4, ws_s = 45, ws_m = 25, ws_f = 15;
 		if ( wd_bf >=   11 && wd_bf <=   17 ) bfSvgId = 5, ws_s = 35, ws_m = 15, ws_f =  5;
