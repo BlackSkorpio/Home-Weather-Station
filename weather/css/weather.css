@@ -1,5 +1,31 @@
 /*minifyOnSave, minifier: clean-css, checkOutputFileAlreadyExists: false, checkAlreadyMinifiedFile: false, filenamePattern: $1.min.$2 */
 @charset "UTF-8";
+:root {
+	--wh:#dff0fe;
+	--pw:#fff;
+	--bl:#000;
+	--rd:#ff0000;
+	--lB:#98ccfd;
+	--dB:#4788c7;
+	--lG:#a5a5a5;
+	--dG:#808083;
+	--lY:#fce6b1;
+	--dY:#ffc843;
+	--bY:#3f3a02;
+	--s1:#fff76b;
+	--s2:#fff845;
+	--s3:#ffda4e;
+	--s4:#fb8933;
+	--s5:#fdc830;
+	--s6:#f37335;
+	--bf0:#99ffcc;/*BF2*/
+	--bf1:#99ff66;/*BF3*/
+	--bf2:#ccff00;/*BF6*/
+	--bf3:#ffcc00;/*BF8*/
+	--bf4:#ff6600;/*BF10*/
+	--bf5:var(--rd);/*BF12*/
+	--bfs:var(--lB)
+}
 * {
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;

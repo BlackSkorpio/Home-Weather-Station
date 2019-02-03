@@ -1,33 +1,5 @@
 <svg id="Wsprite" class="weather-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="position:absolute;width:0;height:0;visibility:hidden;">
 	<defs>
-		<style>
-			svg, symbol, .cloud {
-				--wh:#dff0fe;
-				--pw:#fff;
-				--bl:#000;
-				--rd:#ff0000;
-				--lB:#98ccfd;
-				--dB:#4788c7;
-				--lG:#a5a5a5;
-				--dG:#808083;
-				--lY:#fce6b1;
-				--dY:#ffc843;
-				--bY:#3f3a02;
-				--s1:#fff76b;
-				--s2:#fff845;
-				--s3:#ffda4e;
-				--s4:#fb8933;
-				--s5:#fdc830;
-				--s6:#f37335;
-				--bf0:#99ffcc;/*BF2*/
-				--bf1:#99ff66;/*BF3*/
-				--bf2:#ccff00;/*BF6*/
-				--bf3:#ffcc00;/*BF8*/
-				--bf4:#ff6600;/*BF10*/
-				--bf5:var(--rd);/*BF12*/
-				--bfs:var(--lB)
-			}
-		</style>
 		<linearGradient id="dudeG" x1="50%" x2="50%" y1="100%" y2="0%"><stop offset="0%" stop-color="gray" stop-opacity=".3"/><stop offset="54%" stop-color="gray" stop-opacity=".1"/><stop offset="100%" stop-color="gray" stop-opacity=".1"/></linearGradient>
 		<linearGradient id="rose-gradient" gradientUnits="userSpaceOnUse" x1="54.331" y1="347.917" x2="763.678" y2="720.868"><stop stop-color="#f15f58" offset="0"/><stop stop-color="#c55254" offset=".094"/><stop stop-color="#97444f" offset=".208"/><stop stop-color="#70384c" offset=".326"/><stop stop-color="#502e48" offset=".447"/><stop stop-color="#372746" offset=".571"/><stop stop-color="#252144" offset=".701"/><stop stop-color="#1a1e43" offset=".839"/><stop stop-color="#171d43" offset="1"/></linearGradient>
 		<linearGradient id="moonDark" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="0%" y2="100%"><stop stop-color="var(--dY)" offset="0"/><stop stop-color="var(--bY)" offset="80%"/></linearGradient>
