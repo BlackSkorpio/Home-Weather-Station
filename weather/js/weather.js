@@ -831,34 +831,48 @@
 	function setLayers() {
 		if (weatherdata) {
 			var weather = weatherdata["weather"][0];
+			var weatherId = weather.id;
+			console.debug( //for testing
+				'WeatherID: '+weatherId +'\n'+
+				weather.description
+			);
 			sunsettime = Number(weatherdata["sys"].sunset);
 			sunrisetime = Number(weatherdata["sys"].sunrise);
 			checkForSunset();
-			isClear = (weather.description.indexOf(clearTxt) >= 0);
+			//isClear = (weather.description.indexOf(clearTxt) >= 0);
+			isClear = ( 800 < weatherId && weatherId < 803  );
 
-			isCloudy = (weather.description.indexOf(cloudTxt) >= 0) || weather.description.indexOf(cloudTxt2) >= 0;
+			//isCloudy = (weather.description.indexOf(cloudTxt) >= 0) || weather.description.indexOf(cloudTxt2) >= 0;
+			isCloudy = ( 801 <= weatherId && weatherId < 805 );
 			//isCloudy = false; //for testing
 			cloudlayer.style.display = isCloudy ? "block" : "none";
 			cloudlayer.style.opacity = isDark ? 0.75 : 1;
 
-			isRainy = (weather.description.indexOf(rainTxt) >= 0);
+			//isRainy = (weather.description.indexOf(rainTxt) >= 0);
+			isDrizzle = ( 300 <= weatherId && weatherId < 321 );
+			isRainy   = ( 500 < weatherId && weatherId < 531 );
+			//isDrizzle = true; //for testing
 			//isRainy = false; //for testing
-			rainlayer.style.display = isRainy ? "block" : "none";
+			rainlayer.style.display = isRainy || isDrizzle ? "block" : "none";
 			rainlayer.style.opacity = isDark || isDusk ? 0.75 : 1;
 
-			isSnowy = (weather.description.indexOf(snowTxt) >= 0);
+			//isSnowy = (weather.description.indexOf(snowTxt) >= 0);
+			isSnowy = ( 600 < weatherId && weatherId < 622 );
 			//isSnowy = true; //for testing
 			snowlayer.style.display = isSnowy ? "block" : "none";
 			snowlayer.style.opacity = isDark ? 0.1 : 0.75;
 
-			isSunny = (weather.description.indexOf(sunTxt) >= 0 || (isClear && !isDark));
+			//isSunny = (weather.description.indexOf(sunTxt) >= 0 || (isClear && !isDark));
+			isSunny = ( weatherId == 800 || (isClear && !isDark) );
 			//isSunny = false; //for testing
 			sunlayer.style.display = isSunny ? "block" : "none";
 
-			isClearNight = (weather.description.indexOf(clearTxt) >= 0) && isDark;
+			//isClearNight = (weather.description.indexOf(clearTxt) >= 0) && isDark;
+			isClearNight = ( weatherId == 800 && isDark );
 			//isClearNight = false; //for testing
 
-			isMisty = (weather.description.indexOf(mistTxt) >= 0);
+			//isMisty = (weather.description.indexOf(mistTxt) >= 0);
+			isMisty = ( weatherId == 701 );
 			//isMisty = false; //for testing
 			mistlayer.style.display = isMisty ? "block" : "none";
 			mistlayer.style.opacity = isDark ? 0.75 : 0.85;
