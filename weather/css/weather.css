@@ -69,8 +69,7 @@ nav,
 main,
 article,
 figure,
-details/*,
-summary*/ {
+details {
 	display: block;
 }
 
@@ -1751,7 +1750,7 @@ Animated cloud code adapted from Mark Bowley's CodePen at https://codepen.io/Mar
 	        transform-origin: left -20px;
 	-webkit-animation: falling 3s linear 2s infinite;
 	        animation: falling 3s linear 2s infinite;
-	background-image: linear-gradient(180deg, rgba(255,255,255,0) 40%, #fff 40%, #fff 60%, rgba(255,255,255,0) 60%), linear-gradient(90deg,  rgba(255,255,255,0) 40%, #fff 40%, #fff 60%, rgba(255,255,255,0) 60%), linear-gradient(45deg,  rgba(255,255,255,0) 43%, #fff 43%, #fff 57%, rgba(255,255,255,0) 57%), linear-gradient(135deg,  rgba(255,255,255,0) 43%, #fff 43%, #fff 57%, rgba(255,255,255,0) 57%);
+	background-image: linear-gradient(180deg, rgba(255,255,255,0) 40%, #fff 40%, #fff 60%, rgba(255,255,255,0) 60%), linear-gradient(90deg,	rgba(255,255,255,0) 40%, #fff 40%, #fff 60%, rgba(255,255,255,0) 60%), linear-gradient(45deg,	rgba(255,255,255,0) 43%, #fff 43%, #fff 57%, rgba(255,255,255,0) 57%), linear-gradient(135deg,	rgba(255,255,255,0) 43%, #fff 43%, #fff 57%, rgba(255,255,255,0) 57%);
 }
 /* different sizes, and default origins based on size */
 #flakes i:nth-of-type(4n) {
@@ -1805,7 +1804,7 @@ Animated cloud code adapted from Mark Bowley's CodePen at https://codepen.io/Mar
 	        animation-delay: 3.4s;
 }
 /* playing with timing functions to make it a teeny bit more random like */
-/*#flakes i:nth-of-type(5n)   {
+/*#flakes i:nth-of-type(5n) {
 	-webkit-animation-timing-function: ease-in-out;
 	        animation-timing-function: ease-in-out;
 }

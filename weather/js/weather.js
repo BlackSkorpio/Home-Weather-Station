@@ -258,6 +258,8 @@
 				"N"
 			];
 	}
+
+	/*-_-_--_-_-_-_- Leave alone -_--_-_-_-_-_-*/
 	switch ( unitsFormat ) {
 		case "metric":
 			tempForm	= "°C";
@@ -287,7 +289,6 @@
 			//dateForm = day + ", " + month + " " + date + ", " + year;
 	}
 
-	/*-_-_--_-_-_-_- Leave alone -_--_-_-_-_-_-*/
 	var dataDiv = "<span class='divider'>|</span>";
 	var wd_LB = '&#013;';// Hard Linebreak
 
@@ -354,25 +355,26 @@
 			}
 		}
 		document.getElementsByTagName("html")[0].setAttribute("lang", langCode);
-		container = document.getElementById("container");
-		sStyles = document.getElementById('svgValues');
-		dd = document.getElementById("date");
-		td = document.getElementById("time");
-		wd = document.getElementById("weather");
-		wd_summary = document.getElementById("details");
-		details = document.getElementById("weatherdetails");
-		gd = document.getElementById("gps");
-		beaufort = document.getElementById("beaufort");
-		icon = document.getElementById("icon");
-
-		cloudlayer = document.getElementById("cloudlayer");
-		rainlayer = document.getElementById("rainlayer");
-		snowlayer = document.getElementById("snowlayer");
-		sunlayer = document.getElementById("sunlayer");
 		main		= document.querySelector('main');
+		container	= document.getElementById("container");
+		sStyles		= document.getElementById('svgValues');
+		dd			= document.getElementById("date");
+		td			= document.getElementById("time");
+		wd			= document.getElementById("weather");
+		wd_summary	= document.getElementById("details");
+		details		= document.getElementById("weatherdetails");
+		gd			= document.getElementById("gps");
+		beaufort	= document.getElementById("beaufort");
+		infoModal	= document.getElementById("modal");
+		icon		= document.getElementById("icon");
+
+		cloudlayer	= document.getElementById("cloudlayer");
+		rainlayer	= document.getElementById("rainlayer");
+		snowlayer	= document.getElementById("snowlayer");
+		sunlayer	= document.getElementById("sunlayer");
 		clearnightlayer = document.getElementById("clearnightlayer");
-		mistlayer = document.getElementById("mistlayer");
-		gpsbutton = document.getElementById("gpsbutton");
+		mistlayer	= document.getElementById("mistlayer");
+		gpsbutton	= document.getElementById("gpsbutton");
 		gpsbutton.addEventListener("click",getLocation,false);
 		weatherminute = randRange(0,14);
 		getLocation();
@@ -640,7 +642,8 @@
 			'sunDown: '+sunDown +'\n'+
 			'sunLeft: '+sunDown+' - '+sunNow+' = '+roundToTwo(sunLeft) +'\n'+
 			'sunHours: '+sunDown+' - '+sunUp +' = '+roundToTwo(sunHours) +'\n'+
-			'sunPosition: '+roundToTwo(sunLeft)+' / '+roundToTwo(sunHours)+' * 100 = '+roundToTwo(sunPosition));*/
+			'sunPosition: '+roundToTwo(sunLeft)+' / '+roundToTwo(sunHours)+' * 100 = '+roundToTwo(sunPosition));
+		*/
 
 		var svgStyle = ':root{';
 			//svgStyle += '--hPa:' + kPaOut.trim() +'deg;';
