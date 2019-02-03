@@ -229,6 +229,7 @@ time {
 }
 details#details {
 	display: none;
+	margin-top: 0.15em;
 }
 details#details.visible {
 	display: block;
@@ -246,20 +247,25 @@ details summary::-webkit-details-marker {
 details summary {
 	list-style: none;
 }
-summary:before {
+summary span {
+	padding: 0 0.2em;
+}
+summary span:before {
 	display: inline-block;
 	width: 1em;
+	height: 1em;
 	content: "+";
 	font-weight: 700;
 	margin: 0;
-	padding: 0 0.2em 0 0;
-	vertical-align: middle;
+	padding: 0 0.2em;
+	text-align: center;
+	line-height: inherit;
+	vertical-align: baseline;
 	-webkit-transition: all 0.3s ease-in-out;
 	        transition: all 0.3s ease-in-out;
 }
-details[open] summary:before {
+details[open] summary span:before {
 	content: "-";
-	vertical-align: initial;
 }
 details[open] summary ~ * {
 	-webkit-animation: sweep .5s ease-in-out;
