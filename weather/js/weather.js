@@ -707,12 +707,6 @@
 				windline += usePrefix;
 				windline += "windirection";
 				windline += useSuffix;
-			//} else {
-				//windline += useWindspeed;
-				//windline += textSpanPrefix;
-				//windline += data.wind.speed;
-				//windline += windSpeed;
-				//windline += textSpanSuffix;
 			}
 
 		var sunriseline = '<li id="wd_sunrise">';
