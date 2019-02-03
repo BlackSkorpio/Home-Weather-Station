@@ -725,7 +725,6 @@
 		//details.innerHTML = svgStyle + windline + pressureline + humidityline + sunriseline + sunsetline + gpsline;
 		//details.innerHTML = svgStyle + windline + pressureline + humidityline + sunriseline + morningHourline + moonsetline + sunsetline + eveningHourline + moonriseline + gpsline;
 		// NOTE Set the details section to display block
-		wd_summary.className = "visible";
 
 		var weather = data["weather"][0];
 
@@ -749,6 +748,7 @@
 		wd_beaufort(data);
 		setLayers();
 		wd_modal(data);
+		wd_visible();
 	}
 
 	function wd_beaufort(data) {
@@ -1011,6 +1011,14 @@
 		});
 	}
 
+	function wd_visible() {
+		var HIDDEN_ELEMENTS	= '#details, #beaufort, #open-button';
+		var showElements	= main.querySelectorAll( HIDDEN_ELEMENTS );
+		var classVisible	= "visible";
+		showElements.forEach(function(elements) {
+			return elements.classList.add( classVisible );
+		});
+	}
 	function getWindDirection(deg) {
 		var degs = [348.75,326.25,303.75,281.25,258.75,236.25,213.75,191.25,168.75,146.25,123.75,101.25,78.75,56.25,33.75,11.25,0];
 		for ( var i=0;i < degs.length;i++) {

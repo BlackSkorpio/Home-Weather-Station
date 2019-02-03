@@ -73,13 +73,17 @@ details {
 	display: block;
 }
 
+#beaufort,
+#open-button {
+	display: none;
+}
 #icon,
 #weather,
 .svgIcon,
-#beaufort,
 .dataText,
 #time span,
-#time1 span {
+#time1 span,
+#beaufort.visible {
 	display: inline-block;
 }
 /* IMAGES */
