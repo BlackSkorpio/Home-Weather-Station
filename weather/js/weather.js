@@ -1,9 +1,9 @@
 /* minifyOnSave, checkOutputFileAlreadyExists: false, checkAlreadyMinifiedFile: false, filenamePattern: $1.min.$2 */
-/*! Weather Clock weather.js
+/*! Home Weather Station weather.js
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.1.0
+ *  @version 1.2.0
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -39,36 +39,49 @@
 				Temperature in Kelvin is used by default, no need to use units parameter in API call
 	*/
 	var unitsFormat			= "metric";
-	var gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt;
-	var wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt;
-	var months, days, directionsTxt, beaufortScale, wd_ws, wd_bf, bfSvgId, wd_LB, ws_s, ws_m, ws_f;
+	var bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt;
+	var moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt;
+	var buttonOpen, months, days, directionsTxt, beaufortScale, wd_ws, wd_bf, bfSvgId, wd_LB, ws_s, ws_m, ws_f;
 	var tempForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm;
-	var svgPrefix, titlePrefix, titleSuffix, usePrefix, useSuffix, textSpanPrefix, textSpanSuffix, timePrefix, timePrefixEnd, timeSuffix;
-	var useCompass, useLocation, useSunRise, useSunSet, useGoldenHour, useMoonRise, useMoonSet, useHumidity, useWindspeed, usePressure, useTemprature, useWindRose, useWeatherDude;
+	var svgPrefix, titlePrefix, titleSuffix, usePrefix, useSuffix, summaryPrefix, summarySuffix, spanPrefix, spanSuffix, textSpanPrefix, spanSuffix, timePrefix, timePrefixEnd, timeSuffix;
+	var useCompass, useLocation, useBeaufort, useSunRise, useSunSet, useGoldenHour, useMoonRise, useMoonSet, useHumidity, useWindspeed, usePressure, useTemprature, useWindRose, useWeatherDude;
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
 		case "se":
 			gettingTxt	= "Läser in vädret";
 			locErrorTxt	= "GEO-location service är inte tillgänglig, försök igen senare.";
 			gpsTxt		= "GPS: ";
-			minMaxTxt	= "Min/Max temperatur idag:<br>";
+			locationTxt	= "Kordinater: ";
+			locationDesc = "Längd- och latitudkoordinater baseras på den IP-adress du har tilldelats av din operatör, <br /> och används av oss för att bestämma var du befinner dig.";
+			minMaxTxt	= "Min/Max temperatur idag: ";
 			pressureTxt	= "Lufttryck: ";
+			pressureDesc = "Lufttrycket, även känt som atmosfärstryck, är kraften per enhetsarea som utövas på en yta av vikten av luft ovanför den ytan i atmosfären av en planet.<br />I de flesta fall är atmosfärstrycket nära approximerat av det hydrostatiska trycket som orsakas av luftens vikt över mätpunkten.";
 			humidityTxt	= "Luftfuktighet: ";
+			humidityDesc = "Luftfuktighet är vattendammmassan i den totala massan av torr luft i en viss volym luft vid en viss temperatur. I huvudsak ju varmare luften är desto mer vatten kan luften innehålla.<br />Relativ luftfuktighet blir förhållandet med högsta absoluta luftfuktighet mot den aktuella absoluta fuktigheten, som är beroende av aktuell lufttemperatur.";
 			windTxt		= "Vindhastighet: ";
+			windSpeedDesc = "Prognoserna för vindhastighet och riktning är medelvärdet av dessa vindar och lulls, mätt över 10 minuter i en höjd av 10 meter över havet. Gustarna under en 10-minutersperiod är typiskt 40% högre än den genomsnittliga vindhastigheten.";
+			windDirTxt	= "Vindriktning: ";
+			winddirDesc = "Vindriktningen är baserad på sann nordlig orientering och är den riktning som vinden blåser från. Till exempel blåser en nordlig vind från norr mot söder.<br />Vindhastighet och riktning kan påverkas väsentligt av lokal miljö. Klippor och andra landskapsfunktioner kommer att påverka vindar nära stranden.";
 			sunRiseTxt	= "Soluppgång: ";
+			sunriseDesc = "Klockslag när solen börjar gå upp.";
 			sunSetTxt	= "Solnedgång: ";
-			goldenTxt	= "Golden hour: ";
-			goldMorTxt	= "morning golden hour (soft light, best time for photography) ends";
-			goldEveTxt	= "evening golden hour starts";
+			sunsetDesc	= "Klockslag när solen börjar gå ner.";
+			goldenTxt	= "Gyllene timmen: ";
+			goldMorTxt	= "Morgonens gyllene timmen (mjukt ljus, bästa tiden för fotografering) slutar.";
+			goldEveTxt	= "Kvällens gyllene timmen börjar";
 			moonRiseTxt	= "Månen går upp: ";
+			moonriseDesc = "Klockslag när månen börjar gå upp.";
 			moonSetsTxt	= "Månen går ner: ";
-			clearTxt	= "klar";
+			moonsetDesc	= "Klockslag när månen börjar gå ner.";
+			/*clearTxt	= "klar";
 			cloudTxt	= "mulet";// moln
 			cloudTxt2	= "moln";// moln
 			rainTxt		= "regn";
 			snowTxt		= "snö";
 			sunTxt		= "sol";
-			mistTxt		= "dimm";
+			mistTxt		= "dimm";*/
+			bfsTxt		= "Beaufort Skalan: ";
+			bftDesc		= "Beaufort vindskala mäter vindhastighet beroende på vindens påverkan på mark och hav. Även om systemet är gammalt (först utvecklat 1805 av Sir Francis Beaufort), förblir det ett mycket vanligt system för att mäta vindhastighet idag.";
 			bfsHeadTxt	= "Vindstyrka i beaufort: ";
 			bfs00Txt	= "Lugnt";
 			bfs01Txt	= "Svag vind";
@@ -88,13 +101,15 @@
 			bfs15Txt	= bfs12Txt;
 			bfs16Txt	= bfs12Txt;
 			bfs17Txt	= bfs12Txt;
-			bfs21Txt	= "Or just sufficient to give steerage way.";
+			bfs21Txt	= "Eller bara tillräckligt för att ge styrfart.";
 			bfs22Txt	= "Or that in which a man-of-war, with all sail set, and clean full, would go in smooth water, from";
 			bfs07Txt	= "High wind, moderate gale, near gale";
 			bfs23Txt	= "Or that to which a well-conditioned man-of-war could just carry in chase, full and by";
-			bfs24Txt	= "Or that which she could scarcely bear close-reefed main-topsail and reefed foresail.";
+			bfs24Txt	= "Eller det som hon knappt kunde bära nära revet huvudstorsegel och revs framåt.";
 			bfs25Txt	= "Or that which would reduce her to storm stay-sails.";
-			bfs26Txt	= "Or that which no canvas could withstand.";
+			bfs26Txt	= "Eller det som ingen segelduk kunde klara av.";
+			modalTitleTxt = "Icon legend";
+			modalDescTxt = "Förklaring till vad de olika ikonerna representerar.";
 			months = [
 				"Januari",
 				"Februari",
@@ -142,23 +157,36 @@
 			gettingTxt	= "getting weather";
 			locErrorTxt	= "IP address location service is unavailable.";
 			gpsTxt		= "GPS: ";
-			minMaxTxt	= "Min/Max temperatur idag:<br>";
+			locationTxt	= "Location: ";
+			locationDesc = "Length and latitude coordinates are based on the IP address assigned to you by your operator, <br /> and used by us to determine your location.";
+			minMaxTxt	= "Hourly Max | Min: ";
 			pressureTxt	= "Pressure: ";
+			pressureDesc = "Air pressure also known as atmospheric pressure is the force per unit area exerted on a surface by the weight of air above that surface in the atmosphere of a planet.<br />In most circumstances atmospheric pressure is closely approximated by the hydrostatic pressure caused by the weight of air above the measurement point.";
 			humidityTxt	= "Humidity: ";
+			humidityDesc = "Humidity is the water vapor mass contained within the total mass of dry air inside a specified volume of air at a specific temperature. Essentially, the hotter the air is, the more water the air can contain.<br />Relative humidity becomes the ratio of highest absolute humidity against the current absolute humidity, which is dependent on current air temperature.";
 			windTxt		= "Winds: ";
+			windSpeedDesc = "The forecasts of wind speed and direction are the average of these gusts and lulls, measured over a 10-minute period at a height of 10 metres above sea level. The gusts during any 10-minute period are typically 40% higher than the average wind speed.";
+			windDirTxt	= "Wind direction: ";
+			winddirDesc = "The wind direction is based on true north orientation and is the direction the wind is blowing from. For example, a northerly wind is blowing from the north towards the south.<br />Wind speed and direction can be influenced significantly by the local environment. Cliffs and other landscape features will affect winds near the shore.";
 			sunRiseTxt	= "Sunrise: ";
+			sunriseDesc = "Time when the sun begins to rise";
 			sunSetTxt	= "Sunset: ";
+			sunsetDesc	= "Time when the sun begins to set";
 			goldenTxt	= "Golden hour: ";
 			goldMorTxt	= "morning golden hour (soft light, best time for photography) ends";
 			goldEveTxt	= "evening golden hour starts";
 			moonRiseTxt	= "Moon Rises: ";
+			moonriseDesc = "Time when the moon begins to rise";
 			moonSetsTxt	= "Moon Sets: ";
-			clearTxt	= "clear";
+			moonsetDesc = "Time when the moon begins to set";
+			/*clearTxt	= "clear";
 			cloudTxt	= "cloud";
 			rainTxt		= "rain";
 			snowTxt		= "snow";
 			sunTxt		= "sun";
-			mistTxt		= "mist";
+			mistTxt		= "mist";*/
+			bfsTxt		= "Beaufort Scale: ";
+			bftDesc		= "The Beaufort wind scale measures wind speed according to the impact the wind has on the land and sea. Although the system is old (first developed in 1805 by Sir Francis Beaufort), it remains a widely used system to measure wind speed today.";
 			bfsHeadTxt	= "Beaufort number: ";
 			bfs00Txt	= "Calm";
 			bfs01Txt	= "Light air";
@@ -185,6 +213,8 @@
 			bfs24Txt	= "Or that which she could scarcely bear close-reefed main-topsail and reefed foresail.";
 			bfs25Txt	= "Or that which would reduce her to storm stay-sails.";
 			bfs26Txt	= "Or that which no canvas could withstand.";
+			modalTitleTxt = "Icon legend";
+			modalDescTxt = "Explanation on what the different icons represents.";
 			months = [
 				"January",
 				"February",
@@ -267,8 +297,11 @@
 	var usePrefix			= '<use xlink:href="#';
 	var useSuffix			= '" /></svg>';
 
+	var summaryPrefix		= "<summary>";
+	var summarySuffix		= "</summary>";
+	var spanPrefix			= "<span>";
 	var textSpanPrefix		= '<span class="dataText">';
-	var textSpanSuffix		= '</span>';
+	var spanSuffix			= "</span>";
 
 	var timePrefix			= '<time class="dataText" datetime="';
 	var timePrefixEnd		= '">';
@@ -287,8 +320,9 @@
 	var useTemprature		= svgPrefix + titlePrefix + tempForm + titleSuffix + usePrefix + "temperatur" + useSuffix;
 	var useWindRose			= svgPrefix + usePrefix + "windirection" + useSuffix;
 	var useWeatherDude		= '<svg class="getting" role="img">' + titlePrefix + gettingTxt + titleSuffix + usePrefix + "weatherDude" + useSuffix;
+	var useBeaufort			= svgPrefix + usePrefix + "bf1" + useSuffix;
 
-	var container, sStyles, now, dd, td, details, wd_summary;
+	var main, container, sStyles, now, dd, td, details, wd_summary, infoModal;
 	var lat, lon, region, gd, gpsbutton;
 	var city = "";
 	var weatherurl, wd, icon, beaufort;
@@ -335,6 +369,7 @@
 		rainlayer = document.getElementById("rainlayer");
 		snowlayer = document.getElementById("snowlayer");
 		sunlayer = document.getElementById("sunlayer");
+		main		= document.querySelector('main');
 		clearnightlayer = document.getElementById("clearnightlayer");
 		mistlayer = document.getElementById("mistlayer");
 		gpsbutton = document.getElementById("gpsbutton");
@@ -568,7 +603,7 @@
 		if (!useip){
 			city = data.name;
 			region = "";
-			gd.innerHTML = textSpanPrefix + city + " (" + lat.toFixed(2) + " | " + lon.toFixed(2) + ")" + textSpanSuffix;
+			gd.innerHTML = textSpanPrefix + city + " (" + lat.toFixed(2) + " | " + lon.toFixed(2) + ")" + spanSuffix;
 		}
 		// var dh = JSON.stringify(data);
 		// dh = dh.split(",").join("<br>");
@@ -621,7 +656,7 @@
 			hilowline += data.main.temp_max + tempForm;
 			hilowline += dataDiv;
 			hilowline += data.main.temp_min  + tempForm;
-			hilowline += textSpanSuffix;
+			hilowline += spanSuffix;
 
 		var gpsline = '<li id="wd_location">';
 			gpsline += useLocation;
@@ -633,34 +668,32 @@
 			gpsline += dataDiv;
 			gpsline += lon.toFixed(2);
 			gpsline += '</a>';
-			gpsline += textSpanSuffix;
+			gpsline += spanSuffix;
 
 		var pressureline = '<li id="wd_pressure">';
 			pressureline += usePressure;
 			pressureline += textSpanPrefix;
 			pressureline += data.main.pressure;
 			pressureline += pressureForm;
-			pressureline += textSpanSuffix;
+			pressureline += spanSuffix;
 
 		var humidityline = '<li id="wd_humidity">';
 			humidityline += useHumidity;
 			humidityline += textSpanPrefix;
 			humidityline += data.main.humidity;
 			humidityline += humidityForm;
-			humidityline += textSpanSuffix;
+			humidityline += spanSuffix;
 
 		var windline = '<li id="wd_wind">';
 			windline += useWindspeed;
 			windline += textSpanPrefix;
 			windline += data.wind.speed;
 			windline += windSpeed;
-			windline += textSpanSuffix;
-			//windline += beaufortSVG;
+			windline += spanSuffix;
 			if ( data.wind.deg !=null ) {
-				//windline += " ";
 				windline += textSpanPrefix;
 				windline += getWindDirection(data.wind.deg);
-				windline += textSpanSuffix;
+				windline += spanSuffix;
 				windline += svgPrefix;
 				windline += titlePrefix;
 				windline += windTxt;
@@ -683,13 +716,13 @@
 			sunriseline += useSunRise;
 			sunriseline += textSpanPrefix;
 			sunriseline += new Date(data.sys.sunrise * 1000).toLocaleTimeString(timeForm);
-			sunriseline += textSpanSuffix;
+			sunriseline += spanSuffix;
 
 		var sunsetline = '<li id="wd_sunset">';
 			sunsetline += useSunSet;
 			sunsetline += textSpanPrefix;
 			sunsetline += new Date(data.sys.sunset * 1000).toLocaleTimeString(timeForm);
-			sunsetline += textSpanSuffix;
+			sunsetline += spanSuffix;
 
 		details.innerHTML = windline + pressureline + humidityline + sunriseline + sunsetline + gpsline;
 		//details.innerHTML = svgStyle + windline + pressureline + humidityline + sunriseline + sunsetline + gpsline;
@@ -707,17 +740,18 @@
 			weatherstring += textSpanPrefix;
 			weatherstring += localtemperature;
 			weatherstring += tempForm;
-			weatherstring += textSpanSuffix;
+			weatherstring += spanSuffix;
 			//weatherstring += "&nbsp;&nbsp;";
 			weatherstring += textSpanPrefix;
 			weatherstring += weather.description;
-			weatherstring += textSpanSuffix;
+			weatherstring += spanSuffix;
 		// var weathergov = "https://forecast.weather.gov/MapClick.php";
 		// var weatherlink = '<a class="weatherlink" target="_blank" href="'+weathergov+'?lat=' + lat + '&lon=' + lon + '">';
 		// wd.innerHTML =  weatherlink + weatherstring + "</a>";
 		wd.innerHTML = weatherstring;
 		wd_beaufort(data);
 		setLayers();
+		wd_modal(data);
 	}
 
 	function wd_beaufort(data) {
@@ -816,6 +850,168 @@
 
 		beaufort.className = "windspeed i-" + wd_bf + "bf";
 		beaufort.innerHTML = beaufortSVG;
+	}
+
+	function wd_modal(data) {
+		// Modal https://codepen.io/chriscoyier/pen/MeJWoM
+		// And https://codepen.io/noahblon/pen/yJpXka
+		var modal, modalOverlay, buttonClose, classClosed  , aHidden, tabindex, FOCUSABLE_SELECTORS, modalTitle, modalDescription, modalBeaufort, modalWspeed, modalWdirection, modalPressure, modalHumidity, modalSunrise, modalSunset, modalLocation, modalMoonrise, modalMonnset, modalMorningold, modalEveningold;
+
+		var modal				= document.querySelector("#modal");
+		var modalOverlay		= document.querySelector("#modal-overlay");
+		var buttonClose			= document.querySelector("#close-button");
+		var buttonOpen			= document.querySelector("#open-button");
+		var classClosed  		= "closed";
+		var aHidden				= 'aria-hidden';
+		var tabindex			= 'tabindex';
+		var FOCUSABLE_SELECTORS = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
+
+		var modalTitle			= document.getElementById("Modal_Title");
+		var modalDescription	= document.getElementById("Modal_Description");
+		var modalBeaufort		= document.getElementById("dt_bft");
+		var modalWspeed			= document.getElementById("dt_windspeed");
+		var modalWdirection		= document.getElementById("dt_windirection");
+		var modalPressure		= document.getElementById("dt_pressure");
+		var modalHumidity		= document.getElementById("dt_humidity");
+		var modalSunrise		= document.getElementById("dt_sunrise");
+		var modalSunset			= document.getElementById("dt_sunset");
+		var modalLocation		= document.getElementById("dt_location");
+		var modalMoonrise		= document.getElementById("dt_moonrise");
+		var modalMonnset		= document.getElementById("dt_moonset");
+		var modalMorningold		= document.getElementById("dt_morningold");
+		var modalEveningold		= document.getElementById("dt_eveningold");
+
+		var modalBeaufortTxt	= summaryPrefix;
+			modalBeaufortTxt	+= useBeaufort + bfsTxt;
+			modalBeaufortTxt	+= summarySuffix
+			modalBeaufortTxt	+= spanPrefix;
+			modalBeaufortTxt	+= bftDesc;
+			modalBeaufortTxt	+= spanSuffix;
+		var modalWspeedTxt		= summaryPrefix;
+			modalWspeedTxt		+= useWindspeed + windTxt;
+			modalWspeedTxt		+= summarySuffix
+			modalWspeedTxt		+= spanPrefix;
+			modalWspeedTxt		+= windSpeedDesc;
+			modalWspeedTxt		+= spanSuffix;
+		var modalWdirectionTxt	= summaryPrefix;
+			modalWdirectionTxt	+= useWindRose + windDirTxt;
+			modalWdirectionTxt	+= summarySuffix
+			modalWdirectionTxt	+= spanPrefix;
+			modalWdirectionTxt	+= winddirDesc;
+			modalWdirectionTxt	+= spanSuffix;
+		var modalPressureTxt	= summaryPrefix;
+			modalPressureTxt	+= usePressure + pressureTxt;
+			modalPressureTxt	+= summarySuffix
+			modalPressureTxt	+= spanPrefix;
+			modalPressureTxt	+= pressureDesc;
+			modalPressureTxt	+= spanSuffix;
+		var modalHumidityTxt	= summaryPrefix;
+			modalHumidityTxt	+= useHumidity + humidityTxt;
+			modalHumidityTxt	+= summarySuffix
+			modalHumidityTxt	+= spanPrefix;
+			modalHumidityTxt	+= humidityDesc;
+			modalHumidityTxt	+= spanSuffix;
+		var modalSunriseTxt		= summaryPrefix;
+			modalSunriseTxt		+= useSunRise + sunRiseTxt;
+			modalSunriseTxt		+= summarySuffix
+			modalSunriseTxt		+= spanPrefix;
+			modalSunriseTxt		+= sunriseDesc;
+			modalSunriseTxt		+= spanSuffix;
+		var modalSunsetTxt		= summaryPrefix;
+			modalSunsetTxt		+= useSunSet + sunSetTxt;
+			modalSunsetTxt		+= summarySuffix
+			modalSunsetTxt		+= spanPrefix;
+			modalSunsetTxt		+= sunsetDesc;
+			modalSunsetTxt		+= spanSuffix;
+		var modalLocationTxt	= summaryPrefix;
+			modalLocationTxt	+= useLocation + locationTxt;
+			modalLocationTxt	+= summarySuffix
+			modalLocationTxt	+= spanPrefix;
+			modalLocationTxt	+= locationDesc;
+			modalLocationTxt	+= spanSuffix;
+		var modalMoonriseTxt	= summaryPrefix;
+			modalMoonriseTxt	+= useMoonRise + moonRiseTxt;
+			modalMoonriseTxt	+= summarySuffix
+			modalMoonriseTxt	+= spanPrefix;
+			modalMoonriseTxt	+= moonriseDesc;
+			modalMoonriseTxt	+= spanSuffix;
+		var modalMonnsetTxt		= summaryPrefix;
+			modalMonnsetTxt		+= useMoonSet + moonSetsTxt;
+			modalMonnsetTxt		+= summarySuffix
+			modalMonnsetTxt		+= spanPrefix;
+			modalMonnsetTxt		+= moonsetDesc;
+			modalMonnsetTxt		+= spanSuffix;
+		var modalMorningoldTxt	= summaryPrefix;
+			modalMorningoldTxt	+= useGoldenHour + goldenTxt;
+			modalMorningoldTxt	+= summarySuffix
+			modalMorningoldTxt	+= spanPrefix;
+			modalMorningoldTxt	+= goldMorTxt;
+			modalMorningoldTxt	+= spanSuffix;
+		var modalEveningoldTxt	= summaryPrefix;
+			modalEveningoldTxt	+= useGoldenHour + goldenTxt;
+			modalEveningoldTxt	+= summarySuffix
+			modalEveningoldTxt	+= spanPrefix;
+			modalEveningoldTxt	+= goldEveTxt;
+			modalEveningoldTxt	+= spanSuffix;
+
+		modalTitle.innerHTML		= modalTitleTxt;
+		modalDescription.innerHTML	= modalDescTxt;
+		modalBeaufort.innerHTML		= modalBeaufortTxt;
+		modalWspeed.innerHTML		= modalWspeedTxt;
+		modalWdirection.innerHTML	= modalWdirectionTxt;
+		modalPressure.innerHTML		= modalPressureTxt;
+		modalHumidity.innerHTML		= modalHumidityTxt;
+		modalSunrise.innerHTML		= modalSunriseTxt;
+		modalSunset.innerHTML		= modalSunsetTxt;
+		modalLocation.innerHTML		= modalLocationTxt;
+		modalMoonrise.innerHTML		= modalMoonriseTxt;
+		modalMonnset.innerHTML		= modalMonnsetTxt;
+		modalMorningold.innerHTML	= modalMorningoldTxt;
+		modalEveningold.innerHTML	= modalEveningoldTxt;
+
+		// show the modal
+		var openModal = function() {
+			// Focus the first element within the modal. Make sure the element is visible and doesnt have focus disabled (tabindex=-1);
+			modal.querySelector(FOCUSABLE_SELECTORS).focus();
+			modalOverlay.classList.remove(classClosed  );
+			modal.classList.remove(classClosed  );
+			// Trap the tab focus by disable tabbing on all elements outside of your modal.  Because the modal is a sibling of main, this is easier. Make sure to check if the element is visible, or already has a tabindex so you can restore it when you untrap.
+			var focusableElements = main.querySelectorAll(FOCUSABLE_SELECTORS);
+			focusableElements.forEach(function (el) {
+				return el.setAttribute(tabindex, '-1');
+			});
+			// Trap the screen reader focus as well with aria roles. This is much easier as our main and modal elements are siblings, otherwise you'd have to set aria-hidden on every screen reader focusable element not in the modal.
+			modal.removeAttribute(aHidden);
+			main.setAttribute(aHidden, 'true');
+		}
+		// hide the modal
+		var closeModal = function() {
+			modalOverlay.classList.add(classClosed  );
+			modal.classList.add(classClosed  );
+			// Untrap the tab focus by removing tabindex=-1. You should restore previous values if an element had them.
+			var focusableElements = main.querySelectorAll(FOCUSABLE_SELECTORS);
+			focusableElements.forEach(function (el) {
+				return el.removeAttribute(tabindex);
+			});
+			// Untrap screen reader focus
+			modal.setAttribute(aHidden, 'true');
+			main.removeAttribute(aHidden);
+			// restore focus to the triggering element
+			buttonOpen.focus();
+		};
+
+		buttonOpen.addEventListener("click", function() {
+			openModal();
+		});
+		document.addEventListener('keyup', function (evt) {
+			if ( evt.keyCode === 27 && modal.classList.contains( classClosed  ) !== true ) closeModal();
+		});
+		// https://stackoverflow.com/a/52649135/6820262
+		[modalOverlay, buttonClose].forEach(function(element) {
+			element.addEventListener("click", function() {
+				closeModal();
+			});
+		});
 	}
 
 	function getWindDirection(deg) {

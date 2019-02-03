@@ -230,7 +230,9 @@ details#details {
 details#details.visible {
 	display: block;
 }
+button,
 summary span,
+.legend summary,
 summary::before {
 	cursor: pointer;
 }
@@ -1863,7 +1865,174 @@ Animated cloud code adapted from Mark Bowley's CodePen at https://codepen.io/Mar
 	background: #e1c45e radial-gradient(at var(--sunPosition) top, #b26339 0, #e1c45e 20%, #576e71 30%, #154277 100%);
 	background-size: 100% 100%;
 }
+/* Modal */
+.legend details {
+	vertical-align: top;
+	line-height: normal;
+	margin-bottom: 0.2em;
+}
+.legend details,
+.legend summary {
+	font-size: 0.8em;
+	text-align: left;
+	padding: 0 0.2em;
+}
+.legend summary::before {
+	display: none;
+}
+.legend summary svg {
+	max-width: 2em;
+	margin-right: 0.2em;
+}
+.legend details span {
+	display: inline-block;
+	margin-left: 2.5em;
+	font-size: small;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+details summary:empty {
+	display: none;
+}
+
+.modal {
+	/* This way it could be display flex or grid or whatever also. */
+	display: block;
+	position: fixed;
+	z-index: 100;
+	/* Probably need media queries here */
+	width: 600px;
+	max-width: 100%;
+	height: 400px;
+	max-height: 100%;
+	left: 50%;
+	top: 50%;
+	border-radius: 0.3em;
+	background: var(--wh);
+	overflow: hidden;
+	color: var(--dG);
+	text-shadow: none;
+	/* Use this for centering if unknown width/height */
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+	/* If known, negative margins are probably better (less chance of blurry text). */
+	/* margin: -200px 0 0 -200px; */
+	-webkit-box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+	        box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+}
+.closed {
+	display: none;
+}
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 50;
+	background: rgba(0, 0, 0, 0.9);
+}
+.modal-guts {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	max-height: 100%;
+	overflow: auto;
+	padding: 0.5em 1.2em 0.5em 0.5em;
+	scrollbar-color: var(--dB) var(--lB);
+	scrollbar-width: thin;
+}
+.modal .close-button {
+	position: fixed;
+	z-index: 1;
+	top: 0.7em;
+	/* needs to look OK with or without scrollbar */
+	right: 0.7em;
+	border: 0;
+	background: rgba(0, 0, 0, 0.5);
+	color: rgba(255, 255, 255, 0.5);
+	height: 2em;
+	width: 2em;
+	line-height: 2em;
+	border-radius: 50%;
+	text-align: center;
+	padding: 0;
+	-webkit-transition: background, color 0.3s ease 0.2s;
+	        transition: background, color 0.3s ease 0.2s;
+}
+.modal .close-button:hover {
+	background: black;
+	color: white;
+	-webkit-transition: background, color 0.3s ease 0.2s;
+	        transition: background, color 0.3s ease 0.2s;
+}
+#open-button.visible {
+	display: initial;
+}
+.open-button {
+	position: absolute;
+	height: 1.5em;
+	width: 1.5em;
+	bottom: 0.5em;
+	left: 0;
+	cursor: help;
+	border: 0;
+	background: transparent;
+	padding: 0;
+	font-size: inherit;
+	color: inherit;
+}
+.open-button svg.svgIcon {
+	width: 100%;
+	height: 100%;
+}
+#legend g {
+	transform-box: fill-box;
+	-webkit-transform-origin: center;
+	        transform-origin: center;
+	-webkit-animation: rotate 15s infinite linear;
+	        animation: rotate 15s infinite linear;
+}
+.visually-hidden {
+	position: absolute !important;
+	height: 1px; width: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+*:focus,
+details#details summary:focus span {
+	outline: 0.0625em dashed var(--lG);
+	/*outline: none;
+	-webkit-box-shadow: 0 0 0.375em 0.1575em var(--lG);
+	        box-shadow: 0 0 0.375em 0.1575em var(--lG);
+	border-radius: 0.1575em;*/
+}
+details#details summary:focus {
+	outline:none;
+}
 /* KEYFRAMES */
+@-webkit-keyframes rotate {
+	0% {
+		-webkit-transform: rotate(0);
+		        transform: rotate(0);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		        transform: rotate(360deg);
+	}
+}
+@keyframes rotate {
+	0% {
+		-webkit-transform: rotate(0);
+		        transform: rotate(0);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		        transform: rotate(360deg);
+	}
+}
 @-webkit-keyframes animateCloudHorizontal {
 	0% {
 		-webkit-transform: translateX(0px);

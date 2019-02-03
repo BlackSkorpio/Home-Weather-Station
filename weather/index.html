@@ -7,7 +7,7 @@
 		<meta name="copyright" content="© Baldurs Photography.">
 		<meta name="description" content="Published by Bjarne Varöystrand. Baldurs Photography creates software for education and business.">
 		<meta name="mobile-web-app-capable" content="yes">
-		<title>Weather Clock by Baldurs Photography</title>
+		<title>Home Weather Station by Baldurs Photography</title>
 		<script type="text/javascript">document.querySelector("html").classList.remove("noscript");</script>
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<link rel="manifest" href="manifest.json">
@@ -121,7 +121,74 @@
 					<ul id="weatherdetails"></ul>
 				</details>
 			</article>
+			<button id="open-button" class="info open-button">
+				<svg class="svgIcon" role="img"><use xlink:href="#legend" /></svg>
+			</button>
 		</main>
+		<div id="modal-overlay" class="modal-overlay closed"></div>
+		<div id="modal" class="legend modal closed" role="dialog" aria-labelledby="Modal_Title" aria-describedby="Modal_Description" aria-hidden="true">
+			<div class="modal-guts">
+				<h2 id="Modal_Title" class="visually-hidden">Icon legend</h2>
+				<p id="Modal_Description" class="visually-hidden">Explanation on what the different icons represents.</p>
+				<details id="dt_bft">
+					<summary><svg class="svgIcon" role="img"><use xlink:href="#bf1" /></svg>Beaufort scale</summary>
+					<span>
+						The Beaufort wind scale measures wind speed according to the impact the wind has on the land and sea. Although the system is old (first developed in 1805 by Sir Francis Beaufort), it remains a widely used system to measure wind speed today. The table below describes what can be expected for each level of the scale.
+					</span>
+				</details>
+				<details id="dt_windspeed">
+					<summary><svg class="svgIcon" role="img"><use xlink:href="#windspeed"></use></svg>WindSpeed</summary>
+					<span>
+						The forecasts of wind speed and direction are the average of these gusts and lulls, measured over a 10-minute period at a height of 10 metres above sea level. The gusts during any 10-minute period are typically 40% higher than the average wind speed.
+					</span>
+				</details>
+				<details id="dt_windirection">
+					<summary><svg class="svgIcon" role="img"><use xlink:href="#windirection"></use></svg>Wind direction</summary>
+					<span>
+						The wind direction is based on true north orientation and is the direction the wind is blowing from. For example, a northerly wind is blowing from the north towards the south.<br />Wind speed and direction can be influenced significantly by the local environment. Cliffs and other landscape features will affect winds near the shore.
+					</span>
+				</details>
+				<details id="dt_pressure">
+					<summary><svg class="svgIcon" role="img"><use xlink:href="#pressure"></use></svg>Air pressure</summary>
+					<span>
+						Air pressure also known as atmospheric pressure is the force per unit area exerted on a surface by the weight of air above that surface in the atmosphere of a planet.<br />In most circumstances atmospheric pressure is closely approximated by the hydrostatic pressure caused by the weight of air above the measurement point.
+					</span>
+				</details>
+				<details id="dt_humidity">
+					<summary><svg class="svgIcon" role="img"><use xlink:href="#humidity"></use></svg>Humidity</summary>
+					<span></span>
+				</details>
+				<details id="dt_moonset">
+					<summary></summary>
+					<span></span>
+				</details>
+				<details id="dt_sunrise">
+					<summary><svg class="svgIcon" role="img"><use xlink:href="#sunrise"></use></svg>Time of sunrise</summary>
+					<span></span>
+				</details>
+				<details id="dt_morningold">
+					<summary></summary>
+					<span></span>
+				</details>
+				<details id="dt_sunset">
+					<summary><svg class="svgIcon" role="img"><use xlink:href="#sunset"></use></svg>Time for sunset</summary>
+					<span></span>
+				</details>
+				<details id="dt_eveningold">
+					<summary></summary>
+					<span></span>
+				</details>
+				<details id="dt_moonrise">
+					<summary></summary>
+					<span></span>
+				</details>
+				<details id="dt_location">
+					<summary><svg class="svgIcon" role="img"><use xlink:href="#location"></use></svg>Location</summary>
+					<span>Your current location with longitude and latitude</span>
+				</details>
+				<button id="close-button" class="close-button" tabindex="0">X</button>
+			</div>
+		</div>
 		<script async src="js/suncalc.min.js"></script>
 		<script defer src="js/weather.min.js"></script>
 	</body>
