@@ -142,7 +142,14 @@ svg.weather-sprite {
 	-webkit-transform: rotate(calc(var(--hPa) - 43deg));
 	        transform: rotate(calc(var(--hPa) - 43deg));
 }
-
+#beaufort.windspeed .svgIcon {
+	border-radius: 50%;
+	-webkit-animation: rotate var(--bftSpeed) linear infinite reverse;
+	        animation: rotate var(--bftSpeed) linear infinite reverse;
+	transform-box: fill-box;
+	-webkit-transform-origin: center;
+	        transform-origin: center;
+}
 main {
 	margin: 0 auto;
 	padding: 0;
