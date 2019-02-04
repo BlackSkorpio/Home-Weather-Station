@@ -35,7 +35,7 @@
 			Temperature is available in Fahrenheit, Celsius and Kelvin units.
 				For temperature in Fahrenheit use units = imperial
 				For temperature in Celsius use units = metric
-				Temperature in Kelvin is used by default, no need to use units parameter in API call
+				For Temperature in Kelvin use units = Standard
 	*/
 	var unitsFormat			= "metric";
 	var bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt;
@@ -102,11 +102,11 @@
 			bfs15Txt	= bfs12Txt;
 			bfs16Txt	= bfs12Txt;
 			bfs17Txt	= bfs12Txt;
-			bfs21Txt	= "Eller bara tillräckligt för att ge styrfart.";
+			bfs21Txt	= "Eller knappt tillräckligt för att ge styrfart.";
 			bfs22Txt	= "Or that in which a man-of-war, with all sail set, and clean full, would go in smooth water, from";
 			bfs07Txt	= "High wind, moderate gale, near gale";
 			bfs23Txt	= "Or that to which a well-conditioned man-of-war could just carry in chase, full and by";
-			bfs24Txt	= "Eller det som hon knappt kunde bära nära revet huvudstorsegel och revs framåt.";
+			bfs24Txt	= "Eller det som hon knappt kunde bära när revat huvudstorsegel och drivs framåt.";
 			bfs25Txt	= "Or that which would reduce her to storm stay-sails.";
 			bfs26Txt	= "Eller det som ingen segelduk kunde klara av.";
 			modalTitleTxt = "Icon legend";
