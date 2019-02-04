@@ -38,7 +38,8 @@
 				For Temperature in Kelvin use units = Standard
 	*/
 	var unitsFormat			= "metric";
-	var bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt;
+
+	var detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt;
 	var moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt;
 	var buttonOpen, months, days, directionsTxt, beaufortScale, wd_ws, wd_bf, bfSvgId, wd_LB, ws_s, ws_m, ws_f;
 	var tempForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm;
@@ -50,6 +51,7 @@
 		case "se":
 			gettingTxt	= "Läser in vädret";
 			locErrorTxt	= "GEO-location service är inte tillgänglig, försök igen senare.";
+			detailsTxt	= "Väder Detaljer";
 			gpsTxt		= "GPS: ";
 			locationTxt	= "Kordinater: ";
 			locationDesc = "Längd- och latitudkoordinater baseras på den IP-adress du har tilldelats av din operatör, <br /> och används av oss för att bestämma var du befinner dig.";
@@ -157,6 +159,7 @@
 		default:
 			gettingTxt	= "Getting weather";
 			locErrorTxt	= "IP address location service is unavailable.";
+			detailsTxt	= "Weather Details";
 			gpsTxt		= "GPS: ";
 			locationTxt	= "Location: ";
 			locationDesc = "Length and latitude coordinates are based on the IP address assigned to you by your operator, <br /> and used by us to determine your location.";
@@ -325,7 +328,7 @@
 	var useWeatherDude		= '<svg class="getting" role="img">' + titlePrefix + gettingTxt + titleSuffix + usePrefix + "weatherDude" + useSuffix;
 	var useBeaufort			= svgPrefix + usePrefix + "bf1" + useSuffix;
 
-	var main, container, sStyles, now, dd, td, details, wd_summary, infoModal;
+	var main, container, sStyles, now, dd, td, details, wd_summary, detailsHeader, infoModal;
 	var lat, lon, region, gd, gpsbutton;
 	var city = "";
 	var weatherurl, wd, icon, beaufort;
@@ -364,6 +367,7 @@
 		td			= document.getElementById("time");
 		wd			= document.getElementById("weather");
 		wd_summary	= document.getElementById("details");
+		detailsHeader = document.getElementById("detailsHeader");
 		details		= document.getElementById("weatherdetails");
 		gd			= document.getElementById("gps");
 		beaufort	= document.getElementById("beaufort");
@@ -655,6 +659,7 @@
 			svgStyle += '}';
 		sStyles.innerHTML = svgStyle;
 
+		detailsHeader.innerHTML = detailsTxt;
 
 		var hilowline = '<li id="wd_hilowtemp">';
 			hilowline += textSpanPrefix;
