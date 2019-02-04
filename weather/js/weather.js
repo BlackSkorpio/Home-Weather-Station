@@ -14,8 +14,7 @@
 	var useip				= true;
 	var locationRequested	= false;
 	var useSVG				= true;
-	//var appID				= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
-	var appID				= "9aa352a903101d13f7be396a2414e280";
+	var appID				= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
 
 	/* Multilingual support
 		You can use lang parameter to get the output in your language. We support the following
@@ -45,6 +44,7 @@
 	var tempForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm;
 	var svgPrefix, titlePrefix, titleSuffix, usePrefix, useSuffix, summaryPrefix, summarySuffix, spanPrefix, spanSuffix, textSpanPrefix, spanSuffix, timePrefix, timePrefixEnd, timeSuffix;
 	var useCompass, useLocation, useBeaufort, useSunRise, useSunSet, useGoldenHour, useMoonRise, useMoonSet, useHumidity, useWindspeed, usePressure, useTemprature, useWindRose, useWeatherDude;
+
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
 		case "se":
@@ -73,7 +73,8 @@
 			moonriseDesc = "Klockslag när månen börjar gå upp.";
 			moonSetsTxt	= "Månen går ner: ";
 			moonsetDesc	= "Klockslag när månen börjar gå ner.";
-			/*clearTxt	= "klar";
+			/* TODO Remove
+			clearTxt	= "klar";
 			cloudTxt	= "mulet";// moln
 			cloudTxt2	= "moln";// moln
 			rainTxt		= "regn";
@@ -154,7 +155,7 @@
 			];
 			break;
 		default:
-			gettingTxt	= "getting weather";
+			gettingTxt	= "Getting weather";
 			locErrorTxt	= "IP address location service is unavailable.";
 			gpsTxt		= "GPS: ";
 			locationTxt	= "Location: ";
@@ -179,7 +180,8 @@
 			moonriseDesc = "Time when the moon begins to rise";
 			moonSetsTxt	= "Moon Sets: ";
 			moonsetDesc = "Time when the moon begins to set";
-			/*clearTxt	= "clear";
+			/* TODO Remove
+			clearTxt	= "clear";
 			cloudTxt	= "cloud";
 			rainTxt		= "rain";
 			snowTxt		= "snow";
@@ -653,6 +655,7 @@
 			svgStyle += '}';
 		sStyles.innerHTML = svgStyle;
 
+
 		var hilowline = '<li id="wd_hilowtemp">';
 			hilowline += textSpanPrefix;
 			hilowline += "Hourly Max | Min: ";
@@ -1019,6 +1022,7 @@
 			return elements.classList.add( classVisible );
 		});
 	}
+
 	function getWindDirection(deg) {
 		var degs = [348.75,326.25,303.75,281.25,258.75,236.25,213.75,191.25,168.75,146.25,123.75,101.25,78.75,56.25,33.75,11.25,0];
 		for ( var i=0;i < degs.length;i++) {
@@ -1033,6 +1037,7 @@
 		if (weatherdata) {
 			var weather = weatherdata["weather"][0];
 			var weatherId = weather.id;
+			//var weatherId = 711; //for testing
 			console.debug( //for testing
 				'WeatherID: '+weatherId +'\n'+
 				weather.description

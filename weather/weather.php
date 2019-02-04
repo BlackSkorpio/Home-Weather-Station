@@ -23,7 +23,7 @@
 			}*/
 
 			$endpoint = "http://api.openweathermap.org/data/2.5/weather?";
-			$apikey = "9aa352a903101d13f7be396a2414e280";
+			$apikey = "YOUR_API_KEY_HERE";
 			$weatherurl = $endpoint . "lat=" . $latitude . "&lon=" . $longitude . "&lang=" . $langCode . "&units=" . $unitsFormat . "&APPID=" . $apikey;
 			$jsonfile = file_get_contents($weatherurl);
 
