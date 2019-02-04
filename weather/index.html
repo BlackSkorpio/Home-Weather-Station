@@ -121,14 +121,18 @@
 					<ul id="weatherdetails"></ul>
 				</details>
 			</article>
-			<button id="open-button" class="info open-button">
-				<svg class="svgIcon" role="img"><use xlink:href="#legend" /></svg>
-			</button>
+			<footer>
+				<div class="iconwrapper">
+					<button id="open-button" class="info open-button">
+						<svg class="svgIcon" role="img"><use xlink:href="#legend" /></svg>
+					</button>
 					<div class="builtby">
 						<a href="https://github.com/BlackSkorpio/Home-Weather-Station" title="Home Weather Station">
 							<svg class="svgIcon" role="img"><use xlink:href="#logosmall" /></svg>
 						</a>
 					</div>
+				</div>
+			</footer>
 		</main>
 		<div id="modal-overlay" class="modal-overlay closed"></div>
 		<div id="modal" class="legend modal closed" role="dialog" aria-labelledby="Modal_Title" aria-describedby="Modal_Description" aria-hidden="true">
@@ -190,6 +194,10 @@
 				<details id="dt_location">
 					<summary><svg class="svgIcon" role="img"><use xlink:href="#location"></use></svg>Location</summary>
 					<span>Your current location with longitude and latitude</span>
+				</details>
+				<details id="dt_builtby">
+					<summary><svg class="svgIcon" role="img"><use xlink:href="#logosmall" /></svg>Home Weather Station</summary>
+					<span></span>
 				</details>
 				<button id="close-button" class="close-button" tabindex="0">X</button>
 			</div>
