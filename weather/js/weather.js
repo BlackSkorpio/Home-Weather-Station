@@ -1083,7 +1083,7 @@
 			//isClearNight = false; //for testing
 
 			//isMisty = (weather.description.indexOf(mistTxt) >= 0);
-			isMisty = ( weatherId == 701 );
+			isMisty = ( weatherId == 701 || weatherId == 711 || weatherId == 721 || weatherId == 741 );
 			//isMisty = false; //for testing
 			mistlayer.style.display = isMisty ? "block" : "none";
 			mistlayer.style.opacity = isDark ? 0.75 : 0.85;

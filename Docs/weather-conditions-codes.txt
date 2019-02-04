@@ -1,0 +1,7 @@
+200 - 232	Thunderstorm
+300 - 321	Drizzle
+500 - 531	Rain
+600 - 622	Snow
+701 - 781	Atmosphere
+800			Clear
+801 - 804	Clouds
