@@ -2021,6 +2021,10 @@ details#details summary:focus span {
 details#details summary:focus {
 	outline:none;
 }
+footer .builtby {
+	width: 1.5em;
+	margin: 0 0.2em;
+}
 /* KEYFRAMES */
 @-webkit-keyframes rotate {
 	0% {
