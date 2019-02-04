@@ -1,0 +1,20 @@
+<svg id="logosmall" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 1000" xml:space="preserve">
+	<defs>
+		<linearGradient id="a" x1="0" y1="0" x2="56%" y2="51%" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#ffd121"/>
+			<stop offset="50%" stop-color="#ffb505"/>
+			<stop offset="100%" stop-color="#fa9618"/>
+		</linearGradient>
+		<linearGradient id="b" x1="0" y1="0" x2="0" y2="100%" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#3fb1ca"/>
+			<stop offset="50%" stop-color="#0099b9"/>
+			<stop offset="100%" stop-color="#007c84"/>
+		</linearGradient>
+		<linearGradient id="c" x1="49.9943" y1="84.6247" x2="47.5586" y2="116.2891" xlink:href="#b"/>
+	</defs>
+	<g fill="url(#a)">
+		<path d="M 485 165 C 526 154 568 149 597 147 545 68 512 18 496 0 496 0 493 61 371 210 393 198 438 177 485 165 Z"></path>
+		<path d="M 643 216 C 631 198 620 181 610 166 590 187 561 222 537 259 502 312 482 370 482 370 L 560 346 C 560 346 519 417 499 491 480 555 482 624 482 624 L 536 599 C 536 599 512 688 510 792 508 883 526 965 535 998 714 980 853 829 855 644 856 484 739 359 643 216 Z"></path>
+	</g>
+	<path fill="url(#b)" d="M 460 868 C 434 800 427 722 427 722 L 387 745 C 387 745 368 680 361 614 354 550 361 486 361 486 L 308 507 C 308 507 304 430 317 356 325 307 340 261 349 236 348 238 346 240 344 242 236 367 144 491 144 644 144 841 303 1000 499 1000 509 1000 519 1000 529 999 513 974 481 923 460 868 Z"></path>
+</svg>
