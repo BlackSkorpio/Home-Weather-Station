@@ -14,6 +14,7 @@
 	var useip				= true;
 	var locationRequested	= false;
 	var useSVG				= true;
+	//var appID				= "9aa352a903101d13f7be396a2414e280";
 	var appID				= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
 
 	/* Multilingual support
@@ -1084,7 +1085,7 @@
 
 			//isMisty = (weather.description.indexOf(mistTxt) >= 0);
 			isMisty = ( weatherId == 701 || weatherId == 711 || weatherId == 721 || weatherId == 741 );
-			//isMisty = false; //for testing
+			//isMisty = true; //for testing
 			mistlayer.style.display = isMisty ? "block" : "none";
 			mistlayer.style.opacity = isDark ? 0.75 : 0.85;
 			if (isDark && isMisty) {

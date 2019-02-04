@@ -1631,9 +1631,9 @@ Animated cloud code adapted from Mark Bowley's CodePen at https://codepen.io/Mar
 #mistlayer {
 	overflow: visible;
 	background-color: transparent;
-	background-image: url("../img/fx/mist.svg");
+	/*background-image: url("../img/fx/mist.svg");
 	background-size: 100% 100%;
-	background-repeat: no-repeat;
+	background-repeat: no-repeat;*/
 }
 #snowlayer {
 	background-color: transparent;
