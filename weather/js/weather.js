@@ -327,7 +327,7 @@
 	var useTemprature		= svgPrefix + titlePrefix + tempForm + titleSuffix + usePrefix + "temperatur" + useSuffix;
 	var useWindRose			= svgPrefix + usePrefix + "windirection" + useSuffix;
 	var useWeatherDude		= '<svg class="getting" role="img">' + titlePrefix + gettingTxt + titleSuffix + usePrefix + "weatherDude" + useSuffix;
-	var useBeaufort			= svgPrefix + usePrefix + "bf1" + useSuffix;
+	var useBeaufort			= svgPrefix + usePrefix + "bf0" + useSuffix;
 
 	var main, container, sStyles, now, dd, td, details, wd_summary, detailsHeader, infoModal;
 	var lat, lon, region, gd, gpsbutton;
@@ -839,21 +839,20 @@
 			wd_bfTxt = bfs17Txt + wd_LB + bfs26Txt;
 		}
 		if ( wd_bf >=    0 && wd_bf <=    2 ) bfSvgId = 0, ws_s = 75, ws_m = 55, ws_f = 35, ws_bft = 10;
-		if ( wd_bf >=    3 && wd_bf <=    4 ) bfSvgId = 1, ws_s = 65, ws_m = 45, ws_f = 35, ws_bft = 5;
-		if ( wd_bf >=    5 && wd_bf <=    6 ) bfSvgId = 2, ws_s = 60, ws_m = 40, ws_f = 30, ws_bft = 4;
-		if ( wd_bf >=    7 && wd_bf <=    8 ) bfSvgId = 3, ws_s = 55, ws_m = 35, ws_f = 25, ws_bft = 3;
-		if ( wd_bf >=    9 && wd_bf <=   10 ) bfSvgId = 4, ws_s = 45, ws_m = 25, ws_f = 15, ws_bft = 2;
-		if ( wd_bf >=   11 && wd_bf <=   17 ) bfSvgId = 5, ws_s = 35, ws_m = 15, ws_f =  5, ws_bft = 1;
+		if ( wd_bf >=    3 && wd_bf <=    4 ) bfSvgId = 1, ws_s = 65, ws_m = 45, ws_f = 35, ws_bft =  5;
+		if ( wd_bf >=    5 && wd_bf <=    6 ) bfSvgId = 2, ws_s = 60, ws_m = 40, ws_f = 30, ws_bft =  4;
+		if ( wd_bf >=    7 && wd_bf <=    8 ) bfSvgId = 3, ws_s = 55, ws_m = 35, ws_f = 25, ws_bft =  3;
+		if ( wd_bf >=    9 && wd_bf <=   10 ) bfSvgId = 4, ws_s = 45, ws_m = 25, ws_f = 15, ws_bft =  2;
+		if ( wd_bf >=   11 && wd_bf <=   17 ) bfSvgId = 5, ws_s = 35, ws_m = 15, ws_f =  5, ws_bft =  1;
 
 		var wd_beaufortTitle = bfsHeadTxt + wd_bf + beaufortForm + wd_LB + wd_bfTxt;
 		var beaufortSVG = svgPrefix;
 			beaufortSVG += titlePrefix;
 			beaufortSVG += wd_beaufortTitle;
 			beaufortSVG += titleSuffix;
-			beaufortSVG += usePrefix;
-			beaufortSVG += "bf" + bfSvgId;
+			beaufortSVG += usePrefix + "bf0";
 			beaufortSVG += useSuffix;
-			beaufortSVG += "<style>:root,.cloud{--bftSpeed:"+ws_bft+"s;--windspeed-s:"+ws_s+"s;--windspeed-m:"+ws_m+"s;--windspeed-f:"+ws_f+"s;}</style>";
+			beaufortSVG += "<style>:root,.cloud{--bftclr:var(--bf"+bfSvgId+");--bftSpeed:"+ws_bft+"s;--windspeed-s:"+ws_s+"s;--windspeed-m:"+ws_m+"s;--windspeed-f:"+ws_f+"s;}</style>";
 
 		beaufort.className = "windspeed i-" + wd_bf + "bf";
 		beaufort.innerHTML = beaufortSVG;
