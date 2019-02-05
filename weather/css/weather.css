@@ -2668,6 +2668,8 @@ https://codepen.io/lbebber/pen/waGydW
 #rain i svg {
 	width: 100%;
 	height: 100%;
+	-webkit-filter: blur(1px) brightness(70%) saturate(62%);
+	        filter: blur(1px) brightness(70%) saturate(62%);
 }
 /* different sizes, and default origins based on size */
 #rain i:nth-of-type(4n) {
