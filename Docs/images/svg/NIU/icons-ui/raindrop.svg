@@ -1,0 +1,12 @@
+<svg version="1.1" id="raindrop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 223.14 319.008" xml:space="preserve">
+	<defs>
+		<radialGradient id="rain" gradientUnits="userSpaceOnUse" fx="5%" fy="5%" r="70%" spreadMethod="pad">
+			<stop stop-color="rgb(133, 164, 254)" offset="0%"/>
+			<stop stop-color="rgba(96, 148, 255, 0.5)" offset="20%"/>
+			<stop stop-color="rgba(74, 130, 193, 0.6)" offset="35%"/>
+			<stop stop-color="rgba(105, 139, 255, 0.7)" offset="65%"/>
+			<stop stop-color="rgb(151, 145, 255)" offset="100%"/>
+		</radialGradient>
+	</defs>
+	<path fill="url(#rain)" stroke="url(#rain)" stroke-width="1" stroke-linejoin="miter" stroke-miterlimit="1.0" d="M111.57,13.291c0,0,57.179,86.984,72.719,108.819 c30.359,42.66,41.005,114.694,1.626,154.074c-20.464,20.463-47.533,30.293-74.344,29.488h-0.002 c-26.811,0.805-53.88-9.025-74.344-29.488C-2.154,236.804,8.492,164.77,38.851,122.11C54.391,100.275,111.57,13.291,111.57,13.291z" />
+</svg>
