@@ -766,75 +766,75 @@
 		// Skalan kan beräknas med formeln V = k · B3/2, där k = 0,8365, B = Beauforttalet, och V = vindhastighet i m/s
 		// 2.9 = 0.8365 * 3/2
 		var wd_ws = data.wind.speed;
-		if ( wd_ws >=    0 && wd_ws <=  0.2 ) {
+		if ( wd_ws >=     0 && wd_ws <=  0.29 ) {
 			wd_bf =  0;
 			wd_bfTxt = bfs21Txt + wd_LB + bfs00Txt;
 		}
-		if ( wd_ws >=  0.3 && wd_ws <=  1.5 ) {
+		if ( wd_ws >=  0.30 && wd_ws <=  1.59 ) {
 			wd_bf =  1;
 			wd_bfTxt = bfs01Txt + wd_LB + bfs21Txt;
 		}
-		if ( wd_ws >=  1.6 && wd_ws <=  3.3 ) {
+		if ( wd_ws >=  1.60 && wd_ws <=  3.33 ) {
 			wd_bf =  2;
 			wd_bfTxt = bfs02Txt + wd_LB + bfs21Txt;
 		}
-		if ( wd_ws >=  3.4 && wd_ws <=  5.4 ) {
+		if ( wd_ws >=  3.40 && wd_ws <=  5.49 ) {
 			wd_bf =  3;
 			wd_bfTxt = bfs03Txt + wd_LB + bfs21Txt;
 		}
-		if ( wd_ws >=  5.5 && wd_ws <=  7.9 ) {
+		if ( wd_ws >=  5.50 && wd_ws <=  7.99 ) {
 			wd_bf =  4;
 			wd_bfTxt = bfs04Txt + wd_LB + bfs21Txt;
 		}
-		if ( wd_ws >=  8.0 && wd_ws <= 10.7 ) {
+		if ( wd_ws >=  8.00 && wd_ws <= 10.79 ) {
 			wd_bf =  5;
 			wd_bfTxt = bfs05Txt + wd_LB + bfs23Txt;
 		}
-		if ( wd_ws >= 10.8 && wd_ws <= 13.8 ) {
+		if ( wd_ws >= 10.80 && wd_ws <= 13.89 ) {
 			wd_bf =  6;
 			wd_bfTxt = bfs06Txt + wd_LB + bfs23Txt;
 		}
-		if ( wd_ws >= 13.9 && wd_ws <= 17.1 ) {
+		if ( wd_ws >= 13.90 && wd_ws <= 17.19 ) {
 			wd_bf =  7;
 			wd_bfTxt = bfs07Txt + wd_LB + bfs23Txt;
 		}
-		if ( wd_ws >= 17.2 && wd_ws <= 20.7 ) {
+		if ( wd_ws >= 17.20 && wd_ws <= 20.79 ) {
 			wd_bf =  8;
 			wd_bfTxt = bfs08Txt + wd_LB + bfs23Txt;
 		}
-		if ( wd_ws >= 20.8 && wd_ws <= 24.4 ) {
+		if ( wd_ws >= 20.80 && wd_ws <= 24.49 ) {
 			wd_bf =  9;
 			wd_bfTxt = bfs09Txt + wd_LB + bfs23Txt;
 		}
-		if ( wd_ws >= 24.5 && wd_ws <= 28.4 ) {
+		if ( wd_ws >= 24.50 && wd_ws <= 28.49 ) {
 			wd_bf = 10;
 			wd_bfTxt = bfs10Txt + wd_LB + bfs24Txt;
 		}
-		if ( wd_ws >= 28.5 && wd_ws <= 32.6 ) {
+		if ( wd_ws >= 28.50 && wd_ws <= 32.69 ) {
 			wd_bf = 11;
 			wd_bfTxt = bfs11Txt + wd_LB + bfs25Txt;
 		}
-		if ( wd_ws >= 32.7 && wd_ws <= 36.9 ) {
+		if ( wd_ws >= 32.70 && wd_ws <= 36.99 ) {
 			wd_bf = 12;
 			wd_bfTxt = bfs12Txt + wd_LB + bfs26Txt;
 		}
-		if ( wd_ws >= 37.0 && wd_ws <= 41.4 ) {
+		if ( wd_ws >= 37.00 && wd_ws <= 41.49 ) {
 			wd_bf = 13;
 			wd_bfTxt = bfs13Txt + wd_LB + bfs26Txt;
 		}
-		if ( wd_ws >= 41.5 && wd_ws <= 46.1 ) {
+		if ( wd_ws >= 41.50 && wd_ws <= 46.19 ) {
 			wd_bf = 14;
 			wd_bfTxt = bfs14Txt + wd_LB + bfs26Txt;
 		}
-		if ( wd_ws >= 46.2 && wd_ws <= 50.9 ) {
+		if ( wd_ws >= 46.20 && wd_ws <= 50.99 ) {
 			wd_bf = 15;
 			wd_bfTxt = bfs15Txt + wd_LB + bfs26Txt;
 		}
-		if ( wd_ws >= 51.0 && wd_ws <= 56.0 ) {
+		if ( wd_ws >= 51.00 && wd_ws <= 56.09 ) {
 			wd_bf = 16;
 			wd_bfTxt = bfs16Txt + wd_LB + bfs26Txt;
 		}
-		if ( wd_ws >= 56.1 && wd_ws <= 61.2 ) {
+		if ( wd_ws >= 56.10 && wd_ws <= 61.20 ) {
 			wd_bf = 17;
 			wd_bfTxt = bfs17Txt + wd_LB + bfs26Txt;
 		}
@@ -1051,18 +1051,9 @@
 			sunsettime = Number(weatherdata["sys"].sunset);
 			sunrisetime = Number(weatherdata["sys"].sunrise);
 			checkForSunset();
-			//isClear = (weather.description.indexOf(clearTxt) >= 0);
-			isClear = ( 800 < weatherId && weatherId < 803  );
-
-			//isCloudy = (weather.description.indexOf(cloudTxt) >= 0) || weather.description.indexOf(cloudTxt2) >= 0;
-			isCloudy = ( 801 <= weatherId && weatherId < 805 );
-			//isCloudy = false; //for testing
-			cloudlayer.style.display = isCloudy ? "block" : "none";
-			cloudlayer.style.opacity = isDark ? 0.75 : 1;
-
 			//isRainy = (weather.description.indexOf(rainTxt) >= 0);
-			isDrizzle = ( 300 <= weatherId && weatherId < 321 );
-			isRainy   = ( 500 < weatherId && weatherId < 531 );
+			isDrizzle = ( weatherId >= 300 && weatherId <= 321 );
+			isRainy   = ( weatherId >= 500 && weatherId <= 531 );
 			//isDrizzle = true; //for testing
 			//isRainy = false; //for testing
 			rainlayer.style.display = isRainy || isDrizzle ? "block" : "none";
@@ -1071,10 +1062,19 @@
 			rainwindow.style.opacity = isDark || isDusk ? 0.5 : 0.75;
 
 			//isSnowy = (weather.description.indexOf(snowTxt) >= 0);
-			isSnowy = ( 600 < weatherId && weatherId < 622 );
+			isSnowy = ( weatherId >= 600 && weatherId <= 622 );
 			//isSnowy = true; //for testing
 			snowlayer.style.display = isSnowy ? "block" : "none";
 			snowlayer.style.opacity = isDark ? 0.1 : 0.75;
+
+			//isClear = (weather.description.indexOf(clearTxt) >= 0);
+			isClear = ( weatherId >= 800 && weatherId <= 803  );
+
+			//isCloudy = (weather.description.indexOf(cloudTxt) >= 0) || weather.description.indexOf(cloudTxt2) >= 0;
+			isCloudy = ( weatherId >= 801 && weatherId <= 804 );
+			//isCloudy = false; //for testing
+			cloudlayer.style.display = isCloudy ? "block" : "none";
+			cloudlayer.style.opacity = isDark ? 0.75 : 1;
 
 			//isSunny = (weather.description.indexOf(sunTxt) >= 0 || (isClear && !isDark));
 			isSunny = ( weatherId == 800 || (isClear && !isDark) );
