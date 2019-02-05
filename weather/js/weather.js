@@ -14,7 +14,6 @@
 	var useip				= true;
 	var locationRequested	= false;
 	var useSVG				= true;
-	//var appID				= "9aa352a903101d13f7be396a2414e280";
 	var appID				= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
 
 	/* Multilingual support
