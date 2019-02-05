@@ -708,7 +708,7 @@
 				windline += spanSuffix;
 				windline += svgPrefix;
 				windline += titlePrefix;
-				windline += windTxt;
+				windline += windDirTxt;
 				windline += data.wind.deg.toFixed(0);
 				windline += "° ";
 				windline += getWindDirection(data.wind.deg);
