@@ -336,7 +336,7 @@
 	var weatherdata, weatherminute;
 	var sunsettime = 0;
 	var sunrisetime = 0;
-	var cloudlayer, rainlayer, snowlayer, sunlayer, clearnightlayer, mistlayer;
+	var cloudlayer, rainlayer, rainwindow, snowlayer, sunlayer, clearnightlayer, mistlayer;
 	var isDark, isCloudy, isRainy, isSnowy, isSunny, isClearNight, isClear, isMisty, isDusk, isDawn;
 
 	document.addEventListener("DOMContentLoaded", init, false);
@@ -377,6 +377,7 @@
 
 		cloudlayer	= document.getElementById("cloudlayer");
 		rainlayer	= document.getElementById("rainlayer");
+		rainwindow	= document.getElementById("rainwindow");
 		snowlayer	= document.getElementById("snowlayer");
 		sunlayer	= document.getElementById("sunlayer");
 		clearnightlayer = document.getElementById("clearnightlayer");
@@ -1067,6 +1068,8 @@
 			//isRainy = false; //for testing
 			rainlayer.style.display = isRainy || isDrizzle ? "block" : "none";
 			rainlayer.style.opacity = isDark || isDusk ? 0.75 : 1;
+			rainwindow.style.display = isRainy || isDrizzle ? "block" : "none";
+			rainwindow.style.opacity = isDark || isDusk ? 0.5 : 0.75;
 
 			//isSnowy = (weather.description.indexOf(snowTxt) >= 0);
 			isSnowy = ( 600 < weatherId && weatherId < 622 );
