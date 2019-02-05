@@ -855,6 +855,16 @@
 
 		beaufort.className = "windspeed i-" + wd_bf + "bf";
 		beaufort.innerHTML = beaufortSVG;
+
+		/*console.debug(
+			'wd_ws: '+wd_ws +'\n'+
+			'wd_bf: '+wd_bf +'\n'+
+			'bfSvgId:' +bfSvgId+'\n'+
+			'ws_s: '+ws_s+'\n'+
+			'ws_m: '+ws_m+'\n'+
+			'ws_f: '+ws_f+'\n'+
+			'ws_bft: '+ws_bft
+		);*/
 	}
 
 	function wd_modal(data) {
