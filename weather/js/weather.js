@@ -57,6 +57,8 @@
 			locationTxt	= "Kordinater: ";
 			locationDesc = "Längd- och latitudkoordinater baseras på den IP-adress du har tilldelats av din operatör, <br /> och används av oss för att bestämma var du befinner dig.";
 			minMaxTxt	= "Min/Max temperatur idag: ";
+			cloudinessTxt = "Molntäcke: ";
+			cloudinessDesc = "Den totala molnmängden ska ange hur stor del av himlen som skymd av moln utan hänsyn till molnslag eller molnhöjd och rapporteras i procent, där 0% betyder molnfritt och 100% helt molntäckt himmel.";
 			pressureTxt	= "Lufttryck: ";
 			pressureDesc = "Lufttrycket, även känt som atmosfärstryck, är kraften per enhetsarea som utövas på en yta av vikten av luft ovanför den ytan i atmosfären av en planet.<br />I de flesta fall är atmosfärstrycket nära approximerat av det hydrostatiska trycket som orsakas av luftens vikt över mätpunkten.";
 			humidityTxt	= "Luftfuktighet: ";
@@ -166,6 +168,8 @@
 			locationTxt	= "Location: ";
 			locationDesc = "Length and latitude coordinates are based on the IP address assigned to you by your operator, <br /> and used by us to determine your location.";
 			minMaxTxt	= "Hourly Max | Min: ";
+			cloudinessTxt = "Overcast: ";
+			cloudinessDesc = "The total cloud amount should indicate how much of the sky is obscured by clouds without regard to cloud or cloud height and reported in percent, where 0% means cloudless and 100% completely clouded sky.";
 			pressureTxt	= "Pressure: ";
 			pressureDesc = "Air pressure also known as atmospheric pressure is the force per unit area exerted on a surface by the weight of air above that surface in the atmosphere of a planet.<br />In most circumstances atmospheric pressure is closely approximated by the hydrostatic pressure caused by the weight of air above the measurement point.";
 			humidityTxt	= "Humidity: ";
@@ -271,6 +275,7 @@
 		case "metric":
 			tempForm	= "°C";
 			windSpeed	= "ms";
+			overcastForm = "%";
 			beaufortForm = "bft";
 			pressureForm = " hPa";
 			humidityForm = "%";
@@ -280,6 +285,7 @@
 		case "imperial":
 			tempForm	= "°F";
 			windSpeed	= "mph";
+			overcastForm = "%";
 			beaufortForm = "bft";
 			pressureForm = " hPa";
 			humidityForm = "%";
@@ -289,6 +295,7 @@
 		default:
 			tempForm	= "°K";
 			windSpeed	= "mph";
+			overcastForm = "%";
 			beaufortForm = "bft";
 			pressureForm = " hPa";
 			humidityForm = "%";
@@ -316,6 +323,8 @@
 	var timeSuffix			= "</time>";
 
 	var useCompass			= svgPrefix + usePrefix + "compass_rose" + useSuffix;
+	isDark ? overCastLayer	= "overcastNight" : overCastLayer = "overcastDay";
+
 	var useLocation			= svgPrefix + titlePrefix + gpsTxt + titleSuffix + usePrefix + "location" + useSuffix;
 	var useSunRise			= svgPrefix + titlePrefix + sunRiseTxt + titleSuffix + usePrefix + "sunrise" + useSuffix;
 	var useSunSet			= svgPrefix + titlePrefix + sunSetTxt + titleSuffix + usePrefix + "sunset" + useSuffix;
@@ -329,6 +338,7 @@
 	var useWindRose			= svgPrefix + usePrefix + "windirection" + useSuffix;
 	var useWeatherDude		= '<svg class="getting" role="img">' + titlePrefix + gettingTxt + titleSuffix + usePrefix + "weatherDude" + useSuffix;
 	var useBeaufort			= svgPrefix + usePrefix + "bf0" + useSuffix;
+	var useOvercast			= svgPrefix + titlePrefix + cloudinessTxt + titleSuffix + usePrefix + overCastLayer + useSuffix;
 	var useUpdated			= svgPrefix + titlePrefix + updatedTimeTxt + titleSuffix + usePrefix + "clock" + useSuffix;
 
 	var main, container, sStyles, now, dd, td, details, wd_summary, detailsHeader, infoModal;
@@ -735,6 +745,13 @@
 			sunsetline += spanSuffix;
 
 		details.innerHTML = windline + pressureline + humidityline + sunriseline + sunsetline + gpsline;
+		var overcastline = '<li id="wd_clouds">';
+			overcastline += useOvercast;
+			overcastline += textSpanPrefix;
+			overcastline += data.clouds.all;
+			overcastline += overcastForm;
+			overcastline += spanSuffix;
+
 		//details.innerHTML = svgStyle + windline + pressureline + humidityline + sunriseline + sunsetline + gpsline;
 		//details.innerHTML = svgStyle + windline + pressureline + humidityline + sunriseline + morningHourline + moonsetline + sunsetline + eveningHourline + moonriseline + gpsline;
 		// NOTE Set the details section to display block
