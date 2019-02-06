@@ -1057,6 +1057,7 @@
 		modalMonnset.innerHTML		= modalMonnsetTxt;
 		modalMorningold.innerHTML	= modalMorningoldTxt;
 		modalEveningold.innerHTML	= modalEveningoldTxt;
+		buttonOpen.setAttribute('title', modalDescTxt);
 
 		// show the modal
 		var openModal = function() {
