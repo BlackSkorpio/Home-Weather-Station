@@ -288,6 +288,7 @@ summary {
 	grid-gap: 0.2em;
 	grid-template-areas: "wind wind wind"
 		"pressure . humidity"
+		"visibility . cloudiness"
 		"sunrise . sunset"
 		"morning . evening"
 		"moonset . moonrise"
@@ -311,6 +312,12 @@ summary {
 }
 #wd_humidity {
 	grid-area: humidity;
+}
+#wd_visibility {
+	grid-area: visibility;
+}
+#wd_clouds {
+	grid-area: cloudiness;
 }
 #wd_sunrise {
 	grid-area: sunrise;
