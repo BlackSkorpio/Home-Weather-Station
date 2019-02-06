@@ -216,10 +216,8 @@ time {
 	line-height: normal;
 	white-space: nowrap;
 }
-#time,#time1 {
 	margin: 1px 0 0 0;
 }
-#time span,#time1 span {
 	max-width: 2em;
 	margin-top: 0.3em;
 	vertical-align: text-top;
