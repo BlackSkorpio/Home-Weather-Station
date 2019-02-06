@@ -58,6 +58,8 @@
 			locationTxt	= "Kordinater: ";
 			locationDesc = "Längd- och latitudkoordinater baseras på den IP-adress du har tilldelats av din operatör, <br /> och används av oss för att bestämma var du befinner dig.";
 			minMaxTxt	= "Min/Max temperatur idag: ";
+			visibilityTxt = "Sikt: ";
+			visibilityDesc = "Sikt rapporteras i kilometer (km). Det definieras som det största avstånd vid vilket ett stort svart föremål kan ses och redovisas mot himlen. Sikt beräknas utifrån mätningar av ljusspridning och absorption av partiklar och gaser.";
 			cloudinessTxt = "Molntäcke: ";
 			cloudinessDesc = "Den totala molnmängden ska ange hur stor del av himlen som skymd av moln utan hänsyn till molnslag eller molnhöjd och rapporteras i procent, där 0% betyder molnfritt och 100% helt molntäckt himmel.";
 			pressureTxt	= "Lufttryck: ";
@@ -169,6 +171,8 @@
 			locationTxt	= "Location: ";
 			locationDesc = "Length and latitude coordinates are based on the IP address assigned to you by your operator, <br /> and used by us to determine your location.";
 			minMaxTxt	= "Hourly Max | Min: ";
+			visibilityTxt = "Visibility: ";
+			visibilityDesc = "Visual range is reported in miles (mi). It is defined as the greatest distance at which a large black object can be seen and recognized against the background sky. Visual range is calculated from measurements of light scattering and absorption by particles and gases.";
 			cloudinessTxt = "Overcast: ";
 			cloudinessDesc = "The total cloud amount should indicate how much of the sky is obscured by clouds without regard to cloud or cloud height and reported in percent, where 0% means cloudless and 100% completely clouded sky.";
 			pressureTxt	= "Pressure: ";
@@ -276,6 +280,7 @@
 		case "metric":
 			tempForm	= "°C";
 			windSpeed	= "ms";
+			visibilityForm = "km";
 			overcastForm = "%";
 			beaufortForm = "bft";
 			pressureForm = " hPa";
@@ -286,6 +291,7 @@
 		case "imperial":
 			tempForm	= "°F";
 			windSpeed	= "mph";
+			visibilityForm = "mi";
 			overcastForm = "%";
 			beaufortForm = "bft";
 			pressureForm = " hPa";
@@ -296,6 +302,7 @@
 		default:
 			tempForm	= "°K";
 			windSpeed	= "mph";
+			visibilityForm = "m";
 			overcastForm = "%";
 			beaufortForm = "bft";
 			pressureForm = " hPa";
@@ -339,6 +346,7 @@
 	var useWindRose			= svgPrefix + usePrefix + "windirection" + useSuffix;
 	var useWeatherDude		= '<svg class="getting" role="img">' + titlePrefix + gettingTxt + titleSuffix + usePrefix + "weatherDude" + useSuffix;
 	var useBeaufort			= svgPrefix + usePrefix + "bf0" + useSuffix;
+	var useVisibility		= svgPrefix + titlePrefix + visibilityTxt + titleSuffix + usePrefix + "visibility" + useSuffix;
 	var useOvercast			= svgPrefix + titlePrefix + cloudinessTxt + titleSuffix + usePrefix + overCastLayer + useSuffix;
 	var useUpdated			= svgPrefix + titlePrefix + updatedTimeTxt + titleSuffix + usePrefix + "clock" + useSuffix;
 
@@ -639,6 +647,17 @@
 		//var hPaOut = hPaData.match(/.{1,3}/g);
 		//var kPaOut = hPaOut.join(".");
 
+		// NOTE Convert the visibility data to metric or imperial
+		var km = data.visibility / 1000;
+		var miles = data.visibility * 0.0006213712;
+		switch ( unitsFormat ) {
+			case "metric": visibleLength = km.toFixed(1);
+			break;
+			case "imperial": visibleLength = miles.toFixed(2);
+			break;
+			default: visibleLength = data.visibility;
+		};
+
 		// NOTE Calculate sun position
 		/*https://stackoverflow.com/a/18358056/6820262*/
 		function roundToTwo(num) {
@@ -744,6 +763,13 @@
 			sunsetline += textSpanPrefix;
 			sunsetline += new Date(data.sys.sunset * 1000).toLocaleTimeString(timeForm);
 			sunsetline += spanSuffix;
+
+		var visibilityline = '<li id="wd_visibility">';
+			visibilityline += useVisibility;
+			visibilityline += textSpanPrefix;
+			visibilityline += visibleLength;
+			visibilityline += visibilityForm;
+			visibilityline += spanSuffix;
 
 		var overcastline = '<li id="wd_clouds">';
 			overcastline += useOvercast;
