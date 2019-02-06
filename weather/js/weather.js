@@ -53,6 +53,7 @@
 			locErrorTxt	= "GEO-location service är inte tillgänglig, försök igen senare.";
 			detailsTxt	= "Väder Detaljer";
 			gpsTxt		= "GPS: ";
+			updatedTimeTxt = "Uppdaterades: ";
 			locationTxt	= "Kordinater: ";
 			locationDesc = "Längd- och latitudkoordinater baseras på den IP-adress du har tilldelats av din operatör, <br /> och används av oss för att bestämma var du befinner dig.";
 			minMaxTxt	= "Min/Max temperatur idag: ";
@@ -161,6 +162,7 @@
 			locErrorTxt	= "IP address location service is unavailable.";
 			detailsTxt	= "Weather Details";
 			gpsTxt		= "GPS: ";
+			updatedTimeTxt = "Updated: ";
 			locationTxt	= "Location: ";
 			locationDesc = "Length and latitude coordinates are based on the IP address assigned to you by your operator, <br /> and used by us to determine your location.";
 			minMaxTxt	= "Hourly Max | Min: ";
@@ -327,6 +329,7 @@
 	var useWindRose			= svgPrefix + usePrefix + "windirection" + useSuffix;
 	var useWeatherDude		= '<svg class="getting" role="img">' + titlePrefix + gettingTxt + titleSuffix + usePrefix + "weatherDude" + useSuffix;
 	var useBeaufort			= svgPrefix + usePrefix + "bf0" + useSuffix;
+	var useUpdated			= svgPrefix + titlePrefix + updatedTimeTxt + titleSuffix + usePrefix + "clock" + useSuffix;
 
 	var main, container, sStyles, now, dd, td, details, wd_summary, detailsHeader, infoModal;
 	var lat, lon, region, gd, gpsbutton;
@@ -382,6 +385,7 @@
 		clearnightlayer = document.getElementById("clearnightlayer");
 		mistlayer	= document.getElementById("mistlayer");
 		gpsbutton	= document.getElementById("gpsbutton");
+		dt			= doc.getElementById("updateTime");
 		gpsbutton.addEventListener("click",getLocation,false);
 		weatherminute = randRange(0,14);
 		getLocation();
@@ -754,6 +758,22 @@
 		// var weatherlink = '<a class="weatherlink" target="_blank" href="'+weathergov+'?lat=' + lat + '&lon=' + lon + '">';
 		// wd.innerHTML =  weatherlink + weatherstring + "</a>";
 		wd.innerHTML = weatherstring;
+
+		var dtTimeRaw = new Date(data.dt * 1000);
+		var dtTime = dtTimeRaw.toISOString()
+		var updatedTime = useUpdated;
+			updatedTime += timePrefix;
+			updatedTime += dtTime;
+			updatedTime += timePrefixEnd;
+			updatedTime += dtTimeRaw.getHours()+'.'+dtTimeRaw.getMinutes();
+			updatedTime += timeSuffix;
+		dt.innerHTML = updatedTime;
+		dt.setAttribute('title', updatedTimeTxt+dtTime);
+		/*console.debug('data.dt: ' + data.dt +'\n'+
+			'toISOString: '+ new Date(data.dt * 1000).toISOString() +'\n'+
+			'toLocaleTimeString: ' + new Date(data.dt * 1000).toLocaleTimeString(timeForm)
+		);*/
+
 		wd_beaufort(data);
 		setLayers();
 		wd_modal(data);

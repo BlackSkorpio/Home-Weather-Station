@@ -3046,6 +3046,11 @@ footer .builtby {
 footer svg.svgIcon {
 	height: 100%;
 }
+footer time {
+	display: inline-block;
+	font-size: 1em;
+}
+
 /* KEYFRAMES */
 @-webkit-keyframes rotate {
 	0% {
