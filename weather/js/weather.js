@@ -3,7 +3,7 @@
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.2.0
+ *  @version 1.2.3
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -828,7 +828,17 @@
 		// NOTE Convert m/s to beaufort scale
 		// Skalan kan beräknas med formeln V = k · B3/2, där k = 0,8365, B = Beauforttalet, och V = vindhastighet i m/s
 		// 2.9 = 0.8365 * 3/2
-		var wd_ws = data.wind.speed;
+		var wd_windspeed = data.wind.speed.toFixed(2);
+		switch ( unitsFormat ) {
+			case "metric":
+				wd_ws = wd_windspeed;
+				break;
+			case "imperial":
+				wd_ws = wd_windspeed *  0.44704;
+				break;
+			default:
+				wd_ws = wd_windspeed;
+		}
 		if ( wd_ws >=     0 && wd_ws <=  0.29 ) {
 			wd_bf =  0;
 			wd_bfTxt = bfs21Txt + wd_LB + bfs00Txt;
