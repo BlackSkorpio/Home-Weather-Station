@@ -39,12 +39,13 @@
 	*/
 	var unitsFormat			= "metric";
 
-	var detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt;
+	var doc = document, win = window;
+	var updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt;
 	var moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt;
-	var buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_bf, bfSvgId, wd_LB, ws_s, ws_m, ws_f;
-	var tempForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm;
+	var buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, wd_LB, ws_s, ws_m, ws_f;
+	var miles, km, visibleLength, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm;
 	var svgPrefix, titlePrefix, titleSuffix, usePrefix, useSuffix, summaryPrefix, summarySuffix, spanPrefix, spanSuffix, textSpanPrefix, spanSuffix, timePrefix, timePrefixEnd, timeSuffix;
-	var useCompass, useLocation, useBeaufort, useSunRise, useSunSet, useGoldenHour, useMoonRise, useMoonSet, useHumidity, useWindspeed, usePressure, useTemprature, useWindRose, useWeatherDude;
+	var overCastLayer, useOvercastNight, useOvercastDay, useVisibility, useLocation, useBeaufort, useSunRise, useSunSet, useGoldenHour, useMoonRise, useMoonSet, useHumidity, useWindspeed, usePressure, useTemprature, useWindRose, useWeatherDude;
 
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
@@ -341,7 +342,7 @@
 	var useOvercast			= svgPrefix + titlePrefix + cloudinessTxt + titleSuffix + usePrefix + overCastLayer + useSuffix;
 	var useUpdated			= svgPrefix + titlePrefix + updatedTimeTxt + titleSuffix + usePrefix + "clock" + useSuffix;
 
-	var main, container, sStyles, now, dd, td, details, wd_summary, detailsHeader, infoModal;
+	var main, container, sStyles, now, dd, td, dt, details, wd_summary, detailsHeader, infoModal, dtTimeRaw, dtTime, updatedTime;
 	var lat, lon, region, gd, gpsbutton;
 	var city = "";
 	var weatherurl, wd, icon, beaufort;
@@ -349,13 +350,13 @@
 	var sunsettime = 0;
 	var sunrisetime = 0;
 	var cloudlayer, rainlayer, rainwindow, snowlayer, sunlayer, clearnightlayer, mistlayer;
-	var isDark, isCloudy, isRainy, isSnowy, isSunny, isClearNight, isClear, isMisty, isDusk, isDawn;
+	var isDark, isCloudy, isRainy, isDrizzle, isSnowy, isSunny, isClearNight, isClear, isMisty, isDusk, isDawn;
 
-	document.addEventListener("DOMContentLoaded", init, false);
+	doc.addEventListener("DOMContentLoaded", init, false);
 
 	function init() {
 		//now = new Date(2018, 11, 31, 17, 14, 26, 0); // for testing
-		var href = window.location.href;
+		var href = win.location.href;
 		if ( href.indexOf("localhost:")>= 0 || href.indexOf("file:")>= 0 ) {
 			usephp = false;
 			//also remember to load yak code
@@ -366,36 +367,36 @@
 			ajax.open("GET", "img/sprite.svg", true);
 			ajax.send();
 			ajax.onload = function(e) {
-				var svgSprite = document.createElement("div");
+				var svgSprite = doc.createElement("div");
 				svgSprite.className = "svgSprite";
 				svgSprite.innerHTML = ajax.responseText;
-				document.body.insertBefore(svgSprite, document.body.childNodes[0]);
+				doc.body.insertBefore(svgSprite, doc.body.childNodes[0]);
 			}
 		}
-		document.getElementsByTagName("html")[0].setAttribute("lang", langCode);
-		main		= document.querySelector('main');
-		container	= document.getElementById("container");
-		sStyles		= document.getElementById('svgValues');
-		dd			= document.getElementById("date");
-		td			= document.getElementById("time");
-		wd			= document.getElementById("weather");
-		wd_summary	= document.getElementById("details");
-		detailsHeader = document.getElementById("detailsHeader");
-		details		= document.getElementById("weatherdetails");
-		gd			= document.getElementById("gps");
-		beaufort	= document.getElementById("beaufort");
-		infoModal	= document.getElementById("modal");
-		icon		= document.getElementById("icon");
-
-		cloudlayer	= document.getElementById("cloudlayer");
-		rainlayer	= document.getElementById("rainlayer");
-		rainwindow	= document.getElementById("rainwindow");
-		snowlayer	= document.getElementById("snowlayer");
-		sunlayer	= document.getElementById("sunlayer");
-		clearnightlayer = document.getElementById("clearnightlayer");
-		mistlayer	= document.getElementById("mistlayer");
-		gpsbutton	= document.getElementById("gpsbutton");
+		doc.getElementsByTagName("html")[0].setAttribute("lang", langCode);
+		main		= doc.querySelector('main');
+		container	= doc.getElementById("container");
+		sStyles		= doc.getElementById('svgValues');
+		dd			= doc.getElementById("date");
+		td			= doc.getElementById("time");
 		dt			= doc.getElementById("updateTime");
+		wd			= doc.getElementById("weather");
+		wd_summary	= doc.getElementById("details");
+		detailsHeader = doc.getElementById("detailsHeader");
+		details		= doc.getElementById("weatherdetails");
+		gd			= doc.getElementById("gps");
+		beaufort	= doc.getElementById("beaufort");
+		infoModal	= doc.getElementById("modal");
+		icon		= doc.getElementById("icon");
+
+		cloudlayer	= doc.getElementById("cloudlayer");
+		rainlayer	= doc.getElementById("rainlayer");
+		rainwindow	= doc.getElementById("rainwindow");
+		snowlayer	= doc.getElementById("snowlayer");
+		sunlayer	= doc.getElementById("sunlayer");
+		clearnightlayer = doc.getElementById("clearnightlayer");
+		mistlayer	= doc.getElementById("mistlayer");
+		gpsbutton	= doc.getElementById("gpsbutton");
 		gpsbutton.addEventListener("click",getLocation,false);
 		weatherminute = randRange(0,14);
 		getLocation();
@@ -744,7 +745,6 @@
 			sunsetline += new Date(data.sys.sunset * 1000).toLocaleTimeString(timeForm);
 			sunsetline += spanSuffix;
 
-		details.innerHTML = windline + pressureline + humidityline + sunriseline + sunsetline + gpsline;
 		var overcastline = '<li id="wd_clouds">';
 			overcastline += useOvercast;
 			overcastline += textSpanPrefix;
@@ -752,6 +752,7 @@
 			overcastline += overcastForm;
 			overcastline += spanSuffix;
 
+		details.innerHTML = visibilityline + overcastline + windline + pressureline + humidityline + sunriseline + sunsetline + gpsline;
 		//details.innerHTML = svgStyle + windline + pressureline + humidityline + sunriseline + sunsetline + gpsline;
 		//details.innerHTML = svgStyle + windline + pressureline + humidityline + sunriseline + morningHourline + moonsetline + sunsetline + eveningHourline + moonriseline + gpsline;
 		// NOTE Set the details section to display block
@@ -909,29 +910,29 @@
 		// And https://codepen.io/noahblon/pen/yJpXka
 		var modal, modalOverlay, buttonClose, classClosed  , aHidden, tabindex, FOCUSABLE_SELECTORS, modalTitle, modalDescription, modalBeaufort, modalWspeed, modalWdirection, modalPressure, modalHumidity, modalSunrise, modalSunset, modalLocation, modalMoonrise, modalMonnset, modalMorningold, modalEveningold;
 
-		var modal				= document.querySelector("#modal");
-		var modalOverlay		= document.querySelector("#modal-overlay");
-		var buttonClose			= document.querySelector("#close-button");
-		var buttonOpen			= document.querySelector("#open-button");
+		var modal				= doc.querySelector("#modal");
+		var modalOverlay		= doc.querySelector("#modal-overlay");
+		var buttonClose			= doc.querySelector("#close-button");
+		var buttonOpen			= doc.querySelector("#open-button");
 		var classClosed  		= "closed";
 		var aHidden				= 'aria-hidden';
 		var tabindex			= 'tabindex';
 		var FOCUSABLE_SELECTORS = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
 
-		var modalTitle			= document.getElementById("Modal_Title");
-		var modalDescription	= document.getElementById("Modal_Description");
-		var modalBeaufort		= document.getElementById("dt_bft");
-		var modalWspeed			= document.getElementById("dt_windspeed");
-		var modalWdirection		= document.getElementById("dt_windirection");
-		var modalPressure		= document.getElementById("dt_pressure");
-		var modalHumidity		= document.getElementById("dt_humidity");
-		var modalSunrise		= document.getElementById("dt_sunrise");
-		var modalSunset			= document.getElementById("dt_sunset");
-		var modalLocation		= document.getElementById("dt_location");
-		var modalMoonrise		= document.getElementById("dt_moonrise");
-		var modalMonnset		= document.getElementById("dt_moonset");
-		var modalMorningold		= document.getElementById("dt_morningold");
-		var modalEveningold		= document.getElementById("dt_eveningold");
+		var modalTitle			= doc.getElementById("Modal_Title");
+		var modalDescription	= doc.getElementById("Modal_Description");
+		var modalBeaufort		= doc.getElementById("dt_bft");
+		var modalWspeed			= doc.getElementById("dt_windspeed");
+		var modalWdirection		= doc.getElementById("dt_windirection");
+		var modalPressure		= doc.getElementById("dt_pressure");
+		var modalHumidity		= doc.getElementById("dt_humidity");
+		var modalSunrise		= doc.getElementById("dt_sunrise");
+		var modalSunset			= doc.getElementById("dt_sunset");
+		var modalLocation		= doc.getElementById("dt_location");
+		var modalMoonrise		= doc.getElementById("dt_moonrise");
+		var modalMonnset		= doc.getElementById("dt_moonset");
+		var modalMorningold		= doc.getElementById("dt_morningold");
+		var modalEveningold		= doc.getElementById("dt_eveningold");
 
 		var modalBeaufortTxt	= summaryPrefix;
 			modalBeaufortTxt	+= useBeaufort + bfsTxt;
@@ -1055,7 +1056,7 @@
 		buttonOpen.addEventListener("click", function() {
 			openModal();
 		});
-		document.addEventListener('keyup', function (evt) {
+		doc.addEventListener('keyup', function (evt) {
 			if ( evt.keyCode === 27 && modal.classList.contains( classClosed  ) !== true ) closeModal();
 		});
 		// https://stackoverflow.com/a/52649135/6820262
@@ -1209,7 +1210,7 @@
 		}
 	};
 	setTimeout(function() {
-		//document.documentElement.className='cText';
+		//doc.documentElement.className='cText';
 		utils.clean(cleanGps);
 		utils.clean(cleanForecast);
 		utils.clean(cleanRain);
