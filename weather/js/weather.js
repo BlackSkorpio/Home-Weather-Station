@@ -448,7 +448,7 @@
 		if ( unitsFormat == "metric" ) {
 			var clockhour = hour < 10 ? "0" + hour : hour;
 			var datehtml = day + " " + date + " " + month + " " + year;
-			var timehtml = clockhour + ":" + clockminutes + "<span>:" + clockseconds + "</span>";
+			var timehtml = "<span>"+clockhour+" : "+clockminutes + "<span>:" + clockseconds + "</span></span>";
 		} else {
 			var meridian = hour < 12 ? "AM" : "PM";
 			var clockhour = hour > 12 ? hour - 12 : hour;
@@ -456,7 +456,7 @@
 				clockhour = 12;
 			}
 			var datehtml = day + ", " + month + " " + date + ", " + year;
-			var timehtml = clockhour + ":" + clockminutes + "<span>:" + clockseconds + " " + meridian + "</span>";
+			var timehtml = "<span>"+clockhour + ":" + clockminutes + "<span>:" + clockseconds + " " + meridian + "</span></span>";
 		}
 		return {"datehtml":datehtml,"timehtml":timehtml};
 	}
@@ -480,6 +480,7 @@
 
 	function getIPLocation() {
 		var xhttp = new XMLHttpRequest();
+		var country;
 		xhttp.onreadystatechange = function() {
 			if (!locationRequested) {
 				if (this.readyState === 4) {

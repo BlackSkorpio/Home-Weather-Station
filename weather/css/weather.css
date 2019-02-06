@@ -216,13 +216,30 @@ time {
 	line-height: normal;
 	white-space: nowrap;
 }
-	margin: 1px 0 0 0;
+#time {
+	margin: 0.1em 0;
 }
+#time > span {
+	border-radius: 0.1em;
+	padding: 0.1em;
+	color: #fff;
+	margin: 0 1px;
+	background: #222;
+	background: -webkit-gradient(linear,left top, left bottom,from(#555),to(#000));
+	background: linear-gradient(to bottom,#555,#000)
+}
+#time > span > span {
 	max-width: 2em;
 	margin-top: 0.3em;
+	margin: 0;
 	vertical-align: text-top;
 	font-size: 0.4em;
 	white-space: normal;
+	color: #333;
+	border-radius: 0.1em;
+	background: #ddd;
+	background: -webkit-gradient(linear,left top, left bottom,from(#eee),to(#ccc));
+	background: linear-gradient(to bottom,#eee,#ccc)
 }
 #date {
 	margin-bottom: 0.4em;
