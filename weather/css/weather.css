@@ -3355,9 +3355,9 @@ footer time {
 }
 /*320px (Realy old iPhone 4)*/
 @media ( max-width: 20em ) {
-	#gps_compass {
+	/*#gps_compass {
 		display: none;
-	}
+	}*/
 }
 /*250px */
 @media (max-width: 15.625em) {

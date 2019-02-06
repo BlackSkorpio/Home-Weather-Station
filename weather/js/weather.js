@@ -330,7 +330,6 @@
 	var timePrefixEnd		= '">';
 	var timeSuffix			= "</time>";
 
-	var useCompass			= svgPrefix + usePrefix + "compass_rose" + useSuffix;
 	isDark ? overCastLayer	= "overcastNight" : overCastLayer = "overcastDay";
 
 	var useLocation			= svgPrefix + titlePrefix + gpsTxt + titleSuffix + usePrefix + "location" + useSuffix;
@@ -493,7 +492,7 @@
 							city = json.city;
 							region = json.region;
 							country = json.countryCode;
-							gd.innerHTML = "<span id='city'>" + city + ",</span><span id='region'> " + region + "</span><span id='country'> (" + country + ")</span> <span class='svgIcon' id='gps_compass'>" + useCompass + "</span>";
+							gd.innerHTML = "<span id='city'>" + city + ",</span><span id='region'> " + region + "</span><span id='country'> (" + country + ")</span>";
 							gpsbutton.style.display = "none";
 							showPosition();
 						} else {
