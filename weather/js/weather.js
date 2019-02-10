@@ -45,7 +45,7 @@
 	var buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, wd_LB, ws_s, ws_m, ws_f;
 	var miles, km, visibleLength, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm;
 	var svgPrefix, titlePrefix, titleSuffix, usePrefix, useSuffix, summaryPrefix, summarySuffix, spanPrefix, spanSuffix, textSpanPrefix, spanSuffix, timePrefix, timePrefixEnd, timeSuffix;
-	var overCastLayer, useOvercastNight, useOvercastDay, useVisibility, useLocation, useBeaufort, useSunRise, useSunSet, useGoldenHour, useMoonRise, useMoonSet, useHumidity, useWindspeed, usePressure, useTemprature, useWindRose, useWeatherDude;
+	var rainyWindow, overCastLayer, useOvercastNight, useOvercastDay, useVisibility, useLocation, useBeaufort, useSunRise, useSunSet, useGoldenHour, useMoonRise, useMoonSet, useHumidity, useWindspeed, usePressure, useTemprature, useWindRose, useWeatherDude;
 
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
@@ -349,7 +349,7 @@
 	var useOvercast			= svgPrefix + titlePrefix + cloudinessTxt + titleSuffix + usePrefix + overCastLayer + useSuffix;
 	var useUpdated			= svgPrefix + titlePrefix + updatedTimeTxt + titleSuffix + usePrefix + "clock" + useSuffix;
 
-	var main, container, sStyles, now, dd, td, dt, details, wd_summary, detailsHeader, infoModal, dtTimeRaw, dtTime, updatedTime;
+	var main, container, sStyles, now, dd, td, dt, details, wd_summary, detailsHeader, infoModal, dtTimeRaw, dtHour, dtMin, dtTime, updatedTime;
 	var lat, lon, region, gd, gpsbutton;
 	var city = "";
 	var weatherurl, wd, icon, beaufort;
@@ -663,18 +663,31 @@
 		function roundToTwo(num) {
 			return +(Math.round(num + "e+2")  + "e-2");
 		}
-		var sunUpRaw, sunDownRaw, sunNowRaw, sunUp, sunNow, sunDown, sunLeft, sunHours, sunLeftCalc, sunPosition;
+		var sunUpRaw, sunDownRaw, sunNowRaw, sunUpHour, sunUpMin, sunUpMinute, sunNowHour, sunNowMin, sunNowMinute, sunDownHour, sunDownMin, sunDownMinute, sunUp, sunNow, sunDown, sunLeft, sunHours, sunLeftCalc, sunPos, sunPosition;
 		var sunUpRaw	= new Date(data.sys.sunrise * 1000);
 		var sunNowRaw	= new Date();
 		var sunDownRaw	= new Date(data.sys.sunset * 1000);
-		var sunUp		= sunUpRaw.getHours()+'.'+sunUpRaw.getMinutes();	/* A */
-		var sunNow		= sunNowRaw.getHours()+'.'+sunNowRaw.getMinutes();	/* B */
-		var sunDown		= sunDownRaw.getHours()+'.'+sunDownRaw.getMinutes();/* C*/
+		var sunUpHour	= sunUpRaw.getHours();
+		var sunNowHour	= sunNowRaw.getHours();
+		var sunDownHour	= sunDownRaw.getHours();
+		var sunUpMin	= sunUpRaw.getMinutes();
+		var sunUpMinute = sunUpMin < 10 ? "0" + sunUpMin   : sunUpMin;
+		var sunNowMin	= sunNowRaw.getMinutes();
+		var sunNowMinute = sunNowMin < 10 ? "0" + sunNowMin  : sunNowMin;
+		var sunDownMin	= sunDownRaw.getMinutes();
+		var sunDownMinute = sunDownMin < 10 ? "0" + sunDownMin : sunDownMin;
+
+		var sunUp		= sunUpHour + '.' + sunUpMinute;	/* A */
+		var sunNow		= sunNowHour + '.' + sunNowMinute;	/* B */
+		//var sunNow		= 08.05; // For testing
+		var sunDown		= sunDownHour + '.' + sunDownMinute;/* C*/
 		var sunLeft		= sunDown - sunNow;	/* X = C - B */
 		var sunHours	= sunDown - sunUp;	/* Y = C - A */
 		/* Z = X / Y * 100 */
-		var sunPosition	= roundToTwo(sunLeft) / roundToTwo(sunHours) * 100;
-		var sunPlacement = 'right ' + roundToTwo(sunPosition);
+		var sunPos	= roundToTwo(sunLeft) / roundToTwo(sunHours) * 100;
+		var sunPosition = sunPos > 100.00 ? 99.99 : sunPos
+		//var sunPlacement = 'right ' + roundToTwo(sunPosition);
+		var sunPlacement = roundToTwo(sunPosition);
 		/*console.log('sunUpRaw: '+sunUpRaw +'\n'+
 			'sunNowRaw: '+sunNowRaw +'\n'+
 			'sunDownRaw: '+sunDownRaw +'\n'+
@@ -808,12 +821,14 @@
 		wd.innerHTML = weatherstring;
 
 		var dtTimeRaw = new Date(data.dt * 1000);
-		var dtTime = dtTimeRaw.toISOString()
+		var dtTime = dtTimeRaw.toISOString();
+		var dtHour = dtTimeRaw.getHours() < 10 ? "0" + dtTimeRaw.getHours() : dtTimeRaw.getHours();
+		var dtMin = dtTimeRaw.getMinutes()
 		var updatedTime = useUpdated;
 			updatedTime += timePrefix;
 			updatedTime += dtTime;
 			updatedTime += timePrefixEnd;
-			updatedTime += dtTimeRaw.getHours()+'.'+dtTimeRaw.getMinutes();
+			updatedTime += dtHour+'.'+dtMin;
 			updatedTime += timeSuffix;
 		dt.innerHTML = updatedTime;
 		dt.setAttribute('title', updatedTimeTxt+dtTime);
