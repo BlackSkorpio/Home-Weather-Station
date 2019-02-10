@@ -126,7 +126,7 @@ svg.weather-sprite {
 }
 #pressure g#arm,
 #windirection g#arrow {
-	transform-box: fill-box;
+	/*transform-box: fill-box;*/ /*NOTE Removed due to bug in webkit browsers*/
 	-webkit-transform-origin: center;
 	        transform-origin: center;
 	-webkit-transform-style: preserve-3d;
@@ -2953,7 +2953,7 @@ details summary:empty {
 	border-radius: 0.3em;
 	background: var(--wh);
 	overflow: hidden;
-	color: var(--dG);
+	color: var(--dg);
 	text-shadow: none;
 	/* Use this for centering if unknown width/height */
 	-webkit-transform: translate(-50%, -50%);
@@ -2984,7 +2984,7 @@ details summary:empty {
 	max-height: 100%;
 	overflow: auto;
 	padding: 0.5em 1.2em 0.5em 0.5em;
-	scrollbar-color: var(--dB) var(--lB);
+	scrollbar-color: var(--db) var(--lb);
 	scrollbar-width: thin;
 }
 .modal .close-button {
@@ -3039,10 +3039,10 @@ details summary:empty {
 }
 *:focus,
 details#details summary:focus span {
-	outline: 0.0625em dashed var(--lG);
+	outline: 0.0625em dashed var(--lg);
 	/*outline: none;
-	-webkit-box-shadow: 0 0 0.375em 0.1575em var(--lG);
-	        box-shadow: 0 0 0.375em 0.1575em var(--lG);
+	-webkit-box-shadow: 0 0 0.375em 0.1575em var(--lg);
+	        box-shadow: 0 0 0.375em 0.1575em var(--lg);
 	border-radius: 0.1575em;*/
 }
 details#details summary:focus {
@@ -3370,8 +3370,8 @@ footer .updatet {
 	width: 180px;
 	width: 18vh;
 	height: auto;
-	-webkit-filter: drop-shadow(0.1em 0.1em 0.2em var(--dG));
-	        filter: drop-shadow(0.1em 0.1em 0.2em var(--dG));
+	-webkit-filter: drop-shadow(0.1em 0.1em 0.2em var(--dg));
+	        filter: drop-shadow(0.1em 0.1em 0.2em var(--dg));
 }
 .cldS {
 	width: 90px;
