@@ -2924,7 +2924,7 @@ https://codepen.io/lbebber/pen/waGydW
 }
 #sunlayer {
 	/*background: #ffff00 linear-gradient(45deg, #ffffff 0%, #87ceeb 66%, #ffff33 95%, #ffff00 100%);*/
-	background: #e1c45e radial-gradient(at var(--sunPosition) top, #b26339 0, #e1c45e 20%, #576e71 30%, #154277 100%);
+	background: #e1c45e radial-gradient(at calc(100% - var(--sunPosition)) top, #b26339 0, #e1c45e 20%, #576e71 30%, #154277 100%);
 	background-size: 100% 100%;
 }
 /* Modal */
