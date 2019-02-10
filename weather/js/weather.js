@@ -447,15 +447,17 @@
 		var clockseconds = seconds < 10 ? "0" + seconds : seconds;
 		if ( unitsFormat == "metric" ) {
 			var clockhour = hour < 10 ? "0" + hour : hour;
-			var datehtml = day + " " + date + " " + month + " " + year;
-			var timehtml = "<span>"+clockhour+" : "+clockminutes + "<span>:" + clockseconds + "</span></span>";
+			var datehtml = day + " " + date + " " + month;
+			//var datehtml = day + " " + date + " " + month + " " + year;
+			var timehtml = "<span>"+clockhour+":"+clockminutes + "<span>" + clockseconds + "</span></span>";
 		} else {
 			var meridian = hour < 12 ? "AM" : "PM";
 			var clockhour = hour > 12 ? hour - 12 : hour;
 			if ( hour === 0) {
 				clockhour = 12;
 			}
-			var datehtml = day + ", " + month + " " + date + ", " + year;
+			var datehtml = day + ", " + month + " " + date;
+			//var datehtml = day + ", " + month + " " + date + ", " + year;
 			var timehtml = "<span>"+clockhour + ":" + clockminutes + "<span>:" + clockseconds + " " + meridian + "</span></span>";
 		}
 		return {"datehtml":datehtml,"timehtml":timehtml};
