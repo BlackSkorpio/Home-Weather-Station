@@ -5,13 +5,13 @@
 	--pw:#fff;
 	--bl:#000;
 	--rd:#ff0000;
-	--lB:#98ccfd;
-	--dB:#4788c7;
-	--lG:#a5a5a5;
-	--dG:#808083;
-	--lY:#fce6b1;
-	--dY:#ffc843;
-	--bY:#3f3a02;
+	--lb:#98ccfd;
+	--db:#4788c7;
+	--lg:#a5a5a5;
+	--dg:#808083;
+	--ly:#fce6b1;
+	--dy:#ffc843;
+	--by:#3f3a02;
 	--s1:#fff76b;
 	--s2:#fff845;
 	--s3:#ffda4e;
@@ -24,7 +24,7 @@
 	--bf3:#ffcc00;/*BF8*/
 	--bf4:#ff6600;/*BF10*/
 	--bf5:var(--rd);/*BF12*/
-	--bfs:var(--lB)
+	--bfs:var(--lb)
 }
 * {
 	-webkit-box-sizing: border-box;
