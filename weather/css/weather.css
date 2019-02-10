@@ -1669,9 +1669,14 @@ https://codepen.io/lbebber/pen/waGydW
 	position: absolute;
 	width: 100vw;
 	height: 100vh;
-	background: url("../img/window.jpg") 50% /cover;
+	background-size: cover;
+	background-position: 50%;
 	-webkit-filter: blur(10px);
 	        filter: blur(10px);
+}
+.window,
+.drops i {
+	background-image: var(--window)
 }
 .raindrops,
 .borders,
@@ -1687,10 +1692,8 @@ https://codepen.io/lbebber/pen/waGydW
 	border-radius: 100%;
 }
 .drops i {
-	/*background-image: url("../img/window.jpg");
 	background-size: 5vw 5vh;
-	background-position: 50%;*/
-	background: url("../img/window.jpg") 50% /5vw 5vh;
+	background-position: 50%;
 	-webkit-transform: rotate(180deg) rotateY(0);
 	        transform: rotate(180deg) rotateY(0);
 }

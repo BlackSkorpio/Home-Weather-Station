@@ -686,11 +686,15 @@
 			'sunPosition: '+roundToTwo(sunLeft)+' / '+roundToTwo(sunHours)+' * 100 = '+roundToTwo(sunPosition));
 		*/
 
+		checkForSunset();
+		var rainyWindow			= isDark ? 'night' : 'day';
+		//var window = isDark ? 'night' : 'day';
 		var svgStyle = ':root{';
 			//svgStyle += '--hPa:' + kPaOut.trim() +'deg;';
 			svgStyle += '--hPa:'+kPaOut+'deg;';
 			svgStyle += '--windeg:'+data.wind.deg+'deg;';
-			svgStyle += '--sunPosition:'+sunPlacement+'%;';
+			svgStyle += '--sunPosition:'+ sunPlacement +'%;';
+			svgStyle += '--window:url("../img/window-'+ rainyWindow+'.jpg");';
 			svgStyle += '}';
 		sStyles.innerHTML = svgStyle;
 
