@@ -10,19 +10,19 @@
 		</style>
 		<radialGradient id="sunCore" gradientUnits="userSpaceOnUse" r="95" spreadMethod="pad">
 			<stop class="s1" stop-color="#FFF76B" offset="0"/>
-			<stop class="s2" stop-color="#FFF845" offset="10%"/>
-			<stop class="s3" stop-color="#FFDA4E" offset="30%"/>
-			<stop class="s4" stop-color="#FB8933" offset="100%"/>
+			<stop class="s2" stop-color="#FFF845" offset="0.1"/>
+			<stop class="s3" stop-color="#FFDA4E" offset="0.3"/>
+			<stop class="s4" stop-color="#FB8933" offset="1"/>
 		</radialGradient>
 		<radialGradient id="sunRays" gradientUnits="userSpaceOnUse" r="100%" spreadMethod="pad">
-			<stop class="s4" stop-color="#FB8933" offset="5%"/>
-			<stop class="s3" stop-color="#FFDA4E" offset="72%"/>
-			<stop class="s2" stop-color="#FFF845" offset="94%"/>
-			<stop class="s1" stop-color="#FFF76B" offset="100%"/>
+			<stop class="s4" stop-color="#FB8933" offset="0.5"/>
+			<stop class="s3" stop-color="#FFDA4E" offset="0.7"/>
+			<stop class="s2" stop-color="#FFF845" offset="0.9"/>
+			<stop class="s1" stop-color="#FFF76B" offset="1"/>
 		</radialGradient>
 		<radialGradient id="sunB" gradientUnits="userSpaceOnUse" r="20%" spreadMethod="pad">
 			<stop class="s5" stop-color="#fdc830" offset="0"/>
-			<stop class="s6" stop-color="#f37335" offset="100%"/>
+			<stop class="s6" stop-color="#f37335" offset="1"/>
 		</radialGradient>
 	</defs>
 	<path fill="#FFF" d="M250.52 167c-45.87 0-83.19 37.31-83.19 83.18 0 45.87 37.32 83.19 83.2 83.19 45.86 0 83.18-37.32 83.18-83.19S296.4 167 250.52 167z"/>
