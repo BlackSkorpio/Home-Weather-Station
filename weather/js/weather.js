@@ -1148,11 +1148,11 @@
 		if (weatherdata) {
 			var weather = weatherdata["weather"][0];
 			var weatherId = weather.id;
-			//var weatherId = 711; //for testing
-			console.debug( //for testing
+			//var weatherId = 800; //for testing
+			/*console.debug( //for testing
 				'WeatherID: '+weatherId +'\n'+
 				weather.description
-			);
+			);*/
 			sunsettime = Number(weatherdata["sys"].sunset);
 			sunrisetime = Number(weatherdata["sys"].sunrise);
 			checkForSunset();
@@ -1177,7 +1177,7 @@
 
 			//isCloudy = (weather.description.indexOf(cloudTxt) >= 0) || weather.description.indexOf(cloudTxt2) >= 0;
 			isCloudy = ( weatherId >= 801 && weatherId <= 804 );
-			//isCloudy = false; //for testing
+			//isCloudy = true; //for testing
 			cloudlayer.style.display = isCloudy ? "block" : "none";
 			cloudlayer.style.opacity = isDark ? 0.75 : 1;
 
@@ -1234,6 +1234,7 @@
 		if (!isDark && weather.icon.substring(2,3) === "n") {
 			weather.icon = weather.icon.substring(0,2) + "d";
 		}
+		//weather.icon = "04d"; // For testing
 		icon.className = "weather i" + weather.icon;
 		icon.innerHTML = svgPrefix + usePrefix + weather.icon + useSuffix;
 	}
