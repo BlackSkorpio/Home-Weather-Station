@@ -82,7 +82,6 @@ details {
 .svgIcon,
 .dataText,
 #time span,
-#time1 span,
 #beaufort.visible {
 	display: inline-block;
 }
@@ -221,25 +220,30 @@ time {
 }
 #time > span {
 	border-radius: 0.1em;
-	padding: 0.1em;
+	padding: 0.05em 0.1em 0;
 	color: #fff;
 	margin: 0 1px;
 	background: #222;
-	background: -webkit-gradient(linear,left top, left bottom,from(#555),to(#000));
-	background: linear-gradient(to bottom,#555,#000)
+	background: -webkit-gradient(linear, left top, left bottom, from(#555), to(#000));
+	background: linear-gradient(to bottom, #555, #000);
+	-webkit-filter: drop-shadow(0 0.0125em 0.01875em #555);
+	        filter: drop-shadow(0 0.0125em 0.01875em #555);
 }
 #time > span > span {
+	min-width: 1.35em;
 	max-width: 2em;
 	margin-top: 0.3em;
-	margin: 0;
+	margin: 0 0 0 0.2em;
 	vertical-align: text-top;
 	font-size: 0.4em;
+	padding: 0 0.1em;
 	white-space: normal;
 	color: #333;
+	text-align: center;
 	border-radius: 0.1em;
 	background: #ddd;
-	background: -webkit-gradient(linear,left top, left bottom,from(#eee),to(#ccc));
-	background: linear-gradient(to bottom,#eee,#ccc)
+	background: -webkit-gradient(linear, left top, left bottom, from(var(--wh)), to(var(--lg)));
+	background: linear-gradient(to bottom, var(--wh), var(--lg));
 }
 #date {
 	margin-bottom: 0.4em;
