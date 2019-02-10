@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 65"><defs><style>.cls-1{fill:#e93f33;}</style></defs><title>wind1</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M53.8,14.9a9.2,9.2,0,0,0-7.4,14.8H36l4.2-4.2a1.8,1.8,0,0,0-2.6-2.6L33.3,27V9.2a9.2,9.2,0,1,0-3.7,7.4V27l-4.2-4.2a1.8,1.8,0,0,0-2.6,2.6L27,29.7H9.2a9.2,9.2,0,1,0,7.4,3.7H27l-4.2,4.2a1.8,1.8,0,1,0,2.6,2.6L29.7,36V53.8a9.2,9.2,0,1,0,3.7-7.4V36l4.2,4.2a1.8,1.8,0,0,0,2.6-2.6L36,33.3H53.8a9.2,9.2,0,0,0,0-18.5Zm0,0"/>
+	<animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" begin="0s" dur="1s" repeatCount="indefinite"/>
+	</g></g>
+	
+</svg>

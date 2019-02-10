@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="svg2" width="550" height="550">
+	<defs id="defs4">
+		<marker id="Arrow1Lend" orient="auto" overflow="visible" refX="0.0" refY="0.0">
+			<path id="path4508" fill-rule="evenodd" stroke="#000" stroke-width="1pt" d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z" transform="scale(0.8) rotate(180) translate(12.5,0)"/>
+		</marker>
+		<marker id="Arrow1Lstart" orient="auto" overflow="visible" refX="0.0" refY="0.0">
+			<path id="path4505" fill-rule="evenodd" stroke="#000" stroke-width="1pt" d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z" transform="scale(0.8) translate(12.5,0)"/>
+		</marker>
+	</defs>
+	<text id="text3645" x="281.87711" y="44.776833" font-family="Arial Unicode MS" font-size="32px" font-weight="400" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS"/>
+	<g id="layer1" transform="translate(-129.25499,-202.49377)">
+		<text id="text3670" x="678.70557" y="434.35388" font-family="Arial Unicode MS" font-size="16px" font-weight="400" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS"/>
+		<g id="g3283" stroke="#37abc8">
+			<path id="path3617" fill="none" stroke-width="1px" d="M 262.96135,372.90349 569.38528,549.81743"/>
+			<path id="path2824" fill="none" stroke-width="1.24382496" d="m 594.41576,460.28169 a 177.78808,177.15985 0 0 1 -355.57617,0 177.78808,177.15985 0 1 1 355.57617,0 z"/>
+			<path id="path3609" fill="none" stroke-width="1px" d="m 239.72784,460.78676 355.5737,0"/>
+			<path id="path3611" fill="none" stroke-width="1px" d="m 414.48423,282.99992 0,354.56354"/>
+			<path id="path3613" fill="none" stroke-width="1px" d="m 325.59081,308.25373 176.9816,306.54113"/>
+			<path id="path3615" fill="none" stroke-width="1px" d="M 504.09195,306.11087 327.47387,612.92802"/>
+			<path id="path3619" fill="none" stroke-width="1px" d="M 569.03757,369.87304 263.53733,549.61892"/>
+			<path id="path3687" fill="#fff" d="m 556.78902,460.28169 a 139.40105,139.40105 0 1 1 -278.80209,0 139.40105,139.40105 0 1 1 278.80209,0 z"/>
+		</g>
+	</g>
+	<g id="layer5" font-family="Arial Unicode MS" font-weight="400">
+		<text id="text3633" x="426.35791" y="230.07735" font-size="32px" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3635" x="426.35791" y="230.07735">♈</tspan>
+		</text>
+		<text id="text3637" x="385.77048" y="154.31906" font-size="32px" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3639" x="385.77048" y="154.31906">♉</tspan>
+		</text>
+		<text id="text3641" x="312.30356" y="116.04253" font-size="32px" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3643" x="312.30356" y="116.04253">♊</tspan>
+		</text>
+		<text id="text3649" x="225.63435" y="117.39041" font-size="32px" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3651" x="225.63435" y="117.39041">♋</tspan>
+		</text>
+		<text id="text3653" x="155.98654" y="155.28899" font-size="32px" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3655" x="155.98654" y="155.28899">♌</tspan>
+		</text>
+		<text id="text3657" x="119.45521" y="223.03755" font-size="32px" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3659" x="119.45521" y="223.03755">♍</tspan>
+		</text>
+		<text id="text3663" x="122.20603" y="307.1131" font-size="32px" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3665" x="122.20603" y="307.1131">♎</tspan>
+		</text>
+		<text id="text3667" x="160.50481" y="377.75403" font-size="32px" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3669" x="160.50481" y="377.75403">♏</tspan>
+		</text>
+		<text id="text3671" x="232.26021" y="420.89413" font-size="32px" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3673" x="232.26021" y="420.89413">♐</tspan>
+		</text>
+		<text id="text3675" x="312.74771" y="421.10803" font-size="32px" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3677" x="312.74771" y="421.10803">♑</tspan>
+		</text>
+		<text id="text3679" x="371.83258" y="394.66818" font-size="30.99824142px" transform="scale(1.0323166,0.96869506)" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3681" x="371.83258" y="394.66818">♒</tspan>
+		</text>
+		<text id="text3683" x="428.08514" y="313.25937" font-size="32px" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3685" x="428.08514" y="313.25937">♓</tspan>
+		</text>
+	</g>
+	<g id="layer4" fill="#89a02c" font-family="Arial Unicode MS" font-size="14px" font-weight="400">
+		<text id="text3082" x="408.14777" y="263.35648" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3084" x="408.14777" y="263.35648">0°</tspan>
+		</text>
+		<text id="text3086" x="381.5618" y="199.25267" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3088" x="381.5618" y="199.25267">30°</tspan>
+		</text>
+		<text id="text3090" x="336.57346" y="153.9556" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3092" x="336.57346" y="153.9556">60°</tspan>
+		</text>
+		<text id="text3094" x="275.56796" y="134.86746" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3096" x="275.56796" y="134.86746">90°</tspan>
+		</text>
+		<text id="text3098" x="208.47758" y="153.78613" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3100" x="208.47758" y="153.78613">120°</tspan>
+		</text>
+		<text id="text3102" x="165.74118" y="199.66077" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3104" x="165.74118" y="199.66077">150°</tspan>
+		</text>
+		<text id="text3106" x="148.86324" y="264.48373" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3108" x="148.86324" y="264.48373">180°</tspan>
+		</text>
+		<text id="text3110" x="167.97475" y="326.10919" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3112" x="167.97475" y="326.10919">210°</tspan>
+		</text>
+		<text id="text3114" x="210.85101" y="371.35028" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3116" x="210.85101" y="371.35028">240°</tspan>
+		</text>
+		<text id="text3118" x="270.29587" y="389.32596" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3120" x="270.29587" y="389.32596">270°</tspan>
+		</text>
+		<text id="text3122" x="330.97809" y="371.61853" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3124" x="330.97809" y="371.61853">300°</tspan>
+		</text>
+		<text id="text3126" x="378.31744" y="325.27805" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3128" x="378.31744" y="325.27805">330°</tspan>
+		</text>
+	</g>
+	<g id="layer2" font-family="Arial Unicode MS" font-size="16px" font-weight="400">
+		<text id="text2890" x="67.462166" y="314.8559" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3660" x="67.462166" y="314.8559">Libra</tspan>
+		</text>
+		<text id="text2908" x="467.15091" y="315.90945" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3646" x="467.15091" y="315.90945">Pisces</tspan>
+		</text>
+		<text id="text2894" x="103.14323" y="406.75531" style="text-align:start;line-height:100%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3658" x="103.14323" y="406.75531">Scorpio</tspan>
+		</text>
+		<text id="text2902" x="407.32083" y="410.87964" style="text-align:start;line-height:100%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3648" x="407.32083" y="410.87964">Aquarius</tspan>
+		</text>
+		<text id="text2898" x="195.20831" y="458.13913" style="text-align:start;line-height:100%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3656" x="195.20831" y="458.13913">Sagittarius</tspan>
+		</text>
+		<text id="text2908-1" x="306.07031" y="458.43066" style="text-align:start;line-height:125%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3654" x="306.07031" y="458.43066">Capricorn</tspan>
+		</text>
+		<text id="text2858" x="469.2009" y="212.68024" style="text-align:start;line-height:100%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3644" x="469.2009" y="212.68024">Aries</tspan>
+		</text>
+		<text id="text2864" x="412.5163" y="124.33395" style="text-align:start;line-height:100%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3642" x="412.5163" y="124.33395">Taurus</tspan>
+		</text>
+		<text id="text2874" x="314.98294" y="71.17849" style="text-align:start;line-height:100%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3640" x="314.98294" y="71.17849">Gemini</tspan>
+		</text>
+		<text id="text2878" x="204.37549" y="68.575615" style="text-align:start;line-height:100%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3638" x="204.37549" y="68.575615">Cancer</tspan>
+		</text>
+		<text id="text2882" x="120.29062" y="124.20487" style="text-align:start;line-height:100%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3664" x="120.29062" y="124.20487">Leo</tspan>
+		</text>
+		<text id="text2886" x="61.673298" y="209.06212" style="text-align:start;line-height:100%;-inkscape-font-specification:Arial Unicode MS">
+			<tspan id="tspan3662" x="61.673298" y="209.06212">Virgo</tspan>
+		</text>
+	</g>
+</svg>
