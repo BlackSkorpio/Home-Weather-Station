@@ -3071,7 +3071,15 @@ footer .builtby {
 footer svg.svgIcon {
 	height: 100%;
 }
-footer time {
+footer .updatet svg.svgIcon {
+	height: 1em;
+	width: 1em;
+}
+footer .updatet {
+	 -webkit-box-flex: 1;
+	-ms-flex-positive: 1;
+	        flex-grow: 1;
+}
 	display: inline-block;
 	font-size: 1em;
 }
