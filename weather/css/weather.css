@@ -144,8 +144,8 @@ svg.weather-sprite {
 }
 #beaufort.windspeed .svgIcon {
 	border-radius: 50%;
-	-webkit-animation: rotate var(--bftSpeed) linear infinite reverse;
-	        animation: rotate var(--bftSpeed) linear infinite reverse;
+	-webkit-animation: rotate var(--bftSpeed) linear infinite;
+	        animation: rotate var(--bftSpeed) linear infinite;
 	transform-box: fill-box;
 	-webkit-transform-origin: center;
 	        transform-origin: center;
