@@ -40,9 +40,9 @@
 	var unitsFormat			= "metric";
 
 	var doc = document, win = window;
-	var updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt;
+	var galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt;
 	var moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt;
-	var buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, wd_LB, ws_s, ws_m, ws_f;
+	var buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, wd_LB, ws_s, ws_m, ws_f, wd_stormFlag;
 	var miles, km, visibleLength, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm;
 	var svgPrefix, titlePrefix, titleSuffix, usePrefix, useSuffix, summaryPrefix, summarySuffix, spanPrefix, spanSuffix, textSpanPrefix, spanSuffix, timePrefix, timePrefixEnd, timeSuffix;
 	var rainyWindow, overCastLayer, useOvercastNight, useOvercastDay, useVisibility, useLocation, useBeaufort, useSunRise, useSunSet, useGoldenHour, useMoonRise, useMoonSet, useHumidity, useWindspeed, usePressure, useTemprature, useWindRose, useWeatherDude;
@@ -117,6 +117,7 @@
 			bfs24Txt	= "Eller det som hon knappt kunde bära när revat huvudstorsegel och drivs framåt.";
 			bfs25Txt	= "Or that which would reduce her to storm stay-sails.";
 			bfs26Txt	= "Eller det som ingen segelduk kunde klara av.";
+			galeTxt		= "Associerad varningsflagga: ";
 			modalTitleTxt = "Icon legend";
 			modalDescTxt = "Förklaring till vad de olika ikonerna representerar.";
 			months = [
@@ -229,6 +230,7 @@
 			bfs24Txt	= "Or that which she could scarcely bear close-reefed main-topsail and reefed foresail.";
 			bfs25Txt	= "Or that which would reduce her to storm stay-sails.";
 			bfs26Txt	= "Or that which no canvas could withstand.";
+			galeTxt		= "Associated warning flag: ";
 			modalTitleTxt = "Icon legend";
 			modalDescTxt = "Explanation on what the different icons represents.";
 			months = [
@@ -939,6 +941,23 @@
 		if ( wd_bf >=    9 && wd_bf <=   10 ) bfSvgId = 4, ws_s = 45, ws_m = 25, ws_f = 15, ws_bft =  2;
 		if ( wd_bf >=   11 && wd_bf <=   17 ) bfSvgId = 5, ws_s = 35, ws_m = 15, ws_f =  5, ws_bft =  1;
 
+		//if ( wd_bf >=  0 && wd_bf <= 5 ) wd_flag = 0;
+		if ( wd_ws >= 10.80 && wd_ws <= 17.19 ) wd_stormFlag = 'gale1';
+		if ( wd_ws >= 17.20 && wd_ws <= 24.49 ) wd_stormFlag = 'gale2';
+		if ( wd_ws >= 24.50 && wd_ws <= 32.69 ) wd_stormFlag = 'storm1';
+		if ( wd_ws >= 32.70 && wd_ws <= 61.20 ) wd_stormFlag = 'storm2';
+		if ( wd_ws >= 10.80 && wd_ws <= 61.20 ) {
+			var wd_galeTitle = galeTxt;
+			var galeSVG = svgPrefix;
+				galeSVG += titlePrefix;
+				galeSVG += wd_galeTitle;
+				galeSVG += titleSuffix;
+				galeSVG += usePrefix + wd_stormFlag;
+				galeSVG += useSuffix;
+		} else {
+			galeSVG = "";
+		}
+
 		var wd_beaufortTitle = bfsHeadTxt + wd_bf + beaufortForm + wd_LB + wd_bfTxt;
 		var beaufortSVG = svgPrefix;
 			beaufortSVG += titlePrefix;
@@ -949,7 +968,7 @@
 			beaufortSVG += "<style>:root,.cloud{--bftclr:var(--bf"+bfSvgId+");--bftSpeed:"+ws_bft+"s;--windspeed-s:"+ws_s+"s;--windspeed-m:"+ws_m+"s;--windspeed-f:"+ws_f+"s;}</style>";
 
 		beaufort.className = "windspeed i-" + wd_bf + "bf";
-		beaufort.innerHTML = beaufortSVG;
+		beaufort.innerHTML = beaufortSVG+galeSVG;
 
 		/*console.debug(
 			'wd_ws: '+wd_ws +'\n'+

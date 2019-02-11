@@ -79,6 +79,11 @@
 		<path id="halo" fill="#f0c419" d="M48.33 41a20 20 0 1 0-36.65 0h36.65z"/>
 		<path id="core" fill="#ede21b" d="M42.67 41a15 15 0 1 0-25.35 0h25.35z"/>
 		<path id="arrow" fill="var(--db)" d="M36.29 28.29L31 33.59V22h-2v11.59l-5.29-5.3-1.42 1.42 7.71 7.7 7.71-7.7z"/>
+		<path id="gale_flag" fill="#ff2f00" d="M 0,0 480,150 0,300 z"/>
+		<g id="storm_flag">
+			<rect fill="#ff2f00" width="48" height="48"/>
+			<rect fill="#101010" x="12" y="12" width="24" height="24"/>
+		</g>
 	</defs>
 	<symbol id="01d" viewBox="0 0 500 500" xml:space="preserve">
 		<path fill="var(--wh)" d="M250.52 167c-45.87 0-83.19 37.31-83.19 83.18 0 45.87 37.32 83.19 83.2 83.19 45.86 0 83.18-37.32 83.18-83.19S296.4 167 250.52 167z"/>
@@ -229,6 +234,20 @@
 			<path fill="var(--wh)" d="M60.6 80.7A30.7 30.7 0 0 0 82 71.4l-5.2.8a20.7 20.7 0 0 0 4.1-12.3v-.5A30.7 30.7 0 0 0 71.6 38a47.9 47.9 0 0 1 .8 5.2 20.7 20.7 0 0 0-12.3-4.1h-.5a30.7 30.7 0 0 0-21.4 9.2l5.2-.8a20.7 20.7 0 0 0-4.1 12.3v.5a30.7 30.7 0 0 0 9.2 21.4 47.9 47.9 0 0 1-.8-5.2A20.7 20.7 0 0 0 60 80.6z"/>
 			<path d="M68.6 59.9a8.6 8.6 0 1 0-8.6 8.6 8.6 8.6 0 0 0 8.6-8.6z"/>
 		</g>
+	</symbol>
+	<symbol id="gale1" viewBox="0 0 480 300" xml:space="preserve">
+		<use xlink:href="#gale_flag"/>
+	</symbol>
+	<symbol id="gale2" viewBox="0 0 480 300" xml:space="preserve">
+		<use xlink:href="#gale_flag" transform="scale(0.50)"/>
+		<use xlink:href="#gale_flag" transform="scale(0.50) translate(0, 300)"/>
+	</symbol>
+	<symbol id="storm1" viewBox="0 0 48 48" xml:space="preserve">
+		<use xlink:href="#storm_flag"/>
+	</symbol>
+	<symbol id="storm2" viewBox="0 0 48 48" xml:space="preserve">
+		<use xlink:href="#storm_flag" transform="scale(0.48)"/>
+		<use xlink:href="#storm_flag" transform="scale(0.48) translate(0, 52)"/>
 	</symbol>
 	<symbol id="sunrise" viewBox="0 0 60 60" xml:space="preserve">
 		<use xlink:href="#rays"/>

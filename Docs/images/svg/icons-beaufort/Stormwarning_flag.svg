@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48" xml:space="preserve">
+	<title>Stormawarning_flag</title>
+	<defs>
+		<g id="storm">
+			<rect fill="#ff2f00" width="48" height="48"/>
+			<rect fill="#101010" x="12" y="12" width="24" height="24"/>
+		</g>
+	</defs>
+	<use xlink:href="#storm"/>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 480 300" xml:space="preserve">
+	<title>Galewarning_flag</title>
+	<defs>
+		<path id="gale_flag" fill="#ff2f00" d="M 0,0 480,150 0,300 z"/>
+	</defs>
+	<use xlink:href="#gale_flag"/>
+</svg>
