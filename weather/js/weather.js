@@ -44,7 +44,7 @@
 	var moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt;
 	var buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, wd_LB, ws_s, ws_m, ws_f, wd_stormFlag;
 	var miles, km, visibleLength, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm;
-	var svgPrefix, titlePrefix, titleSuffix, usePrefix, useSuffix, summaryPrefix, summarySuffix, spanPrefix, spanSuffix, textSpanPrefix, spanSuffix, timePrefix, timePrefixEnd, timeSuffix;
+	var tempClr, svgPrefix, titlePrefix, titleSuffix, usePrefix, useSuffix, summaryPrefix, summarySuffix, spanPrefix, spanSuffix, textSpanPrefix, spanSuffix, timePrefix, timePrefixEnd, timeSuffix;
 	var rainyWindow, overCastLayer, useOvercastNight, useOvercastDay, useVisibility, useLocation, useBeaufort, useSunRise, useSunSet, useGoldenHour, useMoonRise, useMoonSet, useHumidity, useWindspeed, usePressure, useTemprature, useWindRose, useWeatherDude;
 
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
@@ -712,6 +712,7 @@
 			svgStyle += '--windeg:'+data.wind.deg+'deg;';
 			svgStyle += '--sunPosition:'+ sunPlacement +'%;';
 			svgStyle += '--window:url("../img/window-'+ rainyWindow+'.jpg");';
+			svgStyle += '--tempClr:' + tempClr + ';';
 			svgStyle += '}';
 		sStyles.innerHTML = svgStyle;
 
@@ -1151,6 +1152,58 @@
 		showElements.forEach(function(elements) {
 			return elements.classList.add( classVisible );
 		});
+	}
+
+	function wd_tempScale(data) {
+		var tempNow, wd_temp, fromCelsius, fromFarenheit, fromKelvin;
+		var tempNow			= data.main.temp.toFixed(1);
+		var fromCelsius		= tempNow;
+		var fromFarenheit	= (tempNow - 32) * 5/9;
+		var fromKelvin		= tempNow - 273.15;
+		switch ( unitsFormat ) {
+			case "metric":
+				wd_temp = fromCelsius;
+				break;
+			case "imperial":
+				wd_temp = fromFarenheit;
+				break;
+			default:
+				wd_temp = fromKelvin;
+		}
+		/*  40.1 -  50.0 */
+		if ( wd_temp >=  40.1 && wd_temp <=  50.0 ) tempClr = "rgb(43, 0, 1)";
+		/*  30.1 -  40.0 */
+		if ( wd_temp >=  30.1 && wd_temp <=  40.0 ) tempClr = "rgb(107, 21, 39)";
+		/*  25.1 -  30.0 */
+		if ( wd_temp >=  25.1 && wd_temp <=  30.0 ) tempClr = "rgb(195, 65, 114)";
+		/*  20.1 -  25.0 */
+		if ( wd_temp >=  20.1 && wd_temp <=  25.0 ) tempClr = "rgb(231, 121, 97)";
+		/*  15.1 -  20.0 */
+		if ( wd_temp >=  15.1 && wd_temp <=  20.0 ) tempClr = "rgb(236, 171, 77)";
+		/*  10.1 -  15.0 */
+		if ( wd_temp >=  10.1 && wd_temp <=  15.0 ) tempClr = "rgb(237, 218, 69)";
+		/*   5.1 -  10.0 */
+		if ( wd_temp >=   5.1 && wd_temp <=  10.0 ) tempClr = "rgb(195, 230, 77)";
+		/*   5.0 -   0.0 */
+		if ( wd_temp >=   0.0 && wd_temp <=   5.0 ) tempClr = "rgb(89, 188, 160)";
+		/*  -0.1 -  -5.0 */
+		if ( wd_temp >=  -0.1 && wd_temp <=  -5.0 ) tempClr = "rgb(77, 132, 203)";
+		/*  -5.1 - -10.0 */
+		if ( wd_temp >=  -5.1 && wd_temp <= -10.0 ) tempClr = "rgb(99, 92, 183)";
+		/* -10.1 - -15.0 */
+		if ( wd_temp >= -10.1 && wd_temp <= -15.0 ) tempClr = "rgb(54, 42, 118)";
+		/* -15.1 - -20.0 */
+		if ( wd_temp >= -15.1 && wd_temp <= -20.0 ) tempClr = "rgb(154, 29, 154)";
+		/* -20.1 - -30.0 */
+		if ( wd_temp >= -20.1 && wd_temp <= -30.0 ) tempClr = "rgb(255, 177, 255)";
+		/* -30.1 - -40.0 */
+		if ( wd_temp >= -30.1 && wd_temp <= -40.0 ) tempClr = "rgb(239, 239, 239)";
+		console.debug('tempNow: '+tempNow+'\n'+
+			'Metric: ' + fromCelsius+'°C\n'+
+			'Imperial: ' + fromFarenheit+'°F\n'+
+			'Default: ' + fromKelvin+'°K\n'+
+			'tempClr: '+tempClr
+		);
 	}
 
 	function getWindDirection(deg) {
