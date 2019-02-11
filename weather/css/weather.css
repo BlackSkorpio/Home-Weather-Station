@@ -134,6 +134,8 @@ svg.weather-sprite {
 	        filter: drop-shadow(1.5em 1.5em 1.5em #000);
 }
 #windirection g#arrow {
+	-webkit-transform-origin: 50% 60%;
+	        transform-origin: 50% 60%;
 	-webkit-transform: rotate(var(--windeg));
 	        transform: rotate(var(--windeg));
 }
