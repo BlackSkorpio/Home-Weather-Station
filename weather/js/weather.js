@@ -358,7 +358,7 @@
 	var weatherdata, weatherminute;
 	var sunsettime = 0;
 	var sunrisetime = 0;
-	var cloudlayer, rainlayer, rainwindow, snowlayer, sunlayer, clearnightlayer, mistlayer;
+	var cloudlayer, rainlayer, rainwindow, snowlayer, sunlayer, clearnightlayer, moonlayer, mistlayer;
 	var isDark, isCloudy, isRainy, isDrizzle, isSnowy, isSunny, isClearNight, isClear, isMisty, isDusk, isDawn;
 
 	doc.addEventListener("DOMContentLoaded", init, false);
@@ -404,6 +404,7 @@
 		snowlayer	= doc.getElementById("snowlayer");
 		sunlayer	= doc.getElementById("sunlayer");
 		clearnightlayer = doc.getElementById("clearnightlayer");
+		moonlayer	=doc.getElementById("moonOrbit");
 		mistlayer	= doc.getElementById("mistlayer");
 		gpsbutton	= doc.getElementById("gpsbutton");
 		gpsbutton.addEventListener("click",getLocation,false);
@@ -667,7 +668,7 @@
 		function roundToTwo(num) {
 			return +(Math.round(num + "e+2")  + "e-2");
 		}
-		var sunUpRaw, sunDownRaw, sunNowRaw, sunUpHour, sunUpMin, sunUpMinute, sunNowHour, sunNowMin, sunNowMinute, sunDownHour, sunDownMin, sunDownMinute, sunUp, sunNow, sunDown, sunLeft, sunHours, sunLeftCalc, sunPos, sunPosition;
+		var sunUpRaw, sunDownRaw, sunNowRaw, sunUpHour, sunUpMin, sunUpMinute, sunNowHour, sunNowMin, sunNowMinute, sunDownHour, sunDownMin, sunDownMinute, sunUp, sunNow, sunDown, sunLeft, sunHours, sunLeftCalc, sunPos, sunPosition, moonHours;
 		var sunUpRaw	= new Date(data.sys.sunrise * 1000);
 		var sunNowRaw	= new Date();
 		var sunDownRaw	= new Date(data.sys.sunset * 1000);
@@ -692,6 +693,7 @@
 		var sunPosition = sunPos > 100.00 ? 99.99 : sunPos
 		//var sunPlacement = 'right ' + roundToTwo(sunPosition);
 		var sunPlacement = roundToTwo(sunPosition);
+		var moonHours = (24 - sunHours) * 60;
 		/*console.log('sunUpRaw: '+sunUpRaw +'\n'+
 			'sunNowRaw: '+sunNowRaw +'\n'+
 			'sunDownRaw: '+sunDownRaw +'\n'+
@@ -701,6 +703,7 @@
 			'sunLeft: '+sunDown+' - '+sunNow+' = '+roundToTwo(sunLeft) +'\n'+
 			'sunHours: '+sunDown+' - '+sunUp +' = '+roundToTwo(sunHours) +'\n'+
 			'sunPosition: '+roundToTwo(sunLeft)+' / '+roundToTwo(sunHours)+' * 100 = '+roundToTwo(sunPosition));
+			'moonHours: ' + '(24 - ' + sunHours +')  * 60 = ' + moonHours);
 		*/
 
 		checkForSunset();
@@ -712,6 +715,7 @@
 			svgStyle += '--windeg:'+data.wind.deg+'deg;';
 			svgStyle += '--sunPosition:'+ sunPlacement +'%;';
 			svgStyle += '--window:url("../img/window-'+ rainyWindow+'.jpg");';
+			svgStyle += '--moontime:' + moonHours + 's;';
 			svgStyle += '--tempClr:' + tempClr + ';';
 			svgStyle += '}';
 		sStyles.innerHTML = svgStyle;
@@ -1272,6 +1276,7 @@
 			}
 			clearnightlayer.style.display = isClearNight || isDusk || isDawn ? "block" : "none";
 			clearnightlayer.style.opacity = isDusk || isDawn ? 0.2 : 1;
+			moonlayer.style.display = isDark ? "block" : "none";
 		}
 	}
 

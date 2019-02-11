@@ -3332,7 +3332,106 @@ footer time.dataText {
 		opacity: 1;
 	}
 }
+@-webkit-keyframes moonOrbit {
+	0% {
+		-webkit-transform: rotate(0deg);
+		        transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(100deg);
+		        transform: rotate(100deg);
+	}
+}
+@keyframes moonOrbit {
+	0% {
+		-webkit-transform: rotate(0deg);
+		        transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(100deg);
+		        transform: rotate(100deg);
+	}
+}
 /* ANIMATIONS */
+#moonOrbit {
+	display: none;
+	position: absolute;
+	height: 60vh;
+	width: 100vw;
+	left: 0;
+	bottom: 0;
+	overflow: hidden;
+}
+.moon {
+	position: absolute;
+	height: 10.625em;
+	width: 10.625em;
+	left: 0;
+	bottom: 0;
+	background-color: #ffffe0;
+	background: rgb(229, 229, 229);
+	border-radius: 50%;
+	opacity: 0.8;
+	margin: auto;
+	/*-webkit-box-shadow: 5px 0 10px 3px rgba(229, 229, 229, 0.3), 0 0 10px 2px rgba(229, 229, 229, 0.3), 5px 0 10px 3px rgba(229, 229, 229, 0.3), 0 0 3px 2px rgba(229, 229, 229, 0.3);
+	        box-shadow: 5px 0 10px 3px rgba(229, 229, 229, 0.3), 0 0 10px 2px rgba(229, 229, 229, 0.3), 5px 0 10px 3px rgba(229, 229, 229, 0.3), 0 0 3px 2px rgba(229, 229, 229, 0.3);*/
+	/*-webkit-box-shadow: 0 0 60px gold, 0 0 100px rgb(255, 243, 183), inset 0 5px 12px 26px #F5F5F5, inset -2px 8px 15px 36px #E6E6DB;
+	        box-shadow: 0 0 60px gold, 0 0 100px rgb(255, 243, 183), inset 0 5px 12px 26px #F5F5F5, inset -2px 8px 15px 36px #E6E6DB;*/
+	-webkit-box-shadow: 0 0 3.375em gold, 0 0 5.6625em rgb(255, 243, 183), inset 0 0.29025em 0.675em 1.4625em #F5F5F5, inset -0.1125em 0.45em 0.84375em 2.025em #E6E6DB;
+	        box-shadow: 0 0 3.375em gold, 0 0 5.6625em rgb(255, 243, 183), inset 0 0.29025em 0.675em 1.4625em #F5F5F5, inset -0.1125em 0.45em 0.84375em 2.025em #E6E6DB;
+	-webkit-animation: moonOrbit var(--moontime) linear 2s infinite;
+	        animation: moonOrbit var(--moontime) linear 2s infinite;
+	-webkit-transform-origin: 40vw 100vh;
+	        transform-origin: 40vw 100vh;
+}
+.moon::before,
+.moon::after {
+	position: absolute;
+	display: block;
+	height: 1.5em;
+	width: 1.5em;
+	top:  2.5em;
+	left:  7.5em;
+	content: "";
+	background-color: rgba(162, 162, 162, 0.81);
+	border-radius: 50%;
+	/*-webkit-box-shadow: 3px  0    0   1px rgba(98, 98, 98, 0.51),
+	                    7px 45px  0  -5px rgba(162, 162, 162, 0.9),
+	                    9px 45px  0  -5px rgba(100, 100, 100, 0.51),
+	                    35px 20px 0 -10px rgba(162, 162, 162, 0.9),
+	                    37px 20px 0 -10px rgba(100, 100, 100, 0.51);
+	box-shadow: 3px   0   0   1px rgba(98, 98, 98, 0.51),
+	            7px  45px 0  -5px rgba(162, 162, 162, 0.9),
+	            9px  45px 0  -5px rgba(100, 100, 100, 0.51),
+	            35px 20px 0 -10px rgba(162, 162, 162, 0.9),
+	            37px 20px 0 -10px rgba(100, 100, 100, 0.51);*/
+	-webkit-box-shadow:  0.1875em 0 0 0.0625em rgba(98, 98, 98, 0.51),
+	            0.4375em 1.8125em 0 -0.3125em rgba(162, 162, 162, 0.9),
+	            0.5625em 1.8125em 0 -0.3125em rgba(100, 100, 100, 0.51),
+	            1.1875em 1.25em 0 -0.5em  rgba(162, 162, 162, 0.9),
+	            1.3125em 1.25em 0 -0.5em rgba(100, 100, 100, 0.51);
+	        box-shadow:  0.1875em 0 0 0.0625em rgba(98, 98, 98, 0.51),
+	            0.4375em 1.8125em 0 -0.3125em rgba(162, 162, 162, 0.9),
+	            0.5625em 1.8125em 0 -0.3125em rgba(100, 100, 100, 0.51),
+	            1.1875em 1.25em 0 -0.5em  rgba(162, 162, 162, 0.9),
+	            1.3125em 1.25em 0 -0.5em rgba(100, 100, 100, 0.51);
+}
+.moon::before {
+	top: auto;
+	/*bottom: 80px;*/
+	bottom: 2.5em;
+	left: auto;
+	/*right: 200px;*/
+	right: 5.5em;
+	-webkit-filter: sepia(36%) brightness(49%);
+	        filter: sepia(36%) brightness(49%);
+	-webkit-transform: rotate(130deg);
+	        transform: rotate(130deg);
+}
+#moonOrbit:hover .moon {
+	-webkit-animation-play-state: paused;
+	        animation-play-state: paused;
+}
 #fog1 {
 	-webkit-animation: animatedMist 60s linear infinite;
 	        animation: animatedMist 60s linear infinite;
