@@ -1,0 +1,16 @@
+background-color: white;/*unit*/
+background-color: rgb(43, 0, 1); /*+50*/
+background-color: rgb(107, 21, 39);/*+40*/
+background-color: rgb(195, 65, 114);/*+30*/
+background-color: rgb(231, 121, 97);/*+25*/
+background-color: rgb(236, 171, 77);/*+20*/
+background-color: rgb(237, 218, 69);/*+15*/
+background-color: rgb(195, 230, 77);/*+10*/
+background-color: rgb(102, 212, 88);/*+5*/
+background-color: rgb(89, 188, 160);/*0*/
+background-color: rgb(77, 132, 203);/*-5*/
+background-color: rgb(99, 92, 183);*/-10*/
+background-color: rgb(54, 42, 118);/*-15*/
+background-color: rgb(154, 29, 154);/*-20*/
+background-color: rgb(255, 177, 255);/*-30*/
+background-color: rgb(239, 239, 239);*/-40*/
