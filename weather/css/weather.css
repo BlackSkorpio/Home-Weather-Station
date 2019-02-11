@@ -143,7 +143,7 @@ svg.weather-sprite {
 	-webkit-transform: rotate(calc(var(--hPa) - 43deg));
 	        transform: rotate(calc(var(--hPa) - 43deg));
 }
-#beaufort.windspeed .svgIcon {
+#beaufort.windspeed .svgIcon:first-of-type {
 	border-radius: 50%;
 	-webkit-animation: rotate var(--bftSpeed) linear infinite;
 	        animation: rotate var(--bftSpeed) linear infinite;
@@ -3433,6 +3433,10 @@ footer time.dataText {
 #moonOrbit:hover .moon {
 	-webkit-animation-play-state: paused;
 	        animation-play-state: paused;
+}
+svg.mist {
+	height: 100vh;
+	width: 100vw;
 }
 #fog1 {
 	-webkit-animation: animatedMist 60s linear infinite;
