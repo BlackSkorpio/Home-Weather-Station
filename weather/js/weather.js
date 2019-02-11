@@ -332,8 +332,7 @@
 	var timePrefixEnd		= '">';
 	var timeSuffix			= "</time>";
 
-	isDark ? overCastLayer	= "overcastNight" : overCastLayer = "overcastDay";
-
+	//var overCastLayer		= isDark ? "overcastDay" : "overcastNight";
 	var useLocation			= svgPrefix + titlePrefix + gpsTxt + titleSuffix + usePrefix + "location" + useSuffix;
 	var useSunRise			= svgPrefix + titlePrefix + sunRiseTxt + titleSuffix + usePrefix + "sunrise" + useSuffix;
 	var useSunSet			= svgPrefix + titlePrefix + sunSetTxt + titleSuffix + usePrefix + "sunset" + useSuffix;
@@ -348,7 +347,7 @@
 	var useWeatherDude		= '<svg class="getting" role="img">' + titlePrefix + gettingTxt + titleSuffix + usePrefix + "weatherDude" + useSuffix;
 	var useBeaufort			= svgPrefix + usePrefix + "bf0" + useSuffix;
 	var useVisibility		= svgPrefix + titlePrefix + visibilityTxt + titleSuffix + usePrefix + "visibility" + useSuffix;
-	var useOvercast			= svgPrefix + titlePrefix + cloudinessTxt + titleSuffix + usePrefix + overCastLayer + useSuffix;
+	var useOvercast			= svgPrefix + titlePrefix + cloudinessTxt + titleSuffix + usePrefix;
 	var useUpdated			= svgPrefix + titlePrefix + updatedTimeTxt + titleSuffix + usePrefix + "clock" + useSuffix;
 
 	var main, container, sStyles, now, dd, td, dt, details, wd_summary, detailsHeader, infoModal, dtTimeRaw, dtHour, dtMin, dtTime, updatedTime;
@@ -702,21 +701,28 @@
 			'sunDown: '+sunDown +'\n'+
 			'sunLeft: '+sunDown+' - '+sunNow+' = '+roundToTwo(sunLeft) +'\n'+
 			'sunHours: '+sunDown+' - '+sunUp +' = '+roundToTwo(sunHours) +'\n'+
-			'sunPosition: '+roundToTwo(sunLeft)+' / '+roundToTwo(sunHours)+' * 100 = '+roundToTwo(sunPosition));
+			'sunPosition: '+roundToTwo(sunLeft)+' / '+roundToTwo(sunHours)+' * 100 = '+roundToTwo(sunPosition) +'\n'+
 			'moonHours: ' + '(24 - ' + sunHours +')  * 60 = ' + moonHours);
 		*/
 
 		checkForSunset();
+		wd_beaufort(data);
+		wd_tempScale(data,tempClr);
 		var rainyWindow			= isDark ? 'night' : 'day';
-		//var window = isDark ? 'night' : 'day';
+		var overCastLayer		= isDark ? "overcastNight" : "overcastDay";
 		var svgStyle = ':root{';
 			//svgStyle += '--hPa:' + kPaOut.trim() +'deg;';
-			svgStyle += '--hPa:'+kPaOut+'deg;';
-			svgStyle += '--windeg:'+data.wind.deg+'deg;';
-			svgStyle += '--sunPosition:'+ sunPlacement +'%;';
-			svgStyle += '--window:url("../img/window-'+ rainyWindow+'.jpg");';
+			svgStyle += '--hPa:' + kPaOut + 'deg;';
+			svgStyle += '--windeg:' + data.wind.deg + 'deg;';
+			svgStyle += '--sunPosition:' + sunPlacement + '%;';
+			svgStyle += '--window:url("../img/window-' + rainyWindow + '.jpg");';
 			svgStyle += '--moontime:' + moonHours + 's;';
 			svgStyle += '--tempClr:' + tempClr + ';';
+			svgStyle += '--bftclr:var(--bf' + bfSvgId + ');';
+			svgStyle += '--bftSpeed:' + ws_bft + 's;';
+			svgStyle += '--windspeed-s:' + ws_s + 's;';
+			svgStyle += '--windspeed-m:' + ws_m + 's;';
+			svgStyle += '--windspeed-f:' + ws_f + 's;';
 			svgStyle += '}';
 		sStyles.innerHTML = svgStyle;
 
@@ -798,7 +804,7 @@
 			visibilityline += spanSuffix;
 
 		var overcastline = '<li id="wd_clouds">';
-			overcastline += useOvercast;
+			overcastline += useOvercast + overCastLayer + useSuffix;
 			overcastline += textSpanPrefix;
 			overcastline += data.clouds.all;
 			overcastline += overcastForm;
@@ -846,7 +852,6 @@
 			'toLocaleTimeString: ' + new Date(data.dt * 1000).toLocaleTimeString(timeForm)
 		);*/
 
-		wd_beaufort(data);
 		setLayers();
 		wd_modal(data);
 		wd_visible();
@@ -939,6 +944,7 @@
 			wd_bf = 17;
 			wd_bfTxt = bfs17Txt + wd_LB + bfs26Txt;
 		}
+
 		if ( wd_bf >=    0 && wd_bf <=    2 ) bfSvgId = 0, ws_s = 75, ws_m = 55, ws_f = 35, ws_bft = 10;
 		if ( wd_bf >=    3 && wd_bf <=    4 ) bfSvgId = 1, ws_s = 65, ws_m = 45, ws_f = 35, ws_bft =  5;
 		if ( wd_bf >=    5 && wd_bf <=    6 ) bfSvgId = 2, ws_s = 60, ws_m = 40, ws_f = 30, ws_bft =  4;
@@ -970,7 +976,6 @@
 			beaufortSVG += titleSuffix;
 			beaufortSVG += usePrefix + "bf0";
 			beaufortSVG += useSuffix;
-			beaufortSVG += "<style>:root,.cloud{--bftclr:var(--bf"+bfSvgId+");--bftSpeed:"+ws_bft+"s;--windspeed-s:"+ws_s+"s;--windspeed-m:"+ws_m+"s;--windspeed-f:"+ws_f+"s;}</style>";
 
 		beaufort.className = "windspeed i-" + wd_bf + "bf";
 		beaufort.innerHTML = beaufortSVG+galeSVG;
