@@ -81,14 +81,6 @@
 			moonriseDesc = "Klockslag när månen börjar gå upp.";
 			moonSetsTxt	= "Månen går ner: ";
 			moonsetDesc	= "Klockslag när månen börjar gå ner.";
-			/* TODO Remove
-			clearTxt	= "klar";
-			cloudTxt	= "mulet";// moln
-			cloudTxt2	= "moln";// moln
-			rainTxt		= "regn";
-			snowTxt		= "snö";
-			sunTxt		= "sol";
-			mistTxt		= "dimm";*/
 			bfsTxt		= "Beaufort Skalan: ";
 			bftDesc		= "Beaufort vindskala mäter vindhastighet beroende på vindens påverkan på mark och hav. Även om systemet är gammalt (först utvecklat 1805 av Sir Francis Beaufort), förblir det ett mycket vanligt system för att mäta vindhastighet idag.";
 			bfsHeadTxt	= "Vindstyrka i beaufort: ";
@@ -195,13 +187,6 @@
 			moonriseDesc = "Time when the moon begins to rise";
 			moonSetsTxt	= "Moon Sets: ";
 			moonsetDesc = "Time when the moon begins to set";
-			/* TODO Remove
-			clearTxt	= "clear";
-			cloudTxt	= "cloud";
-			rainTxt		= "rain";
-			snowTxt		= "snow";
-			sunTxt		= "sun";
-			mistTxt		= "mist";*/
 			bfsTxt		= "Beaufort Scale: ";
 			bftDesc		= "The Beaufort wind scale measures wind speed according to the impact the wind has on the land and sea. Although the system is old (first developed in 1805 by Sir Francis Beaufort), it remains a widely used system to measure wind speed today.";
 			bfsHeadTxt	= "Beaufort number: ";
@@ -288,7 +273,6 @@
 			pressureForm = " hPa";
 			humidityForm = "%";
 			timeForm	= "eu";
-			//dateForm = day + date + month + year;
 		break;
 		case "imperial":
 			tempForm	= "°F";
@@ -299,7 +283,6 @@
 			pressureForm = " hPa";
 			humidityForm = "%";
 			timeForm	= "en";
-			//dateForm = day + ", " + month + " " + date + ", " + year;
 		break;
 		default:
 			tempForm	= "°K";
@@ -310,7 +293,6 @@
 			pressureForm = " hPa";
 			humidityForm = "%";
 			timeForm	= "en";
-			//dateForm = day + ", " + month + " " + date + ", " + year;
 	}
 
 	var dataDiv = "<span class='divider'>|</span>";
@@ -332,7 +314,6 @@
 	var timePrefixEnd		= '">';
 	var timeSuffix			= "</time>";
 
-	//var overCastLayer		= isDark ? "overcastDay" : "overcastNight";
 	var useLocation			= svgPrefix + titlePrefix + gpsTxt + titleSuffix + usePrefix + "location" + useSuffix;
 	var useSunRise			= svgPrefix + titlePrefix + sunRiseTxt + titleSuffix + usePrefix + "sunrise" + useSuffix;
 	var useSunSet			= svgPrefix + titlePrefix + sunSetTxt + titleSuffix + usePrefix + "sunset" + useSuffix;
@@ -664,9 +645,6 @@
 
 		// NOTE Calculate sun position
 		/*https://stackoverflow.com/a/18358056/6820262*/
-		function roundToTwo(num) {
-			return +(Math.round(num + "e+2")  + "e-2");
-		}
 		var sunUpRaw, sunDownRaw, sunNowRaw, sunUpHour, sunUpMin, sunUpMinute, sunNowHour, sunNowMin, sunNowMinute, sunDownHour, sunDownMin, sunDownMinute, sunUp, sunNow, sunDown, sunLeft, sunHours, sunLeftCalc, sunPos, sunPosition, moonHours;
 		var sunUpRaw	= new Date(data.sys.sunrise * 1000);
 		var sunNowRaw	= new Date();
@@ -1207,12 +1185,12 @@
 		if ( wd_temp >= -20.1 && wd_temp <= -30.0 ) tempClr = "rgb(255, 177, 255)";
 		/* -30.1 - -40.0 */
 		if ( wd_temp >= -30.1 && wd_temp <= -40.0 ) tempClr = "rgb(239, 239, 239)";
-		console.debug('tempNow: '+tempNow+'\n'+
+		/*console.debug('tempNow: '+tempNow+'\n'+
 			'Metric: ' + fromCelsius+'°C\n'+
 			'Imperial: ' + fromFarenheit+'°F\n'+
 			'Default: ' + fromKelvin+'°K\n'+
 			'tempClr: '+tempClr
-		);
+		);*/
 	}
 
 	function getWindDirection(deg) {
@@ -1237,7 +1215,6 @@
 			sunsettime = Number(weatherdata["sys"].sunset);
 			sunrisetime = Number(weatherdata["sys"].sunrise);
 			checkForSunset();
-			//isRainy = (weather.description.indexOf(rainTxt) >= 0);
 			isDrizzle = ( weatherId >= 300 && weatherId <= 321 );
 			isRainy   = ( weatherId >= 500 && weatherId <= 531 );
 			//isDrizzle = true; //for testing
@@ -1247,31 +1224,25 @@
 			rainwindow.style.display = isRainy || isDrizzle ? "block" : "none";
 			rainwindow.style.opacity = isDark || isDusk ? 0.5 : 0.75;
 
-			//isSnowy = (weather.description.indexOf(snowTxt) >= 0);
 			isSnowy = ( weatherId >= 600 && weatherId <= 622 );
 			//isSnowy = true; //for testing
 			snowlayer.style.display = isSnowy ? "block" : "none";
 			snowlayer.style.opacity = isDark ? 0.1 : 0.75;
 
-			//isClear = (weather.description.indexOf(clearTxt) >= 0);
 			isClear = ( weatherId >= 800 && weatherId <= 803  );
 
-			//isCloudy = (weather.description.indexOf(cloudTxt) >= 0) || weather.description.indexOf(cloudTxt2) >= 0;
 			isCloudy = ( weatherId >= 801 && weatherId <= 804 );
 			//isCloudy = true; //for testing
 			cloudlayer.style.display = isCloudy ? "block" : "none";
 			cloudlayer.style.opacity = isDark ? 0.75 : 1;
 
-			//isSunny = (weather.description.indexOf(sunTxt) >= 0 || (isClear && !isDark));
 			isSunny = ( weatherId == 800 || (isClear && !isDark) );
 			//isSunny = false; //for testing
 			sunlayer.style.display = isSunny ? "block" : "none";
 
-			//isClearNight = (weather.description.indexOf(clearTxt) >= 0) && isDark;
 			isClearNight = ( weatherId == 800 && isDark );
 			//isClearNight = false; //for testing
 
-			//isMisty = (weather.description.indexOf(mistTxt) >= 0);
 			isMisty = ( weatherId == 701 || weatherId == 711 || weatherId == 721 || weatherId == 741 );
 			//isMisty = true; //for testing
 			mistlayer.style.display = isMisty ? "block" : "none";
