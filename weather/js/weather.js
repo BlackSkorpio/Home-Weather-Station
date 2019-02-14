@@ -40,7 +40,7 @@
 	var unitsFormat			= "metric";
 
 	var doc = document, win = window;
-	var galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt;
+	var updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt;
 	var moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt;
 	var buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, wd_LB, ws_s, ws_m, ws_f, wd_stormFlag;
 	var miles, km, visibleLength, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm;
@@ -112,6 +112,15 @@
 			galeTxt		= "Associerad varningsflagga: ";
 			modalTitleTxt = "Icon legend";
 			modalDescTxt = "Förklaring till vad de olika ikonerna representerar.";
+			updateNowTxt = "precis nu";
+			updateSecTxt = "sekund";
+			updateMinTxt = "minut";
+			updateHourTxt = "timma";
+			updateDayTxt = "dag";
+			updateMonthTxt = "månad";
+			updateYearTxt = "år";
+			updateAgoTxt = " sedan";
+			updatePluralTxt = "er";
 			months = [
 				"Januari",
 				"Februari",
@@ -218,6 +227,15 @@
 			galeTxt		= "Associated warning flag: ";
 			modalTitleTxt = "Icon legend";
 			modalDescTxt = "Explanation on what the different icons represents.";
+			updateNowTxt = "just now";
+			updateSecTxt = "sec";
+			updateMinTxt = "min";
+			updateHourTxt = "hour";
+			updateDayTxt = "day";
+			updateMonthTxt = "month";
+			updateYearTxt = "year";
+			updateAgoTxt = " ago";
+			updatePluralTxt = "s";
 			months = [
 				"January",
 				"February",
@@ -813,26 +831,14 @@
 		// wd.innerHTML =  weatherlink + weatherstring + "</a>";
 		wd.innerHTML = weatherstring;
 
-		var dtTimeRaw = new Date(data.dt * 1000);
-		var dtTime = dtTimeRaw.toISOString();
-		var dtHour = dtTimeRaw.getHours() < 10 ? "0" + dtTimeRaw.getHours() : dtTimeRaw.getHours();
-		var dtMin = dtTimeRaw.getMinutes()
-		var updatedTime = useUpdated;
-			updatedTime += timePrefix;
-			updatedTime += dtTime;
-			updatedTime += timePrefixEnd;
-			updatedTime += dtHour+'.'+dtMin;
-			updatedTime += timeSuffix;
-		dt.innerHTML = updatedTime;
-		dt.setAttribute('title', updatedTimeTxt+dtTime);
-		/*console.debug('data.dt: ' + data.dt +'\n'+
-			'toISOString: '+ new Date(data.dt * 1000).toISOString() +'\n'+
-			'toLocaleTimeString: ' + new Date(data.dt * 1000).toLocaleTimeString(timeForm)
-		);*/
-
 		setLayers();
 		wd_modal(data);
 		wd_visible();
+		wd_updatedTime(data);
+		// NOTE Update the update time every 30 sek (https://stackoverflow.com/a/13304567/6820262)
+		var updatedInterval = setInterval(function() {
+			wd_updatedTime(data);
+		}, 30 * 1000);
 	}
 
 	function wd_beaufort(data) {
@@ -1192,6 +1198,102 @@
 			'tempClr: '+tempClr
 		);*/
 	}
+
+
+	function wd_updatedTime(data) {
+		// function(globale) from: https://stackoverflow.com/a/50666409/6820262
+		(function(global) {
+			const SECOND	= 1;
+			const MINUTE	= 60;
+			const HOUR		= 3600;
+			const DAY		= 86400;
+			const MONTH		= 2629746;
+			const YEAR		= 31556952;
+			const DECADE	= 315569520;
+
+			global.timeAgo = function(date){
+				var now = new Date();
+				var diff = Math.round(( now - date ) / 1000);
+
+				var unit = '';
+				var num = 0;
+				var plural = false;
+
+				switch(true){
+					case diff <= 0:
+						return updateNowTxt;
+					break;
+					case diff < MINUTE:
+						num = Math.round(diff / SECOND);
+						unit = updateSecTxt;
+						plural = num > 1;
+					break;
+					case diff < HOUR:
+						num = Math.round(diff / MINUTE);
+						unit = updateMinTxt;
+						plural = num > 1;
+					break;
+					case diff < DAY:
+						num = Math.round(diff / HOUR);
+						unit = updateHourTxt;
+						plural = num > 1;
+					break;
+					case diff < MONTH:
+						num = Math.round(diff / DAY);
+						unit = updateDayTxt;
+						plural = num > 1;
+					break;
+					case diff < YEAR:
+						num = Math.round(diff / MONTH);
+						unit = updateMonthTxt;
+						plural = num > 1;
+					break;
+					case diff < DECADE:
+						num = Math.round(diff / YEAR);
+						unit = updateYearTxt;
+						plural = num > 1;
+					break;
+					default:
+						num = Math.round(diff / YEAR);
+						unit = updateYearTxt;
+						plural = num > 1;
+				}
+
+				var str = '';
+				if(num){
+					str += num+' ';
+				}
+
+				str += unit;
+
+				if(plural){
+					str += updatePluralTxt;
+				}
+
+				str += updateAgoTxt;
+
+				return str;
+			}
+		})(window);
+		var dtTimeRaw = new Date(data.dt * 1000);
+		var dtTime = dtTimeRaw.toLocaleTimeString(timeForm);
+		var dtTimeAgo = timeAgo( dtTimeRaw );
+		var dtHour = dtTimeRaw.getHours() < 10 ? "0" + dtTimeRaw.getHours() : dtTimeRaw.getHours();
+		var dtMin = dtTimeRaw.getMinutes()
+		var updatedTime = useUpdated;
+			updatedTime += timePrefix;
+			updatedTime += dtTime;
+			updatedTime += timePrefixEnd;
+			updatedTime += dtTimeAgo;
+			updatedTime += timeSuffix;
+		dt.innerHTML = updatedTime;
+		dt.setAttribute('title', updatedTimeTxt+dtTime);
+		/*console.debug('data.dt: ' + data.dt +'\n'+
+			'toISOString: '+ new Date(data.dt * 1000).toISOString() +'\n'+
+			'toLocaleTimeString: ' + new Date(data.dt * 1000).toLocaleTimeString(timeForm)+'\n'+
+			'timeAgo: ' + timeAgo( dtTimeRaw )
+		);*/
+	};
 
 	function getWindDirection(deg) {
 		var degs = [348.75,326.25,303.75,281.25,258.75,236.25,213.75,191.25,168.75,146.25,123.75,101.25,78.75,56.25,33.75,11.25,0];
