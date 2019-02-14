@@ -342,7 +342,7 @@
 	var useWindspeed		= svgPrefix + titlePrefix + windTxt + titleSuffix + usePrefix + "windspeed" + useSuffix;
 	var usePressure			= svgPrefix + titlePrefix + pressureTxt + titleSuffix + usePrefix + "pressure" + useSuffix;
 	var useTemprature		= svgPrefix + titlePrefix + tempForm + titleSuffix + usePrefix + "temperatur" + useSuffix;
-	var useWindRose			= svgPrefix + usePrefix + "windirection" + useSuffix;
+	var useWindRose			= svgPrefix + titlePrefix + windDirTxt + titleSuffix + usePrefix + "windirection" + useSuffix;
 	var useWeatherDude		= '<svg class="getting" role="img">' + titlePrefix + gettingTxt + titleSuffix + usePrefix + "weatherDude" + useSuffix;
 	var useBeaufort			= svgPrefix + usePrefix + "bf0" + useSuffix;
 	var useVisibility		= svgPrefix + titlePrefix + visibilityTxt + titleSuffix + usePrefix + "visibility" + useSuffix;
@@ -764,21 +764,15 @@
 			windline += data.wind.speed;
 			windline += windSpeed;
 			windline += spanSuffix;
-			if ( data.wind.deg !=null ) {
-				windline += textSpanPrefix;
-				windline += getWindDirection(data.wind.deg);
-				windline += spanSuffix;
-				windline += svgPrefix;
-				windline += titlePrefix;
-				windline += windDirTxt;
-				windline += data.wind.deg.toFixed(0);
-				windline += "° ";
-				windline += getWindDirection(data.wind.deg);
-				windline += titleSuffix;
-				windline += usePrefix;
-				windline += "windirection";
-				windline += useSuffix;
-			}
+
+		var windirdata = textSpanPrefix;
+			windirdata += data.wind.deg.toFixed(0);
+			windirdata += "° ";
+			windirdata += getWindDirection(data.wind.deg);
+			windirdata += spanSuffix;
+		var windirection = '<li id="wd_windir">';
+			windirection += useWindRose;
+			windirection += data.wind.deg !=null ? windirdata : "Wind direction data error";
 
 		var sunriseline = '<li id="wd_sunrise">';
 			sunriseline += useSunRise;
