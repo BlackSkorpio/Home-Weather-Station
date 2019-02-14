@@ -3,7 +3,7 @@
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.2.3
+ *  @version 1.3.0
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -701,11 +701,11 @@
 			'moonHours: ' + '(24 - ' + sunHours +')  * 60 = ' + moonHours);
 		*/
 
-		checkForSunset();
 		wd_beaufort(data);
 		wd_tempScale(data,tempClr);
 		var rainyWindow			= isDark ? 'night' : 'day';
 		var overCastLayer		= isDark ? "overcastNight" : "overcastDay";
+		//console.log(isDark ? "It's night" : "It's day"); // For testing
 		var svgStyle = ':root{';
 			//svgStyle += '--hPa:' + kPaOut.trim() +'deg;';
 			svgStyle += '--hPa:' + kPaOut + 'deg;';
