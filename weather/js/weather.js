@@ -806,10 +806,7 @@
 			overcastline += overcastForm;
 			overcastline += spanSuffix;
 
-		details.innerHTML = visibilityline + overcastline + windline + pressureline + humidityline + sunriseline + sunsetline + gpsline;
-		//details.innerHTML = svgStyle + windline + pressureline + humidityline + sunriseline + sunsetline + gpsline;
-		//details.innerHTML = svgStyle + windline + pressureline + humidityline + sunriseline + morningHourline + moonsetline + sunsetline + eveningHourline + moonriseline + gpsline;
-		// NOTE Set the details section to display block
+		details.innerHTML = visibilityline + overcastline + windline + windirection + pressureline + humidityline + sunriseline + sunsetline + gpsline;
 
 		var weather = data["weather"][0];
 
@@ -822,13 +819,9 @@
 			weatherstring += localtemperature;
 			weatherstring += tempForm;
 			weatherstring += spanSuffix;
-			//weatherstring += "&nbsp;&nbsp;";
 			weatherstring += textSpanPrefix;
 			weatherstring += weather.description;
 			weatherstring += spanSuffix;
-		// var weathergov = "https://forecast.weather.gov/MapClick.php";
-		// var weatherlink = '<a class="weatherlink" target="_blank" href="'+weathergov+'?lat=' + lat + '&lon=' + lon + '">';
-		// wd.innerHTML =  weatherlink + weatherstring + "</a>";
 		wd.innerHTML = weatherstring;
 
 		setLayers();
@@ -978,7 +971,7 @@
 	function wd_modal(data) {
 		// Modal https://codepen.io/chriscoyier/pen/MeJWoM
 		// And https://codepen.io/noahblon/pen/yJpXka
-		var modal, modalOverlay, buttonClose, classClosed  , aHidden, tabindex, FOCUSABLE_SELECTORS, modalTitle, modalDescription, modalBeaufort, modalWspeed, modalWdirection, modalPressure, modalHumidity, modalSunrise, modalSunset, modalLocation, modalMoonrise, modalMonnset, modalMorningold, modalEveningold;
+		var modal, modalOverlay, buttonClose, classClosed, aHidden, tabindex, FOCUSABLE_SELECTORS, modalTitle, modalDescription, modalBeaufort, modalWspeed, modalWdirection, modalPressure, modalHumidity, modalSunrise, modalSunset, modalLocation, modalMoonrise, modalMonnset, modalMorningold, modalEveningold;
 
 		var modal				= doc.querySelector("#modal");
 		var modalOverlay		= doc.querySelector("#modal-overlay");
