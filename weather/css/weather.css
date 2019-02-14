@@ -160,7 +160,6 @@ main {
 /* NOTE Center stuff */
 #gps,
 time,
-#wd_wind,
 #forecast,
 #wd_location {
 	text-align: center;
@@ -324,7 +323,7 @@ summary {
 	/*grid-template-columns: repeat(3,1fr);*/
 	grid-template-columns: 1fr minmax(auto,1fr) 1fr;
 	grid-gap: 0.2em;
-	grid-template-areas: "wind wind wind"
+	grid-template-areas: "windspeed . windir"
 		"pressure . humidity"
 		"visibility . cloudiness"
 		"sunrise . sunset"
@@ -340,11 +339,14 @@ summary {
 	grid-area: location;
 }
 #wd_wind {
-	grid-area: wind;
+	grid-area: windspeed;
 }
-#wd_wind .dataText {
+#wd_windir {
+	grid-area: windir;
+}
+/*#wd_wind .dataText {
 	margin: 0 0.4em;
-}
+}*/
 #wd_pressure {
 	grid-area: pressure;
 }
@@ -3588,13 +3590,14 @@ svg.mist {
 /*250px */
 @media (max-width: 15.625em) {
 	#region,
-	#forecast #icon,
-	#wd_wind svg:last-of-type {
+	#forecast #icon/*,
+	#wd_wind svg:last-of-type*/ {
 		display: none;
 	}
 	#weatherdetails {
 		grid-template-areas:
-			"wind"
+			"windspeed"
+			"windir"
 			"pressure"
 			"humidity"
 			"sunrise"
