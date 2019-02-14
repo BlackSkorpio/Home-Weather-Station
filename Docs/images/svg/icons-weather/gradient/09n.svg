@@ -1,0 +1,46 @@
+<svg id="03n" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+	<defs>
+		<style>
+			svg, symbol {
+				--wh: #dff0fe;
+				--bl: #000;
+				--rd: #ff0000;
+				--lB: #98ccfd;
+				--dB: #4788c7;
+				--dG: #808083;
+				--lY: #fce6b1;
+				--dY: #ffc843;
+				--bY: #3f3a02;
+				--s1: #fff76b;
+				--s2: #fff845;
+				--s3: #ffda4e;
+				--s4: #fb8933;
+				--s5: #fdc830;
+				--s6: #f37335;
+			}
+		</style>
+		<linearGradient id="moonDark" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="0%" y2="100%">
+			<stop stop-color="#FFC843" offset="0"/>
+			<stop stop-color="#3f3a02" offset="80%"/>
+		</linearGradient>
+		<linearGradient id="moon" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="0%" y2="100%">
+			<stop stop-color="#FCE6B1" offset="0"/>
+			<stop stop-color="#FFC843" offset="50%"/>
+			<stop stop-color="#3f3a02" offset="80%"/>
+		</linearGradient>
+		<linearGradient id="lightCloud" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="0%" y2="100%" spreadMethod="pad">
+			<stop class="s5" stop-color="#fff" offset="63%"/>
+			<stop class="s7" stop-color="#808083" offset="83%"/>
+			<stop class="s8" stop-color="#000" offset="100%"/>
+		</linearGradient>
+		<linearGradient id="darkCloud" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="0%" y2="100%" spreadMethod="pad">
+			<stop class="s7" stop-color="#808083" offset="63%"/>
+			<stop class="s8" stop-color="#000" offset="100%"/>
+		</linearGradient>
+	</defs>
+	<path fill="var(--dB)" d="M128 427.34a13 13 0 0 1-10.02-21.3l37.13-44.88a13 13 0 1 1 20.05 16.59l-37.13 44.88a13 13 0 0 1-10.03 4.71zM232.04 427.34a13 13 0 0 1-10.02-21.3l37.13-44.88a13 13 0 1 1 20.04 16.59l-37.12 44.88a12.98 12.98 0 0 1-10.03 4.71zM334.85 427.34a13 13 0 0 1-10.01-21.3l37.13-44.88A13 13 0 1 1 382 377.75l-37.13 44.88a13 13 0 0 1-10.03 4.71z"/>
+	<g fill="url(#darkCloud)" stroke="url(#darkCloud)">
+		<path d="M365.56 315.37H134.4c-28.12 0-51-22.9-51-51.03a50.9 50.9 0 0 1 38.58-49.4c5.01-1.25 8.39-5.98 8.01-11.13-.18-2.41-.34-4.7-.34-6.9 0-49.35 40.16-89.5 89.52-89.5a89.16 89.16 0 0 1 75.23 41.12 10.63 10.63 0 0 0 12.57 4.23 44.17 44.17 0 0 1 15.13-2.73 44.2 44.2 0 0 1 44.15 44.15c0 2.35-.23 4.87-.71 7.7a10.63 10.63 0 0 0 8.69 12.25 50.82 50.82 0 0 1 42.36 50.2 51.09 51.09 0 0 1-51.03 51.04z"/>
+		<path d="M387.5 195.53l.02-1.35a65.48 65.48 0 0 0-65.42-65.4c-4.82 0-9.65.55-14.42 1.64a110.24 110.24 0 0 0-88.51-44.28c-61.09 0-110.78 49.7-110.78 110.78v.07a72.1 72.1 0 0 0-46.24 67.35c0 39.86 32.41 72.29 72.25 72.29h231.16c39.86 0 72.3-32.43 72.3-72.29a72 72 0 0 0-50.36-68.81zm-21.94 119.84H134.4c-28.12 0-51-22.9-51-51.03a50.9 50.9 0 0 1 38.58-49.39c5.01-1.26 8.39-5.99 8.01-11.14-.18-2.41-.34-4.7-.34-6.9 0-49.35 40.16-89.5 89.52-89.5a89.16 89.16 0 0 1 75.23 41.12 10.62 10.62 0 0 0 12.57 4.24 44.2 44.2 0 0 1 15.13-2.74 44.2 44.2 0 0 1 44.15 44.15c0 2.36-.23 4.87-.71 7.7a10.63 10.63 0 0 0 8.69 12.26 50.82 50.82 0 0 1 42.36 50.2 51.09 51.09 0 0 1-51.03 51.03z"/>
+	</g>
+</svg>
