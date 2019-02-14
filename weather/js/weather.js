@@ -677,17 +677,17 @@
 		var sunDownMin	= sunDownRaw.getMinutes();
 		var sunDownMinute = sunDownMin < 10 ? "0" + sunDownMin : sunDownMin;
 
-		var sunUp		= sunUpHour + '.' + sunUpMinute;	/* A */
-		var sunNow		= sunNowHour + '.' + sunNowMinute;	/* B */
+		var sunUp		= sunUpHour + '.' + sunUpMinute;	// A
+		var sunNow		= sunNowHour + '.' + sunNowMinute;	// B
 		//var sunNow		= 08.05; // For testing
-		var sunDown		= sunDownHour + '.' + sunDownMinute;/* C*/
-		var sunLeft		= sunDown - sunNow;	/* X = C - B */
-		var sunHours	= sunDown - sunUp;	/* Y = C - A */
-		/* Z = X / Y * 100 */
-		var sunPos	= roundToTwo(sunLeft) / roundToTwo(sunHours) * 100;
-		var sunPosition = sunPos > 100.00 ? 99.99 : sunPos
+		var sunDown		= sunDownHour + '.' + sunDownMinute;// C
+		var sunLeft		= sunDown - sunNow;	// X = C - B
+		var sunHours	= sunDown - sunUp;	// Y = C - A
+		//* Z = X / Y * 100
+		var sunPos	= sunLeft.toFixed(2) / sunHours.toFixed(2) * 100;
+		var sunPosition = sunPos > 100.00 ? 99.99 : sunPos;
 		//var sunPlacement = 'right ' + roundToTwo(sunPosition);
-		var sunPlacement = roundToTwo(sunPosition);
+		//sunPosition = sunPlacement.toFixed(2);
 		var moonHours = (24 - sunHours) * 60;
 		/*console.log('sunUpRaw: '+sunUpRaw +'\n'+
 			'sunNowRaw: '+sunNowRaw +'\n'+
@@ -710,7 +710,7 @@
 			//svgStyle += '--hPa:' + kPaOut.trim() +'deg;';
 			svgStyle += '--hPa:' + kPaOut + 'deg;';
 			svgStyle += '--windeg:' + data.wind.deg + 'deg;';
-			svgStyle += '--sunPosition:' + sunPlacement + '%;';
+			svgStyle += '--sunPosition:' + sunPosition.toFixed(2) + '%;';
 			svgStyle += '--window:url("../img/window-' + rainyWindow + '.jpg");';
 			svgStyle += '--moontime:' + moonHours + 's;';
 			svgStyle += '--tempClr:' + tempClr + ';';
