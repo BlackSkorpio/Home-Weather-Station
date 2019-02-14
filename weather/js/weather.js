@@ -1186,6 +1186,49 @@
 		);*/
 	}
 
+	function wd_sunPosition(data) {
+		// NOTE Calculate sun position
+		var sunUpRaw, sunDownRaw, sunNowRaw, sunUpHour, sunUpMin, sunUpMinute,
+			sunNowHour, sunNowMin, sunNowMinute, sunDownHour, sunDownMin,
+			sunDownMinute, sunUp, sunNow, sunDown, sunLeft, sunHours,
+			sunLeftCalc, sunPos, sunPosition, moonHours;
+
+		var sunUpRaw	= new Date(data.sys.sunrise * 1000);
+		var sunNowRaw	= new Date();
+		var sunDownRaw	= new Date(data.sys.sunset * 1000);
+		var sunUpHour	= sunUpRaw.getHours();
+		var sunNowHour	= sunNowRaw.getHours();
+		var sunDownHour	= sunDownRaw.getHours();
+		var sunUpMin	= sunUpRaw.getMinutes();
+		var sunUpMinute = sunUpMin < 10 ? "0" + sunUpMin   : sunUpMin;
+		var sunNowMin	= sunNowRaw.getMinutes();
+		var sunNowMinute = sunNowMin < 10 ? "0" + sunNowMin  : sunNowMin;
+		var sunDownMin	= sunDownRaw.getMinutes();
+		var sunDownMinute = sunDownMin < 10 ? "0" + sunDownMin : sunDownMin;
+
+		var sunUp		= sunUpHour + '.' + sunUpMinute;	// A
+		var sunNow		= sunNowHour + '.' + sunNowMinute;	// B
+		//var sunNow		= 08.05; // For testing
+		var sunDown		= sunDownHour + '.' + sunDownMinute;// C
+		var sunLeft		= sunDown - sunNow;	// X = C - B
+		var sunHours	= sunDown - sunUp;	// Y = C - A
+		// Z = X / Y * 100
+		var sunPos	= sunLeft.toFixed(2) / sunHours.toFixed(2) * 100;
+		//var sunPosition = sunPos > 100.00 ? 99.99 : sunPos;
+		//var sunPlacement = roundToTwo(sunPosition);
+		var moonHours = (24 - sunHours) * 60;
+		/*console.log('sunUpRaw: '+sunUpRaw +'\n'+
+			'sunNowRaw: '+sunNowRaw +'\n'+
+			'sunDownRaw: '+sunDownRaw +'\n'+
+			'sunUp: '+sunUp +'\n'+
+			'sunNow: '+sunNow +'\n'+
+			'sunDown: '+sunDown +'\n'+
+			'sunLeft: '+sunDown+' - '+sunNow+' = '+roundToTwo(sunLeft) +'\n'+
+			'sunHours: '+sunDown+' - '+sunUp +' = '+roundToTwo(sunHours) +'\n'+
+			'sunPosition: '+roundToTwo(sunLeft)+' / '+roundToTwo(sunHours)+' * 100 = '+roundToTwo(sunPosition) +'\n'+
+			'moonHours: ' + '(24 - ' + sunHours +')  * 60 = ' + moonHours);
+		*/
+	}
 
 	function wd_updatedTime(data) {
 		// function(globale) from: https://stackoverflow.com/a/50666409/6820262
