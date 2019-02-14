@@ -3360,7 +3360,7 @@ footer time.dataText {
 #moonOrbit {
 	display: none;
 	position: absolute;
-	height: 60vh;
+	height: 100vh;
 	width: 100vw;
 	left: 0;
 	bottom: 0;
@@ -3432,10 +3432,10 @@ footer time.dataText {
 	-webkit-transform: rotate(130deg);
 	        transform: rotate(130deg);
 }
-#moonOrbit:hover .moon {
+/*#moonOrbit:hover .moon {
 	-webkit-animation-play-state: paused;
 	        animation-play-state: paused;
-}
+}*/
 svg.mist {
 	height: 100vh;
 	width: 100vw;
