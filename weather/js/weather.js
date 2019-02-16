@@ -47,7 +47,7 @@
 		case "se":
 			gettingTxt	= "Läser in vädret";
 			locErrorTxt	= "GEO-location service är inte tillgänglig, försök igen senare.";
-			detailsTxt	= "Väder Detaljer";
+			detailsTxt	= "Vädret i Detalj";
 			gpsTxt		= "GPS: ";
 			updatedTimeTxt = "Uppdaterades: ";
 			locationTxt	= "Kordinater: ";
