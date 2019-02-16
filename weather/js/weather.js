@@ -3,7 +3,7 @@
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.3.0
+ *  @version 1.3.1
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -15,6 +15,7 @@
 	var locationRequested	= false;
 	var useSVG				= true;
 	var appID				= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
+	var wd_version			= "1.3.1";
 
 	/* Multilingual support
 		You can use lang parameter to get the output in your language. We support the following
