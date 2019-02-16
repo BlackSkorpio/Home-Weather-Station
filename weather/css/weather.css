@@ -2961,6 +2961,21 @@ details summary:empty {
 	display: none;
 }
 
+.ribbon {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 5em;
+	width: 5em;
+}
+.ribbon svg.svgIcon {
+	height: 5em;
+	width: 5em;
+}
+text#ribbon_text {
+	font-family: inherit;
+	font-weight: 700;
+}
 .modal {
 	/* This way it could be display flex or grid or whatever also. */
 	display: block;

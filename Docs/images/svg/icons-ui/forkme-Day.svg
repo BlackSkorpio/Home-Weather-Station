@@ -1,0 +1,13 @@
+<svg id="ribbon-Day" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298 298" xml:space="preserve">
+	<defs>
+		<linearGradient id="fDay" x1="0%" y1="0%" x2="0%" y2="100%" gradientTransform="rotate(-135)">
+			<stop offset="0%" stop-color="#ffe95c"/>
+			<stop offset="100%" stop-color="#FFF"/>
+		</linearGradient>
+	</defs>
+	<path id="f_bkgrd" fill="url(#fDay)" stroke="#696969" d="M0 0L298 298 298 201 97 0z"/>
+	<text id="f_text" x="15" y="125" transform="rotate(45 149 149)" fill="#000" font-size="32" style="font-family: arial; font-weight: bold">
+		Fork me on GitHub
+	</text>
+	<path id="f_dash" stroke-dasharray="5,5" d="M90 0l208 208M7 0l291 291" stroke="#000"/>
+</svg>

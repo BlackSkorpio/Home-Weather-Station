@@ -1,0 +1,14 @@
+<svg id="ribbon-Night" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298 298" xml:space="preserve">
+	<defs>
+		<linearGradient id="fNight" x1="0%" y1="0%" x2="0%" y2="100%" gradientTransform="rotate(-135)">
+			<stop offset="0%"/>
+			<stop offset="100%" stop-color="#fff"/>
+		</linearGradient>
+	</defs>
+	<polygon fill="url(#fNight)" stroke="#696969" points="0,0 298,298 298,201 97,0"/>
+	<text x="61.261948" y="-24" transform="rotate(45)" font-size="32px" fill="#fff">
+		Fork me on GitHub
+	</text>
+	<path stroke-dasharray="5,5" stroke="#fff" d="M90 0 L298 208"/>
+	<path stroke-dasharray="5,5" stroke="#fff" d="M7 0 L298 291"/>
+</svg>
