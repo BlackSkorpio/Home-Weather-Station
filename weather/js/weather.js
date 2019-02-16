@@ -409,7 +409,50 @@
 		weatherminute = randRange(0,14);
 		getLocation();
 		updateTime();
+		wd_core();
 		setInterval(updateTime,1000);
+	}
+
+	function wd_core() {
+		var toGitHub = function() {
+			var dayState, stateClr, BUILD_ELEMENTS, bundle, buildlink, wd_windowOpen, wd_rel, forkmelink, wd_byLine, wd_name, wd_buildurl, wd_buildIcon, wd_forkmeIcon;
+
+			BUILD_ELEMENTS	= '#buildlink, #ribbon';
+			buildlink		= doc.getElementById("buildlink");
+			forkmelink		= doc.getElementById("ribbon");
+			bundle			= doc.querySelectorAll( BUILD_ELEMENTS );
+
+			dayState		= isDark ? 'Night' : 'Day';
+			if ( isDark = true ) {
+				stateClr = '#000'
+			} else {
+				stateClr = '#ffe95c'
+			};
+
+			wd_byLine		= "By Baldurs Photography";
+			wd_name			= "Home Weather Station";
+			wd_buildurl		= "//github.com/BlackSkorpio/Home-Weather-Station";
+			wd_windowOpen	= "window.open(this.href);return false;";
+			wd_rel			= "nofollow";
+			wd_buildIcon	= svgPrefix + usePrefix + "logosmall" + useSuffix;
+			wd_forkmeIcon	= svgPrefix + "<style>#f_s1{--stateClr:"+stateClr+"}</style>" + usePrefix + "ribbon" + useSuffix;
+
+			doc.title		= wd_name + " " + wd_byLine;
+
+			bundle.forEach(function(elements) {
+				return elements.setAttribute('href', wd_buildurl),
+					elements.setAttribute('onclick', wd_windowOpen),
+					elements.setAttribute('rel', wd_rel);
+			});
+
+			buildlink.setAttribute('title', wd_name + ' ' + wd_version);
+			buildlink.innerHTML = wd_buildIcon;
+
+			forkmelink.setAttribute('title', 'Fork ' + wd_name + ' on GitHub');
+			forkmelink.innerHTML = wd_forkmeIcon;
+		}
+
+		toGitHub();
 	}
 
 	function updateTime() {
