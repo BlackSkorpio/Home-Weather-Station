@@ -1025,6 +1025,7 @@
 		var modalWdirection		= doc.getElementById("dt_windirection");
 		var modalPressure		= doc.getElementById("dt_pressure");
 		var modalHumidity		= doc.getElementById("dt_humidity");
+		var modalVisibility		= doc.getElementById("dt_visibility");
 		var modalSunrise		= doc.getElementById("dt_sunrise");
 		var modalSunset			= doc.getElementById("dt_sunset");
 		var modalLocation		= doc.getElementById("dt_location");
@@ -1063,6 +1064,12 @@
 			modalHumidityTxt	+= spanPrefix;
 			modalHumidityTxt	+= humidityDesc;
 			modalHumidityTxt	+= spanSuffix;
+		var modalVisibilityTxt	= summaryPrefix;
+			modalVisibilityTxt	+= useVisibility + visibilityTxt;
+			modalVisibilityTxt	+= summarySuffix
+			modalVisibilityTxt	+= spanPrefix;
+			modalVisibilityTxt	+= visibilityDesc;
+			modalVisibilityTxt	+= spanSuffix;
 		var modalSunriseTxt		= summaryPrefix;
 			modalSunriseTxt		+= useSunRise + sunRiseTxt;
 			modalSunriseTxt		+= summarySuffix
@@ -1113,6 +1120,7 @@
 		modalWdirection.innerHTML	= modalWdirectionTxt;
 		modalPressure.innerHTML		= modalPressureTxt;
 		modalHumidity.innerHTML		= modalHumidityTxt;
+		modalVisibility.innerHTML	= modalVisibilityTxt;
 		modalSunrise.innerHTML		= modalSunriseTxt;
 		modalSunset.innerHTML		= modalSunsetTxt;
 		modalLocation.innerHTML		= modalLocationTxt;
