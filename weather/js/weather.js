@@ -3,7 +3,7 @@
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.3.1
+ *  @version 1.3.2
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -852,8 +852,8 @@
 		var visibilityline = '<li id="wd_visibility">';
 			visibilityline += useVisibility;
 			visibilityline += textSpanPrefix;
-			visibilityline += visibleLength;
-			visibilityline += visibilityForm;
+			visibilityline += data.visibility !=null ? visibleLength + visibilityForm : "No data";
+			//visibilityline += data.visibility !=null ? visibilityForm : "";
 			visibilityline += spanSuffix;
 
 		var overcastline = '<li id="wd_clouds">';
