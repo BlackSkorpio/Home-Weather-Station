@@ -2976,7 +2976,7 @@ details summary:empty {
 	height: 5em;
 	width: 5em;
 }
-text#ribbon_text {
+text#ribbon_text a {
 	font-family: inherit;
 	font-weight: 700;
 }
