@@ -1405,6 +1405,18 @@
 		);*/
 	};
 
+	function wd_layerClasses() {
+		var weather   = weatherdata["weather"][0];
+		var weatherId = weather.id;
+		//isMisty = false;
+
+		isSnowy   ? snowlayer.className  = "s" + weatherId :  snowlayer.classList.remove();
+		isDrizzle ? rainlayer.className  = "d" + weatherId :  rainlayer.classList.remove();
+		isRainy   ? rainlayer.className  = "r" + weatherId :  rainlayer.classList.remove();
+		isCloudy  ? cloudlayer.className = "c" + weatherId : cloudlayer.classList.remove();
+		isMisty   ? mistlayer.className  = "m" + weatherId :  mistlayer.classList.remove();
+	}
+
 	function getWindDirection(deg) {
 		var degs = [348.75,326.25,303.75,281.25,258.75,236.25,213.75,191.25,168.75,146.25,123.75,101.25,78.75,56.25,33.75,11.25,0];
 		for ( var i=0;i < degs.length;i++) {
@@ -1419,7 +1431,7 @@
 		if (weatherdata) {
 			var weather = weatherdata["weather"][0];
 			var weatherId = weather.id;
-			//var weatherId = 800; //for testing
+			//var weatherId = 500; //for testing
 			/*console.debug( //for testing
 				'WeatherID: '+weatherId +'\n'+
 				weather.description
@@ -1452,7 +1464,7 @@
 			//isSunny = false; //for testing
 			sunlayer.style.display = isSunny ? "block" : "none";
 
-			isClearNight = ( weatherId == 800 && isDark );
+			isClearNight = ( weatherId == 800 || 801 && isDark );
 			//isClearNight = false; //for testing
 
 			isMisty = ( weatherId == 701 || weatherId == 711 || weatherId == 721 || weatherId == 741 );
@@ -1465,6 +1477,8 @@
 			clearnightlayer.style.display = isClearNight || isDusk || isDawn ? "block" : "none";
 			clearnightlayer.style.opacity = isDusk || isDawn ? 0.2 : 1;
 			moonlayer.style.display = isDark ? "block" : "none";
+
+			wd_layerClasses();
 		}
 	}
 
