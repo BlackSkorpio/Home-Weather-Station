@@ -327,6 +327,7 @@ summary {
 	/*grid-template-columns: repeat(3,1fr);*/
 	grid-template-columns: 1fr minmax(auto,1fr) 1fr;
 	grid-gap: 0.2em;
+	     gap: 0.2em;
 	grid-template-areas: "windspeed . windir"
 		"pressure . humidity"
 		"visibility . cloudiness"
