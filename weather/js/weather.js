@@ -428,7 +428,7 @@
 			bundle			= doc.querySelectorAll( BUILD_ELEMENTS );
 
 			dayState		= isDark ? 'Night' : 'Day';
-			if ( isDark = true ) {
+			stateClr		= isDark ? '#000' : 'var(--db)';
 			//console.debug(dayState);
 			/*if ( isDark = true ) {
 				stateClr = '#000'
