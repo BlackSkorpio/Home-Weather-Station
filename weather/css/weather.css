@@ -3517,6 +3517,10 @@ svg.mist {
 	-webkit-animation: animateCloudHorizontal var(--windspeed-f) linear infinite;
 	        animation: animateCloudHorizontal var(--windspeed-f) linear infinite;
 }
+#cloudlayer.c801 .cloud:nth-child(-n+4),
+#cloudlayer.c802 .cloud:nth-child(-n+3) {
+	display: none;
+}
 .cloud {
 	position: absolute;
 	width: 180px;
