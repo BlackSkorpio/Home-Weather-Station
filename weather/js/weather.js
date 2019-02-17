@@ -411,6 +411,11 @@
 	}
 
 	function wd_core() {
+		var wd_byLine, devState, devHost, devCheck;
+		devState	= 1;
+		devHost		= 'varoystrand.se';
+		devCheck	= ( devState == 1 || location.hostname == devHost );
+		wd_byLine	= "By Baldurs Photography";
 
 		doc.title	= appName + " " + wd_byLine;
 
@@ -424,20 +429,20 @@
 
 			dayState		= isDark ? 'Night' : 'Day';
 			if ( isDark = true ) {
+			//console.debug(dayState);
+			/*if ( isDark = true ) {
 				stateClr = '#000'
 			} else {
 				stateClr = '#ffe95c'
-			};
+			};*/
 
-			wd_byLine		= "By Baldurs Photography";
-			wd_name			= "Home Weather Station";
 			wd_buildurl		= "//github.com/BlackSkorpio/Home-Weather-Station";
 			wd_windowOpen	= "window.open(this.href);return false;";
 			wd_rel			= "nofollow";
-			wd_buildIcon	= svgPrefix + usePrefix + "logosmall" + useSuffix;
 			wd_forkTitle	= titlePrefix + "Fork " + appName + " on GitHub" + titleSuffix;
 			wd_forkStyle	= "<style>#f_s1{--stateClr:"+stateClr+"}</style>";
 
+			wd_buildIcon	= useLogosmall;
 			wd_forkmeIcon	= svgPrefix + wd_forkTitle + wd_forkStyle + usePrefix + "ribbon" + useSuffix;
 
 			bundle.forEach(function(elements) {
@@ -574,7 +579,7 @@
 	function showPosition() {
 		if ( usephp ) {
 			weatherurl = "weather.php?lat=" + lat + "&lon=" + lon + "&lang=" + langCode + "&units=" + unitsFormat;
-			//weatherurl = "weather.php?lat=200&lon=200"; // for testing error response
+			//weatherurl = "weather.php?lat=66.6069609&lon=19.8229206" + "&lang=" + langCode + "&units=" + unitsFormat; // for testing error response
 		} else {
 			weatherurl = "https://api.openweathermap.org/data/2.5/weather?";
 			weatherurl += "lat=" + lat + "&lon=" + lon + "&lang=" + langCode + "&units=" + unitsFormat + "&APPID=" + appID;
@@ -696,6 +701,7 @@
 		//var kPaOut = hPaOut.join(".");
 
 		// NOTE Convert the visibility data to metric or imperial
+		//console.debug(data.visibility);
 		var km = data.visibility / 1000;
 		var miles = data.visibility * 0.0006213712;
 		switch ( unitsFormat ) {
