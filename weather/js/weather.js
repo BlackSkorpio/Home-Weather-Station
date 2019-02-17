@@ -408,11 +408,11 @@
 
 	function wd_core() {
 		var toGitHub = function() {
-			var dayState, stateClr, BUILD_ELEMENTS, bundle, buildlink, wd_windowOpen, wd_rel, forkmelink, wd_byLine, wd_name, wd_buildurl, wd_buildIcon, wd_forkmeIcon;
+			var dayState, stateClr, BUILD_ELEMENTS, bundle, buildlink, wd_windowOpen, wd_rel, forkmewrapp, wd_forkTitle, wd_forkStyle, wd_buildurl, wd_buildIcon, wd_forkmeIcon;
 
-			BUILD_ELEMENTS	= '#buildlink, #ribbon';
+			BUILD_ELEMENTS	= '#buildlink';
 			buildlink		= doc.getElementById("buildlink");
-			forkmelink		= doc.getElementById("ribbon");
+			forkmewrapp		= doc.getElementById("ribbonwrapp");
 			bundle			= doc.querySelectorAll( BUILD_ELEMENTS );
 
 			dayState		= isDark ? 'Night' : 'Day';
@@ -428,9 +428,11 @@
 			wd_windowOpen	= "window.open(this.href);return false;";
 			wd_rel			= "nofollow";
 			wd_buildIcon	= svgPrefix + usePrefix + "logosmall" + useSuffix;
-			wd_forkmeIcon	= svgPrefix + "<style>#f_s1{--stateClr:"+stateClr+"}</style>" + usePrefix + "ribbon" + useSuffix;
+			wd_forkTitle	= titlePrefix + "Fork " + appName + " on GitHub" + titleSuffix;
+			wd_forkStyle	= "<style>#f_s1{--stateClr:"+stateClr+"}</style>";
 
 			doc.title		= wd_name + " " + wd_byLine;
+			wd_forkmeIcon	= svgPrefix + wd_forkTitle + wd_forkStyle + usePrefix + "ribbon" + useSuffix;
 
 			bundle.forEach(function(elements) {
 				return elements.setAttribute('href', wd_buildurl),
@@ -441,8 +443,9 @@
 			buildlink.setAttribute('title', wd_name + ' ' + wd_version);
 			buildlink.innerHTML = wd_buildIcon;
 
-			forkmelink.setAttribute('title', 'Fork ' + wd_name + ' on GitHub');
-			forkmelink.innerHTML = wd_forkmeIcon;
+			forkmewrapp.innerHTML = wd_forkmeIcon;
+
+			if (devCheck !=1) forkmewrapp.remove();
 		}
 
 		toGitHub();
