@@ -15,7 +15,8 @@
 	var locationRequested	= false;
 	var useSVG				= true;
 	var appID				= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
-	var wd_version			= "1.3.1";
+	var appVersion			= "1.3.2";
+	var appName				= "Home Weahter Station";
 
 	/* Multilingual support
 		You can use lang parameter to get the output in your language. We support the following
@@ -407,6 +408,9 @@
 	}
 
 	function wd_core() {
+
+		doc.title	= appName + " " + wd_byLine;
+
 		var toGitHub = function() {
 			var dayState, stateClr, BUILD_ELEMENTS, bundle, buildlink, wd_windowOpen, wd_rel, forkmewrapp, wd_forkTitle, wd_forkStyle, wd_buildurl, wd_buildIcon, wd_forkmeIcon;
 
@@ -431,7 +435,6 @@
 			wd_forkTitle	= titlePrefix + "Fork " + appName + " on GitHub" + titleSuffix;
 			wd_forkStyle	= "<style>#f_s1{--stateClr:"+stateClr+"}</style>";
 
-			doc.title		= wd_name + " " + wd_byLine;
 			wd_forkmeIcon	= svgPrefix + wd_forkTitle + wd_forkStyle + usePrefix + "ribbon" + useSuffix;
 
 			bundle.forEach(function(elements) {
@@ -440,7 +443,7 @@
 					elements.setAttribute('rel', wd_rel);
 			});
 
-			buildlink.setAttribute('title', wd_name + ' ' + wd_version);
+			buildlink.setAttribute('title', appName + ' ' + appVersion);
 			buildlink.innerHTML = wd_buildIcon;
 
 			forkmewrapp.innerHTML = wd_forkmeIcon;
