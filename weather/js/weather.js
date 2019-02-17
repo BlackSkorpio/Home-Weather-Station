@@ -47,6 +47,7 @@
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
 		case "se":
+			weatherDescTxt = appName + " är en webbaserad applikation som är gjord för att fungera på allt från smarta klockor till datorn; eller din TV."
 			gettingTxt	= "Läser in vädret";
 			locErrorTxt	= "GEO-location service är inte tillgänglig, försök igen senare.";
 			detailsTxt	= "Vädret i Detalj";
@@ -162,6 +163,7 @@
 			];
 			break;
 		default:
+			weatherDescTxt = appName + " is a webbased weather app that is designed to be runned on everything from smart watches and computers, to big screen devices as your TV set."
 			gettingTxt	= "Getting weather";
 			locErrorTxt	= "IP address location service is unavailable.";
 			detailsTxt	= "Weather Details";
@@ -345,6 +347,7 @@
 	var useVisibility		= svgPrefix + titlePrefix + visibilityTxt + titleSuffix + usePrefix + "visibility" + useSuffix;
 	var useOvercast			= svgPrefix + titlePrefix + cloudinessTxt + titleSuffix + usePrefix;
 	var useUpdated			= svgPrefix + titlePrefix + updatedTimeTxt + titleSuffix + usePrefix + "clock" + useSuffix;
+	var useLogosmall		= svgPrefix + titlePrefix + appName + titleSuffix + usePrefix + "logosmall" + useSuffix
 
 	var main, container, sStyles, now, dd, td, dt, details, wd_summary, detailsHeader, infoModal, dtTimeRaw, dtHour, dtMin, dtTime, updatedTime, lat, lon, region, gd, gpsbutton;
 	var city = "";
@@ -1034,6 +1037,7 @@
 		var modalMonnset		= doc.getElementById("dt_moonset");
 		var modalMorningold		= doc.getElementById("dt_morningold");
 		var modalEveningold		= doc.getElementById("dt_eveningold");
+		var modalBuiltBy		= doc.getElementById("dt_builtby");
 
 		var modalBeaufortTxt	= summaryPrefix;
 			modalBeaufortTxt	+= useBeaufort + bfsTxt;
@@ -1119,6 +1123,12 @@
 			modalEveningoldTxt	+= spanPrefix;
 			modalEveningoldTxt	+= goldEveTxt;
 			modalEveningoldTxt	+= spanSuffix;
+		var modalBuiltByTxt		= summaryPrefix;
+			modalBuiltByTxt		+= useLogosmall + appName;
+			modalBuiltByTxt		+= summarySuffix;
+			modalBuiltByTxt		+= spanPrefix;
+			modalBuiltByTxt		+= weatherDescTxt;
+			modalBuiltByTxt		+= spanSuffix;
 
 		modalTitle.innerHTML		= modalTitleTxt;
 		modalDescription.innerHTML	= modalDescTxt;
@@ -1136,6 +1146,7 @@
 		modalMonnset.innerHTML		= modalMonnsetTxt;
 		modalMorningold.innerHTML	= modalMorningoldTxt;
 		modalEveningold.innerHTML	= modalEveningoldTxt;
+		modalBuiltBy.innerHTML		= modalBuiltByTxt;
 		buttonOpen.setAttribute('title', modalDescTxt);
 
 		// show the modal
