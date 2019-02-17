@@ -790,7 +790,14 @@
 
 		var gpsline = '<li id="wd_location">';
 			gpsline += useLocation;
-			gpsline += textSpanPrefix;
+			gpsline += '<span id="city">';
+			gpsline += city;
+			gpsline += spanSuffix;
+			gpsline += '<span id="country">, (';
+			gpsline += country;
+			gpsline += ') ';
+			gpsline += spanSuffix;
+			gpsline += spanPrefix;
 			gpsline += '<a href="https://openweathermap.org/city/';
 			gpsline += data.id;
 			gpsline += '" title="">';
