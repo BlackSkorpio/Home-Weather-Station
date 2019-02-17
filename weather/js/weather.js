@@ -546,7 +546,7 @@
 							city = json.city;
 							region = json.region;
 							country = json.countryCode;
-							gd.innerHTML = "<span id='city'>" + city + ",</span><span id='region'> " + region + "</span><span id='country'> (" + country + ")</span>";
+							//gd.innerHTML = "<span id='city'>" + city + ",</span><span id='region'> " + region + "</span><span id='country'> (" + country + ")</span>";
 							gpsbutton.style.display = "none";
 							showPosition();
 						} else {
@@ -685,11 +685,14 @@
 		*/
 
 
-		if (!useip){
+		/*if (!useip){
 			city = data.name;
 			region = "";
 			gd.innerHTML = textSpanPrefix + city + " (" + lat.toFixed(2) + " | " + lon.toFixed(2) + ")" + spanSuffix;
-		}
+		}*/
+		city = data.name;
+		country = data.sys.country;
+		//gd.innerHTML = "<span id='city'>" + city + ",</span><span id='country'> (" + country + ")</span>";
 		// var dh = JSON.stringify(data);
 		// dh = dh.split(",").join("<br>");
 
