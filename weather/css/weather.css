@@ -332,8 +332,8 @@ summary {
 		"pressure . humidity"
 		"visibility . cloudiness"
 		"sunrise . sunset"
-		"morning . evening"
-		"moonset . moonrise"
+		/*"morning . evening"
+		"moonset . moonrise"*/
 		"location location location";
 	list-style: none;
 	margin: 0.5em auto;
