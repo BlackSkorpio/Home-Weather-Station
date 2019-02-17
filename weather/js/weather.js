@@ -743,6 +743,7 @@
 		//var sunPlacement = 'right ' + roundToTwo(sunPosition);
 		//sunPosition = sunPlacement.toFixed(2);
 		var moonHours = (24 - sunHours) * 60;
+		isDay = sunLeft >=0;
 		/*console.log('sunUpRaw: '+sunUpRaw +'\n'+
 			'sunNowRaw: '+sunNowRaw +'\n'+
 			'sunDownRaw: '+sunDownRaw +'\n'+
@@ -757,9 +758,10 @@
 
 		wd_beaufort(data);
 		wd_tempScale(data,tempClr);
-		var rainyWindow			= isDark ? 'night' : 'day';
-		var overCastLayer		= isDark ? "overcastNight" : "overcastDay";
-		//console.log(isDark ? "It's night" : "It's day"); // For testing
+		//checkForSunset();
+		var rainyWindow			= isDay ? 'day' : 'night';
+		var overCastLayer		= isDay ? "overcastDay" : "overcastNight";
+		//console.debug(isDay); // For testing
 		var svgStyle = ':root{';
 			//svgStyle += '--hPa:' + kPaOut.trim() +'deg;';
 			svgStyle += '--hPa:' + kPaOut + 'deg;';
