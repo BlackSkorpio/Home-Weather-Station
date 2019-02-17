@@ -130,8 +130,23 @@
 				<svg class="cloud cldS cld8" role="img"><use xlink:href="#clouds"/></svg>
 				<svg class="cloud cldM cld9" role="img"><use xlink:href="#clouds"/></svg>
 			</div>
-			<a id="ribbon" class="ribbon" href=""><svg class="svgIcon" role="img"><use xlink:href="#ribbon-Day"/></svg></a>
 
+			<footer>
+				<div class="iconwrapper">
+					<div id="updateTime" class="updatet">
+						<svg class="svgIcon" role="img"><use xlink:href="#clock" /></svg>
+						<time datetime=""></time>
+					</div>
+					<button id="open-button" class="info open-button" title="">
+						<svg class="svgIcon" role="img"><use xlink:href="#legend" /></svg>
+					</button>
+					<div id="builtby" class="builtby">
+						<a id="buildlink" href="https://github.com/BlackSkorpio/Home-Weather-Station" title="Home Weather Station">
+							<svg class="svgIcon" role="img"><use xlink:href="#logosmall" /></svg>
+						</a>
+					</div>
+				</div>
+			</footer>
 			<article id="clocklayer">
 				<header id="gps" class="dataText"></header>
 				<section id="clock">
@@ -152,22 +167,9 @@
 					<ul id="weatherdetails"></ul>
 				</details>
 			</article>
-			<footer>
-				<div class="iconwrapper">
-					<div id="updateTime" class="updatet">
-						<svg class="svgIcon" role="img"><use xlink:href="#clock" /></svg>
-						<time datetime=""></time>
-					</div>
-					<button id="open-button" class="info open-button" title="">
-						<svg class="svgIcon" role="img"><use xlink:href="#legend" /></svg>
-					</button>
-					<div id="builtby" class="builtby">
-						<a id="buildlink" href="https://github.com/BlackSkorpio/Home-Weather-Station" title="Home Weather Station">
-							<svg class="svgIcon" role="img"><use xlink:href="#logosmall" /></svg>
-						</a>
-					</div>
-				</div>
-			</footer>
+			<div id="ribbonwrapp" class="ribbon">
+				<svg class="svgIcon" role="img"><use xlink:href="#ribbon"/></svg>
+			</div>
 		</main>
 		<div id="modal-overlay" class="modal-overlay closed"></div>
 		<div id="modal" class="legend modal closed" role="dialog" aria-labelledby="Modal_Title" aria-describedby="Modal_Description" aria-hidden="true">
@@ -195,6 +197,10 @@
 					<span></span>
 				</details>
 				<details id="dt_visibility">
+					<summary></summary>
+					<span></span>
+				</details>
+				<details id="dt_cloudiness">
 					<summary></summary>
 					<span></span>
 				</details>
