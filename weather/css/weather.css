@@ -110,6 +110,10 @@ svg.weather-sprite {
 	height: 1.75em;
 	vertical-align: middle;
 }
+#wd_location .svgIcon {
+	height: 1.2em;
+	width: 1.2em;
+}
 /* NOTE Weahter/forecast icon wrapper */
 #icon {
 	background-color: transparent;
