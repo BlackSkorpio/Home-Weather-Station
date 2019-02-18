@@ -867,11 +867,15 @@
 		details.innerHTML = visibilityline + overcastline + windline + windirection + pressureline + humidityline + sunriseline + sunsetline + gpsline;
 
 		var weather = data["weather"][0];
+		//var rain = data['rain'][0];
+		//var snow = data['snow'][0];
 
 		icon.className = "weather i-" + weather.icon;
 		icon.style.opacity = 1;
 		icon.innerHTML = svgPrefix + usePrefix + weather.icon + useSuffix;
 		var localtemperature = data["main"].temp;
+		/*var rainFall = rain['3h'];
+		var snowFall = snow['3h'];*/
 		var weatherstring = useTemprature;
 			weatherstring += textSpanPrefix;
 			weatherstring += localtemperature;
@@ -880,6 +884,16 @@
 			weatherstring += textSpanPrefix;
 			weatherstring += weather.description;
 			weatherstring += spanSuffix;
+		/*var rainstring = svgPrefix + usePrefix + "10d" + useSuffix;
+			rainstring += textSpanPrefix;
+			rainstring += rainFall+" mm";
+			rainstring += spanSuffix;
+		var snowstring = svgPrefix + usePrefix + "13d" + useSuffix;;
+			snowstring += textSpanPrefix;
+			snowstring += snowFall+" mm";
+			snowstring += spanSuffix;*/
+
+		//var totalVolumen = rainFall !=null ? rainstring : snowFall !=null ? snowstring : "";
 		wd.innerHTML = weatherstring;
 
 		setLayers();
@@ -1480,7 +1494,7 @@
 			sunlayer.style.display = isSunny ? "block" : "none";
 
 			isClearNight = ( weatherId == 800 || 801 && isDark );
-			//isClearNight = false; //for testing
+			//isClearNight = true; //for testing
 
 			isMisty = ( weatherId == 701 || weatherId == 711 || weatherId == 721 || weatherId == 741 );
 			//isMisty = true; //for testing
