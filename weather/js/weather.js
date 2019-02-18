@@ -3,7 +3,7 @@
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.3.2
+ *  @version 1.3.3
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -15,7 +15,7 @@
 	var locationRequested	= false;
 	var useSVG				= true;
 	var appID				= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
-	var appVersion			= "1.3.2";
+	var appVersion			= "1.3.3";
 	var appName				= "Home Weahter Station";
 
 	/* Multilingual support
@@ -354,7 +354,7 @@
 	var weatherurl, wd, icon, beaufort, weatherdata, weatherminute;
 	var sunsettime = 0;
 	var sunrisetime = 0;
-	var cloudlayer, rainlayer, rainwindow, snowlayer, sunlayer, clearnightlayer, moonlayer, mistlayer, isDark, isCloudy, isRainy, isDrizzle, isSnowy, isSunny, isClearNight, isClear, isMisty, isDusk, isDawn;
+	var cloudlayer, rainlayer, rainwindow, snowlayer, sunlayer, clearnightlayer, shootinglayer, moonlayer, mistlayer, isDark, isCloudy, isRainy, isDrizzle, isSnowy, isSunny, isClearNight, isClear, isMisty, isDusk, isDawn;
 
 	doc.addEventListener("DOMContentLoaded", init, false);
 
@@ -399,6 +399,7 @@
 		snowlayer	= doc.getElementById("snowlayer");
 		sunlayer	= doc.getElementById("sunlayer");
 		clearnightlayer = doc.getElementById("clearnightlayer");
+		shootinglayer	= doc.getElementById("shooting");
 		moonlayer	=doc.getElementById("moonOrbit");
 		mistlayer	= doc.getElementById("mistlayer");
 		gpsbutton	= doc.getElementById("gpsbutton");
@@ -1483,6 +1484,7 @@
 			}
 			clearnightlayer.style.display = isClearNight || isDusk || isDawn ? "block" : "none";
 			clearnightlayer.style.opacity = isDusk || isDawn ? 0.2 : 1;
+			shootinglayer.style.display = isClearNight ? "block" : "none";
 			moonlayer.style.display = isDark ? "block" : "none";
 
 			wd_layerClasses();
