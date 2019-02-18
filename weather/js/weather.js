@@ -1217,6 +1217,13 @@
 		var HIDDEN_ELEMENTS	= '#details, #beaufort, #open-button';
 		var showElements	= main.querySelectorAll( HIDDEN_ELEMENTS );
 		var classVisible	= "visible";
+		var modal			= doc.querySelector("#modal");
+		var HIDE_ELEMENTS	= '#dt_moonset, #dt_morningold, #dt_eveningold, #dt_moonrise';
+		var hideElements	= modal.querySelectorAll( HIDE_ELEMENTS );
+		var classHidden		= 'hidden';
+		hideElements.forEach(function(elements) {
+			return elements.classList.add( classHidden );
+		});
 		showElements.forEach(function(elements) {
 			return elements.classList.add( classVisible );
 		});

@@ -3768,3 +3768,6 @@ svg.mist {
 		margin-left: 1em;
 	}
 }
+.hidden {
+	display: none;
+}
