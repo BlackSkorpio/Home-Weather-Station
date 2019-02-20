@@ -11,12 +11,12 @@
 (function() {
 	//NOTE: ES5 chosen instead of ES6 for compatibility with older mobile devices
 	var usephp				= true; // set to true to use a PHP document to hide your api key
-	var useip				= true;
-	var locationRequested	= false;
-	var useSVG				= true;
-	var appID				= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
-	var appVersion			= "1.3.3";
-	var appName				= "Home Weahter Station";
+		var useip				= true;
+		var locationRequested	= false;
+		var useSVG				= true;
+		var appID				= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
+		var appVersion			= "1.3.4";
+		var appName				= "Home Weahter Station";
 
 	/* Multilingual support
 		You can use lang parameter to get the output in your language. We support the following
@@ -41,8 +41,9 @@
 	*/
 	var unitsFormat			= "metric";
 
-	var doc = document, win = window;
-	var weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, wd_LB, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, tempClr, svgPrefix, titlePrefix, titleSuffix, usePrefix, useSuffix, summaryPrefix, summarySuffix, spanPrefix, spanSuffix, textSpanPrefix, spanSuffix, timePrefix, timePrefixEnd, timeSuffix, rainyWindow, overCastLayer, useOvercastNight, useOvercastDay, useVisibility, useLocation, useBeaufort, useSunRise, useSunSet, useGoldenHour, useMoonRise, useMoonSet, useHumidity, useWindspeed, usePressure, useTemprature, useWindRose, useWeatherDude;
+	var doc = document,
+		win = window;
+		var weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, wd_LB, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, tempClr, svgPrefix, titlePrefix, titleSuffix, usePrefix, useSuffix, summaryPrefix, summarySuffix, spanPrefix, spanSuffix, textSpanPrefix, spanSuffix, timePrefix, timePrefixEnd, timeSuffix, rainyWindow, overCastLayer, useOvercastNight, useOvercastDay, useVisibility, useLocation, useBeaufort, useSunRise, useSunSet, useGoldenHour, useMoonRise, useMoonSet, useHumidity, useWindspeed, usePressure, useTemprature, useWindRose, useWeatherDude;
 
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
@@ -316,45 +317,45 @@
 	var wd_LB = '&#013;';// Hard Linebreak
 
 	var svgPrefix			= '<svg class="svgIcon" role="img">';
-	var titlePrefix			= '<title style="white-space:pre-line;margin:0 10px 0 10px;">';
-	var titleSuffix			= '</title>';
-	var usePrefix			= '<use xlink:href="#';
-	var useSuffix			= '" /></svg>';
+		var titlePrefix		= '<title style="white-space:pre-line;margin:0 10px 0 10px;">';
+		var titleSuffix		= '</title>';
+		var usePrefix		= '<use xlink:href="#';
+		var useSuffix		= '" /></svg>';
 
 	var summaryPrefix		= "<summary>";
-	var summarySuffix		= "</summary>";
-	var spanPrefix			= "<span>";
-	var textSpanPrefix		= '<span class="dataText">';
-	var spanSuffix			= "</span>";
+		var summarySuffix	= "</summary>";
+		var spanPrefix		= "<span>";
+		var textSpanPrefix	= '<span class="dataText">';
+		var spanSuffix		= "</span>";
 
 	var timePrefix			= '<time class="dataText" datetime="';
-	var timePrefixEnd		= '">';
-	var timeSuffix			= "</time>";
+		var timePrefixEnd	= '">';
+		var timeSuffix		= "</time>";
 
 	var useLocation			= svgPrefix + titlePrefix + locationTxt + titleSuffix + usePrefix + "location" + useSuffix;
-	var useSunRise			= svgPrefix + titlePrefix + sunRiseTxt + titleSuffix + usePrefix + "sunrise" + useSuffix;
-	var useSunSet			= svgPrefix + titlePrefix + sunSetTxt + titleSuffix + usePrefix + "sunset" + useSuffix;
-	var useGoldenHour		= svgPrefix + titlePrefix + goldenTxt + titleSuffix + usePrefix + "goldenhour" + useSuffix;
-	var useMoonRise			= svgPrefix + titlePrefix + moonRiseTxt + titleSuffix + usePrefix + "moonrise" + useSuffix;
-	var useMoonSet			= svgPrefix + titlePrefix + moonSetsTxt + titleSuffix + usePrefix + "moonset" + useSuffix;
-	var useHumidity			= svgPrefix + titlePrefix + humidityTxt + titleSuffix + usePrefix + "humidity" + useSuffix;
-	var useWindspeed		= svgPrefix + titlePrefix + windTxt + titleSuffix + usePrefix + "windspeed" + useSuffix;
-	var usePressure			= svgPrefix + titlePrefix + pressureTxt + titleSuffix + usePrefix + "pressure" + useSuffix;
-	var useTemprature		= svgPrefix + titlePrefix + tempForm + titleSuffix + usePrefix + "temperatur" + useSuffix;
-	var useWindRose			= svgPrefix + titlePrefix + windDirTxt + titleSuffix + usePrefix + "windirection" + useSuffix;
-	var useWeatherDude		= '<svg class="getting" role="img">' + titlePrefix + gettingTxt + titleSuffix + usePrefix + "weatherDude" + useSuffix;
-	var useBeaufort			= svgPrefix + usePrefix + "bf0" + useSuffix;
-	var useVisibility		= svgPrefix + titlePrefix + visibilityTxt + titleSuffix + usePrefix + "visibility" + useSuffix;
-	var useOvercast			= svgPrefix + titlePrefix + cloudinessTxt + titleSuffix + usePrefix;
-	var useUpdated			= svgPrefix + titlePrefix + updatedTimeTxt + titleSuffix + usePrefix + "clock" + useSuffix;
-	var useLogosmall		= svgPrefix + titlePrefix + appName + titleSuffix + usePrefix + "logosmall" + useSuffix
+		var useSunRise		= svgPrefix + titlePrefix + sunRiseTxt + titleSuffix + usePrefix + "sunrise" + useSuffix;
+		var useSunSet		= svgPrefix + titlePrefix + sunSetTxt + titleSuffix + usePrefix + "sunset" + useSuffix;
+		var useGoldenHour	= svgPrefix + titlePrefix + goldenTxt + titleSuffix + usePrefix + "goldenhour" + useSuffix;
+		var useMoonRise		= svgPrefix + titlePrefix + moonRiseTxt + titleSuffix + usePrefix + "moonrise" + useSuffix;
+		var useMoonSet		= svgPrefix + titlePrefix + moonSetsTxt + titleSuffix + usePrefix + "moonset" + useSuffix;
+		var useHumidity		= svgPrefix + titlePrefix + humidityTxt + titleSuffix + usePrefix + "humidity" + useSuffix;
+		var useWindspeed	= svgPrefix + titlePrefix + windTxt + titleSuffix + usePrefix + "windspeed" + useSuffix;
+		var usePressure		= svgPrefix + titlePrefix + pressureTxt + titleSuffix + usePrefix + "pressure" + useSuffix;
+		var useTemprature	= svgPrefix + titlePrefix + tempForm + titleSuffix + usePrefix + "temperatur" + useSuffix;
+		var useWindRose		= svgPrefix + titlePrefix + windDirTxt + titleSuffix + usePrefix + "windirection" + useSuffix;
+		var useWeatherDude	= '<svg class="getting" role="img">' + titlePrefix + gettingTxt + titleSuffix + usePrefix + "weatherDude" + useSuffix;
+		var useBeaufort		= svgPrefix + usePrefix + "bf0" + useSuffix;
+		var useVisibility	= svgPrefix + titlePrefix + visibilityTxt + titleSuffix + usePrefix + "visibility" + useSuffix;
+		var useOvercast		= svgPrefix + titlePrefix + cloudinessTxt + titleSuffix + usePrefix;
+		var useUpdated		= svgPrefix + titlePrefix + updatedTimeTxt + titleSuffix + usePrefix + "clock" + useSuffix;
+		var useLogosmall	= svgPrefix + titlePrefix + appName + titleSuffix + usePrefix + "logosmall" + useSuffix
 
 	var main, container, sStyles, now, dd, td, dt, details, wd_summary, detailsHeader, infoModal, dtTimeRaw, dtHour, dtMin, dtTime, updatedTime, lat, lon, region, gd, gpsbutton;
-	var city = "";
-	var weatherurl, wd, icon, beaufort, weatherdata, weatherminute;
-	var sunsettime = 0;
-	var sunrisetime = 0;
-	var cloudlayer, rainlayer, rainwindow, snowlayer, sunlayer, clearnightlayer, shootinglayer, moonlayer, mistlayer, isDark, isCloudy, isRainy, isDrizzle, isSnowy, isSunny, isClearNight, isClear, isMisty, isDusk, isDawn;
+		var city = "";
+		var weatherurl, wd, icon, beaufort, weatherdata, weatherminute;
+		var sunsettime = 0;
+		var sunrisetime = 0;
+		var cloudlayer, rainlayer, rainwindow, snowlayer, sunlayer, clearnightlayer, shootinglayer, moonlayer, mistlayer, isDark, isCloudy, isRainy, isDrizzle, isSnowy, isSunny, isClearNight, isClear, isMisty, isDusk, isDawn;
 
 	doc.addEventListener("DOMContentLoaded", init, false);
 
@@ -413,10 +414,10 @@
 
 	function wd_core() {
 		var wd_byLine, devState, devHost, devCheck;
-		devState	= 1;
-		devHost		= 'varoystrand.se';
-		devCheck	= ( devState == 1 || location.hostname == devHost );
-		wd_byLine	= "By Baldurs Photography";
+			devState	= 1;
+			devHost		= 'varoystrand.se';
+			devCheck	= ( devState == 1 || location.hostname == devHost );
+			wd_byLine	= "By Baldurs Photography";
 
 		doc.title	= appName + " " + wd_byLine;
 
@@ -1246,9 +1247,11 @@
 	function wd_tempScale(data) {
 		var tempNow, wd_temp, fromCelsius, fromFarenheit, fromKelvin;
 		var tempNow			= data.main.temp.toFixed(1);
+		//var tempNow			= 50;
 		var fromCelsius		= tempNow;
 		var fromFarenheit	= (tempNow - 32) * 5/9;
 		var fromKelvin		= tempNow - 273.15;
+		//console.debug(tempNow);
 		switch ( unitsFormat ) {
 			case "metric":
 				wd_temp = fromCelsius;
@@ -1468,45 +1471,47 @@
 			sunsettime = Number(weatherdata["sys"].sunset);
 			sunrisetime = Number(weatherdata["sys"].sunrise);
 			checkForSunset();
+
 			isDrizzle = ( weatherId >= 300 && weatherId <= 321 );
 			isRainy   = ( weatherId >= 500 && weatherId <= 531 );
-			//isDrizzle = true; //for testing
-			//isRainy = false; //for testing
-			rainlayer.style.display = isRainy || isDrizzle ? "block" : "none";
-			rainlayer.style.opacity = isDark || isDusk ? 0.75 : 1;
-			rainwindow.style.display = isRainy || isDrizzle ? "block" : "none";
-			rainwindow.style.opacity = isDark || isDusk ? 0.5 : 0.75;
+				//isDrizzle = true; //for testing
+				//isRainy = false; //for testing
+				rainlayer.style.display = isRainy || isDrizzle ? "block" : "none";
+				rainlayer.style.opacity = isDark || isDusk ? 0.75 : 1;
+				rainwindow.style.display = isRainy || isDrizzle ? "block" : "none";
+				rainwindow.style.opacity = isDark || isDusk ? 0.5 : 0.75;
 
 			isSnowy = ( weatherId >= 600 && weatherId <= 622 );
-			//isSnowy = true; //for testing
-			snowlayer.style.display = isSnowy ? "block" : "none";
-			snowlayer.style.opacity = isDark ? 0.1 : 0.75;
+				//isSnowy = true; //for testing
+				snowlayer.style.display = isSnowy ? "block" : "none";
+				snowlayer.style.opacity = isDark ? 0.1 : 0.75;
 
 			isClear = ( weatherId >= 800 && weatherId <= 803  );
 
 			isCloudy = ( weatherId >= 801 && weatherId <= 804 );
-			//isCloudy = true; //for testing
-			cloudlayer.style.display = isCloudy ? "block" : "none";
-			cloudlayer.style.opacity = isDark ? 0.75 : 1;
+				//isCloudy = true; //for testing
+				cloudlayer.style.display = isCloudy ? "block" : "none";
+				cloudlayer.style.opacity = isDark ? 0.75 : 1;
 
 			isSunny = ( weatherId == 800 || (isClear && !isDark) );
-			//isSunny = false; //for testing
-			sunlayer.style.display = isSunny ? "block" : "none";
+				//isSunny = false; //for testing
+				sunlayer.style.display = isSunny ? "block" : "none";
 
-			isClearNight = ( weatherId == 800 || 801 && isDark );
-			//isClearNight = true; //for testing
+			isClearNight = ( weatherId == (800 || 801) && isDark );
+				//isClearNight = true; //for testing
 
 			isMisty = ( weatherId == 701 || weatherId == 711 || weatherId == 721 || weatherId == 741 );
-			//isMisty = true; //for testing
-			mistlayer.style.display = isMisty ? "block" : "none";
-			mistlayer.style.opacity = isDark ? 0.75 : 0.85;
+				//isMisty = true; //for testing
+				mistlayer.style.display = isMisty ? "block" : "none";
+				mistlayer.style.opacity = isDark ? 0.75 : 0.85;
+
 			if (isDark && isMisty) {
-				isClearNight = true;
-			}
-			clearnightlayer.style.display = isClearNight || isDusk || isDawn ? "block" : "none";
-			clearnightlayer.style.opacity = isDusk || isDawn ? 0.2 : 1;
-			shootinglayer.style.display = isClearNight ? "block" : "none";
-			moonlayer.style.display = isDark ? "block" : "none";
+					isClearNight = true;
+				}
+				clearnightlayer.style.display = isClearNight || isDusk || isDawn ? "block" : "none";
+				clearnightlayer.style.opacity = isDusk || isDawn ? 0.2 : 1;
+				shootinglayer.style.display = isClearNight ? "block" : "none";
+				moonlayer.style.display = isDark ? "block" : "none";
 
 			wd_layerClasses();
 		}
