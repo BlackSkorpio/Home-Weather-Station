@@ -3253,7 +3253,7 @@ footer time.dataText {
 		        filter: drop-shadow(-0.5em 0.3em 0.2em var(--lg));
 	}
 }
-@-webkit-keyframes animateCloud {
+/*@-webkit-keyframes animateCloud {
 	0% {
 		margin-left: -500px;
 	}
@@ -3268,7 +3268,7 @@ footer time.dataText {
 	100% {
 		margin-left: 100%;
 	}
-}
+}*/
 @-webkit-keyframes animatedMist {
 	0% {
 		-webkit-transform: translateX(-250%);
