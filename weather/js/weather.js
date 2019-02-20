@@ -3,7 +3,7 @@
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.3.3
+ *  @version 1.3.4
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -1250,8 +1250,8 @@
 
 	function wd_tempScale(data) {
 		var tempNow, wd_temp, fromCelsius, fromFarenheit, fromKelvin;
-		var tempNow			= data.main.temp.toFixed(1);
 		//var tempNow			= 50;
+		var tempNow			= Number(data.main.temp.toFixed(1));
 		var fromCelsius		= tempNow;
 		var fromFarenheit	= (tempNow - 32) * 5/9;
 		var fromKelvin		= tempNow - 273.15;
@@ -1283,17 +1283,17 @@
 		/*   5.0 -   0.0 */
 		if ( wd_temp >=   0.0 && wd_temp <=   5.0 ) tempClr = "rgb(89, 188, 160)";
 		/*  -0.1 -  -5.0 */
-		if ( wd_temp >=  -0.1 && wd_temp <=  -5.0 ) tempClr = "rgb(77, 132, 203)";
+		if ( wd_temp >=  -5.0 && wd_temp <=  -0.1 ) tempClr = "rgb(77, 132, 203)";
 		/*  -5.1 - -10.0 */
-		if ( wd_temp >=  -5.1 && wd_temp <= -10.0 ) tempClr = "rgb(99, 92, 183)";
+		if ( wd_temp >= -10.0 && wd_temp <=  -5.1 ) tempClr = "rgb(99, 92, 183)";
 		/* -10.1 - -15.0 */
-		if ( wd_temp >= -10.1 && wd_temp <= -15.0 ) tempClr = "rgb(54, 42, 118)";
+		if ( wd_temp >= -15.0 && wd_temp <= -10.1 ) tempClr = "rgb(54, 42, 118)";
 		/* -15.1 - -20.0 */
-		if ( wd_temp >= -15.1 && wd_temp <= -20.0 ) tempClr = "rgb(154, 29, 154)";
+		if ( wd_temp >= -20.0 && wd_temp <= -15.1 ) tempClr = "rgb(154, 29, 154)";
 		/* -20.1 - -30.0 */
-		if ( wd_temp >= -20.1 && wd_temp <= -30.0 ) tempClr = "rgb(255, 177, 255)";
+		if ( wd_temp >= -30.0 && wd_temp <= -20.1 ) tempClr = "rgb(255, 177, 255)";
 		/* -30.1 - -40.0 */
-		if ( wd_temp >= -30.1 && wd_temp <= -40.0 ) tempClr = "rgb(239, 239, 239)";
+		if ( wd_temp >= -40.0 && wd_temp <= -30.1 ) tempClr = "rgb(239, 239, 239)";
 		/*console.debug('tempNow: '+tempNow+'\n'+
 			'Metric: ' + fromCelsius+'°C\n'+
 			'Imperial: ' + fromFarenheit+'°F\n'+
