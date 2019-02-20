@@ -3227,22 +3227,30 @@ footer time.dataText {
 }
 @-webkit-keyframes animateCloudHorizontal {
 	0% {
-		-webkit-transform: translateX(0px);
-		        transform: translateX(0px);
+		-webkit-transform: translateX(0);
+		        transform: translateX(0);
+		-webkit-filter: drop-shadow(0.5em 0.1em 0.2em var(--dg));
+		        filter: drop-shadow(0.5em 0.1em 0.2em var(--dg));
 	}
 	100% {
 		-webkit-transform: translateX(calc(-100vw - 100%));
 		        transform: translateX(calc(-100vw - 100%));
+		-webkit-filter: drop-shadow(-0.5em 0.3em 0.2em var(--lg));
+		        filter: drop-shadow(-0.5em 0.3em 0.2em var(--lg));
 	}
 }
 @keyframes animateCloudHorizontal {
 	0% {
-		-webkit-transform: translateX(0px);
-		        transform: translateX(0px);
+		-webkit-transform: translateX(0);
+		        transform: translateX(0);
+		-webkit-filter: drop-shadow(0.5em 0.1em 0.2em var(--dg));
+		        filter: drop-shadow(0.5em 0.1em 0.2em var(--dg));
 	}
 	100% {
 		-webkit-transform: translateX(calc(-100vw - 100%));
 		        transform: translateX(calc(-100vw - 100%));
+		-webkit-filter: drop-shadow(-0.5em 0.3em 0.2em var(--lg));
+		        filter: drop-shadow(-0.5em 0.3em 0.2em var(--lg));
 	}
 }
 @-webkit-keyframes animateCloud {
