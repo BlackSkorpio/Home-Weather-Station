@@ -831,13 +831,17 @@
 			windline += spanSuffix;
 
 		var windirdata = textSpanPrefix;
-			windirdata += data.wind.deg.toFixed(0);
-			windirdata += "° ";
-			windirdata += getWindDirection(data.wind.deg);
+			if ( data.wind.deg !=null ) {
+				windirdata += data.wind.deg.toFixed(0);
+				windirdata += "° ";
+				windirdata += getWindDirection(data.wind.deg);
+			} else {
+				windirdata += "No data";
+			}
 			windirdata += spanSuffix;
 		var windirection = '<li id="wd_windir">';
 			windirection += useWindRose;
-			windirection += data.wind.deg !=null ? windirdata : "Wind direction data error";
+			windirection += windirdata;
 
 		var sunriseline = '<li id="wd_sunrise">';
 			sunriseline += useSunRise;
