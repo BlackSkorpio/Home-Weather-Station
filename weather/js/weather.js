@@ -48,7 +48,7 @@
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
 		case "se":
-			weatherDescTxt = appName + " är en webbaserad applikation som är gjord för att fungera på allt från smarta klockor till datorn; eller din TV."
+			weatherDescTxt = appName + " är en webbaserad applikation som är gjord för att fungera på allt från smarta klockor till datorn; eller din TV.<br />Aktuell version av " + appName + " är " + appVersion;
 			gettingTxt	= "Läser in vädret";
 			locErrorTxt	= "GEO-location service är inte tillgänglig, försök igen senare.";
 			detailsTxt	= "Vädret i Detalj";
@@ -164,7 +164,7 @@
 			];
 			break;
 		default:
-			weatherDescTxt = appName + " is a webbased weather app that is designed to be runned on everything from smart watches and computers, to big screen devices as your TV set."
+			weatherDescTxt = appName + " is a webbased weather app that is designed to be runned on everything from smart watches and computers, to big screen devices as your TV set.<br />Current version of  " + appName + " is " + appVersion;
 			gettingTxt	= "Getting weather";
 			locErrorTxt	= "IP address location service is unavailable.";
 			detailsTxt	= "Weather Details";
