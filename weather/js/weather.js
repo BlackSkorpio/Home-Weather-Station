@@ -782,6 +782,7 @@
 		//var sunPlacement = 'right ' + roundToTwo(sunPosition);
 		//sunPosition = sunPlacement.toFixed(2);
 		var moonHours = (24 - sunHours) * 60;
+		var moonBrightnes = 100 - Number(data.clouds.all);
 		isDay = sunLeft >=0;
 		/*console.log('sunUpRaw: '+sunUpRaw +'\n'+
 			'sunNowRaw: '+sunNowRaw +'\n'+
@@ -814,6 +815,8 @@
 			svgStyle += '--windspeed-s:' + ws_s + 's;';
 			svgStyle += '--windspeed-m:' + ws_m + 's;';
 			svgStyle += '--windspeed-f:' + ws_f + 's;';
+			//svgStyle += '--moonBright:'+ 'calc(100% - ' + data.clouds.all + '%);'
+			svgStyle += '--moonBright:'+ moonBrightnes + '%;'
 			svgStyle += '}';
 		sStyles.innerHTML = svgStyle;
 

@@ -3471,6 +3471,8 @@ footer .svgIcon {
 	left: 0;
 	bottom: 0;
 	overflow: hidden;
+	-webkit-filter: contrast(var(--moonBright));
+	        filter: contrast(var(--moonBright));
 }
 .moon {
 	position: absolute;
