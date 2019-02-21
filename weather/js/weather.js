@@ -1596,7 +1596,7 @@
 		}
 		//weather.icon = "04d"; // For testing
 		icon.className = "weather i" + weather.icon;
-		icon.innerHTML = svgPrefix + usePrefix + weather.icon + useSuffix;
+		icon.innerHTML = Fragments['svgPfx'] + Fragments['usePfx'] + weather.icon + Fragments['useSfx'];
 	}
 
 	//random number utility function
