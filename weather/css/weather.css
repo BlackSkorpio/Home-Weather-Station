@@ -195,7 +195,7 @@ main .divider {
 	left: 50%;
 	top: 0;
 	width: auto;
-	height: 100%;
+	height: auto;
 	max-width: 100%;
 	margin: 0 auto;
 	background: transparent;
@@ -3099,6 +3099,7 @@ footer {
 	height: 1.5em;
 	width: 100%;
 	bottom: 0.5em;
+	pointer-events: none; /* HACK to allow clicking layers beneith */
 }
 .iconwrapper {
 	display: -webkit-box;
@@ -3132,6 +3133,13 @@ footer time.dataText {
 	display: inline-block;
 	font-size: 0.8em;
 	margin: 0 0.2em;
+}
+/* NOTE Restore pointer event */
+footer a,
+footer time,
+footer button,
+footer .svgIcon {
+	pointer-events: all;
 }
 
 /* KEYFRAMES */
