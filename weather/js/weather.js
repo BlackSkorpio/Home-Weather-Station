@@ -619,10 +619,9 @@
 
 		if ( usephp ) {
 			weatherurl = "weather.php?" + location + "&lang=" + langCode + "&units=" + unitsFormat;
-			//weatherurl = "weather.php?lat=66.6069609&lon=19.8229206" + "&lang=" + langCode + "&units=" + unitsFormat; // for testing error response
 		} else {
 			weatherurl = "https://api.openweathermap.org/data/2.5/weather?";
-			weatherurl += "lat=" + lat + "&lon=" + lon + "&lang=" + langCode + "&units=" + unitsFormat + "&APPID=" + appID;
+			weatherurl += location + "&lang=" + langCode + "&units=" + unitsFormat + "&APPID=" + appID;
 			//for the APPID, please substitute your own API Key you can get for free from openweathermap.org
 		}
 		if (!locationRequested) {

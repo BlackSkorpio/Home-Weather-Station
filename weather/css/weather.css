@@ -205,7 +205,7 @@ main .divider {
 	scrollbar-color: #4788c7 #98ccfd;
 	scrollbar-width: none;
 	-webkit-transform: translate(-50%);
-	transform: translate(-50%);
+	        transform: translate(-50%);
 }
 #gps.dataText {
 	display: block;
