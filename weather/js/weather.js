@@ -580,6 +580,7 @@
 	}
 
 	function showPosition() {
+		var location = "lat=" + lat + "&lon=" + lon;
 			// For Testing
 			// Los Angeles, CR
 			//var location = "lat=10.4907&lon=-85.0224";
@@ -617,7 +618,7 @@
 			//var location = "lat=63.4629&lon=142.787";
 
 		if ( usephp ) {
-			weatherurl = "weather.php?lat=" + lat + "&lon=" + lon + "&lang=" + langCode + "&units=" + unitsFormat;
+			weatherurl = "weather.php?" + location + "&lang=" + langCode + "&units=" + unitsFormat;
 			//weatherurl = "weather.php?lat=66.6069609&lon=19.8229206" + "&lang=" + langCode + "&units=" + unitsFormat; // for testing error response
 		} else {
 			weatherurl = "https://api.openweathermap.org/data/2.5/weather?";
