@@ -580,6 +580,42 @@
 	}
 
 	function showPosition() {
+			// For Testing
+			// Los Angeles, CR
+			//var location = "lat=10.4907&lon=-85.0224";
+			// Dubai, SO
+			//var location = "lat=2.8017&lon=44.0816";
+			// Jockmock, SE
+			//var location = "lat=66.6069609&lon=19.8229206";
+
+			// For Testing Warm(est) place on earth?
+			// Ahvaz, IR
+			//var location = "lat=31.323&lon=48.6793";
+			// Tirat Tsvi, IL
+			//var location = "lat=32.4219&lon=35.528";
+			// Araouane, ML
+			//var location = "lat=18.9041&lon=-3.5276";
+			// Timbuktu, ML
+			//var location = "lat=16.7719&lon=-3.0088";
+			// Kebili, TN
+			//var location = "lat=33.7044&lon=8.969";
+			// Ghadames, DZ
+			//var location = "lat=30.1258&lon=9.4901";
+
+			// For Testing Cold(est) place on earth?
+			// Prospect, CA
+			//var location = "lat=44.4715&lon=-63.79";
+			// Ust-Nera, RU
+			//var location = "lat=64.5664&lon=143.2378";
+			// Yakutsk, RU
+			//var location = "lat=62.0273&lon=129.7321";
+			// Verkhoyansk, RU
+			//var location = "lat=67.5527&lon=133.3912";
+			// Oymyakon, RU
+			//var location = "lat=63.4629&lon=142.787";
+			// Oymyakon, RU
+			//var location = "lat=63.4629&lon=142.787";
+
 		if ( usephp ) {
 			weatherurl = "weather.php?lat=" + lat + "&lon=" + lon + "&lang=" + langCode + "&units=" + unitsFormat;
 			//weatherurl = "weather.php?lat=66.6069609&lon=19.8229206" + "&lang=" + langCode + "&units=" + unitsFormat; // for testing error response
