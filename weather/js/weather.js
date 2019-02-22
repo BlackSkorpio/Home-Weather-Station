@@ -948,9 +948,9 @@
 		wd_visible();
 		wd_updatedTime(data);
 		// NOTE Update the update time every 30 sek (https://stackoverflow.com/a/13304567/6820262)
-		var updatedInterval = setInterval(function() {
+		/*var updatedInterval = setInterval(function() {
 			wd_updatedTime(data);
-		}, 30 * 1000);
+		}, 30 * 1000);*/
 	}
 
 	function wd_beaufort(data) {
@@ -1587,7 +1587,7 @@
 		//isDark = true; //for testing
 		//only change styles if isDark has changed
 		if (isDark !== wasDark) {
-			//container.className = isDark ? "nightmode" : "daymode";
+			container.className = isDark ? "nightmode" : "daymode";
 			//css in JavaScript seems to work more reliably when the iPhone 4s is in standalone mode
 			if (isDark) {
 				container.style.background = "#121212 linear-gradient(to bottom left, #121212 10%,#333955 100%)";
