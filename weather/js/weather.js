@@ -3,7 +3,7 @@
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.4.0
+ *  @version 1.4.1
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -15,7 +15,7 @@
 		var locationRequested	= false;
 		var useSVG				= true;
 		var appID				= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
-		var appVersion			= "1.4.0";
+		var appVersion			= "1.4.1";
 		var appName				= "Home Weahter Station";
 
 	/* Multilingual support
@@ -120,6 +120,7 @@
 			updateYearTxt = "år";
 			updateAgoTxt = " sedan";
 			updatePluralTxt = "er";
+			updatePlural2Txt = "ar";
 			months = [
 				"Januari",
 				"Februari",
@@ -236,6 +237,7 @@
 			updateYearTxt = "year";
 			updateAgoTxt = " ago";
 			updatePluralTxt = "s";
+			updatePlural2Txt = "s";
 			months = [
 				"January",
 				"February",
@@ -1415,36 +1417,43 @@
 						num = Math.round(diff / SECOND);
 						unit = updateSecTxt;
 						plural = num > 1;
+						pluralTxt = updatePluralTxt;
 					break;
 					case diff < HOUR:
 						num = Math.round(diff / MINUTE);
 						unit = updateMinTxt;
 						plural = num > 1;
+						pluralTxt = updatePluralTxt;
 					break;
 					case diff < DAY:
 						num = Math.round(diff / HOUR);
 						unit = updateHourTxt;
 						plural = num > 1;
+						pluralTxt = updatePlural2Txt;
 					break;
 					case diff < MONTH:
 						num = Math.round(diff / DAY);
 						unit = updateDayTxt;
 						plural = num > 1;
+						pluralTxt = updatePlural2Txt;
 					break;
 					case diff < YEAR:
 						num = Math.round(diff / MONTH);
 						unit = updateMonthTxt;
 						plural = num > 1;
+						pluralTxt = '';
 					break;
 					case diff < DECADE:
 						num = Math.round(diff / YEAR);
 						unit = updateYearTxt;
 						plural = num > 1;
+						pluralTxt = '';
 					break;
 					default:
 						num = Math.round(diff / YEAR);
 						unit = updateYearTxt;
 						plural = num > 1;
+						pluralTxt = '';
 				}
 
 				var str = '';
@@ -1455,7 +1464,8 @@
 				str += unit;
 
 				if(plural){
-					str += updatePluralTxt;
+					str += pluralTxt;
+					//str += updatePluralTxt;
 				}
 
 				str += updateAgoTxt;
