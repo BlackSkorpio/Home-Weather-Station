@@ -3,7 +3,7 @@
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.4.1
+ *  @version 1.4.2
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -15,7 +15,7 @@
 		var locationRequested	= false;
 		var useSVG				= true;
 		var appID				= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
-		var appVersion			= "1.4.1";
+		var appVersion			= "1.4.2";
 		var appName				= "Home Weahter Station";
 
 	/* Multilingual support
@@ -499,13 +499,30 @@
 		var hour = now.getHours();
 		var minutes = now.getMinutes();
 		var seconds = now.getSeconds();
+		var timeWrap, wrapHour, wrapMin, wrapSec, wrapClose, timeDiv;
+			timeWrap	= '<span class="liveTime">';
+			wrapHour	= '<span class="hours">';
+			timeDiv		= '<span class="timeDiv">:</span>';
+			wrapMin		= '<span class="minutes">';
+			wrapSec		= '<span class="seconds">';
+			wrapClose	= Fragments['spanSfx'];
 		var clockminutes = minutes < 10 ? "0" + minutes : minutes;
 		var clockseconds = seconds < 10 ? "0" + seconds : seconds;
 		if ( unitsFormat == "metric" ) {
 			var clockhour = hour < 10 ? "0" + hour : hour;
 			var datehtml = day + " " + date + " " + month;
-			//var datehtml = day + " " + date + " " + month + " " + year;
-			var timehtml = "<span>"+clockhour+":"+clockminutes + "<span>" + clockseconds + "</span></span>";
+			var timehtml = timeWrap;
+				timehtml += wrapHour;
+				timehtml += clockhour;
+				timehtml += wrapClose;
+				timehtml += timeDiv;
+				timehtml += wrapMin;
+				timehtml += clockminutes;
+				timehtml += wrapClose;
+				timehtml += wrapSec;
+				timehtml += clockseconds;
+				timehtml += wrapClose;
+				timehtml += wrapClose;
 		} else {
 			var meridian = hour < 12 ? "AM" : "PM";
 			var clockhour = hour > 12 ? hour - 12 : hour;
@@ -513,8 +530,18 @@
 				clockhour = 12;
 			}
 			var datehtml = day + ", " + month + " " + date;
-			//var datehtml = day + ", " + month + " " + date + ", " + year;
-			var timehtml = "<span>"+clockhour + ":" + clockminutes + "<span>:" + clockseconds + " " + meridian + "</span></span>";
+			var timehtml = timeWrap;
+				timehtml += wrapHour;
+				timehtml += clockhour;
+				timehtml += wrapClose;
+				timehtml += timeDiv;
+				timehtml += wrapMin;
+				timehtml += clockminutes;
+				timehtml += wrapClose;
+				timehtml += wrapSec;
+				timehtml += clockseconds + " " + meridian;
+				timehtml += wrapClose;
+				timehtml += wrapClose;
 		}
 		return {"datehtml":datehtml,"timehtml":timehtml};
 	}
