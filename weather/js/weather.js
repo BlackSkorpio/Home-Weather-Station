@@ -120,7 +120,7 @@
 			updateYearTxt = "år";
 			updateAgoTxt = " sedan";
 			updatePluralTxt = "er";
-			updatePlural2Txt = "ar";
+			updatePlural2Txt = "r";
 			months = [
 				"Januari",
 				"Februari",
