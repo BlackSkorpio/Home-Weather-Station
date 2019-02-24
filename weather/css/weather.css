@@ -220,10 +220,12 @@ time {
 	line-height: normal;
 	white-space: nowrap;
 }
-#time {
+#time,
+#time1 {
 	margin: 0.2em 0 0.1em;
 }
-#time > span {
+#time .liveTime,
+#time1 .liveTime {
 	border-radius: 0.1em;
 	padding: 0.05em 0.1em 0;
 	color: #fff;
@@ -234,7 +236,13 @@ time {
 	-webkit-filter: drop-shadow(0 0.0125em 0.01875em #555);
 	        filter: drop-shadow(0 0.0125em 0.01875em #555);
 }
-#time > span > span {
+#time .timeDiv,
+#time1 .timeDiv {
+	vertical-align: top;
+	line-height: 1;
+}
+#time .seconds,
+#time1 .seconds {
 	min-width: 1.35em;
 	max-width: 2em;
 	margin-top: 0.3em;
