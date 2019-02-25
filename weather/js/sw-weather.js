@@ -11,8 +11,10 @@
 // https://serviceworke.rs/offline-status.html
 // https://developers.google.com/web/fundamentals/primers/service-workers/
 // https://medium.com/@onejohi/offline-web-apps-using-local-storage-and-service-workers-5d40467117b9
-var DEVCONSOLE = location.hostname == 'oxygen.local'
-if('serviceWorker' in navigator) {
+var sw_version = '1.0.0';
+console.info(sw_version+'-hws-weather');
+var DEVCONSOLE = location.hostname == 'oxygen.local';
+/*if('serviceWorker' in navigator) {
 	window.addEventListener('load', function() {
 		navigator.serviceWorker.register('sw-weather.min.js')
 		.then(function(registration) {
@@ -34,21 +36,21 @@ if('serviceWorker' in navigator) {
 			if (this.state === 'activated') {
 				if (DEVCONSOLE) console.log('[controllerchange][statechange][activated] WHS is ready to go offline');
 				// Show the "You may now use offline" notification
-				document.getElementById('offlineNotification').classList.remove('hidden');
+				document.getElementById('offlineNotification').classList.add('ready');
 			}
 		});
 	});
-};
+};*/
 
-var CACHE_NAME = 'hws-weather'
+var CACHE_NAME = sw_version+'-hws-weather';
 
 var urls_to_cache = [
 	'/weather/',
 	'css/weather.min.css',
 	'img/sprite.svg',
 	'img/window-day.jpg',
-	'img/window-night.jpg',
-	'js/weather.min.js'
+	'img/window-night.jpg'
+	//'js/weather.min.js'
 ];
 
 self.addEventListener('install', function(event) {
@@ -102,9 +104,32 @@ self.addEventListener('fetch', function(event) {
 	);
 });
 
+/*var clearOldCaches = function() {
+	return caches.keys().then(function(keys)  {
+		return Promise.all(keys.filter(
+			function(key) {
+				!key.startsWith(sw_version)
+			}
+		)
+		.map(function(key) {
+			caches.delete(key)
+		}));
+	});
+};*/
 self.addEventListener('activate', function(event) {
 	if (DEVCONSOLE) console.log('[activate] Activating ServiceWorker!');
 
 	if (DEVCONSOLE) console.log('[activate] Claiming this ServiceWorker!');
+	/*event.waitUntil(
+		caches.keys().then(function(cacheNames) {
+			return Promise.all(
+				cacheNames.map(function(cacheName) {
+					if (CACHE_NAME !== cacheName &&  cacheName.startsWith("gih-cache")) {
+						return caches.delete(cacheName);
+					}
+				})
+			);
+		})
+	);*/
 	event.waitUntil(self.clients.claim());
 });

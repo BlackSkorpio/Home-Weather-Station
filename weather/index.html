@@ -157,6 +157,11 @@
 			<div id="ribbonwrapp" class="ribbon">
 				<svg class="svgIcon" role="img"><use xlink:href="#ribbon"/></svg>
 			</div>
+			<div class="ws-dialog" role="dialog" aria-labelledby="Dialog_Title" aria-describedby="Dialog_Description">
+				<h2 id="Dialog_Title" class="visually-hidden">ServiceWorker dialog</h2>
+				<p id="Dialog_Description" class="visually-hidden">A notification that get's displayed when serviceWorkers is ready</p>
+				<div id="offlineNotification" class="notification"></div>
+			</d>
 			<footer>
 				<div class="iconwrapper">
 					<div id="updateTime" class="updatet">
@@ -173,7 +178,6 @@
 					</div>
 				</div>
 			</footer>
-			<div id="offlineNotification" class="hidden"></div>
 		</main>
 		<div id="modal-overlay" class="modal-overlay closed"></div>
 		<div id="modal" class="legend modal closed" role="dialog" aria-labelledby="Modal_Title" aria-describedby="Modal_Description" aria-hidden="true">

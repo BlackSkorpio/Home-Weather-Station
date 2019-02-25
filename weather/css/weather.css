@@ -2992,6 +2992,28 @@ text#ribbon_text a {
 	font-family: inherit;
 	font-weight: 700;
 }
+.notification {
+	position: absolute;
+	display: none;
+	width: auto;
+	bottom: 2.5em;
+	left: 0.5em;
+	padding: 0.3em 0.2em;
+	font-size: 0.8em;
+	line-height: normal;
+	border-radius: 0.3em;
+	background-color: rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 3px 4px 5px rgba(150, 150, 150, 0.3);
+	        box-shadow: 3px 4px 5px rgba(150, 150, 150, 0.3);
+}
+.notification svg.svgIcon {
+	height: 1em;
+	width: 1em;
+	margin-right: 0.2em;
+}
+.notification.ready {
+	display: block;
+}
 .modal {
 	/* This way it could be display flex or grid or whatever also. */
 	display: block;

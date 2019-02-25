@@ -3,7 +3,7 @@
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.4.2
+ *  @version 1.4.3
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -15,7 +15,7 @@
 		var locationRequested	= false;
 		var useSVG				= true;
 		var appID				= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
-		var appVersion			= "1.4.2";
+		var appVersion			= "1.4.3";
 		var appName				= "Home Weahter Station";
 
 	/* Multilingual support
@@ -43,12 +43,13 @@
 
 	var doc = document,
 		win = window;
-		var Fragments, svgIcon, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, tempClr, rainyWindow, overCastLayer;
+		var Fragments, svgIcon, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, tempClr, rainyWindow, overCastLayer;
 
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
 		case "se":
 			weatherDescTxt = appName + " är en webbaserad applikation som är gjord för att fungera på allt från smarta klockor till datorn; eller din TV.<br />Aktuell version av " + appName + " är " + appVersion;
+			notificationTxt = appName + "<br />is now ready to go offline";
 			gettingTxt	= "Läser in vädret";
 			locErrorTxt	= "GEO-location service är inte tillgänglig, försök igen senare.";
 			detailsTxt	= "Vädret i Detalj";
@@ -166,6 +167,7 @@
 			break;
 		default:
 			weatherDescTxt = appName + " is a webbased weather app that is designed to be runned on everything from smart watches and computers, to big screen devices as your TV set.<br />Current version of  " + appName + " is " + appVersion;
+			notificationTxt = appName + " is now ready to go offline";
 			gettingTxt	= "Getting weather";
 			locErrorTxt	= "IP address location service is unavailable.";
 			detailsTxt	= "Weather Details";
@@ -416,13 +418,55 @@
 	}
 
 	function wd_core() {
-		var wd_byLine, devState, devHost, devCheck;
+		var wd_byLine, devState, devHost, devCheck, core_svgPfx, core_titlePfx, core_titleSfx, core_usePfx, core_useSfx;
 			devState	= 1;
 			devHost		= 'varoystrand.se';
 			devCheck	= ( devState == 1 || location.hostname == devHost );
 			wd_byLine	= "By Baldurs Photography";
+			core_svgPfx = Fragments['svgPfx'];
+			core_titlePfx = Fragments['titlePfx'];
+			core_titleSfx = Fragments['titleSfx'];
+			core_usePfx = Fragments['usePfx'];
+			core_useSfx = Fragments['useSfx'];
 
 		doc.title	= appName + " " + wd_byLine;
+
+		/*var offlineMode = function() {
+			var DEVCONSOLE, notification, notificationIcon;
+			DEVCONSOLE = location.hostname == 'oxygen.local';
+			notification = doc.getElementById("offlineNotification");
+
+			if('serviceWorker' in navigator) {
+				window.addEventListener('load', function() {
+					navigator.serviceWorker.register('sw-weather.min.js')
+					.then(function(registration) {
+						if (DEVCONSOLE) console.log("[register] Service Worker registration successful", registration);
+					}, function(err) {
+						if (DEVCONSOLE) console.log("[register] Registration failed", registration)
+					})
+				})
+
+				// Listen for claiming of our ServiceWorker
+				navigator.serviceWorker.addEventListener('controllerchange', function(event) {
+					if (DEVCONSOLE) console.log('[controllerchange] A "controllerchange" event has happened within navigator.serviceWorker: ', event);
+
+					// Listen for changes in the state of our ServiceWorker
+					navigator.serviceWorker.controller.addEventListener('statechange', function() {
+						if (DEVCONSOLE) console.log('[controllerchange][statechange] A "statechange" has occured: ', this.state);
+
+						// If the ServiceWorker becomes "activated", let the user know they can go offline!
+						if (this.state === 'activated') {
+							if (DEVCONSOLE) console.log('[controllerchange][statechange][activated] WHS is ready to go offline');
+							// Show the "You may now use offline" notification
+							notification.classList.add('ready');
+							notificationIcon = core_svgPfx + core_titlePfx + 'WHS is ready to go offline' + core_titleSfx + core_usePfx + 'serviceworker' + core_useSfx;
+							notification.innerHTML = notificationIcon + notificationTxt;
+						}
+					});
+				});
+				if(navigator.serviceWorker.controller) { navigator.serviceWorker.controller.postMessage({'command': 'trimCache'}); }
+			};
+		}*/
 
 		var toGitHub = function() {
 			var dayState, stateClr, BUILD_ELEMENTS, bundle, buildlink, wd_windowOpen, wd_rel, forkmewrapp, wd_forkTitle, wd_forkStyle, wd_buildurl, wd_buildIcon, wd_forkmeIcon;
@@ -465,6 +509,7 @@
 		}
 
 		toGitHub();
+		//offlineMode();
 	}
 
 	function updateTime() {
