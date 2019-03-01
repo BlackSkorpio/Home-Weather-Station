@@ -3,7 +3,7 @@
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.4.3
+ *  @version 1.4.4
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -11,13 +11,19 @@
 (function() {
 	'use strict';
 	//NOTE: ES5 chosen instead of ES6 for compatibility with older mobile devices
-	var usephp				= true; // set to true to use a PHP document to hide your api key
-		var useip				= true;
-		var locationRequested	= false;
-		var useSVG				= true;
-		var appID				= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
-		var appVersion			= "1.4.3";
-		var appName				= "Home Weahter Station";
+	var usephp			= true; // set to true to use a PHP document to hide your api key
+		var useip		= true;
+		var locationRequested = false;
+		var useSVG		= true;
+		var appID		= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
+
+		var appVersion	= "1.4.4";
+		var appName		= "Home Weahter Station";
+		var _cslFlag	= false;
+		var _cslHash	= 'CSL';
+		var _cslState	= 0;
+		var devHost		= (location.hostname == 'oxygen.local' || location.hostname == 'varoystrand.se');
+		var DEVCONSOLE	= (_cslState == 1 && devHost) || location.hash == '#'+_cslHash;
 
 	/* Multilingual support
 		You can use lang parameter to get the output in your language. We support the following
@@ -361,7 +367,13 @@
 		var city = "";
 		var sunsettime = 0;
 		var sunrisetime = 0;
-		var cloudlayer, rainlayer, rainwindow, snowlayer, sunlayer, clearnightlayer, shootinglayer, moonlayer, mistlayer, isDark, isCloudy, isRainy, isDrizzle, isSnowy, isSunny, isClearNight, isClear, isMisty, isDusk, isDawn;
+		var cloudlayer, rainlayer, rainwindow, snowlayer, sunlayer, clearnightlayer, shootinglayer, moonlayer, mistlayer, isDark, isCloudy, isRainy, isDrizzle, isSnowy, isSunny, isClearNight, isClear, isMisty, isDusk, isDawn, _csl, _cslHeadOpen, _cslHeadDiv, _cslHeadFont, _cslLB, _cslFooter;
+		_csl		= console;
+		_cslHeadDiv	= ' -=- ';
+		_cslHeadOpen = '%c'+_cslHeadDiv;
+		_cslHeadFont = 'font:1.5em sans-serif; color:orange;';
+		_cslLB		= '\n';
+		_cslFooter	= _cslLB+'//-------------------------------------//'+_cslLB+_cslLB;
 
 	doc.addEventListener("DOMContentLoaded", init, false);
 
@@ -419,6 +431,9 @@
 	}
 
 	function wd_core() {
+		if (DEVCONSOLE) {
+			_csl.trace('Tracing wd_core');
+		}
 		var wd_byLine, devState, devHost, devCheck, core_svgPfx, core_titlePfx, core_titleSfx, core_usePfx, core_useSfx;
 			devState	= 1;
 			devHost		= 'varoystrand.se';
@@ -441,23 +456,23 @@
 				window.addEventListener('load', function() {
 					navigator.serviceWorker.register('sw-weather.min.js')
 					.then(function(registration) {
-						if (DEVCONSOLE) console.log("[register] Service Worker registration successful", registration);
+						if (DEVCONSOLE && _cslFlag == false) console.log("[register] Service Worker registration successful", registration);
 					}, function(err) {
-						if (DEVCONSOLE) console.log("[register] Registration failed", registration)
+						if (DEVCONSOLE && _cslFlag == false) console.log("[register] Registration failed", registration)
 					})
 				})
 
 				// Listen for claiming of our ServiceWorker
 				navigator.serviceWorker.addEventListener('controllerchange', function(event) {
-					if (DEVCONSOLE) console.log('[controllerchange] A "controllerchange" event has happened within navigator.serviceWorker: ', event);
+					if (DEVCONSOLE && _cslFlag == false) console.log('[controllerchange] A "controllerchange" event has happened within navigator.serviceWorker: ', event);
 
 					// Listen for changes in the state of our ServiceWorker
 					navigator.serviceWorker.controller.addEventListener('statechange', function() {
-						if (DEVCONSOLE) console.log('[controllerchange][statechange] A "statechange" has occured: ', this.state);
+						if (DEVCONSOLE && _cslFlag == false) console.log('[controllerchange][statechange] A "statechange" has occured: ', this.state);
 
 						// If the ServiceWorker becomes "activated", let the user know they can go offline!
 						if (this.state === 'activated') {
-							if (DEVCONSOLE) console.log('[controllerchange][statechange][activated] WHS is ready to go offline');
+							if (DEVCONSOLE && _cslFlag == false) console.log('[controllerchange][statechange][activated] WHS is ready to go offline');
 							// Show the "You may now use offline" notification
 							notification.classList.add('ready');
 							notificationIcon = core_svgPfx + core_titlePfx + 'WHS is ready to go offline' + core_titleSfx + core_usePfx + 'serviceworker' + core_useSfx;
@@ -479,7 +494,6 @@
 
 			dayState		= isDark ? 'Night' : 'Day';
 			stateClr		= isDark ? '#000' : 'var(--db)';
-			//console.debug(dayState);
 			/*if ( isDark = true ) {
 				stateClr = '#000'
 			} else {
@@ -507,6 +521,17 @@
 			forkmewrapp.innerHTML = wd_forkmeIcon;
 
 			if (devCheck !=1) forkmewrapp.remove();
+			if (DEVCONSOLE) {
+				_csl.groupCollapsed(_cslHeadOpen+'wd_core => toGitHub'+_cslHeadDiv, _cslHeadFont );
+				_csl.debug(
+					'RunOnce: '+_cslFlag +_cslLB+
+					'dayState: ' + dayState +_cslLB+
+					'stateClr: ' + stateClr
+					+ _cslFooter
+				);
+				_csl.groupEnd();
+				_csl.trace('Tracing toGitHub');
+			}
 		}
 
 		toGitHub();
@@ -514,6 +539,7 @@
 	}
 
 	function updateTime() {
+		//(DEVCONSOLE) _csl.trace('Tracing updateTime');
 		var clockdata = getClockStrings();
 		dd.innerHTML = clockdata.datehtml;
 		td.innerHTML = clockdata.timehtml;
@@ -535,10 +561,10 @@
 	}
 
 	function getClockStrings() {
+		//if (DEVCONSOLE) _csl.trace('Tracing getClockStrings');
 		now = new Date();
 		//now = new Date(now.getTime() + 1000); // for testing fixed dates
 		var year = now.getFullYear();
-		//console.log(now.getMonth());
 		var month = months[now.getMonth()];
 		var date = now.getDate();
 		var day = days[now.getDay()];
@@ -593,6 +619,9 @@
 	}
 
 	function getLocation() {
+		if (DEVCONSOLE) {
+			_csl.trace('Tracing getLocation');
+		}
 		if (useip) {
 			getIPLocation();
 		} else {
@@ -601,6 +630,9 @@
 	}
 
 	function getGPSLocation() {
+		if (DEVCONSOLE) {
+			_csl.trace('Tracing getGPSLocation');
+		}
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(gpsPosition,geoError);
 		} else {
@@ -610,6 +642,9 @@
 	}
 
 	function getIPLocation() {
+		if (DEVCONSOLE) {
+			_csl.trace('Tracing getIPLocation');
+		}
 		var xhttp = new XMLHttpRequest();
 		var country;
 		xhttp.onreadystatechange = function() {
@@ -643,10 +678,16 @@
 	}
 
 	function geoError() {
+		if (DEVCONSOLE) {
+			_csl.trace('Tracing geoError');
+		}
 		gd.innerHTML = locErrorTxt;
 	}
 
 	function gpsPosition(json) {
+		if (DEVCONSOLE) {
+			_csl.trace('Tracing gpsPosition');
+		}
 		gpsbutton.style.display = "none";
 		lat = json.coords.latitude;
 		lon = json.coords.longitude;
@@ -655,6 +696,9 @@
 	}
 
 	function showPosition() {
+		if (DEVCONSOLE) {
+			_csl.trace('Tracing showPosition');
+		}
 		var location = "lat=" + lat + "&lon=" + lon;
 			// For Testing
 			// Los Angeles, CR
@@ -707,6 +751,9 @@
 	}
 
 	function getWeather() {
+		if (DEVCONSOLE) {
+			_csl.trace('Tracing getWeather');
+		}
 		wd.innerHTML = gettingTxt + "<br />" + svgIcon['useWeatherDude'];
 		// I opted to use the older XMLHttpRequest because fetch is not supported on old devices like the iPhone 4s
 		// I developed this page so I could use my old iPhone 4s as a wall clock.
@@ -730,7 +777,6 @@
 	}
 
 	function processWeather(data) {
-		//console.log('Weather id: '+weather.id);
 		// NOTE SunCalc
 		//var SunCalc;
 		/*
@@ -740,11 +786,11 @@
 
 		var getMoonTimes = SunCalc.getMoonTimes( SunCalcNow, SunCalLat, SunCalLon);
 		//Object.keys(getMoonTimes).forEach(function(key) {
-		//	console.log(key + ': ' + getMoonTimes[key]);
+		//	if (DEVCONSOLE && _cslFlag == false) console.log(key + ': ' + getMoonTimes[key]);
 		//});
 		var getSunTimes = SunCalc.getTimes( SunCalcNow, SunCalLat, SunCalLon);
 		//Object.keys(getSunTimes).forEach(function(key) {
-		//	console.log(key + ': ' + getSunTimes[key]);
+		//	if (DEVCONSOLE && _cslFlag == false) console.log(key + ': ' + getSunTimes[key]);
 		//});
 
 		// NOTE Moon up & Down
@@ -818,7 +864,6 @@
 		//var kPaOut = hPaOut.join(".");
 
 		// NOTE Convert the visibility data to metric or imperial
-		//console.debug(data.visibility);
 		var km = data.visibility / 1000;
 		var miles = data.visibility * 0.0006213712;
 		switch ( unitsFormat ) {
@@ -858,17 +903,6 @@
 		//sunPosition = sunPlacement.toFixed(2);
 		var moonHours = (24 - sunHours) * 60;
 		var moonBrightnes = 100 - Number(data.clouds.all);
-		/*console.log('sunUpRaw: '+sunUpRaw +'\n'+
-			'sunNowRaw: '+sunNowRaw +'\n'+
-			'sunDownRaw: '+sunDownRaw +'\n'+
-			'sunUp: '+sunUp +'\n'+
-			'sunNow: '+sunNow +'\n'+
-			'sunDown: '+sunDown +'\n'+
-			'sunLeft: '+sunDown+' - '+sunNow+' = '+roundToTwo(sunLeft) +'\n'+
-			'sunHours: '+sunDown+' - '+sunUp +' = '+roundToTwo(sunHours) +'\n'+
-			'sunPosition: '+roundToTwo(sunLeft)+' / '+roundToTwo(sunHours)+' * 100 = '+roundToTwo(sunPosition) +'\n'+
-			'moonHours: ' + '(24 - ' + sunHours +')  * 60 = ' + moonHours);
-		*/
 		var isDay = sunLeft >=0;
 
 		wd_beaufort(data);
@@ -876,7 +910,6 @@
 		//checkForSunset();
 		var rainyWindow			= isDay ? 'day' : 'night';
 		var overCastLayer		= isDay ? "overcastDay" : "overcastNight";
-		//console.debug(isDay); // For testing
 		var svgStyle = ':root{';
 			//svgStyle += '--hPa:' + kPaOut.trim() +'deg;';
 			svgStyle += '--hPa:' + kPaOut + 'deg;';
@@ -902,7 +935,7 @@
 			hilowline += "Hourly Max | Min: ";
 			hilowline += data.main.temp_max + tempForm;
 			hilowline += Fragments['dataDiv'];
-			hilowline += data.main.temp_min  + tempForm;
+			hilowline += data.main.temp_min + tempForm;
 			hilowline += Fragments['spanSfx'];
 
 		var gpsline = '<li id="wd_location">';
@@ -993,7 +1026,7 @@
 		icon.className = "weather i-" + weather.icon;
 		icon.style.opacity = 1;
 		icon.innerHTML = Fragments['svgPfx'] + Fragments['usePfx'] + weather.icon + Fragments['useSfx'];
-		var localtemperature = data["main"].temp;
+		//var localtemperature = data["main"].temp.toFixed(1);
 		/*var rainFall = rain['3h'];
 		var snowFall = snow['3h'];*/
 		var weatherstring = svgIcon['useTemprature'];
@@ -1024,6 +1057,31 @@
 		/*var updatedInterval = setInterval(function() {
 			wd_updatedTime(data);
 		}, 30 * 1000);*/
+		if (DEVCONSOLE) {
+			_csl.group(_cslHeadOpen+'processWeather'+_cslHeadDiv, _cslHeadFont );
+			_csl.debug(
+				'RunOnce: '+_cslFlag +_cslLB+
+				'Weather id: ' + weather.id +_cslLB+
+				'Visibility: ' + data.visibility +_cslLB+_cslLB+
+				'TempRaw: ' + data["main"].temp +_cslLB+
+				'TempRaw fixed: ' + +data["main"].temp.toFixed(1) +_cslLB+
+				'localtemperature: ' + localtemperature +_cslLB+_cslLB+
+				'sunUpRaw: ' + sunUpRaw +_cslLB+
+				'sunNowRaw: ' + sunNowRaw +_cslLB+
+				'sunDownRaw: ' + sunDownRaw +_cslLB+_cslLB+
+				'sunUp: ' + sunUp +_cslLB+
+				'sunNow: ' + sunNow +_cslLB+
+				'sunDown: ' + sunDown +_cslLB+_cslLB+
+				'sunLeft: ' + sunDown + ' - ' + sunNow + ' = ' + sunLeft.toFixed(2) +_cslLB+
+				'sunHours: ' + sunDown + ' - ' + sunUp + ' = ' + sunHours.toFixed(2) +_cslLB+
+				'sunPosition: ' + sunLeft.toFixed(2) + ' / ' + sunHours.toFixed(2) + ' * 100 = ' + sunPosition.toFixed(2) +_cslLB+
+				'moonHours: ' + '(24 - ' + sunHours +')  * 60 = ' + moonHours +_cslLB+_cslLB+
+				'isDay: ' + isDay
+				+ _cslFooter
+			);
+			_csl.groupEnd();
+			//_csl.trace('Tracing processWeather');
+		}
 	}
 
 	function wd_beaufort(data) {
@@ -1147,20 +1205,30 @@
 			beaufortSVG += Fragments['useSfx'];
 
 		beaufort.className = "windspeed i-" + wd_bf + "bf";
-		beaufort.innerHTML = beaufortSVG+galeSVG;
+		beaufort.innerHTML = beaufortSVG + galeSVG;
 
-		/*console.debug(
-			'wd_ws: '+wd_ws +'\n'+
-			'wd_bf: '+wd_bf +'\n'+
-			'bfSvgId:' +bfSvgId+'\n'+
-			'ws_s: '+ws_s+'\n'+
-			'ws_m: '+ws_m+'\n'+
-			'ws_f: '+ws_f+'\n'+
-			'ws_bft: '+ws_bft
-		);*/
+		if (DEVCONSOLE) {
+			_csl.groupCollapsed(_cslHeadOpen+'wd_beaufort'+_cslHeadDiv, _cslHeadFont );
+			_csl.debug(
+				'RunOnce: '+_cslFlag +_cslLB+
+				'wd_ws: ' + wd_ws +_cslLB+
+				'wd_bf: ' + wd_bf +_cslLB+
+				'bfSvgId: ' + bfSvgId +_cslLB+
+				'ws_s: ' + ws_s +_cslLB+
+				'ws_m: ' + ws_m +_cslLB+
+				'ws_f: ' + ws_f +_cslLB+
+				'ws_bft: ' + ws_bft
+				+ _cslFooter
+			);
+			_csl.groupEnd();
+			_csl.trace('Tracing wd_beaufort');
+		}
 	}
 
 	function wd_modal(data) {
+		if (DEVCONSOLE) {
+			_csl.trace('Tracing wd_modal');
+		}
 		// Modal https://codepen.io/chriscoyier/pen/MeJWoM
 		// And https://codepen.io/noahblon/pen/yJpXka
 		var modal, modalOverlay, buttonClose, classClosed, aHidden, tabindex, FOCUSABLE_SELECTORS, modalTitle, modalDescription, modalBeaufort, modalWspeed, modalWdirection, modalPressure, modalHumidity, modalCloudiness, modalVisibility, modalSunrise, modalSunset, modalLocation, modalMoonrise, modalMonnset, modalMorningold, modalEveningold, modalBuiltBy;
@@ -1348,6 +1416,9 @@
 	}
 
 	function wd_visible() {
+		if (DEVCONSOLE) {
+			_csl.trace('Tracing setLayers');
+		}
 		var HIDDEN_ELEMENTS	= '#details, #beaufort, #open-button';
 		var showElements	= main.querySelectorAll( HIDDEN_ELEMENTS );
 		var classVisible	= "visible";
@@ -1370,7 +1441,6 @@
 		var fromCelsius		= tempNow;
 		var fromFarenheit	= (tempNow - 32) * 5/9;
 		var fromKelvin		= tempNow - 273.15;
-		//console.debug(tempNow);
 		switch ( unitsFormat ) {
 			case "metric":
 				wd_temp = fromCelsius;
@@ -1411,12 +1481,20 @@
 		if ( wd_temp >= -40.0 && wd_temp <= -30.1 ) tempClr = "rgb(239, 239, 239)";
 		/* -40.1 - -60.0 */
 		if ( wd_temp <= -40.1 ) tempClr = "rgb(0, 8, 101)";
-		/*console.debug('tempNow: '+tempNow+'\n'+
-			'Metric: ' + fromCelsius+'°C\n'+
-			'Imperial: ' + fromFarenheit+'°F\n'+
-			'Default: ' + fromKelvin+'°K\n'+
-			'tempClr: '+tempClr
-		);*/
+		if (DEVCONSOLE) {
+			_csl.groupCollapsed(_cslHeadOpen+'wd_tempScale'+_cslHeadDiv, _cslHeadFont );
+			_csl.debug(
+				'RunOnce: '+_cslFlag +_cslLB+
+				'tempNow: ' + tempNow +_cslLB+
+				'Metric: ' + fromCelsius+'°C\n'+
+				'Imperial: ' + fromFarenheit+'°F\n'+
+				'Default: ' + fromKelvin+'°K\n'+
+				'tempClr: ' + tempClr
+				+ _cslFooter
+			);
+			_csl.groupEnd();
+			_csl.trace('Tracing wd_tempScale');
+		}
 	}
 
 	function wd_sunPosition(data) {
@@ -1450,17 +1528,25 @@
 		//var sunPosition = sunPos > 100.00 ? 99.99 : sunPos;
 		//var sunPlacement = roundToTwo(sunPosition);
 		var moonHours = (24 - sunHours) * 60;
-		/*console.log('sunUpRaw: '+sunUpRaw +'\n'+
-			'sunNowRaw: '+sunNowRaw +'\n'+
-			'sunDownRaw: '+sunDownRaw +'\n'+
-			'sunUp: '+sunUp +'\n'+
-			'sunNow: '+sunNow +'\n'+
-			'sunDown: '+sunDown +'\n'+
-			'sunLeft: '+sunDown+' - '+sunNow+' = '+roundToTwo(sunLeft) +'\n'+
-			'sunHours: '+sunDown+' - '+sunUp +' = '+roundToTwo(sunHours) +'\n'+
-			'sunPosition: '+roundToTwo(sunLeft)+' / '+roundToTwo(sunHours)+' * 100 = '+roundToTwo(sunPosition) +'\n'+
-			'moonHours: ' + '(24 - ' + sunHours +')  * 60 = ' + moonHours);
-		*/
+		if (DEVCONSOLE) {
+			_csl.groupCollapsed(_cslHeadOpen+'wd_sunPosition'+_cslHeadDiv, _cslHeadFont );
+			_csl.debug(
+				'RunOnce: '+_cslFlag +_cslLB+
+				'sunUpRaw: '+sunUpRaw +_cslLB+
+				'sunNowRaw: '+sunNowRaw +_cslLB+
+				'sunDownRaw: '+sunDownRaw +_cslLB+
+				'sunUp: '+sunUp +_cslLB+
+				'sunNow: '+sunNow +_cslLB+
+				'sunDown: '+sunDown +_cslLB+
+				'sunLeft: '+sunDown+' - '+sunNow+' = '+roundToTwo(sunLeft) +_cslLB+
+				'sunHours: '+sunDown+' - '+sunUp +' = '+roundToTwo(sunHours) +_cslLB+
+				'sunPosition: '+roundToTwo(sunLeft)+' / '+roundToTwo(sunHours)+' * 100 = '+roundToTwo(sunPosition) +_cslLB+
+				'moonHours: ' + '(24 - ' + sunHours +')  * 60 = ' + moonHours
+				+ _cslFooter
+			);
+			_csl.groupEnd();
+			_csl.trace('Tracing wd_sunPosition');
+		}
 	}
 
 	function wd_updatedTime(data) {
@@ -1560,14 +1646,25 @@
 			updatedTime += Fragments['timeSfx'];
 		dt.innerHTML = updatedTime;
 		dt.setAttribute('title', updatedTimeTxt+dtTime);
-		/*console.debug('data.dt: ' + data.dt +'\n'+
-			'toISOString: '+ new Date(data.dt * 1000).toISOString() +'\n'+
-			'toLocaleTimeString: ' + new Date(data.dt * 1000).toLocaleTimeString(timeForm)+'\n'+
-			'timeAgo: ' + timeAgo( dtTimeRaw )
-		);*/
+		if (DEVCONSOLE) {
+			_csl.groupCollapsed(_cslHeadOpen+'wd_updatedTime'+_cslHeadDiv, _cslHeadFont );
+			_csl.debug(
+				'RunOnce: '+_cslFlag +_cslLB+
+				'data.dt: ' + data.dt +_cslLB+
+				'toISOString: '+ new Date(data.dt * 1000).toISOString() +_cslLB+
+				'toLocaleTimeString: ' + new Date(data.dt * 1000).toLocaleTimeString(timeForm) +_cslLB+
+				'timeAgo: ' + timeAgo( dtTimeRaw )
+				+ _cslFooter
+			);
+			_csl.groupEnd();
+			_csl.trace('Tracing wd_updatedTime');
+		}
 	};
 
 	function wd_layerClasses() {
+		if (DEVCONSOLE) {
+			_csl.trace('Tracing wd_layerClasses');
+		}
 		var weather   = weatherdata["weather"][0];
 		var weatherId = weather.id;
 		//isMisty = false;
@@ -1580,6 +1677,9 @@
 	}
 
 	function getWindDirection(deg) {
+		if (DEVCONSOLE) {
+			_csl.trace('Tracing getWindDirection');
+		}
 		var degs = [348.75,326.25,303.75,281.25,258.75,236.25,213.75,191.25,168.75,146.25,123.75,101.25,78.75,56.25,33.75,11.25,0];
 		for ( var i=0;i < degs.length;i++) {
 			if ( deg > degs[i] ) {
@@ -1594,10 +1694,6 @@
 			var weather = weatherdata["weather"][0];
 			var weatherId = weather.id;
 			//var weatherId = 500; //for testing
-			/*console.debug( //for testing
-				'WeatherID: '+weatherId +'\n'+
-				weather.description
-			);*/
 			sunsettime = Number(weatherdata["sys"].sunset);
 			sunrisetime = Number(weatherdata["sys"].sunrise);
 			checkForSunset();
@@ -1644,6 +1740,26 @@
 				moonlayer.style.display = isDark ? "block" : "none";
 
 			wd_layerClasses();
+			if (DEVCONSOLE) {
+				_csl.groupCollapsed(_cslHeadOpen+'setLayers'+_cslHeadDiv, _cslHeadFont );
+				_csl.debug(
+					'RunOnce: '+_cslFlag +_cslLB+
+					'WeatherID: '+weatherId +_cslLB+
+					'condition: ' +_cslLB+
+					'  isDrizzle: ' + isDrizzle +_cslLB+
+					'  isRainy: '+isRainy +_cslLB+
+					'  isSnowy: '+isSnowy +_cslLB+
+					'  isClear: '+isClear +_cslLB+
+					'  isCloudy: '+isCloudy +_cslLB+
+					'  isSunny: '+isSunny +_cslLB+
+					'  isClearNight: '+isClearNight +_cslLB+
+					'  isMisty: ' + isMisty +_cslLB+
+					'weather.description: '+weather.description
+					+ _cslFooter
+				);
+				_csl.groupEnd();
+				_csl.trace('Tracing setLayers');
+			}
 		}
 	}
 
@@ -1657,7 +1773,6 @@
 		isDark = nowtime >= sunsettime + 1740 || nowtime + 900 <= sunrisetime;
 		isDusk = nowtime - sunsettime < 1740 && nowtime - (sunsettime - sunsetdate.getSeconds() - 1) >= 0;
 		isDawn = sunrisetime - nowtime < 900 && sunrisetime - (nowtime + sunrisedate.getSeconds() + 1) >= 0;
-		//console.log(nowtime,sunsettime,sunrisetime,isDark,isDusk,isDawn);
 		//isDark = true; //for testing
 		//only change styles if isDark has changed
 		if (isDark !== wasDark) {
@@ -1681,22 +1796,38 @@
 		//weather.icon = "04d"; // For testing
 		icon.className = "weather i" + weather.icon;
 		icon.innerHTML = Fragments['svgPfx'] + Fragments['usePfx'] + weather.icon + Fragments['useSfx'];
+		if (DEVCONSOLE) {
+			_csl.groupCollapsed(_cslHeadOpen+'checkForSunset'+_cslHeadDiv, _cslHeadFont );
+			_csl.debug(
+				'RunOnce: '+_cslFlag +_cslLB+
+				'nowtime: ' + nowtime +_cslLB+
+				'sunsettime: ' + sunsettime +_cslLB+
+				'sunrisetime: ' + sunrisetime +_cslLB+
+				'isDark: ' + isDark +_cslLB+
+				'isDusk: ' + isDusk +_cslLB+
+				'isDawn: ' + isDawn
+				+ _cslFooter
+			);
+			_csl.groupEnd();
+			_csl.trace('Tracing checkForSunset');
+		}
 	}
 
 	//random number utility function
 	function randRange(min, max) {
+		if (DEVCONSOLE) {
+			_csl.trace('Tracing randRange');
+		}
 		return Math.floor(Math.random()*(max-min+1))+min;
 	}
 })();
 // remove unwanted nodes from inside a DOM node
 (function() {
-	var utils = {};
-	var node, cleanGps, cleanForecast;
-	var doc = document;
-	var cleanGps = doc.getElementById("gps");
-	var cleanForecast = doc.getElementById("forecast");
-	var cleanRain = doc.getElementById("rain");
 	'use strict';
+	var utils = {}, doc = document, node, cleanGps, cleanForecast, cleanRain;
+		cleanGps = doc.getElementById("gps");
+		cleanForecast = doc.getElementById("forecast");
+		cleanRain = doc.getElementById("rain");
 	utils.clean = function(node) {
 		var child, i, len = node.childNodes.length;
 		if (len === 0) { return; }
