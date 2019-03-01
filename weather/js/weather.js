@@ -9,6 +9,7 @@
  *  http://varoystrand.se | http://kokensupport.com
 **/
 (function() {
+	'use strict';
 	//NOTE: ES5 chosen instead of ES6 for compatibility with older mobile devices
 	var usephp				= true; // set to true to use a PHP document to hide your api key
 		var useip				= true;
@@ -43,7 +44,7 @@
 
 	var doc = document,
 		win = window;
-		var Fragments, svgIcon, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, tempClr, rainyWindow, overCastLayer;
+		var Fragments, svgIcon, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, updatePlural2Txt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, localtemperature, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, tempClr, rainyWindow, overCastLayer;
 
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
@@ -804,7 +805,7 @@
 			gd.innerHTML = textSpanPrefix + city + " (" + lat.toFixed(2) + " | " + lon.toFixed(2) + ")" + spanSuffix;
 		}*/
 		city = data.name;
-		country = data.sys.country;
+		var country = data.sys.country;
 		//gd.innerHTML = "<span id='city'>" + city + ",</span><span id='country'> (" + country + ")</span>";
 		// var dh = JSON.stringify(data);
 		// dh = dh.split(",").join("<br>");
@@ -857,7 +858,6 @@
 		//sunPosition = sunPlacement.toFixed(2);
 		var moonHours = (24 - sunHours) * 60;
 		var moonBrightnes = 100 - Number(data.clouds.all);
-		isDay = sunLeft >=0;
 		/*console.log('sunUpRaw: '+sunUpRaw +'\n'+
 			'sunNowRaw: '+sunNowRaw +'\n'+
 			'sunDownRaw: '+sunDownRaw +'\n'+
@@ -869,6 +869,7 @@
 			'sunPosition: '+roundToTwo(sunLeft)+' / '+roundToTwo(sunHours)+' * 100 = '+roundToTwo(sunPosition) +'\n'+
 			'moonHours: ' + '(24 - ' + sunHours +')  * 60 = ' + moonHours);
 		*/
+		var isDay = sunLeft >=0;
 
 		wd_beaufort(data);
 		wd_tempScale(data,tempClr);
@@ -1480,6 +1481,7 @@
 				var unit = '';
 				var num = 0;
 				var plural = false;
+				var pluralTxt;
 
 				switch(true){
 					case diff <= 0:
@@ -1694,6 +1696,7 @@
 	var cleanGps = doc.getElementById("gps");
 	var cleanForecast = doc.getElementById("forecast");
 	var cleanRain = doc.getElementById("rain");
+	'use strict';
 	utils.clean = function(node) {
 		var child, i, len = node.childNodes.length;
 		if (len === 0) { return; }
