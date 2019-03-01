@@ -867,11 +867,17 @@
 		var km = data.visibility / 1000;
 		var miles = data.visibility * 0.0006213712;
 		switch ( unitsFormat ) {
-			case "metric": visibleLength = km.toFixed(1);
+			case "metric":
+				visibleLength = km.toFixed(1);
+				localtemperature = +data["main"].temp.toFixed(1);
 			break;
-			case "imperial": visibleLength = miles.toFixed(2);
+			case "imperial":
+				visibleLength = miles.toFixed(2);
+				localtemperature = +data["main"].temp.toFixed(2);
 			break;
-			default: visibleLength = data.visibility;
+			default:
+				visibleLength = data.visibility;
+				localtemperature = data["main"].temp;
 		};
 
 		// NOTE Calculate sun position
