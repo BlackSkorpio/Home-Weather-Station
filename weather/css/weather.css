@@ -3633,7 +3633,10 @@ svg.mist {
 	-webkit-animation: animateCloudHorizontal var(--windspeed-f) linear infinite;
 	        animation: animateCloudHorizontal var(--windspeed-f) linear infinite;
 }
-#cloudlayer.c801 .cloud:nth-child(-n+4),
+#cloudlayer.c801 .cloud.cldL,
+#cloudlayer.c801 .cloud:nth-child(4),
+#cloudlayer.c801 .cloud:nth-child(8),
+#cloudlayer.c801 .cloud:nth-child(9),
 #cloudlayer.c802 .cloud:nth-child(-n+3) {
 	display: none;
 }
