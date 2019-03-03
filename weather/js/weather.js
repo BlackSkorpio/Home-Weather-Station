@@ -1091,6 +1091,9 @@
 		}
 	}
 
+	function wd_html() {
+	}
+
 	function wd_precipion(data) {
 		if (DEVCONSOLE) _csl.trace('Tracing wd_precipion');
 		var rain = data.rain;
@@ -1188,6 +1191,7 @@
 		// Skalan kan beräknas med formeln V = k · B3/2, där k = 0,8365, B = Beauforttalet, och V = vindhastighet i m/s
 		// 2.9 = 0.8365 * 3/2
 		var wd_windspeed = data.wind.speed.toFixed(2);
+		//var wd_windspeed = 33; // For testing
 		switch ( unitsFormat ) {
 			case "metric":
 				wd_ws = wd_windspeed;
