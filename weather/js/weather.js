@@ -65,6 +65,9 @@
 			locationTxt	= "Kordinater: ";
 			locationDesc = "Längd- och latitudkoordinater baseras på den IP-adress du har tilldelats av din operatör, <br /> och används av oss för att bestämma var du befinner dig.";
 			minMaxTxt	= "Min/Max temperatur idag: ";
+			precipionTxt = "Nederbörd: ";
+			precipion1Txt = "den senaste timmen";
+			precipion3Txt = "de sista tre timmarna";
 			visibilityTxt = "Sikt: ";
 			visibilityDesc = "Sikt rapporteras i kilometer (km). Det definieras som det största avstånd vid vilket ett stort svart föremål kan ses och redovisas mot himlen. Sikt beräknas utifrån mätningar av ljusspridning och absorption av partiklar och gaser.";
 			cloudinessTxt = "Molntäcke: ";
@@ -183,6 +186,9 @@
 			locationTxt	= "Location: ";
 			locationDesc = "Length and latitude coordinates are based on the IP address assigned to you by your operator, <br /> and used by us to determine your location.";
 			minMaxTxt	= "Hourly Max | Min: ";
+			precipionTxt = "Precipion: ";
+			precipion1Txt = "in the last hour";
+			precipion3Txt = "in the last 3 hours";
 			visibilityTxt = "Visibility: ";
 			visibilityDesc = "Visual range is reported in miles (mi). It is defined as the greatest distance at which a large black object can be seen and recognized against the background sky. Visual range is calculated from measurements of light scattering and absorption by particles and gases.";
 			cloudinessTxt = "Overcast: ";
@@ -363,7 +369,7 @@
 		useLogosmall:	Fragments['svgPfx'] + Fragments['titlePfx'] + appName + Fragments['titleSfx'] + Fragments['usePfx'] + "logosmall" + Fragments['useSfx']
 	};
 
-	var main, container, sStyles, now, dd, td, dt, details, wd_summary, detailsHeader, infoModal, dtTimeRaw, dtHour, dtMin, dtTime, updatedTime, lat, lon, region, gd, gpsbutton, weatherurl, wd, icon, beaufort, weatherdata, weatherminute;
+	var main, container, sStyles, now, dd, td, dt, details, wd_summary, detailsHeader, infoModal, dtTimeRaw, dtHour, dtMin, dtTime, updatedTime, lat, lon, region, gd, gpsbutton, weatherurl, wd, precipion_wrap, icon, beaufort, weatherdata, weatherminute;
 		var city = "";
 		var sunsettime = 0;
 		var sunrisetime = 0;
@@ -404,6 +410,7 @@
 		td			= doc.getElementById("time");
 		dt			= doc.getElementById("updateTime");
 		wd			= doc.getElementById("weather");
+		precipion_wrap = doc.getElementById('precipion');
 		wd_summary	= doc.getElementById("details");
 		detailsHeader = doc.getElementById("detailsHeader");
 		details		= doc.getElementById("weatherdetails");
@@ -1026,15 +1033,11 @@
 		details.innerHTML = visibilityline + overcastline + windline + windirection + pressureline + humidityline + sunriseline + sunsetline + gpsline;
 
 		var weather = data["weather"][0];
-		//var rain = data['rain'][0];
-		//var snow = data['snow'][0];
 
 		icon.className = "weather i-" + weather.icon;
 		icon.style.opacity = 1;
 		icon.innerHTML = Fragments['svgPfx'] + Fragments['usePfx'] + weather.icon + Fragments['useSfx'];
 		//var localtemperature = data["main"].temp.toFixed(1);
-		/*var rainFall = rain['3h'];
-		var snowFall = snow['3h'];*/
 		var weatherstring = svgIcon['useTemprature'];
 			weatherstring += Fragments['spanTxt'];
 			weatherstring += localtemperature;
@@ -1043,18 +1046,9 @@
 			weatherstring += Fragments['spanTxt'];
 			weatherstring += weather.description;
 			weatherstring += Fragments['spanSfx'];
-		/*var rainstring = svgPrefix + usePrefix + "10d" + useSuffix;
-			rainstring += textSpanPrefix;
-			rainstring += rainFall+" mm";
-			rainstring += spanSuffix;
-		var snowstring = svgPrefix + usePrefix + "13d" + useSuffix;;
-			snowstring += textSpanPrefix;
-			snowstring += snowFall+" mm";
-			snowstring += spanSuffix;*/
-
-		//var totalVolumen = rainFall !=null ? rainstring : snowFall !=null ? snowstring : "";
 		wd.innerHTML = weatherstring;
 
+		wd_precipion(data);
 		setLayers();
 		wd_modal(data);
 		wd_visible();
@@ -1087,6 +1081,61 @@
 			);
 			_csl.groupEnd();
 			//_csl.trace('Tracing processWeather');
+		}
+	}
+
+	function wd_precipion(data) {
+		if (DEVCONSOLE) _csl.trace('Tracing wd_precipion');
+		var rain = data.rain;
+			snow = data.snow;
+			var rain1, snow1, rain3, snow3, rainFall, snowFall, precipionSvg, rainData, snowData, precipionTime;
+
+		// NOTE check if we have some rain data
+		if ( rain !=null ) {
+			rain1 = rain['1h'], rain3 = rain['3h'];
+			if (rain1 !=null) rainFall = rain1, precipionTime = precipion1Txt;
+			if (rain3 !=null) rainFall = rain3, precipionTime = precipion3Txt;
+
+			precipionSvg = svgPfx + titlePfx + precipionTxt + titleSfx + usePfx + 'precipion_';
+
+			rainData = precipionSvg;
+				rainData += 'rain';
+				rainData += useSfx;
+				rainData += spanTxt;
+				rainData += rainFall.toFixed(1)+"mm ";
+				rainData += precipionTime;
+				rainData += spanSfx;
+		}
+		// NOTE check if we have some snow data
+		if ( snow !=null ) {
+			snow1 = snow['1h'], snow3 = snow['3h'];
+			if (snow1 !=null) snowFall = snow1, precipionTime = precipion1Txt;
+			if (snow3 !=null) snowFall = snow3, precipionTime = precipion3Txt;
+
+			snowData = precipionSvg;
+				snowData += 'snow';
+				snowData += useSfx;
+				snowData += spanTxt;
+				snowData += snowFall.toFixed(1)+"mm ";
+				snowData += precipionTime;
+				snowData += spanSfx;
+		}
+
+		if ( rain !=null ) precipion_wrap.innerHTML = rainData;
+		if ( snow !=null ) precipion_wrap.innerHTML = snowData;
+
+		if (DEVCONSOLE) {
+			_csl.groupCollapsed(_cslHeadOpen+'wd_precipion'+_cslHeadDiv, _cslHeadFont );
+			_csl.debug(
+				'Rain: '+ rain +_cslLB+
+				'  Rain1: '+ rain1 +_cslLB+
+				'  Rain3: '+ rain3 +_cslLB+
+				'Snow: '+ rain +_cslLB+
+				'  Snow1: '+ snow1 +_cslLB+
+				'  Snow3: '+ snow3 +_cslLB
+				+ _cslFooter
+			);
+			_csl.groupEnd();
 		}
 	}
 

@@ -143,9 +143,20 @@
 			<path id="ribbon_bkgrd" fill="url(#fork)" d="M0 0L298 298 298 201 97 0z"/>
 			<text id="ribbon_text" x="10" y="125" transform="rotate(45 149 149)" font-size="32"><a href="https://github.com/BlackSkorpio/Home-Weather-Station" onclick="window.open(this.href);return false;" rel="nofollow">Fork me on GitHub</a></text>
 			<path id="ribbon_dash" stroke-dasharray="5,5" d="M90 0l208 208M7 0l291 291"/>
+			<g data-name="precipion">
+				<path id="prec_snow" fill="var(--lb)" d="M189 286l-20-11 19-12a6 6 0 0 0-6-10l-19 11v-22c0-4-3-6-6-6-4 0-6 2-6 6v22l-20-11a6 6 0 0 0-6 10l20 12-20 11a6 6 0 1 0 6 11l20-12v23c0 3 2 6 6 6 3 0 6-3 6-6v-23l20 11a6 6 0 0 0 8-2c1-3 0-6-2-8zM92 276l-14-8 14-8a6 6 0 1 0-6-10l-14 8v-16a6 6 0 0 0-12 0v16l-15-8a6 6 0 0 0-6 10l15 8-15 8a6 6 0 1 0 6 11l15-8v16a6 6 0 0 0 12 0v-16l14 8a6 6 0 0 0 8-2c1-3 0-7-2-9zM274 276l-14-8 14-8a6 6 0 1 0-6-10l-14 8v-16a6 6 0 0 0-12 0v16l-14-8a6 6 0 0 0-6 10l14 8-14 8a6 6 0 1 0 6 11l14-8v16a6 6 0 0 0 12 0v-16l14 8a6 6 0 0 0 9-2c1-3 0-7-3-9z" transform="matrix(.8 0 0 .8 120 8)"/><path id="prec_rain" fill="var(--db)" d="M481 393a10 10 0 0 0-9 9v26a10 10 0 1 0 19 0v-26a10 10 0 0 0-10-9M405 393a10 10 0 0 0-10 9v29a10 10 0 1 0 19 0v-29a10 10 0 0 0-9-9M443 374a10 10 0 0 0-10 9v24a10 10 0 1 0 20 0v-24a10 10 0 0 0-10-9M367 374a9 9 0 0 0-10 9v24a10 10 0 1 0 19 0v-24a10 10 0 0 0-9-9M519 374a10 10 0 0 0-9 9v33a10 10 0 1 0 19 0v-33a10 10 0 0 0-10-9" transform="translate(-196 -171)"/><g id="prec_cloud"><path fill="var(--wh)" d="M538 343H348a38 38 0 0 1-9-75 65 65 0 0 1-1-11 67 67 0 0 1 131-19 43 43 0 0 1 69 29 38 38 0 1 1 0 76m15-93a62 62 0 0 0-58-41 61 61 0 0 0-17 3 86 86 0 0 0-159 43 57 57 0 0 0 29 107h190a57 57 0 0 0 15-112" transform="translate(-196 -171)"/><path id="wind_marker" fill="var(--bftclr)" d="M263 251a9 9 0 1 0 0 18h138a9 9 0 1 0 0-19zM196 329c0 24 20 44 43 44h1c3 0 17-1 28-11 8-8 12-18 12-31a10 10 0 1 0-21 0c0 7-1 12-5 16-5 5-14 6-14 6a1 1 0 0 0-1 0 23 23 0 0 1 0-47h193a10 10 0 0 0 0-20H239c-23 0-43 19-43 43z" transform="translate(-196 -171)"/></g>
+			</g>
 		</g>
 	</defs>
 	<g data-name="icons-weather">
+		<symbol id="precipion_snow" viewBox="0 0 400 269" xml:space="preserve">
+			<use xlink:href="#prec_snow"/>
+			<use xlink:href="#prec_cloud"/>
+		</symbol>
+		<symbol id="precipion_rain" viewBox="0 0 400 269" xml:space="preserve">
+			<use xlink:href="#prec_rain"/>
+			<use xlink:href="#prec_cloud"/>
+		</symbol>
 		<symbol id="01d" viewBox="0 0 500 500" xml:space="preserve">
 			<use xlink:href="#sun-full"/>
 		</symbol>
