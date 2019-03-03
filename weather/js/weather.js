@@ -3,7 +3,7 @@
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.4.5
+ *  @version 1.4.6
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -17,7 +17,7 @@
 		var useSVG		= true;
 		var appID		= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
 
-		var appVersion	= "1.4.5";
+		var appVersion	= "1.4.6";
 		var appName		= "Home Weahter Station";
 		var _cslFlag	= false;
 		var _cslHash	= 'CSL';
@@ -50,7 +50,7 @@
 
 	var doc = document,
 		win = window;
-		var Fragments, svgIcon, precipionTxt, precipion1Txt, precipion3Txt, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, updatePlural2Txt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, localtemperature, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, tempClr, rainyWindow, overCastLayer;
+		var Fragments, svgIcon, highTempTxt, lowTempTxt, precipionTxt, precipion1Txt, precipion3Txt, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, updatePlural2Txt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, localtemperature, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, tempClr, rainyWindow, overCastLayer;
 
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
@@ -65,6 +65,8 @@
 			locationTxt	= "Kordinater: ";
 			locationDesc = "Längd- och latitudkoordinater baseras på den IP-adress du har tilldelats av din operatör, <br /> och används av oss för att bestämma var du befinner dig.";
 			minMaxTxt	= "Min/Max temperatur idag: ";
+			highTempTxt = 'Högsta temperatur idag: ';
+			lowTempTxt = 'Lägsta temperatur idag: ';
 			precipionTxt = "Nederbörd: ";
 			precipion1Txt = "den senaste timmen";
 			precipion3Txt = "de sista tre timmarna";
@@ -186,6 +188,8 @@
 			locationTxt	= "Location: ";
 			locationDesc = "Length and latitude coordinates are based on the IP address assigned to you by your operator, <br /> and used by us to determine your location.";
 			minMaxTxt	= "Hourly Max | Min: ";
+			highTempTxt = 'Maximum temperature today: ';
+			lowTempTxt = 'Minimum temperature today: ';
 			precipionTxt = "Precipion: ";
 			precipion1Txt = "in the last hour";
 			precipion3Txt = "in the last 3 hours";
@@ -363,6 +367,8 @@
 		useWindspeed:	svgPfx + titlePfx + windTxt + titleSfx + usePfx + "windspeed" + useSfx,
 		usePressure:	svgPfx + titlePfx + pressureTxt + titleSfx + usePfx + "pressure" + useSfx,
 		useTemprature:	svgPfx + titlePfx + tempForm + titleSfx + usePfx + "temperatur" + useSfx,
+		useLowTemp:		svgPfx + titlePfx + lowTempTxt + titleSfx + usePfx + "hilowtemp" + useSfx,
+		useHighTemp:	svgPfx + titlePfx + highTempTxt + titleSfx + usePfx + "hilowtemp" + useSfx,
 		useWindRose:	svgPfx + titlePfx + windDirTxt + titleSfx + usePfx + "windirection" + useSfx,
 		useWeatherDude:	'<svg class="getting" role="img">' + titlePfx + gettingTxt + titleSfx + usePfx + "weatherDude" + useSfx,
 		useBeaufort:	svgPfx + usePfx + "bf0" + useSfx,
@@ -371,7 +377,7 @@
 		useUpdated:		svgPfx + titlePfx + updatedTimeTxt + titleSfx + usePfx + "clock" + useSfx,
 		useLogosmall:	svgPfx + titlePfx + appName + titleSfx + usePfx + "logosmall" + useSfx
 	};
-	var useLocation = svgIcon['useLocation'], useSunRise = svgIcon['useSunRise'], useSunSet = svgIcon['useSunSet'], useGoldenHour = svgIcon['useGoldenHour'], useMoonRise = svgIcon['useMoonRise'], useMoonSet = svgIcon['useMoonSet'], useHumidity = svgIcon['useHumidity'], useWindspeed = svgIcon['useWindspeed'], usePressure = svgIcon['usePressure'], useTemprature = svgIcon['useTemprature'], useWindRose = svgIcon['useWindRose'], useWeatherDude = svgIcon['useWeatherDude'], useBeaufort = svgIcon['useBeaufort'], useVisibility = svgIcon['useVisibility'], useOvercast = svgIcon['useOvercast'], useUpdated = svgIcon['useUpdated'], useLogosmall = svgIcon['useLogosmall'];
+	var useLocation = svgIcon['useLocation'], useSunRise = svgIcon['useSunRise'], useSunSet = svgIcon['useSunSet'], useGoldenHour = svgIcon['useGoldenHour'], useMoonRise = svgIcon['useMoonRise'], useMoonSet = svgIcon['useMoonSet'], useHumidity = svgIcon['useHumidity'], useWindspeed = svgIcon['useWindspeed'], usePressure = svgIcon['usePressure'], useTemprature = svgIcon['useTemprature'], useLowTemp = svgIcon['useLowTemp'], useHighTemp = svgIcon['useHighTemp'], useWindRose = svgIcon['useWindRose'], useWeatherDude = svgIcon['useWeatherDude'], useBeaufort = svgIcon['useBeaufort'], useVisibility = svgIcon['useVisibility'], useOvercast = svgIcon['useOvercast'], useUpdated = svgIcon['useUpdated'], useLogosmall = svgIcon['useLogosmall'];
 
 	var main, container, sStyles, now, dd, td, dt, details, wd_summary, detailsHeader, infoModal, dtTimeRaw, dtHour, dtMin, dtTime, updatedTime, lat, lon, region, gd, gpsbutton, weatherurl, wd, precipion_wrap, icon, beaufort, weatherdata, weatherminute;
 		var city = "";
