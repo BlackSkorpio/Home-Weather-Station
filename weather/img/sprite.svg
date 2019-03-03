@@ -2,15 +2,19 @@
 	<defs>
 		<style>
 			.stateRising {
-				transform-origin:center;
-				transform: rotate(180deg);
+				-webkit-transform-origin:center;
+				        transform-origin:center;
+				-webkit-transform: rotate(180deg);
+				        transform: rotate(180deg);
 			}
 			.stateRising.ground {
 				transform-box:fill-box;
 			}
 			#bf0 #wrapp {
-				transform-origin: center;
-				transform: scale(1.4);
+				-webkit-transform-origin: center;
+				        transform-origin: center;
+				-webkit-transform: scale(1.4);
+				        transform: scale(1.4);
 			}
 		</style>
 		<g data-name="filter">
