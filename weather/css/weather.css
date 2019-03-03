@@ -277,7 +277,7 @@ time {
 }
 #forecast ul {
 	display: grid;
-	grid-template-columns: auto repeat(2, 1.75em [icons]) 1fr;
+	grid-template-columns: auto repeat(2, minmax(1.75em,auto) [icons]) 1fr;
 	grid-template-rows: auto;
 	grid-template-areas:
 		"weather icon bft ."
