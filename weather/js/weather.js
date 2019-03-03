@@ -50,7 +50,7 @@
 
 	var doc = document,
 		win = window;
-		var Fragments, svgIcon, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, updatePlural2Txt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, localtemperature, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, tempClr, rainyWindow, overCastLayer;
+		var Fragments, svgIcon, precipionTxt, precipion1Txt, precipion3Txt, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, updatePlural2Txt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, localtemperature, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, tempClr, rainyWindow, overCastLayer;
 
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
@@ -347,27 +347,31 @@
 		spanSfx:	"</span>",
 		timePfx:	'<time class="dataText" datetime="',
 		PfxEnd:		'">',
-		timeSfx:	"</time>"
+		timeSfx:	"</time>",
+		liPfx: '<li',
+		idPfx: ' id="'
 	};
+	var liPfx = Fragments['liPfx'], idPfx = Fragments['idPfx'], timePfx = Fragments['timePfx'], PfxEnd = Fragments['PfxEnd'], timeSfx = Fragments['timeSfx'], dataDiv = Fragments['dataDiv'], wd_LB = Fragments['wd_LB'], sumPfx = Fragments['sumPfx'], sumSfx = Fragments['sumSfx'], spanPfx = Fragments['spanPfx'], spanTxt = Fragments['spanTxt'], spanSfx = Fragments['spanSfx'], svgPfx = Fragments['svgPfx'], titlePfx = Fragments['titlePfx'], titleSfx = Fragments['titleSfx'], usePfx = Fragments['usePfx'], useSfx = Fragments['useSfx'];
 	svgIcon = {
-		useLocation:	Fragments['svgPfx'] + Fragments['titlePfx'] + locationTxt + Fragments['titleSfx'] + Fragments['usePfx'] + "location" + Fragments['useSfx'],
-		useSunRise:		Fragments['svgPfx'] + Fragments['titlePfx'] + sunRiseTxt + Fragments['titleSfx'] + Fragments['usePfx'] + "sunrise" + Fragments['useSfx'],
-		useSunSet:		Fragments['svgPfx'] + Fragments['titlePfx'] + sunSetTxt + Fragments['titleSfx'] + Fragments['usePfx'] + "sunset" + Fragments['useSfx'],
-		useGoldenHour:	Fragments['svgPfx'] + Fragments['titlePfx'] + goldenTxt + Fragments['titleSfx'] + Fragments['usePfx'] + "goldenhour" + Fragments['useSfx'],
-		useMoonRise:	Fragments['svgPfx'] + Fragments['titlePfx'] + moonRiseTxt + Fragments['titleSfx'] + Fragments['usePfx'] + "moonrise" + Fragments['useSfx'],
-		useMoonSet:		Fragments['svgPfx'] + Fragments['titlePfx'] + moonSetsTxt + Fragments['titleSfx'] + Fragments['usePfx'] + "moonset" + Fragments['useSfx'],
-		useHumidity:	Fragments['svgPfx'] + Fragments['titlePfx'] + humidityTxt + Fragments['titleSfx'] + Fragments['usePfx'] + "humidity" + Fragments['useSfx'],
-		useWindspeed:	Fragments['svgPfx'] + Fragments['titlePfx'] + windTxt + Fragments['titleSfx'] + Fragments['usePfx'] + "windspeed" + Fragments['useSfx'],
-		usePressure:	Fragments['svgPfx'] + Fragments['titlePfx'] + pressureTxt + Fragments['titleSfx'] + Fragments['usePfx'] + "pressure" + Fragments['useSfx'],
-		useTemprature:	Fragments['svgPfx'] + Fragments['titlePfx'] + tempForm + Fragments['titleSfx'] + Fragments['usePfx'] + "temperatur" + Fragments['useSfx'],
-		useWindRose:	Fragments['svgPfx'] + Fragments['titlePfx'] + windDirTxt + Fragments['titleSfx'] + Fragments['usePfx'] + "windirection" + Fragments['useSfx'],
-		useWeatherDude:	'<svg class="getting" role="img">' + Fragments['titlePfx'] + gettingTxt + Fragments['titleSfx'] + Fragments['usePfx'] + "weatherDude" + Fragments['useSfx'],
-		useBeaufort:	Fragments['svgPfx'] + Fragments['usePfx'] + "bf0" + Fragments['useSfx'],
-		useVisibility:	Fragments['svgPfx'] + Fragments['titlePfx'] + visibilityTxt + Fragments['titleSfx'] + Fragments['usePfx'] + "visibility" + Fragments['useSfx'],
-		useOvercast:	Fragments['svgPfx'] + Fragments['titlePfx'] + cloudinessTxt + Fragments['titleSfx'] + Fragments['usePfx'],
-		useUpdated:		Fragments['svgPfx'] + Fragments['titlePfx'] + updatedTimeTxt + Fragments['titleSfx'] + Fragments['usePfx'] + "clock" + Fragments['useSfx'],
-		useLogosmall:	Fragments['svgPfx'] + Fragments['titlePfx'] + appName + Fragments['titleSfx'] + Fragments['usePfx'] + "logosmall" + Fragments['useSfx']
+		useLocation:	svgPfx + titlePfx + locationTxt + titleSfx + usePfx + "location" + useSfx,
+		useSunRise:		svgPfx + titlePfx + sunRiseTxt + titleSfx + usePfx + "sunrise" + useSfx,
+		useSunSet:		svgPfx + titlePfx + sunSetTxt + titleSfx + usePfx + "sunset" + useSfx,
+		useGoldenHour:	svgPfx + titlePfx + goldenTxt + titleSfx + usePfx + "goldenhour" + useSfx,
+		useMoonRise:	svgPfx + titlePfx + moonRiseTxt + titleSfx + usePfx + "moonrise" + useSfx,
+		useMoonSet:		svgPfx + titlePfx + moonSetsTxt + titleSfx + usePfx + "moonset" + useSfx,
+		useHumidity:	svgPfx + titlePfx + humidityTxt + titleSfx + usePfx + "humidity" + useSfx,
+		useWindspeed:	svgPfx + titlePfx + windTxt + titleSfx + usePfx + "windspeed" + useSfx,
+		usePressure:	svgPfx + titlePfx + pressureTxt + titleSfx + usePfx + "pressure" + useSfx,
+		useTemprature:	svgPfx + titlePfx + tempForm + titleSfx + usePfx + "temperatur" + useSfx,
+		useWindRose:	svgPfx + titlePfx + windDirTxt + titleSfx + usePfx + "windirection" + useSfx,
+		useWeatherDude:	'<svg class="getting" role="img">' + titlePfx + gettingTxt + titleSfx + usePfx + "weatherDude" + useSfx,
+		useBeaufort:	svgPfx + usePfx + "bf0" + useSfx,
+		useVisibility:	svgPfx + titlePfx + visibilityTxt + titleSfx + usePfx + "visibility" + useSfx,
+		useOvercast:	svgPfx + titlePfx + cloudinessTxt + titleSfx + usePfx,
+		useUpdated:		svgPfx + titlePfx + updatedTimeTxt + titleSfx + usePfx + "clock" + useSfx,
+		useLogosmall:	svgPfx + titlePfx + appName + titleSfx + usePfx + "logosmall" + useSfx
 	};
+	var useLocation = svgIcon['useLocation'], useSunRise = svgIcon['useSunRise'], useSunSet = svgIcon['useSunSet'], useGoldenHour = svgIcon['useGoldenHour'], useMoonRise = svgIcon['useMoonRise'], useMoonSet = svgIcon['useMoonSet'], useHumidity = svgIcon['useHumidity'], useWindspeed = svgIcon['useWindspeed'], usePressure = svgIcon['usePressure'], useTemprature = svgIcon['useTemprature'], useWindRose = svgIcon['useWindRose'], useWeatherDude = svgIcon['useWeatherDude'], useBeaufort = svgIcon['useBeaufort'], useVisibility = svgIcon['useVisibility'], useOvercast = svgIcon['useOvercast'], useUpdated = svgIcon['useUpdated'], useLogosmall = svgIcon['useLogosmall'];
 
 	var main, container, sStyles, now, dd, td, dt, details, wd_summary, detailsHeader, infoModal, dtTimeRaw, dtHour, dtMin, dtTime, updatedTime, lat, lon, region, gd, gpsbutton, weatherurl, wd, precipion_wrap, icon, beaufort, weatherdata, weatherminute;
 		var city = "";
@@ -446,11 +450,11 @@
 			devHost		= 'varoystrand.se';
 			devCheck	= ( devState == 1 || location.hostname == devHost );
 			wd_byLine	= "By Baldurs Photography";
-			core_svgPfx = Fragments['svgPfx'];
-			core_titlePfx = Fragments['titlePfx'];
-			core_titleSfx = Fragments['titleSfx'];
-			core_usePfx = Fragments['usePfx'];
-			core_useSfx = Fragments['useSfx'];
+			core_svgPfx = svgPfx;
+			core_titlePfx = titlePfx;
+			core_titleSfx = titleSfx;
+			core_usePfx = usePfx;
+			core_useSfx = useSfx;
 
 		doc.title	= appName + " " + wd_byLine;
 
@@ -510,11 +514,11 @@
 			wd_buildurl		= "//github.com/BlackSkorpio/Home-Weather-Station";
 			wd_windowOpen	= "window.open(this.href);return false;";
 			wd_rel			= "nofollow";
-			wd_forkTitle	= Fragments['titlePfx'] + "Fork " + appName + " on GitHub" + Fragments['titleSfx'];
+			wd_forkTitle	= titlePfx + "Fork " + appName + " on GitHub" + titleSfx;
 			wd_forkStyle	= "<style>#f_s1{--stateClr:"+stateClr+"}</style>";
 
-			wd_buildIcon	= svgIcon['useLogosmall'];
-			wd_forkmeIcon	= Fragments['svgPfx'] + wd_forkTitle + wd_forkStyle + Fragments['usePfx'] + "ribbon" + Fragments['useSfx'];
+			wd_buildIcon	= useLogosmall;
+			wd_forkmeIcon	= svgPfx + wd_forkTitle + wd_forkStyle + usePfx + "ribbon" + useSfx;
 
 			bundle.forEach(function(elements) {
 				return elements.setAttribute('href', wd_buildurl),
@@ -584,7 +588,7 @@
 			timeDiv		= '<span class="timeDiv">:</span>';
 			wrapMin		= '<span class="minutes">';
 			wrapSec		= '<span class="seconds">';
-			wrapClose	= Fragments['spanSfx'];
+			wrapClose	= spanSfx;
 		var clockminutes = minutes < 10 ? "0" + minutes : minutes;
 		var clockseconds = seconds < 10 ? "0" + seconds : seconds;
 		if ( unitsFormat == "metric" ) {
@@ -761,7 +765,7 @@
 		if (DEVCONSOLE) {
 			_csl.trace('Tracing getWeather');
 		}
-		wd.innerHTML = gettingTxt + "<br />" + svgIcon['useWeatherDude'];
+		wd.innerHTML = gettingTxt + "<br />" + useWeatherDude;
 		// I opted to use the older XMLHttpRequest because fetch is not supported on old devices like the iPhone 4s
 		// I developed this page so I could use my old iPhone 4s as a wall clock.
 		var xhttp = new XMLHttpRequest();
@@ -951,47 +955,47 @@
 			hilowline += data.main.temp_min + tempForm;
 			hilowline += Fragments['spanSfx'];
 
-		var gpsline = '<li id="wd_location">';
-			gpsline += svgIcon['useLocation'];
+		var gpsline = liPfx + idPfx + 'wd_location' + PfxEnd;
+			gpsline += useLocation;
 			gpsline += '<span id="city">';
 			gpsline += city;
-			gpsline += Fragments['spanSfx'];
+			gpsline += spanSfx;
 			gpsline += '<span id="country">, (';
 			gpsline += country;
 			gpsline += ') ';
-			gpsline += Fragments['spanSfx'];
-			gpsline += Fragments['spanPfx'];
+			gpsline += spanSfx;
+			gpsline += spanPfx;
 			gpsline += '<a href="https://openweathermap.org/city/';
 			gpsline += data.id;
 			gpsline += '" title="">';
 			gpsline += lat.toFixed(2);
-			gpsline += Fragments['dataDiv'];
+			gpsline += dataDiv;
 			gpsline += lon.toFixed(2);
 			gpsline += '</a>';
-			gpsline += Fragments['spanSfx'];
+			gpsline += spanSfx;
 
-		var pressureline = '<li id="wd_pressure">';
-			pressureline += svgIcon['usePressure'];
-			pressureline += Fragments['spanTxt'];
+		var pressureline = liPfx + idPfx + 'wd_pressure' + PfxEnd;
+			pressureline += usePressure;
+			pressureline += spanTxt;
 			pressureline += data.main.pressure;
 			pressureline += pressureForm;
-			pressureline += Fragments['spanSfx'];
+			pressureline += spanSfx;
 
-		var humidityline = '<li id="wd_humidity">';
-			humidityline += svgIcon['useHumidity'];
-			humidityline += Fragments['spanTxt'];
+		var humidityline = liPfx + idPfx + 'wd_humidity' + PfxEnd;
+			humidityline += useHumidity;
+			humidityline += spanTxt;
 			humidityline += data.main.humidity;
 			humidityline += humidityForm;
-			humidityline += Fragments['spanSfx'];
+			humidityline += spanSfx;
 
-		var windline = '<li id="wd_wind">';
-			windline += svgIcon['useWindspeed'];
-			windline += Fragments['spanTxt'];
+		var windline = liPfx + idPfx + 'wd_wind' + PfxEnd;
+			windline += useWindspeed;
+			windline += spanTxt;
 			windline += data.wind.speed;
 			windline += windSpeed;
-			windline += Fragments['spanSfx'];
+			windline += spanSfx;
 
-		var windirdata = Fragments['spanTxt'];
+		var windirdata = spanTxt;
 			if ( data.wind.deg !=null ) {
 				windirdata += data.wind.deg.toFixed(0);
 				windirdata += "° ";
@@ -999,36 +1003,36 @@
 			} else {
 				windirdata += "No data";
 			}
-			windirdata += Fragments['spanSfx'];
-		var windirection = '<li id="wd_windir">';
-			windirection += svgIcon['useWindRose'];
+			windirdata += spanSfx;
+		var windirection = liPfx + idPfx + 'wd_windir' + PfxEnd;
+			windirection += useWindRose;
 			windirection += windirdata;
 
-		var sunriseline = '<li id="wd_sunrise">';
-			sunriseline += svgIcon['useSunRise'];
-			sunriseline += Fragments['spanTxt'];
+		var sunriseline = liPfx + idPfx + 'wd_sunrise' + PfxEnd;
+			sunriseline += useSunRise;
+			sunriseline += spanTxt;
 			sunriseline += new Date(data.sys.sunrise * 1000).toLocaleTimeString(timeForm);
-			sunriseline += Fragments['spanSfx'];
+			sunriseline += spanSfx;
 
-		var sunsetline = '<li id="wd_sunset">';
-			sunsetline += svgIcon['useSunSet'];
-			sunsetline += Fragments['spanTxt'];
+		var sunsetline = liPfx + idPfx + 'wd_sunset' + PfxEnd;
+			sunsetline += useSunSet;
+			sunsetline += spanTxt;
 			sunsetline += new Date(data.sys.sunset * 1000).toLocaleTimeString(timeForm);
-			sunsetline += Fragments['spanSfx'];
+			sunsetline += spanSfx;
 
-		var visibilityline = '<li id="wd_visibility">';
-			visibilityline += svgIcon['useVisibility'];
-			visibilityline += Fragments['spanTxt'];
+		var visibilityline = liPfx + idPfx + 'wd_visibility' + PfxEnd;
+			visibilityline += useVisibility;
+			visibilityline += spanTxt;
 			visibilityline += data.visibility !=null ? visibleLength + visibilityForm : "No data";
 			//visibilityline += data.visibility !=null ? visibilityForm : "";
-			visibilityline += Fragments['spanSfx'];
+			visibilityline += spanSfx;
 
-		var overcastline = '<li id="wd_clouds">';
-			overcastline += svgIcon['useOvercast'] + overCastLayer + Fragments['useSfx'];
-			overcastline += Fragments['spanTxt'];
+		var overcastline = liPfx + idPfx + 'wd_clouds' + PfxEnd;
+			overcastline += useOvercast + overCastLayer + useSfx;
+			overcastline += spanTxt;
 			overcastline += data.clouds.all;
 			overcastline += overcastForm;
-			overcastline += Fragments['spanSfx'];
+			overcastline += spanSfx;
 
 		details.innerHTML = visibilityline + overcastline + windline + windirection + pressureline + humidityline + sunriseline + sunsetline + gpsline;
 
@@ -1036,16 +1040,17 @@
 
 		icon.className = "weather i-" + weather.icon;
 		icon.style.opacity = 1;
-		icon.innerHTML = Fragments['svgPfx'] + Fragments['usePfx'] + weather.icon + Fragments['useSfx'];
+		icon.innerHTML = svgPfx + usePfx + weather.icon + useSfx;
 		//var localtemperature = data["main"].temp.toFixed(1);
-		var weatherstring = svgIcon['useTemprature'];
-			weatherstring += Fragments['spanTxt'];
+		var weatherstring = useTemprature;
+			weatherstring += spanTxt;
 			weatherstring += localtemperature;
 			weatherstring += tempForm;
-			weatherstring += Fragments['spanSfx'];
-			weatherstring += Fragments['spanTxt'];
+			weatherstring += spanSfx;
+			weatherstring += spanTxt;
 			weatherstring += weather.description;
-			weatherstring += Fragments['spanSfx'];
+			weatherstring += spanSfx;
+
 		wd.innerHTML = weatherstring;
 
 		wd_precipion(data);
@@ -1065,7 +1070,9 @@
 				'Visibility: ' + data.visibility +_cslLB+_cslLB+
 				'TempRaw: ' + data["main"].temp +_cslLB+
 				'TempRaw fixed: ' + +data["main"].temp.toFixed(1) +_cslLB+
-				'localtemperature: ' + localtemperature +_cslLB+_cslLB+
+				'localtemperature: ' + localtemperature +_cslLB+
+				'TempMin: ' + minTemp +_cslLB+
+				'TempMax: ' + maxTemp +_cslLB+_cslLB+
 				'sunUpRaw: ' + sunUpRaw +_cslLB+
 				'sunNowRaw: ' + sunNowRaw +_cslLB+
 				'sunDownRaw: ' + sunDownRaw +_cslLB+_cslLB+
@@ -1156,75 +1163,75 @@
 		}
 		if ( wd_ws >=     0 && wd_ws <=  0.29 ) {
 			wd_bf =  0;
-			wd_bfTxt = bfs21Txt + Fragments['wd_LB'] + bfs00Txt;
+			wd_bfTxt = bfs21Txt + wd_LB + bfs00Txt;
 		}
 		if ( wd_ws >=  0.30 && wd_ws <=  1.59 ) {
 			wd_bf =  1;
-			wd_bfTxt = bfs01Txt + Fragments['wd_LB'] + bfs21Txt;
+			wd_bfTxt = bfs01Txt + wd_LB + bfs21Txt;
 		}
 		if ( wd_ws >=  1.60 && wd_ws <=  3.33 ) {
 			wd_bf =  2;
-			wd_bfTxt = bfs02Txt + Fragments['wd_LB'] + bfs21Txt;
+			wd_bfTxt = bfs02Txt + wd_LB + bfs21Txt;
 		}
 		if ( wd_ws >=  3.40 && wd_ws <=  5.49 ) {
 			wd_bf =  3;
-			wd_bfTxt = bfs03Txt + Fragments['wd_LB'] + bfs21Txt;
+			wd_bfTxt = bfs03Txt + wd_LB + bfs21Txt;
 		}
 		if ( wd_ws >=  5.50 && wd_ws <=  7.99 ) {
 			wd_bf =  4;
-			wd_bfTxt = bfs04Txt + Fragments['wd_LB'] + bfs21Txt;
+			wd_bfTxt = bfs04Txt + wd_LB + bfs21Txt;
 		}
 		if ( wd_ws >=  8.00 && wd_ws <= 10.79 ) {
 			wd_bf =  5;
-			wd_bfTxt = bfs05Txt + Fragments['wd_LB'] + bfs23Txt;
+			wd_bfTxt = bfs05Txt + wd_LB + bfs23Txt;
 		}
 		if ( wd_ws >= 10.80 && wd_ws <= 13.89 ) {
 			wd_bf =  6;
-			wd_bfTxt = bfs06Txt + Fragments['wd_LB'] + bfs23Txt;
+			wd_bfTxt = bfs06Txt + wd_LB + bfs23Txt;
 		}
 		if ( wd_ws >= 13.90 && wd_ws <= 17.19 ) {
 			wd_bf =  7;
-			wd_bfTxt = bfs07Txt + Fragments['wd_LB'] + bfs23Txt;
+			wd_bfTxt = bfs07Txt + wd_LB + bfs23Txt;
 		}
 		if ( wd_ws >= 17.20 && wd_ws <= 20.79 ) {
 			wd_bf =  8;
-			wd_bfTxt = bfs08Txt + Fragments['wd_LB'] + bfs23Txt;
+			wd_bfTxt = bfs08Txt + wd_LB + bfs23Txt;
 		}
 		if ( wd_ws >= 20.80 && wd_ws <= 24.49 ) {
 			wd_bf =  9;
-			wd_bfTxt = bfs09Txt + Fragments['wd_LB'] + bfs23Txt;
+			wd_bfTxt = bfs09Txt + wd_LB + bfs23Txt;
 		}
 		if ( wd_ws >= 24.50 && wd_ws <= 28.49 ) {
 			wd_bf = 10;
-			wd_bfTxt = bfs10Txt + Fragments['wd_LB'] + bfs24Txt;
+			wd_bfTxt = bfs10Txt + wd_LB + bfs24Txt;
 		}
 		if ( wd_ws >= 28.50 && wd_ws <= 32.69 ) {
 			wd_bf = 11;
-			wd_bfTxt = bfs11Txt + Fragments['wd_LB'] + bfs25Txt;
+			wd_bfTxt = bfs11Txt + wd_LB + bfs25Txt;
 		}
 		if ( wd_ws >= 32.70 && wd_ws <= 36.99 ) {
 			wd_bf = 12;
-			wd_bfTxt = bfs12Txt + Fragments['wd_LB'] + bfs26Txt;
+			wd_bfTxt = bfs12Txt + wd_LB + bfs26Txt;
 		}
 		if ( wd_ws >= 37.00 && wd_ws <= 41.49 ) {
 			wd_bf = 13;
-			wd_bfTxt = bfs13Txt + Fragments['wd_LB'] + bfs26Txt;
+			wd_bfTxt = bfs13Txt + wd_LB + bfs26Txt;
 		}
 		if ( wd_ws >= 41.50 && wd_ws <= 46.19 ) {
 			wd_bf = 14;
-			wd_bfTxt = bfs14Txt + Fragments['wd_LB'] + bfs26Txt;
+			wd_bfTxt = bfs14Txt + wd_LB + bfs26Txt;
 		}
 		if ( wd_ws >= 46.20 && wd_ws <= 50.99 ) {
 			wd_bf = 15;
-			wd_bfTxt = bfs15Txt + Fragments['wd_LB'] + bfs26Txt;
+			wd_bfTxt = bfs15Txt + wd_LB + bfs26Txt;
 		}
 		if ( wd_ws >= 51.00 && wd_ws <= 56.09 ) {
 			wd_bf = 16;
-			wd_bfTxt = bfs16Txt + Fragments['wd_LB'] + bfs26Txt;
+			wd_bfTxt = bfs16Txt + wd_LB + bfs26Txt;
 		}
 		if ( wd_ws >= 56.10 && wd_ws <= 61.20 ) {
 			wd_bf = 17;
-			wd_bfTxt = bfs17Txt + Fragments['wd_LB'] + bfs26Txt;
+			wd_bfTxt = bfs17Txt + wd_LB + bfs26Txt;
 		}
 
 		if ( wd_bf >=    0 && wd_bf <=    2 ) bfSvgId = 0, ws_s = 75, ws_m = 55, ws_f = 35, ws_bft = 10;
@@ -1241,23 +1248,23 @@
 		if ( wd_ws >= 32.70 && wd_ws <= 61.20 ) wd_stormFlag = 'storm2';
 		if ( wd_ws >= 10.80 && wd_ws <= 61.20 ) {
 			var wd_galeTitle = galeTxt;
-			var galeSVG = Fragments['svgPfx'];
-				galeSVG += Fragments['titlePfx'];
+			var galeSVG = svgPfx;
+				galeSVG += titlePfx;
 				galeSVG += wd_galeTitle;
-				galeSVG += Fragments['titleSfx'];
-				galeSVG += Fragments['usePfx'] + wd_stormFlag;
-				galeSVG += Fragments['useSfx'];
+				galeSVG += titleSfx;
+				galeSVG += usePfx + wd_stormFlag;
+				galeSVG += useSfx;
 		} else {
 			galeSVG = "";
 		}
 
-		var wd_beaufortTitle = bfsHeadTxt + wd_bf + beaufortForm + Fragments['wd_LB'] + wd_bfTxt;
-		var beaufortSVG = Fragments['svgPfx'];
-			beaufortSVG += Fragments['titlePfx'];
+		var wd_beaufortTitle = bfsHeadTxt + wd_bf + beaufortForm + wd_LB + wd_bfTxt;
+		var beaufortSVG = svgPfx;
+			beaufortSVG += titlePfx;
 			beaufortSVG += wd_beaufortTitle;
-			beaufortSVG += Fragments['titleSfx'];
-			beaufortSVG += Fragments['usePfx'] + "bf0";
-			beaufortSVG += Fragments['useSfx'];
+			beaufortSVG += titleSfx;
+			beaufortSVG += usePfx + "bf0";
+			beaufortSVG += useSfx;
 
 		beaufort.className = "windspeed i-" + wd_bf + "bf";
 		beaufort.innerHTML = beaufortSVG + galeSVG;
@@ -1315,96 +1322,96 @@
 		var modalEveningold		= doc.getElementById("dt_eveningold");
 		var modalBuiltBy		= doc.getElementById("dt_builtby");
 
-		var modalBeaufortTxt	= Fragments['sumPfx'];
-			modalBeaufortTxt	+= svgIcon['useBeaufort'] + bfsTxt;
-			modalBeaufortTxt	+= Fragments['sumSfx']
-			modalBeaufortTxt	+= Fragments['spanPfx'];
+		var modalBeaufortTxt	= sumPfx;
+			modalBeaufortTxt	+= useBeaufort + bfsTxt;
+			modalBeaufortTxt	+= sumSfx;
+			modalBeaufortTxt	+= spanPfx;
 			modalBeaufortTxt	+= bftDesc;
-			modalBeaufortTxt	+= Fragments['spanSfx'];
-		var modalWspeedTxt		= Fragments['sumPfx'];
-			modalWspeedTxt		+= svgIcon['useWindspeed'] + windTxt;
-			modalWspeedTxt		+= Fragments['sumSfx']
-			modalWspeedTxt		+= Fragments['spanPfx'];
+			modalBeaufortTxt	+= spanSfx;
+		var modalWspeedTxt		= sumPfx;
+			modalWspeedTxt		+= useWindspeed + windTxt;
+			modalWspeedTxt		+= sumSfx;
+			modalWspeedTxt		+= spanPfx;
 			modalWspeedTxt		+= windSpeedDesc;
-			modalWspeedTxt		+= Fragments['spanSfx'];
-		var modalWdirectionTxt	= Fragments['sumPfx'];
-			modalWdirectionTxt	+= svgIcon['useWindRose'] + windDirTxt;
-			modalWdirectionTxt	+= Fragments['sumSfx']
-			modalWdirectionTxt	+= Fragments['spanPfx'];
+			modalWspeedTxt		+= spanSfx;
+		var modalWdirectionTxt	= sumPfx;
+			modalWdirectionTxt	+= useWindRose + windDirTxt;
+			modalWdirectionTxt	+= sumSfx;
+			modalWdirectionTxt	+= spanPfx;
 			modalWdirectionTxt	+= winddirDesc;
-			modalWdirectionTxt	+= Fragments['spanSfx'];
-		var modalPressureTxt	= Fragments['sumPfx'];
-			modalPressureTxt	+= svgIcon['usePressure'] + pressureTxt;
-			modalPressureTxt	+= Fragments['sumSfx']
-			modalPressureTxt	+= Fragments['spanPfx'];
+			modalWdirectionTxt	+= spanSfx;
+		var modalPressureTxt	= sumPfx;
+			modalPressureTxt	+= usePressure + pressureTxt;
+			modalPressureTxt	+= sumSfx;
+			modalPressureTxt	+= spanPfx;
 			modalPressureTxt	+= pressureDesc;
-			modalPressureTxt	+= Fragments['spanSfx'];
-		var modalHumidityTxt	= Fragments['sumPfx'];
-			modalHumidityTxt	+= svgIcon['useHumidity'] + humidityTxt;
-			modalHumidityTxt	+= Fragments['sumSfx']
-			modalHumidityTxt	+= Fragments['spanPfx'];
+			modalPressureTxt	+= spanSfx;
+		var modalHumidityTxt	= sumPfx;
+			modalHumidityTxt	+= useHumidity + humidityTxt;
+			modalHumidityTxt	+= sumSfx;
+			modalHumidityTxt	+= spanPfx;
 			modalHumidityTxt	+= humidityDesc;
-			modalHumidityTxt	+= Fragments['spanSfx'];
-		var modalVisibilityTxt	= Fragments['sumPfx'];
-			modalVisibilityTxt	+= svgIcon['useVisibility'] + visibilityTxt;
-			modalVisibilityTxt	+= Fragments['sumSfx']
-			modalVisibilityTxt	+= Fragments['spanPfx'];
+			modalHumidityTxt	+= spanSfx;
+		var modalVisibilityTxt	= sumPfx;
+			modalVisibilityTxt	+= useVisibility + visibilityTxt;
+			modalVisibilityTxt	+= sumSfx;
+			modalVisibilityTxt	+= spanPfx;
 			modalVisibilityTxt	+= visibilityDesc;
-			modalVisibilityTxt	+= Fragments['spanSfx'];
-		var modalCloudinessTxt	= Fragments['sumPfx'];
-			modalCloudinessTxt	+= svgIcon['useOvercast'] + "overcastDay" + Fragments['useSfx'] + cloudinessTxt;
-			modalCloudinessTxt	+= Fragments['sumSfx']
-			modalCloudinessTxt	+= Fragments['spanPfx'];
+			modalVisibilityTxt	+= spanSfx;
+		var modalCloudinessTxt	= sumPfx;
+			modalCloudinessTxt	+= useOvercast + "overcastDay" + useSfx + cloudinessTxt;
+			modalCloudinessTxt	+= sumSfx;
+			modalCloudinessTxt	+= spanPfx;
 			modalCloudinessTxt	+= cloudinessDesc;
-			modalCloudinessTxt	+= Fragments['spanSfx'];
-		var modalSunriseTxt		= Fragments['sumPfx'];
-			modalSunriseTxt		+= svgIcon['useSunRise'] + sunRiseTxt;
-			modalSunriseTxt		+= Fragments['sumSfx']
-			modalSunriseTxt		+= Fragments['spanPfx'];
+			modalCloudinessTxt	+= spanSfx;
+		var modalSunriseTxt		= sumPfx;
+			modalSunriseTxt		+= useSunRise + sunRiseTxt;
+			modalSunriseTxt		+= sumSfx;
+			modalSunriseTxt		+= spanPfx;
 			modalSunriseTxt		+= sunriseDesc;
-			modalSunriseTxt		+= Fragments['spanSfx'];
-		var modalSunsetTxt		= Fragments['sumPfx'];
-			modalSunsetTxt		+= svgIcon['useSunSet'] + sunSetTxt;
-			modalSunsetTxt		+= Fragments['sumSfx']
-			modalSunsetTxt		+= Fragments['spanPfx'];
+			modalSunriseTxt		+= spanSfx;
+		var modalSunsetTxt		= sumPfx;
+			modalSunsetTxt		+= useSunSet + sunSetTxt;
+			modalSunsetTxt		+= sumSfx;
+			modalSunsetTxt		+= spanPfx;
 			modalSunsetTxt		+= sunsetDesc;
-			modalSunsetTxt		+= Fragments['spanSfx'];
-		var modalLocationTxt	= Fragments['sumPfx'];
-			modalLocationTxt	+= svgIcon['useLocation'] + locationTxt;
-			modalLocationTxt	+= Fragments['sumSfx']
-			modalLocationTxt	+= Fragments['spanPfx'];
+			modalSunsetTxt		+= spanSfx;
+		var modalLocationTxt	= sumPfx;
+			modalLocationTxt	+= useLocation + locationTxt;
+			modalLocationTxt	+= sumSfx;
+			modalLocationTxt	+= spanPfx;
 			modalLocationTxt	+= locationDesc;
-			modalLocationTxt	+= Fragments['spanSfx'];
-		var modalMoonriseTxt	= Fragments['sumPfx'];
-			modalMoonriseTxt	+= svgIcon['useMoonRise'] + moonRiseTxt;
-			modalMoonriseTxt	+= Fragments['sumSfx']
-			modalMoonriseTxt	+= Fragments['spanPfx'];
+			modalLocationTxt	+= spanSfx;
+		var modalMoonriseTxt	= sumPfx;
+			modalMoonriseTxt	+= useMoonRise + moonRiseTxt;
+			modalMoonriseTxt	+= sumSfx;
+			modalMoonriseTxt	+= spanPfx;
 			modalMoonriseTxt	+= moonriseDesc;
-			modalMoonriseTxt	+= Fragments['spanSfx'];
-		var modalMonnsetTxt		= Fragments['sumPfx'];
-			modalMonnsetTxt		+= svgIcon['useMoonSet'] + moonSetsTxt;
-			modalMonnsetTxt		+= Fragments['sumSfx']
-			modalMonnsetTxt		+= Fragments['spanPfx'];
+			modalMoonriseTxt	+= spanSfx;
+		var modalMonnsetTxt		= sumPfx;
+			modalMonnsetTxt		+= useMoonSet + moonSetsTxt;
+			modalMonnsetTxt		+= sumSfx;
+			modalMonnsetTxt		+= spanPfx;
 			modalMonnsetTxt		+= moonsetDesc;
-			modalMonnsetTxt		+= Fragments['spanSfx'];
-		var modalMorningoldTxt	= Fragments['sumPfx'];
-			modalMorningoldTxt	+= svgIcon['useGoldenHour'] + goldenTxt;
-			modalMorningoldTxt	+= Fragments['sumSfx']
-			modalMorningoldTxt	+= Fragments['spanPfx'];
+			modalMonnsetTxt		+= spanSfx;
+		var modalMorningoldTxt	= sumPfx;
+			modalMorningoldTxt	+= useGoldenHour + goldenTxt;
+			modalMorningoldTxt	+= sumSfx;
+			modalMorningoldTxt	+= spanPfx;
 			modalMorningoldTxt	+= goldMorTxt;
-			modalMorningoldTxt	+= Fragments['spanSfx'];
-		var modalEveningoldTxt	= Fragments['sumPfx'];
-			modalEveningoldTxt	+= svgIcon['useGoldenHour'] + goldenTxt;
-			modalEveningoldTxt	+= Fragments['sumSfx']
-			modalEveningoldTxt	+= Fragments['spanPfx'];
+			modalMorningoldTxt	+= spanSfx;
+		var modalEveningoldTxt	= sumPfx;
+			modalEveningoldTxt	+= useGoldenHour + goldenTxt;
+			modalEveningoldTxt	+= sumSfx;
+			modalEveningoldTxt	+= spanPfx;
 			modalEveningoldTxt	+= goldEveTxt;
-			modalEveningoldTxt	+= Fragments['spanSfx'];
-		var modalBuiltByTxt		= Fragments['sumPfx'];
-			modalBuiltByTxt		+= svgIcon['useLogosmall'] + appName;
-			modalBuiltByTxt		+= Fragments['sumSfx'];
-			modalBuiltByTxt		+= Fragments['spanPfx'];
+			modalEveningoldTxt	+= spanSfx;
+		var modalBuiltByTxt		= sumPfx;
+			modalBuiltByTxt		+= useLogosmall + appName;
+			modalBuiltByTxt		+= sumSfx;
+			modalBuiltByTxt		+= spanPfx;
 			modalBuiltByTxt		+= weatherDescTxt;
-			modalBuiltByTxt		+= Fragments['spanSfx'];
+			modalBuiltByTxt		+= spanSfx;
 
 		modalTitle.innerHTML		= modalTitleTxt;
 		modalDescription.innerHTML	= modalDescTxt;
@@ -1693,12 +1700,12 @@
 		var dtTimeAgo = timeAgo( dtTimeRaw );
 		var dtHour = dtTimeRaw.getHours() < 10 ? "0" + dtTimeRaw.getHours() : dtTimeRaw.getHours();
 		var dtMin = dtTimeRaw.getMinutes()
-		var updatedTime = svgIcon['useUpdated'];
-			updatedTime += Fragments['timePfx'];
+		var updatedTime = useUpdated;
+			updatedTime += timePfx;
 			updatedTime += dtTime;
-			updatedTime += Fragments['PfxEnd'];
+			updatedTime += PfxEnd;
 			updatedTime += dtTimeAgo;
-			updatedTime += Fragments['timeSfx'];
+			updatedTime += timeSfx;
 		dt.innerHTML = updatedTime;
 		dt.setAttribute('title', updatedTimeTxt+dtTime);
 		if (DEVCONSOLE) {
@@ -1850,7 +1857,7 @@
 		}
 		//weather.icon = "04d"; // For testing
 		icon.className = "weather i" + weather.icon;
-		icon.innerHTML = Fragments['svgPfx'] + Fragments['usePfx'] + weather.icon + Fragments['useSfx'];
+		icon.innerHTML = svgPfx + usePfx + weather.icon + useSfx;
 		if (DEVCONSOLE) {
 			_csl.groupCollapsed(_cslHeadOpen+'checkForSunset'+_cslHeadDiv, _cslHeadFont );
 			_csl.debug(
