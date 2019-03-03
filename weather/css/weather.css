@@ -363,7 +363,8 @@ summary {
 	grid-template-columns: 1fr minmax(auto,1fr) 1fr;
 	grid-gap: 0.2em;
 	     gap: 0.2em;
-	grid-template-areas: "windspeed . windir"
+	grid-template-areas: "mintemp . maxtemp"
+		"windspeed . windir"
 		"pressure . humidity"
 		"visibility . cloudiness"
 		"sunrise . sunset"
@@ -374,6 +375,12 @@ summary {
 	margin: 0.5em auto 0;
 	padding: 0;
 	white-space: nowrap;
+}
+#wd_lowtemp {
+	grid-area: mintemp;
+}
+#wd_hightemp {
+	grid-area: maxtemp;
 }
 #wd_location {
 	grid-area: location;

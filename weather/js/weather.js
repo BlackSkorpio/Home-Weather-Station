@@ -788,6 +788,7 @@
 	}
 
 	function processWeather(data) {
+		var minTemp, maxTemp, minMaxTemp, hitempdata, lowtempdata, minmaxline;
 		// NOTE SunCalc
 		//var SunCalc;
 		/*
@@ -881,15 +882,23 @@
 			case "metric":
 				visibleLength = km.toFixed(1);
 				localtemperature = +data["main"].temp.toFixed(1);
+				minTemp = +data.main.temp_min.toFixed(1);
+				maxTemp = +data.main.temp_max.toFixed(1);
 			break;
 			case "imperial":
 				visibleLength = miles.toFixed(2);
 				localtemperature = +data["main"].temp.toFixed(2);
+				minTemp = +data.main.temp_min.toFixed(2);
+				maxTemp = +data.main.temp_max.toFixed(2);
 			break;
 			default:
 				visibleLength = data.visibility;
 				localtemperature = data["main"].temp;
+				minTemp = data.main.temp_min;
+				maxTemp = data.main.temp_max;
 		};
+		// NOTE Check that minTemp and maxTemp is not empty and is not equal
+		var minMaxTemp = ( ( minTemp !=null || maxTemp !=null ) && maxTemp != minTemp );
 
 		// NOTE Calculate sun position
 		/*https://stackoverflow.com/a/18358056/6820262*/
@@ -947,13 +956,27 @@
 
 		detailsHeader.innerHTML = detailsTxt;
 
-		var hilowline = '<li id="wd_hilowtemp">';
-			hilowline += Fragments['spanTxt'];
+		/*var hilowline = liPfx + idPfx + 'wd_hilowtemp' + PfxEnd;
+			hilowline += spanTxt;
 			hilowline += "Hourly Max | Min: ";
-			hilowline += data.main.temp_max + tempForm;
-			hilowline += Fragments['dataDiv'];
-			hilowline += data.main.temp_min + tempForm;
-			hilowline += Fragments['spanSfx'];
+			hilowline += maxTemp + tempForm;
+			hilowline += dataDiv;
+			hilowline += minTemp + tempForm;
+			hilowline += spanSfx;*/
+
+		var hitempdata = liPfx + idPfx + 'wd_hightemp' + PfxEnd;
+			hitempdata += useTemprature;
+			hitempdata += spanTxt;
+			hitempdata += maxTemp;
+			hitempdata += tempForm;
+			hitempdata += spanSfx;
+		var lowtempdata = liPfx + idPfx + 'wd_lowtemp' + PfxEnd;
+			lowtempdata += useTemprature;
+			lowtempdata += spanTxt;
+			lowtempdata += minTemp;
+			lowtempdata += tempForm;
+			lowtempdata += spanSfx;
+		var minmaxline = hitempdata + lowtempdata;
 
 		var gpsline = liPfx + idPfx + 'wd_location' + PfxEnd;
 			gpsline += useLocation;
@@ -1035,6 +1058,7 @@
 			overcastline += spanSfx;
 
 		details.innerHTML = visibilityline + overcastline + windline + windirection + pressureline + humidityline + sunriseline + sunsetline + gpsline;
+		if ( minMaxTemp ) details.innerHTML += minmaxline;
 
 		var weather = data["weather"][0];
 
