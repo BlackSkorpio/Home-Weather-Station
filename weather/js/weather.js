@@ -1016,17 +1016,19 @@
 		var timeSunSet = new Date(data.sys.sunset * 1000);
 		var sunriseline = liPfx + idPfx + 'wd_sunrise' + PfxEnd;
 			sunriseline += useSunRise;
-			sunriseline += spanTxt;
-			sunriseline += new Date(data.sys.sunrise * 1000).toLocaleTimeString(timeForm);
-			sunriseline += spanSfx;
+			sunriseline += timePfx;
+			sunriseline += timeSunRise.toString();
+			sunriseline += PfxEnd
 			sunriseline += timeSunRise.toLocaleTimeString(timeForm, timeOptions);
+			sunriseline += timeSfx;
 
 		var sunsetline = liPfx + idPfx + 'wd_sunset' + PfxEnd;
 			sunsetline += useSunSet;
-			sunsetline += spanTxt;
-			sunsetline += new Date(data.sys.sunset * 1000).toLocaleTimeString(timeForm);
-			sunsetline += spanSfx;
+			sunsetline += timePfx;
+			sunsetline += timeSunSet.toString();
+			sunsetline += PfxEnd
 			sunsetline += timeSunSet.toLocaleTimeString(timeForm, timeOptions);
+			sunsetline += timeSfx;
 
 		var visibilityline = liPfx + idPfx + 'wd_visibility' + PfxEnd;
 			visibilityline += useVisibility;
@@ -1813,7 +1815,7 @@
 		if (weatherdata) {
 			var weather = weatherdata["weather"][0];
 			var weatherId = weather.id;
-			//var weatherId = 500; //for testing
+			//var weatherId = 531; //for testing
 			sunsettime = Number(weatherdata["sys"].sunset);
 			sunrisetime = Number(weatherdata["sys"].sunrise);
 			checkForSunset();
@@ -1913,7 +1915,7 @@
 		if (!isDark && weather.icon.substring(2,3) === "n") {
 			weather.icon = weather.icon.substring(0,2) + "d";
 		}
-		//weather.icon = "04d"; // For testing
+		//weather.icon = "01n"; // For testing
 		icon.className = "weather i" + weather.icon;
 		icon.innerHTML = svgPfx + usePfx + weather.icon + useSfx;
 		if (DEVCONSOLE) {
