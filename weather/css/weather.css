@@ -1,8 +1,12 @@
 /*minifyOnSave, minifier: clean-css, checkOutputFileAlreadyExists: false, checkAlreadyMinifiedFile: false, filenamePattern: $1.min.$2 */
 @charset "UTF-8";
 :root {
+	--cc:currentColor;
+	--trans:transparent;
+	--rgbBl:0, 0, 0;
 	--wh:#dff0fe;
 	--pw:#fff;
+	--dw:#d8d8d8;
 	--bl:#000;
 	--rd:#ff0000;
 	--lb:#98ccfd;
@@ -10,8 +14,10 @@
 	--lg:#a5a5a5;
 	--dg:#808083;
 	--ly:#fce6b1;
-	--dy:#ffc843;
+	--dy:#fec10d/*#ffc843*/;
 	--by:#3f3a02;
+	--lo:#f29c1f;
+	--do:#f47722;
 	--s1:#fff76b;
 	--s2:#fff845;
 	--s3:#ffda4e;
@@ -53,7 +59,7 @@ html, body {
 	font-size: calc(16px + 1vw);
 	line-height: calc(1.1em + 0.5vw);
 	padding: 0;
-	color: #fff;
+	color: var(--pw);
 	-webkit-font-smoothing:subpixel-antialiased;
 	-webkit-text-size-adjust:100%;
 	-moz-osx-font-smoothing:[$firefox_alias];
@@ -180,7 +186,7 @@ main a {
 main.nightmode {
 	background: #121212 -webkit-gradient(linear, right top, left bottom, color-stop(10%, #121212), to(#333955));
 	background: #121212 linear-gradient(to bottom left, #121212 10%, #333955 100%);
-	color: #fff;
+	color: var(--pw);
 	text-shadow: 1px 1px 1px black;
 }
 main.daymode {
@@ -234,7 +240,7 @@ time {
 #time1 .liveTime {
 	border-radius: 0.1em;
 	padding: 0.05em 0.1em 0;
-	color: #fff;
+	color: var(--pw);
 	margin: 0 1px;
 	background: #222;
 	background: -webkit-gradient(linear, left top, left bottom, from(#555), to(#000));
@@ -453,7 +459,7 @@ summary {
 	padding: 0 16px 0 16px;
 	width: auto;
 	height: 40px;
-	border: 2px outset #fff;
+	border: 2px outset var(--pw);
 	border-radius: 12px;
 	background: #dedeff;
 	color: black;
@@ -461,8 +467,8 @@ summary {
 }
 #gpsbutton:hover {
 	background: #000033;
-	border: 2px inset #fff;
-	color: #fff;
+	border: 2px inset var(--pw);
+	color: var(--pw);
 }
 /*
 Animated cloud code adapted from Mark Bowley's CodePen at https://codepen.io/Mark_Bowley/pen/xEbuI
@@ -508,18 +514,18 @@ Animated cloud code adapted from Mark Bowley's CodePen at https://codepen.io/Mar
 	top: 50%;
 	width: 0.0625em;/* 1px */
 	height: 0.0625em;
-	background: #fff;
+	background: var(--pw);
 	border-radius: 50%;
-	-webkit-box-shadow: 0 0 0.0625em #fff;
-	        box-shadow: 0 0 0.0625em #fff;
+	-webkit-box-shadow: 0 0 0.0625em var(--pw);
+	        box-shadow: 0 0 0.0625em var(--pw);
 	-webkit-animation: twinkle 0.5s alternate infinite;
 	        animation: twinkle 0.5s alternate infinite;
 }
 #stars .m {
 	width: 0.1875em;/* 3px */
 	height: 0.1875em;
-	-webkit-box-shadow: 0 0 0.1875em #fff;
-	        box-shadow: 0 0 0.1875em #fff;
+	-webkit-box-shadow: 0 0 0.1875em var(--pw);
+	        box-shadow: 0 0 0.1875em var(--pw);
 	-webkit-animation-duration: 0.75s;
 	        animation-duration: 0.75s;
 }
@@ -1778,8 +1784,8 @@ https://codepen.io/lbebber/pen/waGydW
 .borders i {
 	margin-left: 2px;
 	margin-top: 1px;
-	-webkit-box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
-	        box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 0 2px rgba(var(--rgbBl), 0.5);
+	        box-shadow: 0 0 0 2px rgba(var(--rgbBl), 0.5);
 	-webkit-transform: rotateY(0);
 	        transform: rotateY(0);
 }
@@ -2759,7 +2765,7 @@ https://codepen.io/lbebber/pen/waGydW
 }
 /* General Styling of the rain drops */
 #rain i {
-	color: #fff;
+	color: var(--pw);
 	display: inline-block;
 	width: 1em;
 	height: 1em;
@@ -2872,7 +2878,35 @@ https://codepen.io/lbebber/pen/waGydW
 	        transform-origin: left -20px;
 	-webkit-animation: falling 3s linear 2s infinite;
 	        animation: falling 3s linear 2s infinite;
-	background-image: linear-gradient(180deg, rgba(255,255,255,0) 40%, #fff 40%, #fff 60%, rgba(255,255,255,0) 60%), linear-gradient(90deg,	rgba(255,255,255,0) 40%, #fff 40%, #fff 60%, rgba(255,255,255,0) 60%), linear-gradient(45deg,	rgba(255,255,255,0) 43%, #fff 43%, #fff 57%, rgba(255,255,255,0) 57%), linear-gradient(135deg,	rgba(255,255,255,0) 43%, #fff 43%, #fff 57%, rgba(255,255,255,0) 57%);
+	background-image:
+		linear-gradient(
+			180deg,
+			var(--trans) 40%,
+			var(--pw) 40%,
+			var(--pw) 60%,
+			var(--trans) 60%
+		),
+		linear-gradient(
+			90deg,
+			var(--trans) 40%,
+			var(--pw) 40%,
+			var(--pw) 60%,
+			var(--trans) 60%
+		),
+		linear-gradient(
+			45deg,
+			var(--trans) 43%,
+			var(--pw) 43%,
+			var(--pw) 57%,
+			var(--trans) 57%
+		),
+		linear-gradient(
+			135deg,
+			var(--trans) 43%,
+			var(--pw) 43%,
+			var(--pw) 57%,
+			var(--trans) 57%
+		);
 }
 /* different sizes, and default origins based on size */
 #flakes i:nth-of-type(4n) {
@@ -2982,7 +3016,7 @@ https://codepen.io/lbebber/pen/waGydW
 	opacity: 0.8;
 }
 #sunlayer {
-	/*background: #ffff00 linear-gradient(45deg, #ffffff 0%, #87ceeb 66%, #ffff33 95%, #ffff00 100%);*/
+	/*background: #ffff00 linear-gradient(45deg, var(--pw) 0%, #87ceeb 66%, #ffff33 95%, #ffff00 100%);*/
 	background: #e1c45e radial-gradient(at calc(100% - var(--sunPosition)) top, #b26339 0, #e1c45e 20%, #576e71 30%, #154277 100%);
 	background-size: 100% 100%;
 }
@@ -3041,7 +3075,7 @@ text#ribbon_text a {
 	font-size: 0.8em;
 	line-height: normal;
 	border-radius: 0.3em;
-	background-color: rgba(0, 0, 0, 0.3);
+	background-color: rgba(var(--rgbBl), 0.3);
 	-webkit-box-shadow: 3px 4px 5px rgba(150, 150, 150, 0.3);
 	        box-shadow: 3px 4px 5px rgba(150, 150, 150, 0.3);
 }
@@ -3075,8 +3109,8 @@ text#ribbon_text a {
 	        transform: translate(-50%, -50%);
 	/* If known, negative margins are probably better (less chance of blurry text). */
 	/* margin: -200px 0 0 -200px; */
-	-webkit-box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
-	        box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+	-webkit-box-shadow: 0 0 60px 10px rgba(var(--rgbBl), 0.9);
+	        box-shadow: 0 0 60px 10px rgba(var(--rgbBl), 0.9);
 }
 .closed {
 	display: none;
@@ -3088,7 +3122,7 @@ text#ribbon_text a {
 	width: 100%;
 	height: 100%;
 	z-index: 50;
-	background: rgba(0, 0, 0, 0.9);
+	background: rgba(var(--rgbBl), 0.9);
 }
 .modal-guts {
 	position: absolute;
@@ -3109,7 +3143,7 @@ text#ribbon_text a {
 	/* needs to look OK with or without scrollbar */
 	right: 0.7em;
 	border: 0;
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(var(--rgbBl), 0.5);
 	color: rgba(255, 255, 255, 0.5);
 	height: 2em;
 	width: 2em;
