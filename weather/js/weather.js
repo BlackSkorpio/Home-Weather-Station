@@ -314,6 +314,7 @@
 			pressureForm = " hPa";
 			humidityForm = "%";
 			timeForm	= "eu";
+			timeOptions = {hour:"numeric", minute:"2-digit"};
 		break;
 		case "imperial":
 			tempForm	= "°F";
@@ -324,6 +325,7 @@
 			pressureForm = " hPa";
 			humidityForm = "%";
 			timeForm	= "en";
+			timeOptions = {hour:"numeric", minute:"2-digit"};
 		break;
 		default:
 			tempForm	= "°K";
@@ -334,6 +336,7 @@
 			pressureForm = " hPa";
 			humidityForm = "%";
 			timeForm	= "en";
+			timeOptions = {hour:"numeric", minute:"2-digit"};
 	}
 
 	var Fragments = new Object();
@@ -1009,17 +1012,21 @@
 			windirection += useWindRose;
 			windirection += windirdata;
 
+		var timeSunRise = new Date(data.sys.sunrise * 1000);
+		var timeSunSet = new Date(data.sys.sunset * 1000);
 		var sunriseline = liPfx + idPfx + 'wd_sunrise' + PfxEnd;
 			sunriseline += useSunRise;
 			sunriseline += spanTxt;
 			sunriseline += new Date(data.sys.sunrise * 1000).toLocaleTimeString(timeForm);
 			sunriseline += spanSfx;
+			sunriseline += timeSunRise.toLocaleTimeString(timeForm, timeOptions);
 
 		var sunsetline = liPfx + idPfx + 'wd_sunset' + PfxEnd;
 			sunsetline += useSunSet;
 			sunsetline += spanTxt;
 			sunsetline += new Date(data.sys.sunset * 1000).toLocaleTimeString(timeForm);
 			sunsetline += spanSfx;
+			sunsetline += timeSunSet.toLocaleTimeString(timeForm, timeOptions);
 
 		var visibilityline = liPfx + idPfx + 'wd_visibility' + PfxEnd;
 			visibilityline += useVisibility;
