@@ -50,7 +50,7 @@
 
 	var doc = document,
 		win = window;
-		var Fragments, svgIcon, highTempTxt, lowTempTxt, precipionTxt, precipion1Txt, precipion3Txt, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, updatePlural2Txt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, localtemperature, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, tempClr, rainyWindow, overCastLayer;
+		var Fragments, svgIcon, minMaxDesc, highTempTxt, lowTempTxt, precipionTxt, precipion1Txt, precipion3Txt, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, updatePlural2Txt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, localtemperature, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, timeOptions, tempClr, rainyWindow, overCastLayer;
 
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
@@ -67,6 +67,7 @@
 			minMaxTxt	= "Min/Max temperatur idag: ";
 			highTempTxt = 'Högsta temperatur idag: ';
 			lowTempTxt = 'Lägsta temperatur idag: ';
+			minMaxDesc = 'Minsta och högsta temperatur för tillfället. <br /> Detta är avvikelse från nuvarande temp som är möjligt för stora städer och megalopoliserar geografiskt expanderade.';
 			precipionTxt = "Nederbörd: ";
 			precipion1Txt = "den senaste timmen";
 			precipion3Txt = "de sista tre timmarna";
@@ -190,6 +191,7 @@
 			minMaxTxt	= "Hourly Max | Min: ";
 			highTempTxt = 'Maximum temperature today: ';
 			lowTempTxt = 'Minimum temperature today: ';
+			minMaxDesc = 'Minimum and Maximum temperature at the moment.<br />This is deviation from current temp that is possible for large cities and megalopolises geographically expanded.';
 			precipionTxt = "Precipion: ";
 			precipion1Txt = "in the last hour";
 			precipion3Txt = "in the last 3 hours";
@@ -1334,7 +1336,7 @@
 		}
 		// Modal https://codepen.io/chriscoyier/pen/MeJWoM
 		// And https://codepen.io/noahblon/pen/yJpXka
-		var modal, modalOverlay, buttonClose, classClosed, aHidden, tabindex, FOCUSABLE_SELECTORS, modalTitle, modalDescription, modalBeaufort, modalWspeed, modalWdirection, modalPressure, modalHumidity, modalCloudiness, modalVisibility, modalSunrise, modalSunset, modalLocation, modalMoonrise, modalMonnset, modalMorningold, modalEveningold, modalBuiltBy;
+		var modal, modalOverlay, buttonClose, classClosed, aHidden, tabindex, FOCUSABLE_SELECTORS, modalTitle, modalDescription, modalMinMaxTemp, modalMinMaxTxt, modalBeaufort, modalWspeed, modalWdirection, modalPressure, modalHumidity, modalCloudiness, modalVisibility, modalSunrise, modalSunset, modalLocation, modalMoonrise, modalMonnset, modalMorningold, modalEveningold, modalBuiltBy;
 
 		var modal				= doc.querySelector("#modal");
 		var modalOverlay		= doc.querySelector("#modal-overlay");
@@ -1347,6 +1349,7 @@
 
 		var modalTitle			= doc.getElementById("Modal_Title");
 		var modalDescription	= doc.getElementById("Modal_Description");
+		var modalMinMaxTemp		= doc.getElementById("db_minmaxtemp");
 		var modalBeaufort		= doc.getElementById("dt_bft");
 		var modalWspeed			= doc.getElementById("dt_windspeed");
 		var modalWdirection		= doc.getElementById("dt_windirection");
@@ -1363,6 +1366,12 @@
 		var modalEveningold		= doc.getElementById("dt_eveningold");
 		var modalBuiltBy		= doc.getElementById("dt_builtby");
 
+		var modalMinMaxTxt		= sumPfx;
+			modalMinMaxTxt		+= useHighTemp + minMaxTxt;
+			modalMinMaxTxt		+= sumSfx;
+			modalMinMaxTxt		+= spanPfx;
+			modalMinMaxTxt		+= minMaxDesc;
+			modalMinMaxTxt		+= spanSfx;
 		var modalBeaufortTxt	= sumPfx;
 			modalBeaufortTxt	+= useBeaufort + bfsTxt;
 			modalBeaufortTxt	+= sumSfx;
@@ -1456,6 +1465,7 @@
 
 		modalTitle.innerHTML		= modalTitleTxt;
 		modalDescription.innerHTML	= modalDescTxt;
+		modalMinMaxTemp.innerHTML	= modalMinMaxTxt;
 		modalBeaufort.innerHTML		= modalBeaufortTxt;
 		modalWspeed.innerHTML		= modalWspeedTxt;
 		modalWdirection.innerHTML	= modalWdirectionTxt;
