@@ -800,73 +800,6 @@
 
 	function processWeather(data) {
 		var minMaxTemp;
-		// NOTE SunCalc
-		//var SunCalc;
-		/*
-		var SunCalcNow = new Date();
-		var SunCalLat = lat.toFixed(2);
-		var SunCalLon = lon.toFixed(2);
-
-		var getMoonTimes = SunCalc.getMoonTimes( SunCalcNow, SunCalLat, SunCalLon);
-		//Object.keys(getMoonTimes).forEach(function(key) {
-		//	if (DEVCONSOLE && _cslFlag == false) console.log(key + ': ' + getMoonTimes[key]);
-		//});
-		var getSunTimes = SunCalc.getTimes( SunCalcNow, SunCalLat, SunCalLon);
-		//Object.keys(getSunTimes).forEach(function(key) {
-		//	if (DEVCONSOLE && _cslFlag == false) console.log(key + ': ' + getSunTimes[key]);
-		//});
-
-		// NOTE Moon up & Down
-		var moonRises = timePrefix;
-			moonRises += new Date(getMoonTimes['rise']).toISOString();
-			moonRises += timePrefixEnd;
-			moonRises += getMoonTimes['rise'].toLocaleTimeString(timeForm);
-			moonRises += timeSuffix;
-
-		var moonSets = timePrefix;
-			moonSets += new Date(getMoonTimes['set']).toISOString();
-			moonSets += timePrefixEnd;
-			moonSets += getMoonTimes['set'].toLocaleTimeString(timeForm);
-			moonSets += timeSuffix;
-
-		var moonUp = useMoonRise + moonRises;
-		var moonDown = useMoonSet + moonSets;
-
-		// NOTE Golden hours
-		var goldMorTime = timePrefix;
-			goldMorTime += new Date(getSunTimes['goldenHourEnd']).toISOString();
-			goldMorTime += timePrefixEnd;
-			goldMorTime += getSunTimes['goldenHourEnd'].toLocaleTimeString(timeForm);
-			goldMorTime += timeSuffix;
-
-		var goldEveTime = timePrefix;
-			goldEveTime += new Date(getSunTimes['goldenHour']).toISOString();
-			goldEveTime += timePrefixEnd;
-			goldEveTime += getSunTimes['goldenHour'].toLocaleTimeString(timeForm);
-			goldEveTime += timeSuffix;
-
-		var goldSvgPrefix = svgPrefix;
-			goldSvgPrefix += titlePrefix;
-		var goldSvgSuffix = titleSuffix;
-			goldSvgSuffix += usePrefix;
-			goldSvgSuffix += "goldenhour";
-			goldSvgSuffix += useSuffix;
-
-		var morningHour = goldSvgPrefix;
-			morningHour += goldenTxt + goldMorTxt;
-			morningHour += goldSvgSuffix;
-			morningHour += goldMorTime;
-		var eveningHour = goldSvgPrefix;
-			eveningHour += goldenTxt + goldEveTxt;
-			eveningHour += goldSvgSuffix;
-			eveningHour += goldEveTime;
-
-			var morningHourline = '<li id="wd_morning">' + morningHour;
-			var moonriseline = '<li id="wd_moonrise">' + moonUp;
-			var eveningHourline = '<li id="wd_evening">' + eveningHour;
-			var moonsetline = '<li id="wd_moonset">' + moonDown;
-		*/
-
 
 		/*if (!useip){
 			city = data.name;
@@ -1103,7 +1036,83 @@
 		}
 	}
 
-	function wd_html() {
+	function wd_sunCalc() {
+		// NOTE SunCalc
+		//var SunCalc;
+		var SunCalcNow		= new Date();
+			var SunCalLat		= lat.toFixed(2);
+			var SunCalLon		= lon.toFixed(2);
+			var getMoonTimes, moonRisesDate, moonSetsDate, moonRisesTime, moonSetsTime, getSunTimes, gMorningDate, gEveningDate, gMorningTime, gEveningTime, moonRises, moonSets, goldenMorningHour, goldenEveningHour, goldenMorningTime, goldenEveningTime, goldenHourSvgPfx, goldenHourSvgSfx, sunCalcline;
+
+		var getMoonTimes	= SunCalc.getMoonTimes( SunCalcNow, SunCalLat, SunCalLon);
+			var moonRisesDate	= new Date(getMoonTimes['rise']).toISOString();
+			var moonSetsDate	= new Date(getMoonTimes['set']).toISOString();
+			var moonRisesTime	= getMoonTimes['rise'].toLocaleTimeString(timeForm);
+			var moonSetsTime	= getMoonTimes['set'].toLocaleTimeString(timeForm);
+		//Object.keys(getMoonTimes).forEach(function(key) {
+		//	if (DEVCONSOLE) console.log(key + ': ' + getMoonTimes[key]);
+		//});
+		var getSunTimes		= SunCalc.getTimes( SunCalcNow, SunCalLat, SunCalLon);
+			var gMorningDate	= new Date(getSunTimes['goldenHourEnd']).toISOString();
+			var gEveningDate	= new Date(getSunTimes['goldenHour']).toISOString();
+			var gMorningTime	= getSunTimes['goldenHourEnd'].toLocaleTimeString(timeForm);
+			var gEveningTime	= getSunTimes['goldenHour'].toLocaleTimeString(timeForm);
+		//Object.keys(getSunTimes).forEach(function(key) {
+		//	if (DEVCONSOLE) console.log(key + ': ' + getSunTimes[key]);
+		//});
+
+		// NOTE Moon up & Down
+		moonRises = useMoonRise;
+			moonRises += timePrefix;
+			moonRises += moonRisesDate;
+			moonRises += timePrefixEnd;
+			moonRises += moonRisesTime;
+			moonRises += timeSuffix;
+
+		moonSets = useMoonSet;
+			moonSets += timePrefix;
+			moonSets += moonSetsDate;
+			moonSets += timePrefixEnd;
+			moonSets += moonSetsTime;
+			moonSets += timeSuffix;
+
+		// NOTE Golden hours
+		goldenMorningTime = timePrefix;
+			goldenMorningTime += gMorningDate;
+			goldenMorningTime += timePrefixEnd;
+			goldenMorningTime += gMorningTime;
+			goldenMorningTime += timeSuffix;
+
+		goldenEveningTime = timePrefix;
+			goldenEveningTime += gEveningDate;
+			goldenEveningTime += timePrefixEnd;
+			goldenEveningTime += gEveningTime;
+			goldenEveningTime += timeSuffix;
+
+		goldenHourSvgPfx = svgPrefix;
+			goldenHourSvgPfx += titlePrefix;
+
+		goldenHourSvgSfx = titleSuffix;
+			goldenHourSvgSfx += usePrefix;
+			goldenHourSvgSfx += "goldenhour";
+			goldenHourSvgSfx += useSuffix;
+
+		goldenMorningHour = goldenHourSvgPfx;
+			goldenMorningHour += goldenTxt + goldMorTxt;
+			goldenMorningHour += goldenHourSvgSfx;
+			goldenMorningHour += goldenMorningTime;
+
+		goldenEveningHour = goldenHourSvgPfx;
+			goldenEveningHour += goldenTxt + goldEveTxt;
+			goldenEveningHour += goldenHourSvgSfx;
+			goldenEveningHour += goldenEveningTime;
+
+		var sunCalcline = '<li id="wd_morning">' + goldenMorningHour;
+			sunCalcline += '<li id="wd_evening">' + goldenEveningHour;
+			sunCalcline += '<li id="wd_moonrise">' + moonRises;
+			sunCalcline += '<li id="wd_moonset">' + moonSets;
+
+		return sunCalcline;
 	}
 
 	function wd_precipion(data) {
