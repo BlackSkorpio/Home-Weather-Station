@@ -50,7 +50,7 @@
 
 	var doc = document,
 		win = window;
-		var Fragments, svgIcon, minMaxDesc, highTempTxt, lowTempTxt, precipionTxt, precipion1Txt, precipion3Txt, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, updatePlural2Txt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, localtemperature, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, timeOptions, tempClr, rainyWindow, overCastLayer;
+		var svgStyle, sunPosition, Fragments, svgIcon, minMaxDesc, highTempTxt, lowTempTxt, precipionTxt, precipion1Txt, precipion3Txt, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, updatePlural2Txt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, localtemperature, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, timeOptions, tempClr, overCastLayer;
 
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
@@ -311,10 +311,13 @@
 			visibilityForm = "km";
 			overcastForm = "%";
 			beaufortForm = "bft";
-			pressureForm = " hPa";
+			pressureForm = "hPa";
 			humidityForm = "%";
 			timeForm	= "eu";
-			timeOptions = {hour:"numeric", minute:"2-digit"};
+			timeOptions = {
+				hour:"numeric",
+				minute:"2-digit"
+			};
 		break;
 		case "imperial":
 			tempForm	= "°F";
@@ -322,10 +325,13 @@
 			visibilityForm = "mi";
 			overcastForm = "%";
 			beaufortForm = "bft";
-			pressureForm = " hPa";
+			pressureForm = "hPa";
 			humidityForm = "%";
 			timeForm	= "en";
-			timeOptions = {hour:"numeric", minute:"2-digit"};
+			timeOptions = {
+				hour:"numeric",
+				minute:"2-digit"
+			};
 		break;
 		default:
 			tempForm	= "°K";
@@ -333,10 +339,13 @@
 			visibilityForm = "m";
 			overcastForm = "%";
 			beaufortForm = "bft";
-			pressureForm = " hPa";
+			pressureForm = "hPa";
 			humidityForm = "%";
 			timeForm	= "en";
-			timeOptions = {hour:"numeric", minute:"2-digit"};
+			timeOptions = {
+				hour:"numeric",
+				minute:"2-digit"
+			};
 	}
 
 	var Fragments = new Object();
@@ -360,7 +369,12 @@
 		liPfx: '<li',
 		idPfx: ' id="'
 	};
-	var liPfx = Fragments['liPfx'], idPfx = Fragments['idPfx'], timePfx = Fragments['timePfx'], PfxEnd = Fragments['PfxEnd'], timeSfx = Fragments['timeSfx'], dataDiv = Fragments['dataDiv'], wd_LB = Fragments['wd_LB'], sumPfx = Fragments['sumPfx'], sumSfx = Fragments['sumSfx'], spanPfx = Fragments['spanPfx'], spanTxt = Fragments['spanTxt'], spanSfx = Fragments['spanSfx'], svgPfx = Fragments['svgPfx'], titlePfx = Fragments['titlePfx'], titleSfx = Fragments['titleSfx'], usePfx = Fragments['usePfx'], useSfx = Fragments['useSfx'];
+	var liPfx = Fragments['liPfx'], idPfx = Fragments['idPfx'], timePfx = Fragments['timePfx'],
+		PfxEnd = Fragments['PfxEnd'], timeSfx = Fragments['timeSfx'], dataDiv = Fragments['dataDiv'],
+		wd_LB = Fragments['wd_LB'], sumPfx = Fragments['sumPfx'], sumSfx = Fragments['sumSfx'],
+		spanPfx = Fragments['spanPfx'], spanTxt = Fragments['spanTxt'], spanSfx = Fragments['spanSfx'],
+		svgPfx = Fragments['svgPfx'], titlePfx = Fragments['titlePfx'], titleSfx = Fragments['titleSfx'],
+		usePfx = Fragments['usePfx'], useSfx = Fragments['useSfx'];
 	svgIcon = {
 		useLocation:	svgPfx + titlePfx + locationTxt + titleSfx + usePfx + "location" + useSfx,
 		useSunRise:		svgPfx + titlePfx + sunRiseTxt + titleSfx + usePfx + "sunrise" + useSfx,
@@ -382,7 +396,13 @@
 		useUpdated:		svgPfx + titlePfx + updatedTimeTxt + titleSfx + usePfx + "clock" + useSfx,
 		useLogosmall:	svgPfx + titlePfx + appName + titleSfx + usePfx + "logosmall" + useSfx
 	};
-	var useLocation = svgIcon['useLocation'], useSunRise = svgIcon['useSunRise'], useSunSet = svgIcon['useSunSet'], useGoldenHour = svgIcon['useGoldenHour'], useMoonRise = svgIcon['useMoonRise'], useMoonSet = svgIcon['useMoonSet'], useHumidity = svgIcon['useHumidity'], useWindspeed = svgIcon['useWindspeed'], usePressure = svgIcon['usePressure'], useTemprature = svgIcon['useTemprature'], useLowTemp = svgIcon['useLowTemp'], useHighTemp = svgIcon['useHighTemp'], useWindRose = svgIcon['useWindRose'], useWeatherDude = svgIcon['useWeatherDude'], useBeaufort = svgIcon['useBeaufort'], useVisibility = svgIcon['useVisibility'], useOvercast = svgIcon['useOvercast'], useUpdated = svgIcon['useUpdated'], useLogosmall = svgIcon['useLogosmall'];
+	var useLocation = svgIcon['useLocation'], useSunRise = svgIcon['useSunRise'], useSunSet = svgIcon['useSunSet'],
+		useGoldenHour = svgIcon['useGoldenHour'], useMoonRise = svgIcon['useMoonRise'], useMoonSet = svgIcon['useMoonSet'],
+		useHumidity = svgIcon['useHumidity'], useWindspeed = svgIcon['useWindspeed'], usePressure = svgIcon['usePressure'],
+		useTemprature = svgIcon['useTemprature'], useLowTemp = svgIcon['useLowTemp'], useHighTemp = svgIcon['useHighTemp'],
+		useWindRose = svgIcon['useWindRose'], useWeatherDude = svgIcon['useWeatherDude'], useBeaufort = svgIcon['useBeaufort'],
+		useVisibility = svgIcon['useVisibility'], useOvercast = svgIcon['useOvercast'], useUpdated = svgIcon['useUpdated'],
+		useLogosmall = svgIcon['useLogosmall'];
 
 	var main, container, sStyles, now, dd, td, dt, details, wd_summary, detailsHeader, infoModal, dtTimeRaw, dtHour, dtMin, dtTime, updatedTime, lat, lon, region, gd, gpsbutton, weatherurl, wd, precipion_wrap, icon, beaufort, weatherdata, weatherminute;
 		var city = "";
@@ -812,13 +832,6 @@
 		// var dh = JSON.stringify(data);
 		// dh = dh.split(",").join("<br>");
 
-		// NOTE Convert hPA to kPa for display in gauge
-		var hPaData = data.main.pressure;
-		var kPaOut = hPaData/10;
-		//var hPaOut = hPaData.substring(0, 3);
-		//var hPaOut = hPaData.match(/.{1,3}/g);
-		//var kPaOut = hPaOut.join(".");
-
 		// NOTE Convert the visibility data to metric or imperial
 		var km = data.visibility / 1000;
 		var miles = data.visibility * 0.0006213712;
@@ -836,59 +849,7 @@
 				localtemperature = data["main"].temp;
 		};
 
-		// NOTE Calculate sun position
-		/*https://stackoverflow.com/a/18358056/6820262*/
-		var sunUpRaw, sunDownRaw, sunNowRaw, sunUpHour, sunUpMin, sunUpMinute, sunNowHour, sunNowMin, sunNowMinute, sunDownHour, sunDownMin, sunDownMinute, sunUp, sunNow, sunDown, sunLeft, sunHours, sunLeftCalc, sunPos, sunPosition, moonHours;
-		var sunUpRaw	= new Date(data.sys.sunrise * 1000);
-		var sunNowRaw	= new Date();
-		var sunDownRaw	= new Date(data.sys.sunset * 1000);
-		var sunUpHour	= sunUpRaw.getHours();
-		var sunNowHour	= sunNowRaw.getHours();
-		var sunDownHour	= sunDownRaw.getHours();
-		var sunUpMin	= sunUpRaw.getMinutes();
-		var sunUpMinute = sunUpMin < 10 ? "0" + sunUpMin   : sunUpMin;
-		var sunNowMin	= sunNowRaw.getMinutes();
-		var sunNowMinute = sunNowMin < 10 ? "0" + sunNowMin  : sunNowMin;
-		var sunDownMin	= sunDownRaw.getMinutes();
-		var sunDownMinute = sunDownMin < 10 ? "0" + sunDownMin : sunDownMin;
-
-		var sunUp		= sunUpHour + '.' + sunUpMinute;	// A
-		var sunNow		= sunNowHour + '.' + sunNowMinute;	// B
-		//var sunNow		= 08.05; // For testing
-		var sunDown		= sunDownHour + '.' + sunDownMinute;// C
-		var sunLeft		= sunDown - sunNow;	// X = C - B
-		var sunHours	= sunDown - sunUp;	// Y = C - A
-		//* Z = X / Y * 100
-		var sunPos	= sunLeft.toFixed(2) / sunHours.toFixed(2) * 100;
-		var sunPosition = sunPos > 100.00 ? 99.99 : sunPos;
-		//var sunPlacement = 'right ' + roundToTwo(sunPosition);
-		//sunPosition = sunPlacement.toFixed(2);
-		var moonHours = (24 - sunHours) * 60;
-		var moonBrightnes = 100 - Number(data.clouds.all);
-		var isDay = sunLeft >=0;
-
-		wd_beaufort(data);
-		wd_tempScale(data,tempClr);
-		//checkForSunset();
-		var rainyWindow			= isDay ? 'day' : 'night';
-		var overCastLayer		= isDay ? "overcastDay" : "overcastNight";
-		var svgStyle = ':root{';
-			//svgStyle += '--hPa:' + kPaOut.trim() +'deg;';
-			svgStyle += '--hPa:' + kPaOut + 'deg;';
-			svgStyle += '--windeg:' + data.wind.deg + 'deg;';
-			svgStyle += '--sunPosition:' + sunPosition.toFixed(2) + '%;';
-			svgStyle += '--window:url("../img/window-' + rainyWindow + '.jpg");';
-			svgStyle += '--moontime:' + moonHours + 's;';
-			svgStyle += '--tempClr:' + tempClr + ';';
-			svgStyle += '--bftclr:var(--bf' + bfSvgId + ');';
-			svgStyle += '--bftSpeed:' + ws_bft + 's;';
-			svgStyle += '--windspeed-s:' + ws_s + 's;';
-			svgStyle += '--windspeed-m:' + ws_m + 's;';
-			svgStyle += '--windspeed-f:' + ws_f + 's;';
-			//svgStyle += '--moonBright:'+ 'calc(100% - ' + data.clouds.all + '%);'
-			svgStyle += '--moonBright:'+ moonBrightnes + '%;'
-			svgStyle += '}';
-		sStyles.innerHTML = svgStyle;
+		var overCastLayer		= isDark ? "overcastNight" : "overcastDay";
 
 		detailsHeader.innerHTML = detailsTxt;
 
@@ -996,6 +957,8 @@
 
 		wd.innerHTML = weatherstring;
 
+		wd_beaufort(data);
+		wd_tempScale(data,tempClr);
 		wd_CSSstyles(data);
 		wd_precipion(data);
 		wd_hilowtemp(data);
@@ -1615,11 +1578,11 @@
 
 	function wd_tempScale(data) {
 		var tempNow, wd_temp, fromCelsius, fromFarenheit, fromKelvin;
-		var tempNow			= Number(data.main.temp.toFixed(1));
-		//var tempNow			= 55;
-		var fromCelsius		= tempNow;
-		var fromFarenheit	= (tempNow - 32) * 5/9;
-		var fromKelvin		= tempNow - 273.15;
+			tempNow			= Number(data.main.temp.toFixed(1));
+			//tempNow			= 55;
+			fromCelsius		= tempNow;
+			fromFarenheit	= (tempNow - 32) * 5/9;
+			fromKelvin		= tempNow - 273.15;
 		switch ( unitsFormat ) {
 			case "metric":
 				wd_temp = fromCelsius;
