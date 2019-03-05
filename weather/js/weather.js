@@ -1222,92 +1222,140 @@
 			default:
 				wd_ws = wd_windspeed;
 		}
-		if ( wd_ws >=     0 && wd_ws <=  0.29 ) {
+		var windSpeeds = new Object();
+		windSpeeds = {
+			ws00: ( wd_ws >=     0 && wd_ws <=  0.29 ),
+			ws01: ( wd_ws >=  0.30 && wd_ws <=  1.59 ),
+			ws02: ( wd_ws >=  1.60 && wd_ws <=  3.33 ),
+			ws03: ( wd_ws >=  3.40 && wd_ws <=  5.49 ),
+			ws04: ( wd_ws >=  5.50 && wd_ws <=  7.99 ),
+			ws05: ( wd_ws >=  8.00 && wd_ws <= 10.79 ),
+			ws06: ( wd_ws >= 10.80 && wd_ws <= 13.89 ),
+			ws07: ( wd_ws >= 13.90 && wd_ws <= 17.19 ),
+			ws08: ( wd_ws >= 17.20 && wd_ws <= 20.79 ),
+			ws09: ( wd_ws >= 20.80 && wd_ws <= 24.49 ),
+			ws10: ( wd_ws >= 24.50 && wd_ws <= 28.49 ),
+			ws11: ( wd_ws >= 28.50 && wd_ws <= 32.69 ),
+			ws12: ( wd_ws >= 32.70 && wd_ws <= 36.99 ),
+			ws13: ( wd_ws >= 37.00 && wd_ws <= 41.49 ),
+			ws14: ( wd_ws >= 41.50 && wd_ws <= 46.19 ),
+			ws15: ( wd_ws >= 46.20 && wd_ws <= 50.99 ),
+			ws16: ( wd_ws >= 51.00 && wd_ws <= 56.09 ),
+			ws17: ( wd_ws >= 56.10 && wd_ws <= 61.20 )
+		};
+		var wsRange00 = windSpeeds['ws00'], wsRange01 = windSpeeds['ws01'], wsRange02 = windSpeeds['ws03'],
+			wsRange03 = windSpeeds['ws03'], wsRange04 = windSpeeds['ws04'], wsRange05 = windSpeeds['ws05'],
+			wsRange06 = windSpeeds['ws06'], wsRange07 = windSpeeds['ws07'], wsRange08 = windSpeeds['ws08'],
+			wsRange09 = windSpeeds['ws09'], wsRange10 = windSpeeds['ws10'], wsRange11 = windSpeeds['ws11'],
+			wsRange12 = windSpeeds['ws12'], wsRange13 = windSpeeds['ws13'], wsRange14 = windSpeeds['ws14'],
+			wsRange15 = windSpeeds['ws15'], wsRange16 = windSpeeds['ws16'], wsRange17 = windSpeeds['ws17'];
+		if (wsRange00) {
 			wd_bf =  0;
 			wd_bfTxt = bfs21Txt + wd_LB + bfs00Txt;
 		}
-		if ( wd_ws >=  0.30 && wd_ws <=  1.59 ) {
+		if (wsRange01) {
 			wd_bf =  1;
 			wd_bfTxt = bfs01Txt + wd_LB + bfs21Txt;
 		}
-		if ( wd_ws >=  1.60 && wd_ws <=  3.33 ) {
+		if (wsRange02) {
 			wd_bf =  2;
 			wd_bfTxt = bfs02Txt + wd_LB + bfs21Txt;
 		}
-		if ( wd_ws >=  3.40 && wd_ws <=  5.49 ) {
+		if (wsRange03) {
 			wd_bf =  3;
 			wd_bfTxt = bfs03Txt + wd_LB + bfs21Txt;
 		}
-		if ( wd_ws >=  5.50 && wd_ws <=  7.99 ) {
+		if (wsRange04) {
 			wd_bf =  4;
 			wd_bfTxt = bfs04Txt + wd_LB + bfs21Txt;
 		}
-		if ( wd_ws >=  8.00 && wd_ws <= 10.79 ) {
+		if (wsRange05) {
 			wd_bf =  5;
 			wd_bfTxt = bfs05Txt + wd_LB + bfs23Txt;
 		}
-		if ( wd_ws >= 10.80 && wd_ws <= 13.89 ) {
+		if (wsRange06) {
 			wd_bf =  6;
 			wd_bfTxt = bfs06Txt + wd_LB + bfs23Txt;
 		}
-		if ( wd_ws >= 13.90 && wd_ws <= 17.19 ) {
+		if (wsRange07) {
 			wd_bf =  7;
 			wd_bfTxt = bfs07Txt + wd_LB + bfs23Txt;
 		}
-		if ( wd_ws >= 17.20 && wd_ws <= 20.79 ) {
+		if (wsRange08) {
 			wd_bf =  8;
 			wd_bfTxt = bfs08Txt + wd_LB + bfs23Txt;
 		}
-		if ( wd_ws >= 20.80 && wd_ws <= 24.49 ) {
+		if (wsRange09) {
 			wd_bf =  9;
 			wd_bfTxt = bfs09Txt + wd_LB + bfs23Txt;
 		}
-		if ( wd_ws >= 24.50 && wd_ws <= 28.49 ) {
+		if (wsRange10) {
 			wd_bf = 10;
 			wd_bfTxt = bfs10Txt + wd_LB + bfs24Txt;
 		}
-		if ( wd_ws >= 28.50 && wd_ws <= 32.69 ) {
+		if (wsRange11) {
 			wd_bf = 11;
 			wd_bfTxt = bfs11Txt + wd_LB + bfs25Txt;
 		}
-		if ( wd_ws >= 32.70 && wd_ws <= 36.99 ) {
+		if (wsRange12) {
 			wd_bf = 12;
 			wd_bfTxt = bfs12Txt + wd_LB + bfs26Txt;
 		}
-		if ( wd_ws >= 37.00 && wd_ws <= 41.49 ) {
+		if (wsRange13) {
 			wd_bf = 13;
 			wd_bfTxt = bfs13Txt + wd_LB + bfs26Txt;
 		}
-		if ( wd_ws >= 41.50 && wd_ws <= 46.19 ) {
+		if (wsRange14) {
 			wd_bf = 14;
 			wd_bfTxt = bfs14Txt + wd_LB + bfs26Txt;
 		}
-		if ( wd_ws >= 46.20 && wd_ws <= 50.99 ) {
+		if (wsRange15) {
 			wd_bf = 15;
 			wd_bfTxt = bfs15Txt + wd_LB + bfs26Txt;
 		}
-		if ( wd_ws >= 51.00 && wd_ws <= 56.09 ) {
+		if (wsRange16) {
 			wd_bf = 16;
 			wd_bfTxt = bfs16Txt + wd_LB + bfs26Txt;
 		}
-		if ( wd_ws >= 56.10 && wd_ws <= 61.20 ) {
+		if (wsRange17) {
 			wd_bf = 17;
 			wd_bfTxt = bfs17Txt + wd_LB + bfs26Txt;
 		}
 
-		if ( wd_bf >=    0 && wd_bf <=    2 ) bfSvgId = 0, ws_s = 75, ws_m = 55, ws_f = 35, ws_bft = 10;
-		if ( wd_bf >=    3 && wd_bf <=    4 ) bfSvgId = 1, ws_s = 65, ws_m = 45, ws_f = 35, ws_bft =  5;
-		if ( wd_bf >=    5 && wd_bf <=    6 ) bfSvgId = 2, ws_s = 60, ws_m = 40, ws_f = 30, ws_bft =  4;
-		if ( wd_bf >=    7 && wd_bf <=    8 ) bfSvgId = 3, ws_s = 55, ws_m = 35, ws_f = 25, ws_bft =  3;
-		if ( wd_bf >=    9 && wd_bf <=   10 ) bfSvgId = 4, ws_s = 45, ws_m = 25, ws_f = 15, ws_bft =  2;
-		if ( wd_bf >=   11 && wd_bf <=   17 ) bfSvgId = 5, ws_s = 35, ws_m = 15, ws_f =  5, ws_bft =  1;
+		var beauforts = new Object();
+		beauforts = {
+			bft00: ( wd_bf >=    0 && wd_bf <=    2 ),
+			bft01: ( wd_bf >=    3 && wd_bf <=    4 ),
+			bft02: ( wd_bf >=    5 && wd_bf <=    6 ),
+			bft03: ( wd_bf >=    7 && wd_bf <=    8 ),
+			bft04: ( wd_bf >=    9 && wd_bf <=   10 ),
+			bft05: ( wd_bf >=   11 && wd_bf <=   17 )
+		};
+		var bftRange00 = beauforts['bft00'], bftRange01 = beauforts['bft01'], bftRange02 = beauforts['bft02'],
+			bftRange03 = beauforts['bft03'], bftRange04 = beauforts['bft04'], bftRange05 = beauforts['bft05'];
+		if (bftRange00) bfSvgId = 0, ws_s = 75, ws_m = 55, ws_f = 35, ws_bft = 10;
+		if (bftRange01) bfSvgId = 1, ws_s = 65, ws_m = 45, ws_f = 35, ws_bft =  5;
+		if (bftRange02) bfSvgId = 2, ws_s = 60, ws_m = 40, ws_f = 30, ws_bft =  4;
+		if (bftRange03) bfSvgId = 3, ws_s = 55, ws_m = 35, ws_f = 25, ws_bft =  3;
+		if (bftRange04) bfSvgId = 4, ws_s = 45, ws_m = 25, ws_f = 15, ws_bft =  2;
+		if (bftRange05) bfSvgId = 5, ws_s = 35, ws_m = 15, ws_f =  5, ws_bft =  1;
 
 		//if ( wd_bf >=  0 && wd_bf <= 5 ) wd_flag = 0;
-		if ( wd_ws >= 10.80 && wd_ws <= 17.19 ) wd_stormFlag = 'gale1';
-		if ( wd_ws >= 17.20 && wd_ws <= 24.49 ) wd_stormFlag = 'gale2';
-		if ( wd_ws >= 24.50 && wd_ws <= 32.69 ) wd_stormFlag = 'storm1';
-		if ( wd_ws >= 32.70 && wd_ws <= 61.20 ) wd_stormFlag = 'storm2';
-		if ( wd_ws >= 10.80 && wd_ws <= 61.20 ) {
+		var flags = new Object();
+		flags = {
+			wfl01: ( wd_ws >= 10.80 && wd_ws <= 17.19 ),
+			wfl02: ( wd_ws >= 17.20 && wd_ws <= 24.49 ),
+			wfl03: ( wd_ws >= 24.50 && wd_ws <= 32.69 ),
+			wfl04: ( wd_ws >= 32.70 && wd_ws <= 61.20 ),
+			wfl05: ( wd_ws >= 10.80 && wd_ws <= 61.20 )
+		};
+		var wflRange01 = flags['wfl01'], wflRange02 = flags['wfl02'], wflRange03 = flags['wfl03'],
+			wflRange04 = flags['wfl04'], wflRange05 = flags['wfl05'];
+		if (wflRange01) wd_stormFlag = 'gale1';
+		if (wflRange02) wd_stormFlag = 'gale2';
+		if (wflRange03) wd_stormFlag = 'storm1';
+		if (wflRange04) wd_stormFlag = 'storm2';
+		if (wflRange05) {
 			var wd_galeTitle = galeTxt;
 			var galeSVG = svgPfx;
 				galeSVG += titlePfx;
@@ -1582,36 +1630,59 @@
 			default:
 				wd_temp = fromKelvin;
 		}
+		var tempRange = new Object();
+		tempRange = {
+			range00: ( wd_temp >=  40.1 ),
+			range01: ( wd_temp >=  30.1 && wd_temp <=  40.0 ),
+			range02: ( wd_temp >=  25.1 && wd_temp <=  30.0 ),
+			range03: ( wd_temp >=  20.1 && wd_temp <=  25.0 ),
+			range04: ( wd_temp >=  15.1 && wd_temp <=  20.0 ),
+			range05: ( wd_temp >=  10.1 && wd_temp <=  15.0 ),
+			range06: ( wd_temp >=   5.1 && wd_temp <=  10.0 ),
+			range07: ( wd_temp >=   0.0 && wd_temp <=   5.0 ),
+			range08: ( wd_temp >=  -5.0 && wd_temp <=  -0.1 ),
+			range09: ( wd_temp >= -10.0 && wd_temp <=  -5.1 ),
+			range10: ( wd_temp >= -15.0 && wd_temp <= -10.1 ),
+			range11: ( wd_temp >= -20.0 && wd_temp <= -15.1 ),
+			range12: ( wd_temp >= -30.0 && wd_temp <= -20.1 ),
+			range13: ( wd_temp >= -40.0 && wd_temp <= -30.1 ),
+			range14: ( wd_temp <= -40.1 )
+		};
+		var tempRange00 = tempRange['range00'], tempRange01 = tempRange['range01'], tempRange02 = tempRange['range02'],
+			tempRange03 = tempRange['range03'], tempRange04 = tempRange['range04'], tempRange05 = tempRange['range05'],
+			tempRange06 = tempRange['range06'], tempRange07 = tempRange['range07'], tempRange08 = tempRange['range08'],
+			tempRange09 = tempRange['range09'], tempRange10 = tempRange['range10'], tempRange11 = tempRange['range11'],
+			tempRange12 = tempRange['range12'], tempRange13 = tempRange['range13'], tempRange14 = tempRange['range14'];
 		/*  40.1 -  50.0 */
-		if ( wd_temp >=  40.1 ) tempClr = "rgb(43, 0, 1)";
+		if (tempRange00) tempClr = "rgb(43, 0, 1)";
 		/*  30.1 -  40.0 */
-		if ( wd_temp >=  30.1 && wd_temp <=  40.0 ) tempClr = "rgb(107,  21,  39)";
+		if (tempRange01) tempClr = "rgb(107,  21,  39)";
 		/*  25.1 -  30.0 */
-		if ( wd_temp >=  25.1 && wd_temp <=  30.0 ) tempClr = "rgb(195,  65, 114)";
+		if (tempRange02) tempClr = "rgb(195,  65, 114)";
 		/*  20.1 -  25.0 */
-		if ( wd_temp >=  20.1 && wd_temp <=  25.0 ) tempClr = "rgb(231, 121,  97)";
+		if (tempRange03) tempClr = "rgb(231, 121,  97)";
 		/*  15.1 -  20.0 */
-		if ( wd_temp >=  15.1 && wd_temp <=  20.0 ) tempClr = "rgb(236, 171,  77)";
+		if (tempRange04) tempClr = "rgb(236, 171,  77)";
 		/*  10.1 -  15.0 */
-		if ( wd_temp >=  10.1 && wd_temp <=  15.0 ) tempClr = "rgb(237, 218,  69)";
+		if (tempRange05) tempClr = "rgb(237, 218,  69)";
 		/*   5.1 -  10.0 */
-		if ( wd_temp >=   5.1 && wd_temp <=  10.0 ) tempClr = "rgb(195, 230,  77)";
+		if (tempRange06) tempClr = "rgb(195, 230,  77)";
 		/*   5.0 -   0.0 */
-		if ( wd_temp >=   0.0 && wd_temp <=   5.0 ) tempClr = "rgb( 89, 188, 160)";
+		if (tempRange07) tempClr = "rgb( 89, 188, 160)";
 		/*  -0.1 -  -5.0 */
-		if ( wd_temp >=  -5.0 && wd_temp <=  -0.1 ) tempClr = "rgb( 77, 132, 203)";
+		if (tempRange08) tempClr = "rgb( 77, 132, 203)";
 		/*  -5.1 - -10.0 */
-		if ( wd_temp >= -10.0 && wd_temp <=  -5.1 ) tempClr = "rgb( 99,  92, 183)";
+		if (tempRange09) tempClr = "rgb( 99,  92, 183)";
 		/* -10.1 - -15.0 */
-		if ( wd_temp >= -15.0 && wd_temp <= -10.1 ) tempClr = "rgb( 54,  42, 118)";
+		if (tempRange10) tempClr = "rgb( 54,  42, 118)";
 		/* -15.1 - -20.0 */
-		if ( wd_temp >= -20.0 && wd_temp <= -15.1 ) tempClr = "rgb(154,  29, 154)";
+		if (tempRange11) tempClr = "rgb(154,  29, 154)";
 		/* -20.1 - -30.0 */
-		if ( wd_temp >= -30.0 && wd_temp <= -20.1 ) tempClr = "rgb(255, 177, 255)";
+		if (tempRange12) tempClr = "rgb(255, 177, 255)";
 		/* -30.1 - -40.0 */
-		if ( wd_temp >= -40.0 && wd_temp <= -30.1 ) tempClr = "rgb(239, 239, 239)";
+		if (tempRange13) tempClr = "rgb(239, 239, 239)";
 		/* -40.1 - -60.0 */
-		if ( wd_temp <= -40.1 ) tempClr = "rgb(0, 8, 101)";
+		if (tempRange14) tempClr = "rgb(0, 8, 101)";
 		if (DEVCONSOLE) {
 			_csl.groupCollapsed(_cslHeadOpen+'wd_tempScale'+_cslHeadDiv, _cslHeadFont );
 			_csl.debug(
