@@ -1759,9 +1759,13 @@ https://codepen.io/lbebber/pen/waGydW
 	-webkit-filter: blur(10px);
 	        filter: blur(10px);
 }
-.window,
-.drops i {
-	background-image: var(--window)
+.daymode .window,
+.daymode .drops i {
+	background-image: url("../img/window-day.jpg")
+}
+.nightmode .window,
+.nightmode .drops i {
+	background-image: url("../img/window-night.jpg")
 }
 .raindrops,
 .borders,
@@ -3062,6 +3066,8 @@ details summary:empty {
 	height: 5em;
 	width: 5em;
 }
+.daymode #f_s1{--stateClr:var(--db)}
+.nightmode #f_s1{--stateClr:#000}
 text#ribbon_text a {
 	font-family: inherit;
 	font-weight: 700;

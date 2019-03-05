@@ -507,14 +507,14 @@
 		}*/
 
 		var toGitHub = function() {
-			var dayState, stateClr, BUILD_ELEMENTS, bundle, buildlink, wd_windowOpen, wd_rel, forkmewrapp, wd_forkTitle, wd_forkStyle, wd_buildurl, wd_buildIcon, wd_forkmeIcon;
+			var stateClr, BUILD_ELEMENTS, bundle, buildlink, wd_windowOpen, wd_rel, forkmewrapp, wd_forkTitle, wd_forkStyle, wd_buildurl, wd_buildIcon, wd_forkmeIcon;
 
 			BUILD_ELEMENTS	= '#buildlink';
 			buildlink		= doc.getElementById("buildlink");
 			forkmewrapp		= doc.getElementById("ribbonwrapp");
 			bundle			= doc.querySelectorAll( BUILD_ELEMENTS );
 
-			dayState		= isDark ? 'Night' : 'Day';
+			//dayState		= isDark ? 'Night' : 'Day';
 			stateClr		= isDark ? '#000' : 'var(--db)';
 			/*if ( isDark = true ) {
 				stateClr = '#000'
@@ -529,7 +529,7 @@
 			wd_forkStyle	= "<style>#f_s1{--stateClr:"+stateClr+"}</style>";
 
 			wd_buildIcon	= useLogosmall;
-			wd_forkmeIcon	= svgPfx + wd_forkTitle + wd_forkStyle + usePfx + "ribbon" + useSfx;
+			wd_forkmeIcon	= svgPfx + wd_forkTitle +  usePfx + "ribbon" + useSfx;
 
 			bundle.forEach(function(elements) {
 				return elements.setAttribute('href', wd_buildurl),
@@ -547,7 +547,7 @@
 				_csl.groupCollapsed(_cslHeadOpen+'wd_core => toGitHub'+_cslHeadDiv, _cslHeadFont );
 				_csl.debug(
 					'RunOnce: '+_cslFlag +_cslLB+
-					'dayState: ' + dayState +_cslLB+
+					//'dayState: ' + dayState +_cslLB+
 					'stateClr: ' + stateClr
 					+ _cslFooter
 				);
@@ -1789,7 +1789,18 @@
 		}
 		var weather   = weatherdata["weather"][0];
 		var weatherId = weather.id;
+		var docBody = doc.querySelector("body");
 		//isMisty = false;
+		sunsettime = Number(weatherdata["sys"].sunset);
+		sunrisetime = Number(weatherdata["sys"].sunrise);
+		checkForSunset();
+
+		// NOTE Loop over each selector and add `modeClass` to each
+		var modeTarget = [docBody, container, rainwindow];
+		var modeClass = isDark ? "nightmode" : "daymode";
+		modeTarget.forEach(function(element) {
+			return element.className = modeClass;
+		});
 
 		isSnowy   ? snowlayer.className  = "s" + weatherId :  snowlayer.classList.remove();
 		isDrizzle ? rainlayer.className  = "d" + weatherId :  rainlayer.classList.remove();
@@ -1898,7 +1909,7 @@
 		//isDark = true; //for testing
 		//only change styles if isDark has changed
 		if (isDark !== wasDark) {
-			container.className = isDark ? "nightmode" : "daymode";
+			//container.className = isDark ? "nightmode" : "daymode";
 			//css in JavaScript seems to work more reliably when the iPhone 4s is in standalone mode
 			if (isDark) {
 				container.style.background = "#121212 linear-gradient(to bottom left, #121212 10%,#333955 100%)";
