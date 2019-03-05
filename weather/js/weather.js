@@ -3,7 +3,7 @@
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.4.6
+ *  @version 1.4.7
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -17,7 +17,7 @@
 		var useSVG		= true;
 		var appID		= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
 
-		var appVersion	= "1.4.6";
+		var appVersion	= "1.4.7";
 		var appName		= "Home Weahter Station";
 		var _cslFlag	= false;
 		var _cslHash	= 'CSL';
