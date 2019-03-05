@@ -1783,9 +1783,9 @@
 		}
 	};
 
-	function wd_layerClasses() {
+	function wd_docClasses() {
 		if (DEVCONSOLE) {
-			_csl.trace('Tracing wd_layerClasses');
+			_csl.trace('Tracing wd_docClasses');
 		}
 		var weather   = weatherdata["weather"][0];
 		var weatherId = weather.id;
@@ -1830,49 +1830,59 @@
 			sunsettime = Number(weatherdata["sys"].sunset);
 			sunrisetime = Number(weatherdata["sys"].sunrise);
 			checkForSunset();
+			var dBlock			= "block";
+			var dNone			= "none";
+			var drizzleRange	= ( weatherId >= 300 && weatherId <= 321 );
+			var rainRange		= ( weatherId >= 500 && weatherId <= 531 );
+			var snowRange		= ( weatherId >= 600 && weatherId <= 622 );
+			var clearRange		= ( weatherId >= 800 && weatherId <= 803  );
+			var cloudyRange		= ( weatherId >= 801 && weatherId <= 804 );
+			var sunnyRange		= ( weatherId == 800 || (isClear && !isDark) );
+			var clearNightRange	= ( weatherId == (800 || 801) && isDark );
+			var mistyRange		= ( weatherId == 701 || weatherId == 711 || weatherId == 721 || weatherId == 741 );
 
-			isDrizzle = ( weatherId >= 300 && weatherId <= 321 );
-			isRainy   = ( weatherId >= 500 && weatherId <= 531 );
+			isDrizzle = drizzleRange;
+			isRainy   = rainRange;
 				//isDrizzle = true; //for testing
 				//isRainy = false; //for testing
-				rainlayer.style.display = isRainy || isDrizzle ? "block" : "none";
+				rainlayer.style.display = isRainy || isDrizzle ? dBlock : dNone;
 				rainlayer.style.opacity = isDark || isDusk ? 0.75 : 1;
-				rainwindow.style.display = isRainy || isDrizzle ? "block" : "none";
+				rainwindow.style.display = isRainy || isDrizzle ? dBlock : dNone;
 				rainwindow.style.opacity = isDark || isDusk ? 0.5 : 0.75;
 
-			isSnowy = ( weatherId >= 600 && weatherId <= 622 );
+			isSnowy = snowRange;
 				//isSnowy = true; //for testing
-				snowlayer.style.display = isSnowy ? "block" : "none";
+				snowlayer.style.display = isSnowy ? dBlock : dNone;
 				snowlayer.style.opacity = isDark ? 0.1 : 0.75;
 
-			isClear = ( weatherId >= 800 && weatherId <= 803  );
+			isClear = clearRange;
 
-			isCloudy = ( weatherId >= 801 && weatherId <= 804 );
+			isCloudy = cloudyRange;
 				//isCloudy = true; //for testing
-				cloudlayer.style.display = isCloudy ? "block" : "none";
+				cloudlayer.style.display = isCloudy ? dBlock : dNone;
 				cloudlayer.style.opacity = isDark ? 0.75 : 1;
 
-			isSunny = ( weatherId == 800 || (isClear && !isDark) );
+			isSunny = sunnyRange;
 				//isSunny = false; //for testing
-				sunlayer.style.display = isSunny ? "block" : "none";
+				sunlayer.style.display = isSunny ? dBlock : dNone;
 
-			isClearNight = ( weatherId == (800 || 801) && isDark );
+			isClearNight = clearNightRange;
 				//isClearNight = true; //for testing
 
-			isMisty = ( weatherId == 701 || weatherId == 711 || weatherId == 721 || weatherId == 741 );
+			isMisty = mistyRange;
 				//isMisty = true; //for testing
-				mistlayer.style.display = isMisty ? "block" : "none";
+				mistlayer.style.display = isMisty ? dBlock : dNone;
 				mistlayer.style.opacity = isDark ? 0.75 : 0.85;
 
 			if (isDark && isMisty) {
 					isClearNight = true;
 				}
-				clearnightlayer.style.display = isClearNight || isDusk || isDawn ? "block" : "none";
+				clearnightlayer.style.display = isClearNight || isDusk || isDawn ? dBlock : dNone;
 				clearnightlayer.style.opacity = isDusk || isDawn ? 0.2 : 1;
-				shootinglayer.style.display = isClearNight ? "block" : "none";
-				moonlayer.style.display = isDark ? "block" : "none";
+				shootinglayer.style.display = isClearNight ? dBlock : dNone;
+				moonlayer.style.display = isDark ? dBlock : dNone;
 
-			wd_layerClasses();
+			wd_docClasses();
 			if (DEVCONSOLE) {
 				_csl.groupCollapsed(_cslHeadOpen+'setLayers'+_cslHeadDiv, _cslHeadFont );
 				_csl.debug(
