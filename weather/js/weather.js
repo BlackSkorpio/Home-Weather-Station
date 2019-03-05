@@ -1116,57 +1116,56 @@
 	}
 
 	function wd_precipion(data) {
-		if (DEVCONSOLE) _csl.trace('Tracing wd_precipion');
 		var rain = data.rain;
 			snow = data.snow;
-			var rain1, snow1, rain3, snow3, rainFall, snowFall, precipionSvg, rainData, snowData, precipionTime;
+		if ( rain || snow !=null ) {
+			if (DEVCONSOLE) _csl.trace('Tracing wd_precipion');
+			var rain1, snow1, rain3, snow3, precipitation, precipionSvg, precipionId, rainData, snowData, precipionTime, precipitationTxt;
 
-		// NOTE check if we have some rain data
-		if ( rain !=null ) {
-			rain1 = rain['1h'], rain3 = rain['3h'];
-			if (rain1 !=null) rainFall = rain1, precipionTime = precipion1Txt;
-			if (rain3 !=null) rainFall = rain3, precipionTime = precipion3Txt;
+			// NOTE check if we have some rain data
+			if ( rain !=null ) {
+				rain1 = rain['1h'], rain3 = rain['3h'];
+				precipionId = 'precipion_rain';
+				if (rain1 !=null) precipitation = rain1, precipionTime = precipion1Txt;
+				if (rain3 !=null) precipitation = rain3, precipionTime = precipion3Txt;
+			}
+			// NOTE check if we have some snow data
+			if ( snow !=null ) {
+				snow1 = snow['1h'], snow3 = snow['3h'];
+				precipionId = 'precipion_snow';
+				if (snow1 !=null) precipitation = snow1, precipionTime = precipion1Txt;
+				if (snow3 !=null) precipitation = snow3, precipionTime = precipion3Txt;
+			}
 
-			precipionSvg = svgPfx + titlePfx + precipionTxt + titleSfx + usePfx + 'precipion_';
+			precipionSvg = svgPfx;
+				precipionSvg += titlePfx;
+				precipionSvg += precipionTxt;
+				precipionSvg += titleSfx;
+				precipionSvg += usePfx;
+				precipionSvg += precipionId;
+				precipionSvg += useSfx;
 
-			rainData = precipionSvg;
-				rainData += 'rain';
-				rainData += useSfx;
-				rainData += spanTxt;
-				rainData += rainFall.toFixed(1)+"mm ";
-				rainData += precipionTime;
-				rainData += spanSfx;
-		}
-		// NOTE check if we have some snow data
-		if ( snow !=null ) {
-			snow1 = snow['1h'], snow3 = snow['3h'];
-			if (snow1 !=null) snowFall = snow1, precipionTime = precipion1Txt;
-			if (snow3 !=null) snowFall = snow3, precipionTime = precipion3Txt;
+			precipitationTxt = spanTxt;
+				precipitationTxt += precipitation.toFixed(1);
+				precipitationTxt += "mm ";
+				precipitationTxt += precipionTime;
+				precipitationTxt += spanSfx;
 
-			snowData = precipionSvg;
-				snowData += 'snow';
-				snowData += useSfx;
-				snowData += spanTxt;
-				snowData += snowFall.toFixed(1)+"mm ";
-				snowData += precipionTime;
-				snowData += spanSfx;
-		}
+			precipion_wrap.innerHTML = precipionSvg + precipitationTxt;
 
-		if ( rain !=null ) precipion_wrap.innerHTML = rainData;
-		if ( snow !=null ) precipion_wrap.innerHTML = snowData;
-
-		if (DEVCONSOLE) {
-			_csl.groupCollapsed(_cslHeadOpen+'wd_precipion'+_cslHeadDiv, _cslHeadFont );
-			_csl.debug(
-				'Rain: '+ rain +_cslLB+
-				'  Rain1: '+ rain1 +_cslLB+
-				'  Rain3: '+ rain3 +_cslLB+
-				'Snow: '+ rain +_cslLB+
-				'  Snow1: '+ snow1 +_cslLB+
-				'  Snow3: '+ snow3 +_cslLB
-				+ _cslFooter
-			);
-			_csl.groupEnd();
+			if (DEVCONSOLE) {
+				_csl.groupCollapsed(_cslHeadOpen+'wd_precipion'+_cslHeadDiv, _cslHeadFont );
+				_csl.debug(
+					'Rain: '+ rain +_cslLB+
+					'  Rain1: '+ rain1 +_cslLB+
+					'  Rain3: '+ rain3 +_cslLB+
+					'Snow: '+ rain +_cslLB+
+					'  Snow1: '+ snow1 +_cslLB+
+					'  Snow3: '+ snow3 +_cslLB
+					+ _cslFooter
+				);
+				_csl.groupEnd();
+			}
 		}
 	}
 
