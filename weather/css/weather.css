@@ -206,9 +206,9 @@ main .divider {
 	left: 50%;
 	top: 0;
 	width: auto;
-	height: auto;
+	height: 100%;
 	max-height: 100vh;
-	max-width: 100%;
+	max-width: 95%;
 	margin: 0 auto;
 	background: transparent;
 	color: inherit;
@@ -320,12 +320,19 @@ details#details.visible {
 	display: block;
 }
 details#details.visible[open] {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 97%;
 	background: var(--wh) -webkit-gradient(linear, left top, left bottom, from(var(--wh)), to(var(--lg)));
 	background: var(--wh) linear-gradient(to bottom, var(--wh), var(--lg));
 	color: var(--dg);
 	border-radius: 0.3em;
+	margin: auto;
 	-webkit-filter: drop-shadow(0px 0.1875em 0.125em var(--dg));
-	        filter: drop-shadow(0px 0.1875em 0.125em var(--dg));;
+	        filter: drop-shadow(0px 0.1875em 0.125em var(--dg));
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
 }
 button,
 summary span,
@@ -3101,7 +3108,7 @@ text#ribbon_text a {
 	z-index: 100;
 	/* Probably need media queries here */
 	width: 600px;
-	max-width: 100%;
+	max-width: 90%;
 	height: 400px;
 	max-height: 100%;
 	left: 50%;
