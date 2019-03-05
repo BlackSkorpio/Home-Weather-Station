@@ -28,7 +28,7 @@
 			<linearGradient id="cloudsg" x2="0" y2="100%"><stop stop-color="var(--wh)" offset="0.7"/><stop stop-color="var(--lg)" offset="0.99"/></linearGradient>
 			<linearGradient id="logo-b" x2="56%" y2="51%"><stop offset="0" stop-color="#ffd121"/><stop offset="0.5" stop-color="#ffb505"/><stop offset="1" stop-color="#fa9618"/></linearGradient>
 			<linearGradient id="logo-a" x2="0" y2="100%"><stop offset="0" stop-color="#3fb1ca"/><stop offset="0.5" stop-color="#0099b9"/><stop offset="1" stop-color="#007c84"/></linearGradient>
-			<linearGradient id="fork" x2="0" y2="100%" gradientTransform="rotate(-135)"><stop offset="0%" stop-color="var(--stateClr)"/><stop offset="100%" stop-color="var(--wh)"/></linearGradient>
+			<linearGradient id="fork" x2="0" y2="100%" gradientTransform="rotate(-135)"><stop id="f_s1" offset="0%" stop-color="var(--stateClr)"/><stop offset="100%" stop-color="var(--wh)"/></linearGradient>
 		</g>
 		<g data-name="radialGradient">
 			<radialGradient id="suncoreG" gradientUnits="objectBoundingBox" r="0.95" spreadMethod="pad"><stop stop-color="var(--s1)" offset="0"/><stop stop-color="var(--s2)" offset="0.1"/><stop stop-color="var(--s3)" offset="0.3"/><stop stop-color="var(--s4)" offset="1"/></radialGradient>
