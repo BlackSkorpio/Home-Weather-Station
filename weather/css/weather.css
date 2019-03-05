@@ -306,6 +306,7 @@ li#beaufort {
 }
 li#precipion {
 	grid-area: precipion;
+	font-size: 0.8em;
 }
 details#details {
 	display: none;
