@@ -1063,6 +1063,7 @@
 
 		wd.innerHTML = weatherstring;
 
+		wd_CSSstyles(data);
 		wd_precipion(data);
 		wd_hilowtemp(data);
 		setLayers();
@@ -1619,37 +1620,60 @@
 		}
 	}
 
-	function wd_sunPosition(data) {
-		// NOTE Calculate sun position
+	function wd_CSSstyles(data) {
 		var sunUpRaw, sunDownRaw, sunNowRaw, sunUpHour, sunUpMin, sunUpMinute,
 			sunNowHour, sunNowMin, sunNowMinute, sunDownHour, sunDownMin,
 			sunDownMinute, sunUp, sunNow, sunDown, sunLeft, sunHours,
-			sunLeftCalc, sunPos, sunPosition, moonHours;
+			sunLeftCalc, sunPos, sunPosition, moonHours, moonBrightnes, isDay,
+			hPaData, kPaOut, svgStyle;
 
-		var sunUpRaw	= new Date(data.sys.sunrise * 1000);
-		var sunNowRaw	= new Date();
-		var sunDownRaw	= new Date(data.sys.sunset * 1000);
-		var sunUpHour	= sunUpRaw.getHours();
-		var sunNowHour	= sunNowRaw.getHours();
-		var sunDownHour	= sunDownRaw.getHours();
-		var sunUpMin	= sunUpRaw.getMinutes();
-		var sunUpMinute = sunUpMin < 10 ? "0" + sunUpMin   : sunUpMin;
-		var sunNowMin	= sunNowRaw.getMinutes();
-		var sunNowMinute = sunNowMin < 10 ? "0" + sunNowMin  : sunNowMin;
-		var sunDownMin	= sunDownRaw.getMinutes();
-		var sunDownMinute = sunDownMin < 10 ? "0" + sunDownMin : sunDownMin;
+		// NOTE Calculate sun position
+		// https://stackoverflow.com/a/18358056/6820262
+		sunUpRaw	= new Date(data.sys.sunrise * 1000);
+			sunNowRaw	= new Date();
+			sunDownRaw	= new Date(data.sys.sunset * 1000);
+			sunUpHour	= sunUpRaw.getHours();
+			sunNowHour	= sunNowRaw.getHours();
+			sunDownHour	= sunDownRaw.getHours();
+			sunUpMin	= sunUpRaw.getMinutes();
+			sunUpMinute = sunUpMin < 10 ? "0" + sunUpMin   : sunUpMin;
+			sunNowMin	= sunNowRaw.getMinutes();
+			sunNowMinute = sunNowMin < 10 ? "0" + sunNowMin  : sunNowMin;
+			sunDownMin	= sunDownRaw.getMinutes();
+			sunDownMinute = sunDownMin < 10 ? "0" + sunDownMin : sunDownMin;
 
-		var sunUp		= sunUpHour + '.' + sunUpMinute;	// A
-		var sunNow		= sunNowHour + '.' + sunNowMinute;	// B
-		//var sunNow		= 08.05; // For testing
-		var sunDown		= sunDownHour + '.' + sunDownMinute;// C
-		var sunLeft		= sunDown - sunNow;	// X = C - B
-		var sunHours	= sunDown - sunUp;	// Y = C - A
+			sunUp		= sunUpHour + '.' + sunUpMinute;	// A
+			sunNow		= sunNowHour + '.' + sunNowMinute;	// B
+			//sunNow		= 08.05; // For testing
+		sunDown		= sunDownHour + '.' + sunDownMinute;// C
+			sunLeft		= sunDown - sunNow;	// X = C - B
+			sunHours	= sunDown - sunUp;	// Y = C - A
 		// Z = X / Y * 100
-		var sunPos	= sunLeft.toFixed(2) / sunHours.toFixed(2) * 100;
-		//var sunPosition = sunPos > 100.00 ? 99.99 : sunPos;
-		//var sunPlacement = roundToTwo(sunPosition);
-		var moonHours = (24 - sunHours) * 60;
+		sunPos	= sunLeft.toFixed(2) / sunHours.toFixed(2) * 100;
+			sunPosition = sunPos > 100.00 ? 99.99 : sunPos;
+			moonHours = (24 - sunHours) * 60;
+			moonBrightnes = 100 - Number(data.clouds.all);
+			isDay = sunLeft >=0;
+
+			// NOTE Convert hPA to kPa for display in gauge
+			hPaData = data.main.pressure;
+			kPaOut = hPaData/10;
+
+		svgStyle = ':root{';
+			svgStyle += '--hPa:' + kPaOut + 'deg;';
+			svgStyle += '--windeg:' + data.wind.deg + 'deg;';
+			svgStyle += '--sunPosition:' + sunPosition.toFixed(2) + '%;';
+			svgStyle += '--moontime:' + moonHours + 's;';
+			svgStyle += '--tempClr:' + tempClr + ';';
+			svgStyle += '--bftclr:var(--bf' + bfSvgId + ');';
+			svgStyle += '--bftSpeed:' + ws_bft + 's;';
+			svgStyle += '--windspeed-s:' + ws_s + 's;';
+			svgStyle += '--windspeed-m:' + ws_m + 's;';
+			svgStyle += '--windspeed-f:' + ws_f + 's;';
+			svgStyle += '--moonBright:'+ moonBrightnes + '%;'
+			svgStyle += '}';
+		sStyles.innerHTML = svgStyle;
+
 		if (DEVCONSOLE) {
 			_csl.groupCollapsed(_cslHeadOpen+'wd_sunPosition'+_cslHeadDiv, _cslHeadFont );
 			_csl.debug(
@@ -1660,16 +1684,16 @@
 				'sunUp: '+sunUp +_cslLB+
 				'sunNow: '+sunNow +_cslLB+
 				'sunDown: '+sunDown +_cslLB+
-				'sunLeft: '+sunDown+' - '+sunNow+' = '+roundToTwo(sunLeft) +_cslLB+
-				'sunHours: '+sunDown+' - '+sunUp +' = '+roundToTwo(sunHours) +_cslLB+
-				'sunPosition: '+roundToTwo(sunLeft)+' / '+roundToTwo(sunHours)+' * 100 = '+roundToTwo(sunPosition) +_cslLB+
+				'sunLeft: '+sunDown+' - '+sunNow+' = '+sunLeft.toFixed(2) +_cslLB+
+				'sunHours: '+sunDown+' - '+sunUp +' = '+sunHours.toFixed(2) +_cslLB+
+				'sunPosition: '+sunLeft.toFixed(2)+' / '+sunHours.toFixed(2)+' * 100 = '+sunPosition.toFixed(2) +_cslLB+
 				'moonHours: ' + '(24 - ' + sunHours +')  * 60 = ' + moonHours
 				+ _cslFooter
 			);
 			_csl.groupEnd();
 			_csl.trace('Tracing wd_sunPosition');
 		}
-	}
+	};
 
 	function wd_updatedTime(data) {
 		// function(globale) from: https://stackoverflow.com/a/50666409/6820262
