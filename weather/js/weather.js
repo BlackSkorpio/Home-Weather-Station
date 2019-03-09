@@ -1013,6 +1013,18 @@
 			var SunCalLon		= lon.toFixed(2);
 			var getMoonTimes, moonRisesDate, moonSetsDate, moonRisesTime, moonSetsTime, getSunTimes, gMorningDate, gEveningDate, gMorningTime, gEveningTime, moonRises, moonSets, goldenMorningHour, goldenEveningHour, goldenMorningTime, goldenEveningTime, goldenHourSvgPfx, goldenHourSvgSfx, sunCalcline;
 
+		getMoonTimes	= SunCalc.getMoonTimes( SunCalcNow, SunCalLat, SunCalLon );
+		getSunTimes		= SunCalc.getTimes( SunCalcNow, SunCalLat, SunCalLon );
+
+		// NOTE Create time and datestrings
+		moonRisesDate	= new Date(getMoonTimes['rise']).toISOString();
+			moonSetsDate	= new Date(getMoonTimes['set']).toISOString();
+			moonRisesTime	= getMoonTimes['rise'].toLocaleTimeString(timeForm, timeOptions);
+			moonSetsTime	= getMoonTimes['set'].toLocaleTimeString(timeForm, timeOptions);
+		gMorningDate	= new Date(getSunTimes['goldenHourEnd']).toISOString();
+			gEveningDate	= new Date(getSunTimes['goldenHour']).toISOString();
+			gMorningTime	= getSunTimes['goldenHourEnd'].toLocaleTimeString(timeForm, timeOptions);
+			gEveningTime	= getSunTimes['goldenHour'].toLocaleTimeString(timeForm, timeOptions);
 
 		// NOTE Moon up & Down
 		moonRises = useMoonSet;
