@@ -391,9 +391,10 @@ summary {
 		"windspeed . windir"
 		"pressure . humidity"
 		"visibility . cloudiness"
-		"sunrise . sunset"
-		/*"morning . evening"
-		"moonset . moonrise"*/
+		"spacer spacer spacer"
+		"sunrise . morning"
+		"evening . sunset"
+		"moonset . moonrise"
 		"location location location";
 	list-style: none;
 	margin: 0.5em auto 0;
