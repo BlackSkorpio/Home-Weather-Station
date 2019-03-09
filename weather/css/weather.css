@@ -324,11 +324,16 @@ details#details.visible[open] {
 	top: 50%;
 	left: 50%;
 	width: 97%;
+	max-height: 95%;
 	background: var(--wh) -webkit-gradient(linear, left top, left bottom, from(var(--wh)), to(var(--lg)));
 	background: var(--wh) linear-gradient(to bottom, var(--wh), var(--lg));
 	color: var(--dg);
 	border-radius: 0.3em;
 	margin: auto;
+	overflow: hidden;
+	overflow-y: auto;
+	scrollbar-color: #4788c7 #98ccfd;
+	scrollbar-width: none;
 	-webkit-filter: drop-shadow(0px 0.1875em 0.125em var(--dg));
 	        filter: drop-shadow(0px 0.1875em 0.125em var(--dg));
 	-webkit-transform: translate(-50%, -50%);
