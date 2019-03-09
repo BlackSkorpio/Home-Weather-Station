@@ -1031,40 +1031,40 @@
 		//});
 
 		// NOTE Moon up & Down
-		moonRises = useMoonRise;
-			moonRises += timePrefix;
+		moonRises = useMoonSet;
+			moonRises += timePfx;
 			moonRises += moonRisesDate;
-			moonRises += timePrefixEnd;
+			moonRises += PfxEnd;
 			moonRises += moonRisesTime;
-			moonRises += timeSuffix;
+			moonRises += timeSfx;
 
-		moonSets = useMoonSet;
-			moonSets += timePrefix;
+		moonSets = useMoonRise;
+			moonSets += timePfx;
 			moonSets += moonSetsDate;
-			moonSets += timePrefixEnd;
+			moonSets += PfxEnd;
 			moonSets += moonSetsTime;
-			moonSets += timeSuffix;
+			moonSets += timeSfx;
 
 		// NOTE Golden hours
-		goldenMorningTime = timePrefix;
+		goldenMorningTime = timePfx;
 			goldenMorningTime += gMorningDate;
-			goldenMorningTime += timePrefixEnd;
+			goldenMorningTime += PfxEnd;
 			goldenMorningTime += gMorningTime;
-			goldenMorningTime += timeSuffix;
+			goldenMorningTime += timeSfx;
 
-		goldenEveningTime = timePrefix;
+		goldenEveningTime = timePfx;
 			goldenEveningTime += gEveningDate;
-			goldenEveningTime += timePrefixEnd;
+			goldenEveningTime += PfxEnd;
 			goldenEveningTime += gEveningTime;
-			goldenEveningTime += timeSuffix;
+			goldenEveningTime += timeSfx;
 
-		goldenHourSvgPfx = svgPrefix;
-			goldenHourSvgPfx += titlePrefix;
+		goldenHourSvgPfx = svgPfx;
+			goldenHourSvgPfx += titlePfx;
 
-		goldenHourSvgSfx = titleSuffix;
-			goldenHourSvgSfx += usePrefix;
+		goldenHourSvgSfx = titleSfx;
+			goldenHourSvgSfx += usePfx;
 			goldenHourSvgSfx += "goldenhour";
-			goldenHourSvgSfx += useSuffix;
+			goldenHourSvgSfx += useSfx;
 
 		goldenMorningHour = goldenHourSvgPfx;
 			goldenMorningHour += goldenTxt + goldMorTxt;
@@ -1076,12 +1076,14 @@
 			goldenEveningHour += goldenHourSvgSfx;
 			goldenEveningHour += goldenEveningTime;
 
-		var sunCalcline = '<li id="wd_morning">' + goldenMorningHour;
+		sunCalcline = '<li id="wd_spacer">' + sunCalcHead;
+			sunCalcline += '<li id="wd_morning">' + goldenMorningHour;
 			sunCalcline += '<li id="wd_evening">' + goldenEveningHour;
 			sunCalcline += '<li id="wd_moonrise">' + moonRises;
 			sunCalcline += '<li id="wd_moonset">' + moonSets;
 
-		return sunCalcline;
+		//return sunCalcline;
+		details.innerHTML += sunCalcline;
 
 		if (DEVCONSOLE) {
 			_csl.groupCollapsed(_cslHeadOpen+'wd_sunCalc'+_cslHeadDiv, _cslHeadFont );
