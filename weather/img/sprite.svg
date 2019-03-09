@@ -251,6 +251,7 @@
 			<use xlink:href="#misty"/>
 		</symbol>
 	</g>
+	<g data-name="icons-sunCalc">
 		<symbol id="goldenhour" viewBox="0 0 80 80" xml:space="preserve">
 			<circle fill="var(--wh)" stroke="var(--db)" stroke-width="3" opacity=".95" cx="40" cy="40" r="33.97"/>
 			<g id="moon" fill="none" stroke="#3f3a02" stroke-width="2" stroke-linejoin="round">
@@ -269,6 +270,17 @@
 				<path d="M561 343H378l66-38a21 21 0 1 0-22-37l-65 38 73-125a21 21 0 1 0-37-21l-38 65v104a66 66 0 0 1-43 100h-1a64 64 0 0 1-34-2 66 66 0 0 1-32-102v-95l-5-9a21 21 0 1 0-37 21l37 64-134-77c-10-6-23-2-29 8s-2 23 8 29l133 77H39a21 21 0 0 0 0 43h179l-64 37a21 21 0 1 0 22 37l63-36-72 123a21 21 0 1 0 37 22l73-126v96a21 21 0 0 0 43 0v-95l37 65a21 21 0 1 0 38-21l-38-65 136 78c3 2 7 3 10 3a21 21 0 0 0 11-40l-136-78h183a21 21 0 0 0 0-43z"/>
 			</g>
 		</symbol>
+		<symbol id="moonrise" viewBox="0 0 60 60" xml:space="preserve">
+			<use xlink:href="#halo"/>
+			<use class="stateRising ground" xlink:href="#ground"/>
+			<use class="stateRising" xlink:href="#arrow"/>
+		</symbol>
+		<symbol id="moonset" viewBox="0 0 60 60" xml:space="preserve">
+			<use xlink:href="#core"/>
+			<use xlink:href="#ground"/>
+			<use xlink:href="#arrow"/>
+		</symbol>
+	</g>
 	<g data-name="icons-beaufort">
 		<symbol id="bf0" viewBox="0 0 120 120" xml:space="preserve">
 			<g id="wrapp" fill="var(--bftclr)">

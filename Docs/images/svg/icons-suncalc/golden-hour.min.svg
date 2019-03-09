@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" xml:space="preserve">
+	<circle fill="#4788c7" opacity=".95" cx="40" cy="40" r="33.97"/>
+	<g id="moon" fill="none" stroke="#ffe4c4" stroke-width="2" stroke-linejoin="round">
+		<path fill="#c8a406" stroke="none" d="M59.1 53.13A15.54 15.54 0 0 1 38.51 58a15.76 15.76 0 0 0 1.9 2.15 15.51 15.51 0 0 0 19.13-24.23c-.28-.18-.56-.34-.84-.5a15.5 15.5 0 0 1 .4 17.71z"/>
+		<path d="M57.52 34.18c-.31-.2-.62-.38-.93-.56A15.5 15.5 0 0 1 36.4 56.24 15.39 15.39 0 0 0 40.28 60a15.52 15.52 0 1 0 17.24-25.82z"/>
+	</g>
+	<g id="sun" fill="none" stroke="#ffe4c4" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round">
+		<circle fill="#c8a406" stroke="none" cx="34.06" cy="32.9" r="5"/>
+		<path d="M36.33 26a6.83 6.83 0 1 1-9.46 1.89A6.82 6.82 0 0 1 36.33 26zM41.14 37.32l4.89 3.25M29.91 40.96l-1.7 5.62M44.86 21.48l-4.63 3.62M21.73 32.14l-5.87.27M28.82 21.51l-2.17-5.46"/>
+		<path stroke="#c8a406" d="M18.86 22.57l4.89 3.24M37.25 15.83l-1.7 5.63M24.56 38.22l-4.63 3.62M49.19 30.91l-5.87.27M38.4 47.27l-2.17-5.46"/>
+	</g>
+</svg>
