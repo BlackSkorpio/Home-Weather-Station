@@ -1082,6 +1082,22 @@
 			sunCalcline += '<li id="wd_moonset">' + moonSets;
 
 		return sunCalcline;
+
+		if (DEVCONSOLE) {
+			_csl.groupCollapsed(_cslHeadOpen+'wd_sunCalc'+_cslHeadDiv, _cslHeadFont );
+				_csl.group('getMoonTimes');
+					Object.keys(getMoonTimes).forEach(function(key) {
+						_csl.debug(key + ': ' + getMoonTimes[key]);
+					});
+				_csl.groupEnd();
+
+				_csl.group('getSunTimes');
+					Object.keys(getSunTimes).forEach(function(key) {
+						_csl.debug(key + ': ' + getSunTimes[key]);
+					});
+				_csl.groupEnd();
+			_csl.groupEnd();
+		}
 	}
 
 	function wd_precipion(data) {
