@@ -22,8 +22,10 @@
 		var _cslFlag	= false;
 		var _cslHash	= 'CSL';
 		var _cslState	= 0;
+		var _cslTrace	= 0;
 		var devHost		= (location.hostname == 'oxygen.local' || location.hostname == 'varoystrand.se');
 		var DEVCONSOLE	= (_cslState == 1 && devHost) || location.hash == '#'+_cslHash;
+		var TRACE		= (_cslTrace == 1);
 
 	/* Multilingual support
 		You can use lang parameter to get the output in your language. We support the following
@@ -473,7 +475,7 @@
 	}
 
 	function wd_core() {
-		if (DEVCONSOLE) {
+		if (TRACE) {
 			_csl.trace('Tracing wd_core');
 		}
 		var wd_byLine, devState, devHost, devCheck, core_svgPfx, core_titlePfx, core_titleSfx, core_usePfx, core_useSfx;
@@ -581,7 +583,7 @@
 	}
 
 	function updateTime() {
-		//(DEVCONSOLE) _csl.trace('Tracing updateTime');
+		//(TRACE) _csl.trace('Tracing updateTime');
 		var clockdata = getClockStrings();
 		dd.innerHTML = clockdata.datehtml;
 		td.innerHTML = clockdata.timehtml;
@@ -603,7 +605,7 @@
 	}
 
 	function getClockStrings() {
-		//if (DEVCONSOLE) _csl.trace('Tracing getClockStrings');
+		//if (TRACE) _csl.trace('Tracing getClockStrings');
 		now = new Date();
 		//now = new Date(now.getTime() + 1000); // for testing fixed dates
 		var year = now.getFullYear();
@@ -661,7 +663,7 @@
 	}
 
 	function getLocation() {
-		if (DEVCONSOLE) {
+		if (TRACE) {
 			_csl.trace('Tracing getLocation');
 		}
 		if (useip) {
@@ -672,7 +674,7 @@
 	}
 
 	function getGPSLocation() {
-		if (DEVCONSOLE) {
+		if (TRACE) {
 			_csl.trace('Tracing getGPSLocation');
 		}
 		if (navigator.geolocation) {
@@ -684,7 +686,7 @@
 	}
 
 	function getIPLocation() {
-		if (DEVCONSOLE) {
+		if (TRACE) {
 			_csl.trace('Tracing getIPLocation');
 		}
 		var xhttp = new XMLHttpRequest();
@@ -720,14 +722,14 @@
 	}
 
 	function geoError() {
-		if (DEVCONSOLE) {
+		if (TRACE) {
 			_csl.trace('Tracing geoError');
 		}
 		gd.innerHTML = locErrorTxt;
 	}
 
 	function gpsPosition(json) {
-		if (DEVCONSOLE) {
+		if (TRACE) {
 			_csl.trace('Tracing gpsPosition');
 		}
 		gpsbutton.style.display = "none";
@@ -738,10 +740,11 @@
 	}
 
 	function showPosition() {
-		if (DEVCONSOLE) {
+		if (TRACE) {
 			_csl.trace('Tracing showPosition');
 		}
 		var location = "lat=" + lat + "&lon=" + lon;
+		//var location = "lat=55.6053&lon=13.0002";
 			// For Testing
 			// Los Angeles, CR
 			//var location = "lat=10.4907&lon=-85.0224";
@@ -793,7 +796,7 @@
 	}
 
 	function getWeather() {
-		if (DEVCONSOLE) {
+		if (TRACE) {
 			_csl.trace('Tracing getWeather');
 		}
 		wd.innerHTML = gettingTxt + "<br />" + useWeatherDude;
@@ -995,13 +998,13 @@
 				+ _cslFooter
 			);
 			_csl.groupEnd();
-			//_csl.trace('Tracing processWeather');
 		}
 	}
 
 	function wd_sunCalc() {
 		// NOTE SunCalc
 		//var SunCalc;
+		if (TRACE) _csl.trace('Tracing wd_sunCalc');
 		var SunCalcNow		= new Date();
 			var SunCalLat		= lat.toFixed(2);
 			var SunCalLon		= lon.toFixed(2);
@@ -1082,7 +1085,7 @@
 		var rain = data.rain;
 			snow = data.snow;
 		if ( rain || snow !=null ) {
-			if (DEVCONSOLE) _csl.trace('Tracing wd_precipion');
+			if (TRACE) _csl.trace('Tracing wd_precipion');
 			var rain1, snow1, rain3, snow3, precipitation, precipionSvg, precipionId, rainData, snowData, precipionTime, precipitationTxt;
 
 			// NOTE check if we have some rain data
@@ -1170,6 +1173,7 @@
 	}
 
 	function wd_beaufort(data) {
+		if (TRACE) _csl.trace('Tracing wd_beaufort');
 		// NOTE Convert m/s to beaufort scale
 		// Skalan kan beräknas med formeln V = k · B3/2, där k = 0,8365, B = Beauforttalet, och V = vindhastighet i m/s
 		// 2.9 = 0.8365 * 3/2
@@ -1355,14 +1359,11 @@
 				+ _cslFooter
 			);
 			_csl.groupEnd();
-			_csl.trace('Tracing wd_beaufort');
 		}
 	}
 
 	function wd_modal(data) {
-		if (DEVCONSOLE) {
-			_csl.trace('Tracing wd_modal');
-		}
+		if (TRACE) _csl.trace('Tracing wd_modal');
 		// Modal https://codepen.io/chriscoyier/pen/MeJWoM
 		// And https://codepen.io/noahblon/pen/yJpXka
 		var modal, modalOverlay, buttonClose, classClosed, aHidden, tabindex, FOCUSABLE_SELECTORS, modalTitle, modalDescription, modalMinMaxTemp, modalMinMaxTxt, modalBeaufort, modalWspeed, modalWdirection, modalPressure, modalHumidity, modalCloudiness, modalVisibility, modalSunrise, modalSunset, modalLocation, modalMoonrise, modalMonnset, modalMorningold, modalEveningold, modalBuiltBy;
@@ -1558,9 +1559,7 @@
 	}
 
 	function wd_visible() {
-		if (DEVCONSOLE) {
-			_csl.trace('Tracing setLayers');
-		}
+		if (TRACE) _csl.trace('Tracing setLayers');
 		var HIDDEN_ELEMENTS	= '#details, #beaufort, #open-button';
 		var showElements	= main.querySelectorAll( HIDDEN_ELEMENTS );
 		var classVisible	= "visible";
@@ -1577,6 +1576,7 @@
 	}
 
 	function wd_tempScale(data) {
+		if (TRACE) _csl.trace('Tracing wd_tempScale');
 		var tempNow, wd_temp, fromCelsius, fromFarenheit, fromKelvin;
 			tempNow			= Number(data.main.temp.toFixed(1));
 			//tempNow			= 55;
@@ -1658,11 +1658,11 @@
 				+ _cslFooter
 			);
 			_csl.groupEnd();
-			_csl.trace('Tracing wd_tempScale');
 		}
 	}
 
 	function wd_CSSstyles(data) {
+		if (TRACE) _csl.trace('Tracing wd_sunPosition');
 		var sunUpRaw, sunDownRaw, sunNowRaw, sunUpHour, sunUpMin, sunUpMinute,
 			sunNowHour, sunNowMin, sunNowMinute, sunDownHour, sunDownMin,
 			sunDownMinute, sunUp, sunNow, sunDown, sunLeft, sunHours,
@@ -1733,11 +1733,11 @@
 				+ _cslFooter
 			);
 			_csl.groupEnd();
-			_csl.trace('Tracing wd_sunPosition');
 		}
 	};
 
 	function wd_updatedTime(data) {
+		if (TRACE) _csl.trace('Tracing wd_updatedTime');
 		// function(globale) from: https://stackoverflow.com/a/50666409/6820262
 		(function(global) {
 			const SECOND	= 1;
@@ -1845,14 +1845,12 @@
 				+ _cslFooter
 			);
 			_csl.groupEnd();
-			_csl.trace('Tracing wd_updatedTime');
 		}
 	};
 
 	function wd_docClasses() {
-		if (DEVCONSOLE) {
-			_csl.trace('Tracing wd_docClasses');
-		}
+		if (TRACE) _csl.trace('Tracing wd_docClasses');
+
 		var weather   = weatherdata["weather"][0];
 		var weatherId = weather.id;
 		var docBody = doc.querySelector("body");
@@ -1876,9 +1874,8 @@
 	}
 
 	function getWindDirection(deg) {
-		if (DEVCONSOLE) {
-			_csl.trace('Tracing getWindDirection');
-		}
+		if (TRACE) _csl.trace('Tracing getWindDirection');
+
 		var degs = [348.75,326.25,303.75,281.25,258.75,236.25,213.75,191.25,168.75,146.25,123.75,101.25,78.75,56.25,33.75,11.25,0];
 		for ( var i=0;i < degs.length;i++) {
 			if ( deg > degs[i] ) {
@@ -1890,6 +1887,8 @@
 
 	function setLayers() {
 		if (weatherdata) {
+			if (TRACE) _csl.trace('Tracing setLayers');
+
 			var weather = weatherdata["weather"][0];
 			var weatherId = weather.id;
 			//var weatherId = 531; //for testing
@@ -1967,12 +1966,13 @@
 					+ _cslFooter
 				);
 				_csl.groupEnd();
-				_csl.trace('Tracing setLayers');
 			}
 		}
 	}
 
 	function checkForSunset() {
+		if (TRACE) _csl.trace('Tracing checkForSunset');
+
 		var nowtime = now.getTime()/1000;
 		//changes the presentation style if the time of day is after sunset
 		//or before the next day's sunrise
@@ -2018,15 +2018,13 @@
 				+ _cslFooter
 			);
 			_csl.groupEnd();
-			_csl.trace('Tracing checkForSunset');
 		}
 	}
 
 	//random number utility function
 	function randRange(min, max) {
-		if (DEVCONSOLE) {
-			_csl.trace('Tracing randRange');
-		}
+		if (TRACE) _csl.trace('Tracing randRange');
+
 		return Math.floor(Math.random()*(max-min+1))+min;
 	}
 })();
