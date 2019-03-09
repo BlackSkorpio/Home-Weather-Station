@@ -1213,7 +1213,7 @@
 			ws16: ( wd_ws >= 51.00 && wd_ws <= 56.09 ),
 			ws17: ( wd_ws >= 56.10 && wd_ws <= 61.20 )
 		};
-		var wsRange00 = windSpeeds['ws00'], wsRange01 = windSpeeds['ws01'], wsRange02 = windSpeeds['ws03'],
+		var wsRange00 = windSpeeds['ws00'], wsRange01 = windSpeeds['ws01'], wsRange02 = windSpeeds['ws02'],
 			wsRange03 = windSpeeds['ws03'], wsRange04 = windSpeeds['ws04'], wsRange05 = windSpeeds['ws05'],
 			wsRange06 = windSpeeds['ws06'], wsRange07 = windSpeeds['ws07'], wsRange08 = windSpeeds['ws08'],
 			wsRange09 = windSpeeds['ws09'], wsRange10 = windSpeeds['ws10'], wsRange11 = windSpeeds['ws11'],
