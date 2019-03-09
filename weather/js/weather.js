@@ -977,29 +977,62 @@
 			wd_updatedTime(data);
 		}, 30 * 1000);*/
 		if (DEVCONSOLE) {
-			_csl.group(_cslHeadOpen+'processWeather'+_cslHeadDiv, _cslHeadFont );
-			_csl.debug(
-				'RunOnce: '+_cslFlag +_cslLB+
-				'Weather id: ' + weather.id +_cslLB+
-				'Visibility: ' + data.visibility +_cslLB+_cslLB+
-				'TempRaw: ' + data["main"].temp +_cslLB+
-				'TempRaw fixed: ' + +data["main"].temp.toFixed(1) +_cslLB+
-				'localtemperature: ' + localtemperature +_cslLB+
-				'TempMin: ' + minTemp +_cslLB+
-				'TempMax: ' + maxTemp +_cslLB+_cslLB+
-				'sunUpRaw: ' + sunUpRaw +_cslLB+
-				'sunNowRaw: ' + sunNowRaw +_cslLB+
-				'sunDownRaw: ' + sunDownRaw +_cslLB+_cslLB+
-				'sunUp: ' + sunUp +_cslLB+
-				'sunNow: ' + sunNow +_cslLB+
-				'sunDown: ' + sunDown +_cslLB+_cslLB+
-				'sunLeft: ' + sunDown + ' - ' + sunNow + ' = ' + sunLeft.toFixed(2) +_cslLB+
-				'sunHours: ' + sunDown + ' - ' + sunUp + ' = ' + sunHours.toFixed(2) +_cslLB+
-				'sunPosition: ' + sunLeft.toFixed(2) + ' / ' + sunHours.toFixed(2) + ' * 100 = ' + sunPosition.toFixed(2) +_cslLB+
-				'moonHours: ' + '(24 - ' + sunHours +')  * 60 = ' + moonHours +_cslLB+_cslLB+
-				'isDay: ' + isDay
-				+ _cslFooter
-			);
+			_csl.groupCollapsed(_cslHeadOpen+'processWeather'+_cslHeadDiv, _cslHeadFont );
+				_csl.debug(
+					'RunOnce: '+_cslFlag +_cslLB+
+					'Weather id: ' + weather.id +_cslLB+
+					'Visibility: ' + data.visibility +_cslLB+_cslLB+
+					'TempRaw: ' + data["main"].temp +_cslLB+
+					'TempRaw fixed: ' + +data["main"].temp.toFixed(1) +_cslLB+
+					'localtemperature: ' + localtemperature +_cslLB
+					+ _cslFooter
+				);
+			_csl.groupEnd();
+
+			_csl.groupCollapsed(_cslHeadOpen+'data'+_cslHeadDiv, _cslHeadFont );
+				Object.keys(data).forEach(function(key) {
+					_csl.debug(key + ': ' + data[key]);
+				});
+			_csl.groupEnd();
+
+			_csl.groupCollapsed(_cslHeadOpen+'weather'+_cslHeadDiv, _cslHeadFont );
+				Object.keys(weather).forEach(function(key) {
+					_csl.debug(key + ': ' + weather[key]);
+				});
+			_csl.groupEnd();
+
+			_csl.groupCollapsed(_cslHeadOpen+'main'+_cslHeadDiv, _cslHeadFont );
+				Object.keys(data.main).forEach(function(key) {
+					_csl.debug(key + ': ' + data.main[key]);
+				});
+			_csl.groupEnd();
+
+			_csl.groupCollapsed(_cslHeadOpen+'Wind'+_cslHeadDiv, _cslHeadFont );
+				Object.keys(data.wind).forEach(function(key) {
+					_csl.debug(key + ': ' + data.wind[key]);
+				});
+			_csl.groupEnd();
+
+			_csl.groupCollapsed(_cslHeadOpen+'rain'+_cslHeadDiv, _cslHeadFont );
+				Object.keys(data.rain).forEach(function(key) {
+					_csl.debug(key + ': ' + data.rain[key]);
+				});
+			_csl.groupEnd();
+
+			/*Object.keys(snow).forEach(function(key) {
+				_csl.debug(key + ': ' + snow[key]);
+			});*/
+
+			_csl.groupCollapsed(_cslHeadOpen+'clouds'+_cslHeadDiv, _cslHeadFont );
+				Object.keys(data.clouds).forEach(function(key) {
+					_csl.debug(key + ': ' + data.clouds[key]);
+				});
+			_csl.groupEnd();
+
+			_csl.groupCollapsed(_cslHeadOpen+'sys'+_cslHeadDiv, _cslHeadFont );
+				Object.keys(data.sys).forEach(function(key) {
+					_csl.debug(key + ': ' + data.sys[key]);
+				});
 			_csl.groupEnd();
 		}
 	}
