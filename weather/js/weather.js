@@ -1041,6 +1041,7 @@
 		// NOTE SunCalc
 		//var SunCalc;
 		if (TRACE) _csl.trace('Tracing wd_sunCalc');
+
 		var SunCalcNow		= new Date();
 			var SunCalLat		= lat.toFixed(2);
 			var SunCalLon		= lon.toFixed(2);
