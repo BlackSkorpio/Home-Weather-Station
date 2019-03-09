@@ -376,7 +376,8 @@ details[open] summary ~ * {
 	-webkit-animation: sweep .5s ease-in-out;
 	        animation: sweep .5s ease-in-out;
 }
-summary {
+summary,
+#wd_spacer {
 	font-size: 1.3em;
 	text-align: center;
 }
@@ -464,6 +465,14 @@ summary {
 #wd_evening .svgIcon {
 	-webkit-transform: rotate(90deg);
 	        transform: rotate(90deg);
+#wd_spacer {
+	grid-area: spacer;
+}
+#wd_spacer:after {
+	content: '';
+	border-bottom: 0.0625em solid;
+	display: block;
+	margin-top: 0.3em;
 }
 #gpsbutton {
 	-webkit-appearance: none;
