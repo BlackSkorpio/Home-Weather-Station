@@ -1013,22 +1013,6 @@
 			var SunCalLon		= lon.toFixed(2);
 			var getMoonTimes, moonRisesDate, moonSetsDate, moonRisesTime, moonSetsTime, getSunTimes, gMorningDate, gEveningDate, gMorningTime, gEveningTime, moonRises, moonSets, goldenMorningHour, goldenEveningHour, goldenMorningTime, goldenEveningTime, goldenHourSvgPfx, goldenHourSvgSfx, sunCalcline;
 
-		var getMoonTimes	= SunCalc.getMoonTimes( SunCalcNow, SunCalLat, SunCalLon);
-			var moonRisesDate	= new Date(getMoonTimes['rise']).toISOString();
-			var moonSetsDate	= new Date(getMoonTimes['set']).toISOString();
-			var moonRisesTime	= getMoonTimes['rise'].toLocaleTimeString(timeForm);
-			var moonSetsTime	= getMoonTimes['set'].toLocaleTimeString(timeForm);
-		//Object.keys(getMoonTimes).forEach(function(key) {
-		//	if (DEVCONSOLE) console.log(key + ': ' + getMoonTimes[key]);
-		//});
-		var getSunTimes		= SunCalc.getTimes( SunCalcNow, SunCalLat, SunCalLon);
-			var gMorningDate	= new Date(getSunTimes['goldenHourEnd']).toISOString();
-			var gEveningDate	= new Date(getSunTimes['goldenHour']).toISOString();
-			var gMorningTime	= getSunTimes['goldenHourEnd'].toLocaleTimeString(timeForm);
-			var gEveningTime	= getSunTimes['goldenHour'].toLocaleTimeString(timeForm);
-		//Object.keys(getSunTimes).forEach(function(key) {
-		//	if (DEVCONSOLE) console.log(key + ': ' + getSunTimes[key]);
-		//});
 
 		// NOTE Moon up & Down
 		moonRises = useMoonSet;
