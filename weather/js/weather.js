@@ -901,7 +901,7 @@
 		var windirdata = spanTxt;
 			if ( data.wind.deg !=null ) {
 				windirdata += data.wind.deg.toFixed(0);
-				windirdata += "° ";
+				windirdata += "°";
 				windirdata += getWindDirection(data.wind.deg);
 			} else {
 				windirdata += "No data";
