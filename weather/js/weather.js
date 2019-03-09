@@ -1173,6 +1173,16 @@
 		minmaxline = hitempdata + lowtempdata;
 
 		if ( minMaxTemp ) details.innerHTML += minmaxline;
+		if (DEVCONSOLE && minMaxTemp) {
+			_csl.groupCollapsed(_cslHeadOpen+'processWeather'+_cslHeadDiv, _cslHeadFont );
+				_csl.debug(
+					'RunOnce: '+_cslFlag +_cslLB+
+					'TempMin: ' + minTemp +_cslLB+
+					'TempMax: ' + maxTemp +_cslLB+_cslLB
+					+ _cslFooter
+				);
+			_csl.groupEnd();
+		}
 	}
 
 	function wd_beaufort(data) {
