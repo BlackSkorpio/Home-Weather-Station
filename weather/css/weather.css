@@ -452,19 +452,22 @@ summary,
 #wd_evening {
 	grid-area: evening;
 }
-#wd_morning .svgIcon,
+/*#wd_morning .svgIcon,
 #wd_evening .svgIcon {
 	transform-box: fill-box;
 	-webkit-transform-origin: center;
 	        transform-origin: center;
-}
-#wd_morning .svgIcon {
+}*/
+/*#wd_morning .svgIcon {
 	-webkit-transform: rotate(270deg);
 	        transform: rotate(270deg);
-}
+}*/
 #wd_evening .svgIcon {
-	-webkit-transform: rotate(90deg);
-	        transform: rotate(90deg);
+	-webkit-transform: rotate(180deg);
+	        transform: rotate(180deg);
+	/*-webkit-transform: rotate(90deg);
+	        transform: rotate(90deg);*/
+}
 #wd_spacer {
 	grid-area: spacer;
 }
