@@ -1168,15 +1168,14 @@
 		details.innerHTML += sunCalcline;
 
 		if (DEVCONSOLE) {
+			// SunCalc Reference: https://github.com/mourner/suncalc#reference
 			_csl.groupCollapsed(_cslHeadOpen+'wd_sunCalc'+_cslHeadDiv, _cslHeadFont );
-				_csl.group('getMoonTimes');
 				_csl.group('Moon Times');
 					Object.keys(getMoonTimes).forEach(function(key) {
 						_csl.debug(key + ': ' + getMoonTimes[key]);
 					});
 				_csl.groupEnd();
 
-				_csl.group('getSunTimes');
 				_csl.group('Moon Position');
 					Object.keys(getMoonPosition).forEach(function(key) {
 						_csl.debug(key + ': ' + getMoonPosition[key]);
@@ -1189,10 +1188,18 @@
 					});
 				_csl.groupEnd();
 
+				_csl.group('Sun Times');
 					Object.keys(getSunTimes).forEach(function(key) {
 						_csl.debug(key + ': ' + getSunTimes[key]);
 					});
 				_csl.groupEnd();
+
+				_csl.group('Sun Position');
+					Object.keys(getSunPosition).forEach(function(key) {
+						_csl.debug(key + ': ' + getSunPosition[key]);
+					});
+				_csl.groupEnd();
+
 			_csl.groupEnd();
 		}
 	}
