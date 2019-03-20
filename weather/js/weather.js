@@ -985,12 +985,10 @@
 		wd_tempScale(data,tempClr);
 		wd_CSSstyles(data);
 		wd_precipion(data);
-		wd_hilowtemp(data);
 		setLayers();
 		wd_modal(data);
 		wd_visible();
 		wd_updatedTime(data);
-		wd_sunCalc();
 		// NOTE Update the update time every 30 sek (https://stackoverflow.com/a/13304567/6820262)
 		/*var updatedInterval = setInterval(function() {
 			wd_updatedTime(data);
@@ -1275,8 +1273,6 @@
 			lowtempdata += tempForm;
 			lowtempdata += spanSfx;
 
-		minmaxline = hitempdata + lowtempdata;
-
 		if ( minMaxTemp ) details.innerHTML += minmaxline;
 		if (DEVCONSOLE && minMaxTemp) {
 			_csl.groupCollapsed(_cslHeadOpen+'processWeather'+_cslHeadDiv, _cslHeadFont );
@@ -1288,6 +1284,8 @@
 				);
 			_csl.groupEnd();
 		}
+
+		return minmaxline = lowtempdata + hitempdata;
 	}
 
 	function wd_beaufort(data) {
