@@ -267,7 +267,7 @@
 	</g>
 	<g data-name="icons-sunCalc">
 		<symbol id="goldenhour" viewBox="0 0 80 80" xml:space="preserve">
-			<circle fill="var(--wh)" stroke="var(--db)" stroke-width="3" opacity=".95" cx="40" cy="40" r="33.97"/>
+			<circle fill="var(--lb)" stroke="var(--db)" stroke-width="2" cx="40" cy="40" r="34"/>
 			<g id="moon" fill="none" stroke="#3f3a02" stroke-width="2" stroke-linejoin="round">
 				<path fill="#ffc843" stroke="none" d="M59.1 53.13A15.54 15.54 0 0 1 38.51 58a15.76 15.76 0 0 0 1.9 2.15 15.51 15.51 0 0 0 19.13-24.23c-.28-.18-.56-.34-.84-.5a15.5 15.5 0 0 1 .4 17.71z"/>
 				<path d="M57.52 34.18c-.31-.2-.62-.38-.93-.56A15.5 15.5 0 0 1 36.4 56.24 15.39 15.39 0 0 0 40.28 60a15.52 15.52 0 1 0 17.24-25.82z"/>
