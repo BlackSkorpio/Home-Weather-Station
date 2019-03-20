@@ -78,7 +78,7 @@ figure,
 details {
 	display: block;
 }
-
+[hidden],
 #beaufort,
 #open-button {
 	display: none;
