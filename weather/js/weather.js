@@ -1158,15 +1158,6 @@
 			goldenEveningHour += goldenHourSvgSfx;
 			goldenEveningHour += goldenEveningTime;
 
-		sunCalcline = '<li id="wd_spacer">' + sunCalcHead;
-			sunCalcline += '<li id="wd_morning">' + goldenMorningHour;
-			sunCalcline += '<li id="wd_evening">' + goldenEveningHour;
-			sunCalcline += '<li id="wd_moonrise">' + moonRises;
-			sunCalcline += '<li id="wd_moonset">' + moonSets;
-
-		//return sunCalcline;
-		details.innerHTML += sunCalcline;
-
 		if (DEVCONSOLE) {
 			// SunCalc Reference: https://github.com/mourner/suncalc#reference
 			_csl.groupCollapsed(_cslHeadOpen+'wd_sunCalc'+_cslHeadDiv, _cslHeadFont );
@@ -1202,6 +1193,12 @@
 
 			_csl.groupEnd();
 		}
+
+		return sunCalcline = '<li id="wd_spacer">' + sunCalcHour,
+			sunCalcline += '<li id="wd_morning">' + goldenMorningHour,
+			sunCalcline += '<li id="wd_evening">' + goldenEveningHour,
+			sunCalcline += '<li id="wd_moonrise">' + moonRises,
+			sunCalcline += '<li id="wd_moonset">' + moonSets;
 	}
 
 	function wd_precipion(data) {
