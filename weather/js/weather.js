@@ -454,6 +454,8 @@
 			ajax.onload = function(e) {
 				var svgSprite = doc.createElement("div");
 				svgSprite.className = "svgSprite";
+				svgSprite.setAttribute("style", visuallyHiddenCSS);
+				svgSprite.setAttribute("aria-hidden", "true");
 				svgSprite.innerHTML = ajax.responseText;
 				doc.body.insertBefore(svgSprite, doc.body.childNodes[0]);
 			}

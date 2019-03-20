@@ -1,4 +1,4 @@
-<svg id="Wsprite" class="weather-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="position:absolute;width:0;height:0;visibility:hidden;">
+<svg id="Wsprite" class="weather-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="position:absolute;width:0;height:0;visibility:hidden;" aria-hidden="true">
 	<defs>
 		<style>
 			.stateRising {
