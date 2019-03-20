@@ -85,7 +85,7 @@
 			windSpeedDesc = "Prognoserna för vindhastighet och riktning är medelvärdet av dessa vindar och lulls, mätt över 10 minuter i en höjd av 10 meter över havet. Gustarna under en 10-minutersperiod är typiskt 40% högre än den genomsnittliga vindhastigheten.";
 			windDirTxt	= "Vindriktning: ";
 			winddirDesc = "Vindriktningen är baserad på sann nordlig orientering och är den riktning som vinden blåser från. Till exempel blåser en nordlig vind från norr mot söder.<br />Vindhastighet och riktning kan påverkas väsentligt av lokal miljö. Klippor och andra landskapsfunktioner kommer att påverka vindar nära stranden.";
-			sunCalcHead = "Tidsplan";
+			sunCalcHour = "Tidsplan";
 			sunRiseTxt	= "Soluppgång: ";
 			sunriseDesc = "Klockslag när solen börjar gå upp.";
 			sunSetTxt	= "Solnedgång: ";
@@ -217,7 +217,7 @@
 			windSpeedDesc = "The forecasts of wind speed and direction are the average of these gusts and lulls, measured over a 10-minute period at a height of 10 metres above sea level. The gusts during any 10-minute period are typically 40% higher than the average wind speed.";
 			windDirTxt	= "Wind direction: ";
 			winddirDesc = "The wind direction is based on true north orientation and is the direction the wind is blowing from. For example, a northerly wind is blowing from the north towards the south.<br />Wind speed and direction can be influenced significantly by the local environment. Cliffs and other landscape features will affect winds near the shore.";
-			sunCalcHead = "Schedule";
+			sunCalcHour = "Schedule";
 			sunRiseTxt	= "Sunrise: ";
 			sunriseDesc = "Time when the sun begins to rise";
 			sunSetTxt	= "Sunset: ";
