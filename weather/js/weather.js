@@ -3,7 +3,7 @@
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.5.0
+ *  @version 1.5.1
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -17,7 +17,7 @@
 		var useSVG		= true;
 		var appID		= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
 
-		var appVersion	= "1.5.0";
+		var appVersion	= "1.5.1";
 		var appName		= "Home Weahter Station";
 		var _cslFlag	= false;
 		var _cslHash	= 'CSL';
@@ -52,7 +52,7 @@
 
 	var doc = document,
 		win = window;
-		var svgStyle, sunPosition, Fragments, svgIcon, sunCalcHead, minMaxDesc, highTempTxt, lowTempTxt, precipionTxt, precipion1Txt, precipion3Txt, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, updatePlural2Txt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, localtemperature, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, timeOptions, tempClr, overCastLayer;
+		var svgStyle, sunPosition, Fragments, svgIcon, sunCalcHour, minMaxDesc, highTempTxt, lowTempTxt, precipionTxt, precipion1Txt, precipion3Txt, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, updatePlural2Txt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, MoonWaxTxt, MoonWanTxt, MoonCreTxt, MoonQuaTxt, MoonGibTxt, MoonNewTxt, MoonFullTxt, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, localtemperature, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, timeOptions, tempClr, overCastLayer;
 
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
@@ -97,6 +97,13 @@
 			moonriseDesc = "Klockslag när månen börjar gå upp.";
 			moonSetsTxt	= "Månen går ner: ";
 			moonsetDesc	= "Klockslag när månen börjar gå ner.";
+			MoonWaxTxt	= "Tilltagande";
+			MoonWanTxt	= "Avtagande";
+			MoonCreTxt	= "Skära";
+			MoonQuaTxt	= "Halvmåne";
+			MoonGibTxt	= "Halvmåne"
+			MoonNewTxt	= "Ny Måne";
+			MoonFullTxt	= "Full Måne";
 			bfsTxt		= "Beaufort Skalan: ";
 			bftDesc		= "Beaufort vindskala mäter vindhastighet beroende på vindens påverkan på mark och hav. Även om systemet är gammalt (först utvecklat 1805 av Sir Francis Beaufort), förblir det ett mycket vanligt system för att mäta vindhastighet idag.";
 			bfsHeadTxt	= "Vindstyrka i beaufort: ";
@@ -222,6 +229,13 @@
 			moonriseDesc = "Time when the moon begins to rise";
 			moonSetsTxt	= "Moon Sets: ";
 			moonsetDesc = "Time when the moon begins to set";
+			MoonWaxTxt	= "Waxing";
+			MoonWanTxt	= "Waning";
+			MoonCreTxt	= "Crescent";
+			MoonQuaTxt	= "Quarter";
+			MoonGibTxt	= "Gibbous"
+			MoonNewTxt	= "New Moon";
+			MoonFullTxt	= "Full Moon";
 			bfsTxt		= "Beaufort Scale: ";
 			bftDesc		= "The Beaufort wind scale measures wind speed according to the impact the wind has on the land and sea. Although the system is old (first developed in 1805 by Sir Francis Beaufort), it remains a widely used system to measure wind speed today.";
 			bfsHeadTxt	= "Beaufort number: ";
@@ -398,7 +412,8 @@
 		useVisibility:	svgPfx + titlePfx + visibilityTxt + titleSfx + usePfx + "visibility" + useSfx,
 		useOvercast:	svgPfx + titlePfx + cloudinessTxt + titleSfx + usePfx,
 		useUpdated:		svgPfx + titlePfx + updatedTimeTxt + titleSfx + usePfx + "clock" + useSfx,
-		useLogosmall:	svgPfx + titlePfx + appName + titleSfx + usePfx + "logosmall" + useSfx
+		useLogosmall:	svgPfx + titlePfx + appName + titleSfx + usePfx + "logosmall" + useSfx,
+		useFlatMoon:	svgPfx + usePfx + "moon_flat" + useSfx
 	};
 	var useLocation = svgIcon['useLocation'], useSunRise = svgIcon['useSunRise'], useSunSet = svgIcon['useSunSet'],
 		useGoldenHour = svgIcon['useGoldenHour'], useMoonRise = svgIcon['useMoonRise'], useMoonSet = svgIcon['useMoonSet'],
@@ -406,19 +421,21 @@
 		useTemprature = svgIcon['useTemprature'], useLowTemp = svgIcon['useLowTemp'], useHighTemp = svgIcon['useHighTemp'],
 		useWindRose = svgIcon['useWindRose'], useWeatherDude = svgIcon['useWeatherDude'], useBeaufort = svgIcon['useBeaufort'],
 		useVisibility = svgIcon['useVisibility'], useOvercast = svgIcon['useOvercast'], useUpdated = svgIcon['useUpdated'],
-		useLogosmall = svgIcon['useLogosmall'];
+		useLogosmall = svgIcon['useLogosmall'],
+		useFlatMoon = svgIcon['useFlatMoon'];
 
 	var main, container, sStyles, now, dd, td, dt, details, wd_summary, detailsHeader, infoModal, dtTimeRaw, dtHour, dtMin, dtTime, updatedTime, lat, lon, region, gd, gpsbutton, weatherurl, wd, precipion_wrap, icon, beaufort, weatherdata, weatherminute;
 		var city = "";
 		var sunsettime = 0;
 		var sunrisetime = 0;
-		var cloudlayer, rainlayer, rainwindow, snowlayer, sunlayer, clearnightlayer, shootinglayer, moonlayer, mistlayer, isDark, isCloudy, isRainy, isDrizzle, isSnowy, isSunny, isClearNight, isClear, isMisty, isDusk, isDawn, _csl, _cslHeadOpen, _cslHeadDiv, _cslHeadFont, _cslLB, _cslFooter;
+		var cloudlayer, rainlayer, rainwindow, snowlayer, sunlayer, clearnightlayer, shootinglayer, moonlayer, mistlayer, isDark, isCloudy, isRainy, isDrizzle, isSnowy, isSunny, isClearNight, isClear, isMisty, isDusk, isDawn, _csl, _cslHeadOpen, _cslHeadDiv, _cslHeadFont, _cslLB, _cslFooter, visuallyHiddenCSS;
 		_csl		= console;
 		_cslHeadDiv	= ' -=- ';
 		_cslHeadOpen = '%c'+_cslHeadDiv;
 		_cslHeadFont = 'font:1.5em sans-serif; color:orange;';
 		_cslLB		= '\n';
 		_cslFooter	= _cslLB+'//-------------------------------------//'+_cslLB+_cslLB;
+		visuallyHiddenCSS = "position:absolute;height:0;width:0;visibility:hidden;"
 
 	doc.addEventListener("DOMContentLoaded", init, false);
 
@@ -1037,7 +1054,12 @@
 		}
 	}
 
-	function wd_sunCalc() {
+	function wd_sunCalc(sunCalcline) {
+		/* TODO  Fix errors with MoonTimes
+				Add position for sun & moon
+				Add altitude for son & moon
+				Add moon illumination
+		*/
 		// NOTE SunCalc
 		//var SunCalc;
 		if (TRACE) _csl.trace('Tracing wd_sunCalc');
@@ -1045,11 +1067,22 @@
 		var SunCalcNow		= new Date();
 			var SunCalLat		= lat.toFixed(2);
 			var SunCalLon		= lon.toFixed(2);
-			var getMoonTimes, moonRisesDate, moonSetsDate, moonRisesTime, moonSetsTime, getSunTimes, gMorningDate, gEveningDate, gMorningTime, gEveningTime, moonRises, moonSets, goldenMorningHour, goldenEveningHour, goldenMorningTime, goldenEveningTime, goldenHourSvgPfx, goldenHourSvgSfx, sunCalcline;
-
+			var MoonNew			= doc.getElementById('MoonNew');
+			var MoonFull		= doc.getElementById('MoonFull');
+			var MoonWax			= doc.getElementById('MoonWax');
+			var MoonWan			= doc.getElementById('MoonWan');
+			var MoonCre			= doc.getElementById('MoonCre');
+			var MoonQua			= doc.getElementById('MoonQua');
+			var MoonGib			= doc.getElementById('MoonGib');
+			var getMoonTimes, getMoonPosition, getMoonIllumination, moonRisesDate, moonSetsDate, moonRisesTime, moonSetsTime, getSunTimes, getSunPosition, gMorningDate, gEveningDate, gMorningTime, gEveningTime, moonRises, moonSets, goldenMorningHour, goldenEveningHour, goldenMorningTime, goldenEveningTime, goldenHourSvgPfx, goldenHourSvgSfx, sunCalcline;
+		// NOTE Get sun and moon data
 		getMoonTimes	= SunCalc.getMoonTimes( SunCalcNow, SunCalLat, SunCalLon );
+		getMoonPosition = SunCalc.getMoonPosition( SunCalcNow, SunCalLat, SunCalLon );
+		getMoonIllumination = SunCalc.getMoonIllumination(SunCalcNow);
 		getSunTimes		= SunCalc.getTimes( SunCalcNow, SunCalLat, SunCalLon );
+		getSunPosition	= SunCalc.getPosition( SunCalcNow, SunCalLat, SunCalLon );
 
+		//console.debug(getMoonTimes);
 		// NOTE Create time and datestrings
 		moonRisesDate	= new Date(getMoonTimes['rise']).toISOString();
 			moonSetsDate	= new Date(getMoonTimes['set']).toISOString();
@@ -1059,6 +1092,15 @@
 			gEveningDate	= new Date(getSunTimes['goldenHour']).toISOString();
 			gMorningTime	= getSunTimes['goldenHourEnd'].toLocaleTimeString(timeForm, timeOptions);
 			gEveningTime	= getSunTimes['goldenHour'].toLocaleTimeString(timeForm, timeOptions);
+
+		// NOTE Moon phases illustration text
+		MoonNew.innerHTML	= MoonNewTxt;
+		MoonFull.innerHTML	= MoonFullTxt;
+		MoonWax.innerHTML	= MoonWaxTxt;
+		MoonWan.innerHTML	= MoonWanTxt;
+		MoonCre.innerHTML	= MoonCreTxt;
+		MoonQua.innerHTML	= MoonQuaTxt;
+		MoonGib.innerHTML	= MoonGibTxt;
 
 		// NOTE Moon up & Down
 		moonRises = useMoonSet;
@@ -1118,12 +1160,25 @@
 		if (DEVCONSOLE) {
 			_csl.groupCollapsed(_cslHeadOpen+'wd_sunCalc'+_cslHeadDiv, _cslHeadFont );
 				_csl.group('getMoonTimes');
+				_csl.group('Moon Times');
 					Object.keys(getMoonTimes).forEach(function(key) {
 						_csl.debug(key + ': ' + getMoonTimes[key]);
 					});
 				_csl.groupEnd();
 
 				_csl.group('getSunTimes');
+				_csl.group('Moon Position');
+					Object.keys(getMoonPosition).forEach(function(key) {
+						_csl.debug(key + ': ' + getMoonPosition[key]);
+					});
+				_csl.groupEnd();
+
+				_csl.group('Moon Illumination');
+					Object.keys(getMoonIllumination).forEach(function(key) {
+						_csl.debug(key + ': ' + getMoonIllumination[key]);
+					});
+				_csl.groupEnd();
+
 					Object.keys(getSunTimes).forEach(function(key) {
 						_csl.debug(key + ': ' + getSunTimes[key]);
 					});
@@ -1455,6 +1510,7 @@
 		var modalMonnset		= doc.getElementById("dt_moonset");
 		var modalMorningold		= doc.getElementById("dt_morningold");
 		var modalEveningold		= doc.getElementById("dt_eveningold");
+		var modalMoonPhases		= doc.getElementById("dt_moonphases");
 		var modalBuiltBy		= doc.getElementById("dt_builtby");
 
 		var modalMinMaxTxt		= sumPfx;
@@ -1547,6 +1603,12 @@
 			modalEveningoldTxt	+= spanPfx;
 			modalEveningoldTxt	+= goldEveTxt;
 			modalEveningoldTxt	+= spanSfx;
+		var modalMoonPhasesTxt	= sumPfx;
+			modalMoonPhasesTxt	+= useFlatMoon + "Månfaser";
+			modalMoonPhasesTxt	+= sumSfx;
+			modalMoonPhasesTxt	+= spanPfx;
+			modalMoonPhasesTxt	+= '<svg class="moonPhases" role="img" width="100%"><use xlink:href="#moon_phases"/></svg>';
+			modalMoonPhasesTxt	+= spanSfx;
 		var modalBuiltByTxt		= sumPfx;
 			modalBuiltByTxt		+= useLogosmall + appName;
 			modalBuiltByTxt		+= sumSfx;
@@ -1571,6 +1633,7 @@
 		modalMonnset.innerHTML		= modalMonnsetTxt;
 		modalMorningold.innerHTML	= modalMorningoldTxt;
 		modalEveningold.innerHTML	= modalEveningoldTxt;
+		modalMoonPhases.innerHTML	= modalMoonPhasesTxt;
 		modalBuiltBy.innerHTML		= modalBuiltByTxt;
 		buttonOpen.setAttribute('title', modalDescTxt);
 

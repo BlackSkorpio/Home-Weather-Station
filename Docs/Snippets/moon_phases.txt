@@ -1,0 +1,10 @@
+1 = New Moon / Nymåne
+2 = Young Moon
+3 = Waxing Crescent / Tilltagande Skära
+4 = Waxing Quarter / Halvmåne
+5 = Waxing Gibbous / Tilltagande Halvmåne
+6 = Full Moon / Fullmåne
+7 = Waning Gibbous / Avtagande Halvmåne
+8 = Waning Quarter / Halvmåne
+9 = Waning Crescent / Avtagande Skära
+10 = Old Moon

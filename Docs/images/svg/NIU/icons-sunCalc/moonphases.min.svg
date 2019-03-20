@@ -1,0 +1,44 @@
+<svg id="moon_phases" aria-labelledby="moonTitle moonDesc" role="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 487" xml:space="preserve">
+	<title id="moonTitle">Moon Phases</title>
+	<desc id="moonDesc">Illustration showing the different moon phases</desc>
+	<defs>
+		<path id="young" d="M320 34c14-1 29 3 41 10a77 77 0 0 1 34 42 76 76 0 0 1-1 52 77 77 0 0 1-25 33 76 76 0 0 1-50 16 77 77 0 0 0 1-153z"/>
+		<path id="crescent" d="M497 34a78 78 0 0 1 51 15c11 8 21 20 26 33a76 76 0 0 1 0 56 77 77 0 0 1-37 41c-12 6-26 8-40 8 19-11 33-30 39-51 5-18 5-38-1-56-7-19-20-36-38-46z"/>
+		<path id="quarter" d="M683 34a77 77 0 0 1 70 105 77 77 0 0 1-37 40c-10 5-22 8-33 8V34z"/>
+		<path id="gibbous" d="M868 35c7-1 15 1 21 4 17 6 32 19 41 34 7 14 10 30 9 45a77 77 0 0 1-67 68c-4 1-7-2-10-4a82 82 0 0 1-31-42 94 94 0 0 1 1-61c6-18 19-35 36-44z"/>
+		<path id="full" d="M133 274a76 76 0 0 1 49 10 76 76 0 0 1 34 43 76 76 0 0 1-1 50 77 77 0 0 1-32 39 76 76 0 0 1-50 10c-28-4-53-24-62-51a77 77 0 0 1 6-62c11-21 33-36 56-39z"/>
+	</defs>
+	<path fill="#2a2e33" d="M0 0h1000v487H0z"/>
+	<g id="text" fill="#e6e6e6" font-size="22" font-family="sans-serif">
+		<text x="50" y="220">
+			<tspan id="ph_nm" x="90">New Moon</tspan>
+			<tspan id="ph_ym" x="280">Young Moon</tspan>
+			<tspan id="ph_wxC" x="430">Waxing Crescent</tspan>
+			<tspan id="ph_wxQ" x="630">Waxing Quarter</tspan>
+			<tspan id="ph_wxG" x="810">Waxing Gibbous</tspan>
+		</text>
+		<text x="50" y="460">
+			<tspan id="ph_fm" x="90">Full Moon</tspan>
+			<tspan id="ph_wnG" x="250">Waning Gibbous</tspan>
+			<tspan id="ph_wnQ" x="430">Waning Quarter</tspan>
+			<tspan id="ph_wnC" x="600">Waning Crescent</tspan>
+			<tspan id="ph_om" x="830">Old Moon</tspan>
+		</text>
+	</g>
+	<g id="phases" fill="#fec10d">
+		<use fill="#282b2e" stroke="#fec10d" y="-241" xlink:href="#full"/>
+		<g id="waxing">
+			<use xlink:href="#young"/>
+			<use xlink:href="#crescent"/>
+			<use xlink:href="#quarter"/>
+			<use xlink:href="#gibbous"/>
+		</g>
+		<use xlink:href="#full"/>
+		<g id="waning" transform="rotate(180 600 235)">
+			<use xlink:href="#gibbous"/>
+			<use xlink:href="#quarter"/>
+			<use xlink:href="#crescent"/>
+			<use xlink:href="#young"/>
+		</g>
+	</g>
+</svg>

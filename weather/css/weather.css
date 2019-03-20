@@ -3079,6 +3079,12 @@ https://codepen.io/lbebber/pen/waGydW
 details summary:empty {
 	display: none;
 }
+.mT use,
+.mT text {
+	fill: var(--wh);
+	font-family: Tahoma, Geneva, sans-serif;
+	text-anchor: middle;
+}
 
 .ribbon {
 	position: absolute;

@@ -1,0 +1,45 @@
+<svg id="moon_phases" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 700 150" font-size="16">
+	<defs>
+		<style>
+			text {
+				fill: #dff0fe;
+				font-family: Tahoma, Geneva, sans-serif;
+				text-anchor: middle;
+			}
+		</style>
+		<text id="MoonWax">Waxing</text>
+		<text id="MoonWan">Waning</text>
+		<text id="MoonCre">Crescent</text>
+		<text id="MoonQua">Quarter</text>
+		<text id="MoonGib">Gibbous</text>
+		<circle id="moon" cy="53.1" r="31.4"/>
+	</defs>
+	<path fill="#231f20" d="M0 0h700v150H0z"/>
+	<g fill="#59513e">
+		<use x="52.9" xlink:href="#moon"/>
+		<use x="138.5" xlink:href="#moon"/>
+		<use x="222.6" xlink:href="#moon"/>
+		<use x="303.3" xlink:href="#moon"/>
+		<use x="394.2" xlink:href="#moon" fill="#d8cda8"/>
+		<use x="474.9" xlink:href="#moon"/>
+		<use x="559.1" xlink:href="#moon"/>
+		<use x="644.7" xlink:href="#moon"/>
+	</g>
+	<path fill="#d8cda8" d="M138.5 84.6a31.4 31.4 0 0 0 0-62.9 18.7 31.4 0 1 1 0 62.9zm84.1 0a31.4 31.4 0 0 0 0-62.9zm80.7 0a31.4 31.4 0 0 0 0-62.9 18.2 31.4 0 0 0 0 62.9zm171.6 0a31.4 31.4 0 1 1 0-62.9 18.2 31.4 0 1 1 0 62.9zm84.2 0a31.4 31.4 0 0 1 0-62.9zm85.6 0a31.4 31.4 0 1 1 0-62.9 18.7 31.4 0 0 0 0 62.9z"/>
+	<g id="waxing_txt">
+		<text id="MoonNew"  x="53" y="130">New Moon</text>
+		<use x="137" y="110" xlink:href="#MoonWax"/>
+		<use x="137" y="130" xlink:href="#MoonCre"/>
+		<use x="224" y="130" xlink:href="#MoonQua"/>
+		<use x="305" y="110" xlink:href="#MoonWax"/>
+		<use x="305" y="130" xlink:href="#MoonGib"/>
+	</g>
+	<g id="waning_txt">
+		<text id="MoonFull" x="400" y="130">Full Moon</text>
+		<use x="480" y="110" xlink:href="#MoonWan"/>
+		<use x="480" y="130" xlink:href="#MoonGib"/>
+		<use x="560" y="130" xlink:href="#MoonQua"/>
+		<use x="650" y="110" xlink:href="#MoonWan"/>
+		<use x="650" y="130" xlink:href="#MoonCre"/>
+	</g>
+</svg>
