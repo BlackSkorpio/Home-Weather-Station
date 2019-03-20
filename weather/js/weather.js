@@ -962,7 +962,17 @@
 			overcastline += overcastForm;
 			overcastline += spanSfx;
 
-		details.innerHTML = visibilityline + overcastline + windline + windirection + pressureline + humidityline + sunriseline + sunsetline + gpsline;
+		details.innerHTML = wd_hilowtemp(data);
+			details.innerHTML += windline;
+			details.innerHTML += windirection;
+			details.innerHTML += pressureline;
+			details.innerHTML += humidityline;
+			details.innerHTML += visibilityline;
+			details.innerHTML += overcastline;
+			details.innerHTML += wd_sunCalc();
+			details.innerHTML += sunriseline;
+			details.innerHTML += sunsetline;
+			details.innerHTML += gpsline;
 
 		var weather = data["weather"][0];
 
