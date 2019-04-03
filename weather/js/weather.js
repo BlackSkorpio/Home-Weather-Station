@@ -931,7 +931,7 @@
 				windirdata += "°";
 				windirdata += getWindDirection(data.wind.deg);
 			} else {
-				windirdata += "No data";
+				windirdata += noDataErrorTxt;
 			}
 			windirdata += spanSfx;
 		var windirection = liPfx + idPfx + 'wd_windir' + PfxEnd;
@@ -959,7 +959,7 @@
 		var visibilityline = liPfx + idPfx + 'wd_visibility' + PfxEnd;
 			visibilityline += useVisibility;
 			visibilityline += spanTxt;
-			visibilityline += data.visibility !=null ? visibleLength + visibilityForm : "No data";
+			visibilityline += data.visibility !=null ? visibleLength + visibilityForm : noDataErrorTxt;
 			//visibilityline += data.visibility !=null ? visibilityForm : "";
 			visibilityline += spanSfx;
 
