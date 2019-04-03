@@ -1130,7 +1130,7 @@
 			var MoonCre			= doc.getElementById('MoonCre');
 			var MoonQua			= doc.getElementById('MoonQua');
 			var MoonGib			= doc.getElementById('MoonGib');
-			var getMoonTimes, getMoonPosition, getMoonIllumination, moonRisesDate, moonSetsDate, moonRisesTime, moonSetsTime, getSunTimes, getSunPosition, gMorningDate, gEveningDate, gMorningTime, gEveningTime, moonRises, moonSets, goldenMorningHour, goldenEveningHour, goldenMorningTime, goldenEveningTime, goldenHourSvgPfx, goldenHourSvgSfx, sunCalcline;
+			var getMoonTimes, getMoonPosition, getMoonIllumination, moonAngleData, moonFractionData, moonPhaseData, moonPhasesData, moonRisesDate, moonSetsDate, moonRisesTime, moonSetsTime, getSunTimes, getSunPosition, gMorningDate, gEveningDate, gMorningTime, gEveningTime, moonRises, moonSets, goldenMorningHour, goldenEveningHour, goldenMorningTime, goldenEveningTime, goldenHourSvgPfx, goldenHourSvgSfx, sunCalcline, moonIconHash, moonPhaseClass, moonIcon, moonPhaseTxt, moonPhaseLine;
 		// NOTE Get sun and moon data
 		getMoonTimes	= SunCalc.getMoonTimes( SunCalcNow, SunCalLat, SunCalLon );
 		getMoonPosition = SunCalc.getMoonPosition( SunCalcNow, SunCalLat, SunCalLon );
@@ -1140,14 +1140,24 @@
 
 		//console.debug(getMoonIllumination);
 		// NOTE Create time and datestrings
-		moonRisesDate	= new Date(getMoonTimes['rise']).toISOString();
-			moonSetsDate	= new Date(getMoonTimes['set']).toISOString();
+		try {
+			moonRisesDate	= new Date(getMoonTimes['rise']).toISOString();
 			moonRisesTime	= getMoonTimes['rise'].toLocaleTimeString(timeForm, timeOptions);
+		}
+		catch(err) {}
+		try {
+			moonSetsDate	= new Date(getMoonTimes['set']).toISOString();
 			moonSetsTime	= getMoonTimes['set'].toLocaleTimeString(timeForm, timeOptions);
+		}
+		catch(err) {}
+
 		gMorningDate	= new Date(getSunTimes['goldenHourEnd']).toISOString();
 			gEveningDate	= new Date(getSunTimes['goldenHour']).toISOString();
 			gMorningTime	= getSunTimes['goldenHourEnd'].toLocaleTimeString(timeForm, timeOptions);
 			gEveningTime	= getSunTimes['goldenHour'].toLocaleTimeString(timeForm, timeOptions);
+		moonAngleData	= getMoonIllumination['angle'].toFixed(2);
+		moonFractionData = getMoonIllumination['fraction'].toFixed(2);
+		moonPhaseData	= getMoonIllumination['phase'].toFixed(2);
 
 		// NOTE Moon phases SVG illustration text
 		MoonNew.innerHTML	= MoonNewTxt;
@@ -1160,18 +1170,29 @@
 
 		// NOTE Moon up & Down
 		moonRises = useMoonSet;
-			moonRises += timePfx;
-			moonRises += moonRisesDate;
-			moonRises += PfxEnd;
-			moonRises += moonRisesTime;
-			moonRises += timeSfx;
-
+			if (moonRisesDate !=null) {
+				moonRises += timePfx;
+				moonRises += moonRisesDate;
+				moonRises += PfxEnd;
+				moonRises += moonRisesTime;
+				moonRises += timeSfx;
+			} else {
+				moonRises += spanTxt;
+				moonRises += noDataErrorTxt;
+				moonRises += spanSfx;
+			}
 		moonSets = useMoonRise;
-			moonSets += timePfx;
-			moonSets += moonSetsDate;
-			moonSets += PfxEnd;
-			moonSets += moonSetsTime;
-			moonSets += timeSfx;
+			if (moonSetsDate !=null) {
+				moonSets += timePfx;
+				moonSets += moonSetsDate;
+				moonSets += PfxEnd;
+				moonSets += moonSetsTime;
+				moonSets += timeSfx;
+			} else {
+				moonSets += spanTxt;
+				moonSets += noDataErrorTxt;
+				moonSets += spanSfx;
+			}
 
 		// NOTE Golden hours
 		goldenMorningTime = timePfx;
