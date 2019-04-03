@@ -407,6 +407,8 @@ summary,
 }
 #wd_hightemp {
 	grid-area: maxtemp;
+#wd_dewpoint {
+	grid-area: dewpoint;
 }
 #wd_location {
 	grid-area: location;
@@ -3919,6 +3921,7 @@ svg.mist {
 	}
 	#weatherdetails {
 		grid-template-areas:
+			"dewpoint"
 			"windspeed"
 			"windir"
 			"pressure"

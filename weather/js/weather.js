@@ -3,7 +3,7 @@
  *  Copyright  (c) 2015-2019 Bjarne Varoystrand - bjarne ○ kokensupport • com
  *  License: MIT
  *  @author Bjarne Varoystrand (@black_skorpio)
- *  @version 1.5.1
+ *  @version 1.5.2
  *  @description Forked from the ShearSpire Media Weather Clock by Steven Estrella (https://www.shearspiremedia.com)
  *               First introduced here: https://css-tricks.com/how-i-built-a-gps-powered-weather-clock-with-my-old-iphone-4/
  *  http://varoystrand.se | http://kokensupport.com
@@ -17,7 +17,7 @@
 		var useSVG		= true;
 		var appID		= "YOUR_API_KEY_HERE"; // NOTE Only usefull if you opt-out of using the weather.php or as an backup
 
-		var appVersion	= "1.5.1";
+		var appVersion	= "1.5.2";
 		var appName		= "Home Weahter Station";
 		var _cslFlag	= false;
 		var _cslHash	= 'CSL';
@@ -52,7 +52,7 @@
 
 	var doc = document,
 		win = window;
-		var svgStyle, sunPosition, Fragments, svgIcon, sunCalcHour, minMaxDesc, highTempTxt, lowTempTxt, precipionTxt, precipion1Txt, precipion3Txt, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, updatePlural2Txt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, MoonWaxTxt, MoonWanTxt, MoonCreTxt, MoonQuaTxt, MoonGibTxt, MoonNewTxt, MoonFullTxt, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, localtemperature, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, timeOptions, tempClr, overCastLayer;
+		var svgStyle, sunPosition, Fragments, svgIcon, sunCalcHour, sunCalcCord, minMaxDesc, highTempTxt, lowTempTxt, precipionTxt, precipion1Txt, precipion3Txt, notificationTxt, weatherDescTxt, updateNowTxt, updateSecTxt, updateMinTxt, updateHourTxt, updateDayTxt, updateMonthTxt, updateYearTxt, updateAgoTxt, updatePluralTxt, updatePlural2Txt, galeTxt, updatedTimeTxt, detailsTxt, bfsTxt, locationTxt, windDirTxt, gettingTxt, locErrorTxt, gpsTxt, minMaxTxt, visibilityTxt, visibilityDesc, cloudinessTxt, cloudinessDesc, pressureTxt, humidityTxt, windTxt, sunRiseTxt, sunSetTxt, goldenTxt, goldMorTxt, goldEveTxt, moonRiseTxt, moonSetsTxt, clearTxt, cloudTxt, cloudTxt2, rainTxt, snowTxt, sunTxt, mistTxt, moonsetDesc, moonriseDesc, MoonWaxTxt, MoonWanTxt, MoonCreTxt, MoonQuaTxt, MoonGibTxt, MoonNewTxt, MoonFullTxt, locationDesc, sunsetDesc, sunriseDesc, humidityDesc, pressureDesc, winddirDesc, windSpeedDesc, bftDesc, modalDescTxt, modalTitleTxt, wd_bfTxt, bfsHeadTxt, bfs00Txt, bfs01Txt, bfs02Txt, bfs03Txt, bfs04Txt, bfs05Txt, bfs06Txt, bfs07Txt, bfs08Txt, bfs09Txt, bfs10Txt, bfs11Txt, bfs12Txt, bfs13Txt, bfs14Txt, bfs15Txt, bfs16Txt, bfs17Txt, bfs21Txt, bfs22Txt, bfs23Txt, bfs24Txt, bfs25Txt, bfs26Txt, buttonOpen, months, days, directionsTxt, beaufortScale, ws_bft, wd_ws, wd_windspeed, wd_bf, bfSvgId, ws_s, ws_m, ws_f, wd_stormFlag, miles, km, visibleLength, localtemperature, tempForm, overcastForm, visibilityForm, windSpeed, beaufortForm, pressureForm, humidityForm, timeForm, timeOptions, tempClr, overCastLayer, moonPhasesTxt, moonPhasesDesc, noDataErrorTxt;
 
 	/*-_--_-_-_-_- Language strings -_--_-_-_-_-*/
 	switch ( langCode ) {
@@ -971,6 +971,7 @@
 			overcastline += spanSfx;
 
 		details.innerHTML = wd_hilowtemp(data);
+			details.innerHTML += dewPointCalc(data);
 			details.innerHTML += windline;
 			details.innerHTML += windirection;
 			details.innerHTML += pressureline;
@@ -1070,6 +1071,44 @@
 				});
 			_csl.groupEnd();
 		}
+	}
+
+	function dewPointCalc(data) {
+		if (TRACE) _csl.trace('Tracing dewPointCalc');
+		/* Dew point formula (https://en.wikipedia.org/wiki/Dew_point#Simple_approximation)
+			Tdp	= Dev point temperatur
+			T	= Temperature in Celsius
+			RH	= relative humidity
+
+			Tdp = T - (100 - RH) / 5
+		*/
+		var humidity, temperatur, dewpointcalc, dewpoint, useDewpoint, dewpointline;
+			humidity	= data.main.humidity;
+			temperatur	= data.main.temp;
+			dewpointcalc = temperatur - (100 - humidity) / 5;
+
+		dewpoint	= spanTxt;
+			dewpoint += dewpointcalc.toFixed(1);
+			dewpoint += tempForm;
+			dewpoint += spanSfx;
+
+		useDewpoint	= svgPfx;
+			useDewpoint += usePfx;
+			useDewpoint += 'dewpoint';
+			useDewpoint += useSfx;
+
+		if (DEVCONSOLE) {
+			_csl.groupCollapsed(_cslHeadOpen+'dewPointCalc'+_cslHeadDiv, _cslHeadFont );
+			_csl.debug(
+				'Temperature: ' + temperatur + tempForm +_cslLB+
+				'Humidity: ' + humidity + '%' +_cslLB+
+				'Dew Point: ' + dewpoint + tempForm +_cslLB+
+				+ _cslFooter
+			);
+			_csl.groupEnd();
+		};
+
+		return dewpointline = '<li id="wd_dewpoint">' + useDewpoint + dewpoint;
 	}
 
 	function wd_sunCalc(sunCalcline) {
