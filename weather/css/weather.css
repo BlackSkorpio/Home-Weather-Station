@@ -400,7 +400,7 @@ details[open] summary ~ * {
 	        animation: sweep .5s ease-in-out;
 }
 summary,
-#wd_spacer {
+[id^="wd_spacer"] {
 	font-size: 1.3em;
 	text-align: center;
 }
@@ -416,10 +416,11 @@ summary,
 		"windspeed . windir"
 		"pressure . humidity"
 		"visibility . cloudiness"
-		"spacer spacer spacer"
+		"hours hours hours"
 		"sunrise . morning"
 		"evening . sunset"
 		"moonset . moonrise"
+		"coords coords coords"
 		"moonphase moonphase ."
 		"location location location";
 	list-style: none;
@@ -496,10 +497,13 @@ summary,
 	/*-webkit-transform: rotate(90deg);
 	        transform: rotate(90deg);*/
 }
-#wd_spacer {
-	grid-area: spacer;
+#wd_spacerHour {
+	grid-area: hours;
 }
-#wd_spacer:after {
+#wd_spacerCord {
+	grid-area: coords;
+}
+[id^="wd_spacer"]:after {
 	content: '';
 	border-bottom: 0.0625em solid;
 	display: block;
