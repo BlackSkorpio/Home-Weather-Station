@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="48" viewBox="0 0 48 48">
+  <defs>
+    <ellipse id="icon-dg-neg-a" cx="19" cy="19.125" rx="16" ry="15.59"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <rect width="48" height="48"/>
+    <g transform="translate(5 5)">
+      <ellipse cx="19" cy="19.125" stroke="#000" stroke-width="1.5" rx="19" ry="18.513"/>
+      <mask id="icon-dg-neg-b" fill="#000">
+        <use xlink:href="#icon-dg-neg-a"/>
+      </mask>
+      <g fill="#000" fill-opacity=".3" mask="url(#icon-dg-neg-b)">
+        <g transform="translate(0 .974)">
+          <rect width="8" height="7.795" x="10" y="9.744"/>
+          <rect width="8" height="7.795" y="9.744"/>
+          <rect width="8" height="7.795" x="10"/>
+          <rect width="8" height="7.795"/>
+          <rect width="8" height="7.795" x="10" y="19.487"/>
+          <rect width="8" height="7.795" y="19.487"/>
+          <rect width="8" height="7.795" x="10" y="29.231"/>
+          <rect width="8" height="7.795" y="29.231"/>
+          <rect width="3" height="2.923" x="20" y="9.744"/>
+          <rect width="3" height="2.923" x="20" y="19.487"/>
+          <rect width="3" height="2.923" x="20" y="29.231"/>
+          <rect width="3" height="2.923" x="20"/>
+          <rect width="3" height="2.923" x="20" y="14.615"/>
+          <rect width="3" height="2.923" x="20" y="24.359"/>
+          <rect width="3" height="2.923" x="20" y="34.103"/>
+          <rect width="3" height="2.923" x="20" y="4.872"/>
+          <rect width="3" height="2.923" x="25" y="9.744"/>
+          <rect width="3" height="2.923" x="30" y="9.744"/>
+          <rect width="3" height="2.923" x="35" y="9.744"/>
+          <rect width="3" height="2.923" x="25" y="19.487"/>
+          <rect width="3" height="2.923" x="30" y="19.487"/>
+          <rect width="3" height="2.923" x="35" y="19.487"/>
+          <rect width="3" height="2.923" x="25" y="29.231"/>
+          <rect width="3" height="2.923" x="30" y="29.231"/>
+          <rect width="3" height="2.923" x="35" y="29.231"/>
+          <rect width="3" height="2.923" x="25"/>
+          <rect width="3" height="2.923" x="30"/>
+          <rect width="3" height="2.923" x="35"/>
+          <rect width="3" height="2.923" x="25" y="14.615"/>
+          <rect width="3" height="2.923" x="30" y="14.615"/>
+          <rect width="3" height="2.923" x="35" y="14.615"/>
+          <rect width="3" height="2.923" x="25" y="24.359"/>
+          <rect width="3" height="2.923" x="30" y="24.359"/>
+          <rect width="3" height="2.923" x="35" y="24.359"/>
+          <rect width="3" height="2.923" x="25" y="34.103"/>
+          <rect width="3" height="2.923" x="30" y="34.103"/>
+          <rect width="3" height="2.923" x="35" y="34.103"/>
+          <rect width="3" height="2.923" x="25" y="4.872"/>
+          <rect width="3" height="2.923" x="30" y="4.872"/>
+          <rect width="3" height="2.923" x="35" y="4.872"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
