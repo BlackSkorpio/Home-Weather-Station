@@ -3929,6 +3929,11 @@ svg.mist {
 }
 /*390px*/
 @media ( max-width: 24.375em ) {
+	.legend details,
+	.legend summary,
+	.legend details span {
+		font-size: 0.9em;
+	}
 	#country {
 		display: none;
 	}
@@ -3941,36 +3946,68 @@ svg.mist {
 }
 /*320px (Realy old iPhone 4)*/
 @media ( max-width: 20em ) {
-	/*#gps_compass {
+	li#weather {
+		white-space: nowrap;
+	}
+	.ribbon,
+	li#beaufort.visible,
+	#open-button.visible {
 		display: none;
-	}*/
+	}
+	details .dataText {
+		font-size: 1em;
+	}
 }
 /*250px */
 @media (max-width: 15.625em) {
+	.moon {
+		height: 5em;
+		width: 5em
+	}
+	.moon::after,
+	.moon::before {
+		width: 0.75em;
+		height: 0.75em;
+		top: 1.25em;
+		left: 3.75em;
+		-webkit-box-shadow: none;
+		        box-shadow: none;
+	}
+	.moon::before {
+		top: auto;
+		left: auto;
+		bottom: 1.25em;
+		right: 2.75em;
+	}
 	#miniHeader {
 		display: initial;
 	}
 	#region,
-	#forecast #icon/*,
-	#wd_wind svg:last-of-type*/ {
+	#detailsHeader,
+	#forecast #icon,
+	footer .builtby {
 		display: none;
 	}
 	#weatherdetails {
 		grid-template-areas:
+			"mintemp"
 			"dewpoint"
 			"windspeed"
 			"windir"
 			"pressure"
 			"humidity"
+			"visibility"
+			"cloudiness"
+			"hours"
 			"sunrise"
-			"sunset"
 			"morning"
 			"evening"
+			"sunset"
 			"moonset"
 			"moonrise"
 			"moonphase"
 			"location";
-		margin-left: 1em;
+		/*margin-left: 1em;*/
 	}
 }
 .hidden {
