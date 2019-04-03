@@ -1329,6 +1329,7 @@
 			sunCalcline += '<li id="wd_evening">' + goldenEveningHour,
 			sunCalcline += '<li id="wd_moonrise">' + moonRises,
 			sunCalcline += '<li id="wd_moonset">' + moonSets;
+			sunCalcline += '<li id="wd_moonphase">' + moonPhaseLine;
 	}
 
 	function wd_precipion(data) {
@@ -1759,10 +1760,11 @@
 			modalEveningoldTxt	+= goldEveTxt;
 			modalEveningoldTxt	+= spanSfx;
 		var modalMoonPhasesTxt	= sumPfx;
-			modalMoonPhasesTxt	+= useFlatMoon + "Månfaser";
+			modalMoonPhasesTxt	+= useFlatMoon + moonPhasesTxt;
 			modalMoonPhasesTxt	+= sumSfx;
 			modalMoonPhasesTxt	+= spanPfx;
 			modalMoonPhasesTxt	+= '<svg class="moonPhases" role="img" width="100%"><use xlink:href="#moon_phases"/></svg>';
+			modalMoonPhasesTxt	+= moonPhasesDesc;
 			modalMoonPhasesTxt	+= spanSfx;
 		var modalBuiltByTxt		= sumPfx;
 			modalBuiltByTxt		+= useLogosmall + appName;

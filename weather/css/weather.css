@@ -120,6 +120,26 @@ svg.weather-sprite {
 	height: 1.2em;
 	width: 1.2em;
 }
+/*.new.moon {
+}
+.waxing.crescent {
+}
+.first.quarter {
+}
+.waxing.gibbous {
+}
+.full.moon {
+}
+.waning.gibbous {
+}
+.last.quarter {
+}*/
+.waning.gibbous,
+.last.quarter,
+.waning.crescent {
+	-webkit-transform: rotate(180deg);
+	        transform: rotate(180deg);
+}
 /* NOTE Weahter/forecast icon wrapper */
 #icon {
 	background-color: transparent;
@@ -397,6 +417,7 @@ summary,
 		"sunrise . morning"
 		"evening . sunset"
 		"moonset . moonrise"
+		"moonphase moonphase ."
 		"location location location";
 	list-style: none;
 	margin: 0.5em auto 0;
@@ -480,6 +501,9 @@ summary,
 	border-bottom: 0.0625em solid;
 	display: block;
 	margin-top: 0.3em;
+}
+#wd_moonphase {
+	grid-area: moonphase;
 }
 #gpsbutton {
 	-webkit-appearance: none;
@@ -3934,6 +3958,7 @@ svg.mist {
 			"evening"
 			"moonset"
 			"moonrise"
+			"moonphase"
 			"location";
 		margin-left: 1em;
 	}
