@@ -336,6 +336,9 @@ details#details {
 details#details summary {
 	padding-top: 0.3em;
 }
+#miniHeader {
+	display: none;
+}
 details#details.visible {
 	display: block;
 }
@@ -3940,6 +3943,9 @@ svg.mist {
 }
 /*250px */
 @media (max-width: 15.625em) {
+	#miniHeader {
+		display: initial;
+	}
 	#region,
 	#forecast #icon/*,
 	#wd_wind svg:last-of-type*/ {
