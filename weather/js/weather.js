@@ -1168,6 +1168,69 @@
 		MoonQua.innerHTML	= MoonQuaTxt;
 		MoonGib.innerHTML	= MoonGibTxt;
 
+		// NOTE MoonIllumination data
+		moonPhasesData = {
+			mpd0: (moonPhaseData >= 0.00 && moonPhaseData <= 0.08), // New moon
+			mpd1: (moonPhaseData >= 0.09 && moonPhaseData <= 0.24), // Waxing Crescent
+			mpd2: (moonPhaseData >= 0.25 && moonPhaseData <= 0.26), // First Quarter
+			mpd3: (moonPhaseData >= 0.27 && moonPhaseData <= 0.49), // Waxing Gibbous
+			mpd4: (moonPhaseData >= 0.50 && moonPhaseData <= 0.58), // Full moon
+			mpd5: (moonPhaseData >= 0.59 && moonPhaseData <= 0.74), // Waning Gibbous
+			mpd6: (moonPhaseData >= 0.75 && moonPhaseData <= 0.76), // Last Quarter
+			mpd7: moonPhaseData >= 0.76 // Waning Crescent
+		};
+		var mpd0 = moonPhasesData['mpd0'], mpd1 = moonPhasesData['mpd1'], mpd2 = moonPhasesData['mpd2'], mpd3 = moonPhasesData['mpd3'], mpd4 = moonPhasesData['mpd4'], mpd5 = moonPhasesData['mpd5'], mpd6 = moonPhasesData['mpd6'], mpd7 = moonPhasesData['mpd7'];
+
+		if ( mpd0 ) {
+			moonIconHash = "phase_new";
+			moonPhaseTxt = MoonNewTxt;
+			moonPhaseClass = 'new moon';
+		}
+		if ( mpd1 ) {
+			moonIconHash = "phase_crescent";
+			moonPhaseTxt = MoonWaxTxt + MoonCreTxt;
+			moonPhaseClass = 'waxing crescent';
+		}
+		if ( mpd2 ) {
+			moonIconHash = "phase_quarter";
+			moonPhaseTxt = MoonQuaTxt;
+			moonPhaseClass = 'first quarter';
+		}
+		if ( mpd3 ) {
+			moonIconHash = "phase_gibbous";
+			moonPhaseTxt = MoonWaxTxt + MoonQuaTxt;
+			moonPhaseClass = 'waxing gibbous';
+		}
+		if ( mpd4 ) {
+			moonIconHash = "phase_full";
+			moonPhaseTxt = MoonFullTxt;
+			moonPhaseClass = 'full moon';
+		}
+		if ( mpd5 ) {
+			moonIconHash = "phase_gibbous";
+			moonPhaseTxt = MoonWanTxt + MoonQuaTxt;
+			moonPhaseClass = 'waning gibbous';
+		}
+		if ( mpd6 ) {
+			moonIconHash = "phase_quarter";
+			moonPhaseTxt = MoonQuaTxt;
+			moonPhaseClass = 'last quarter';
+		}
+		if ( mpd7 ) {
+			moonIconHash = "phase_crescent";
+			moonPhaseTxt = MoonWanTxt + MoonCreTxt;
+			moonPhaseClass = 'waning crescent';
+		}
+
+		moonIcon = '<svg class="svgIcon ' + moonPhaseClass + '" role="img">' + usePfx + moonIconHash + useSfx;
+
+		moonPhaseLine = moonIcon;
+			moonPhaseLine += moonPhaseTxt;
+			moonPhaseLine += " (";
+			moonPhaseLine += moonPhaseData;
+			moonPhaseLine += "°)";
+			//console.log(moonIcon);
+
 		// NOTE Moon up & Down
 		moonRises = useMoonSet;
 			if (moonRisesDate !=null) {
