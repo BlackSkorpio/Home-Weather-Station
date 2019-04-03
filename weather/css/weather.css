@@ -408,7 +408,7 @@ summary,
 	display: grid;
 	grid-template-rows: auto;
 	/*grid-template-columns: repeat(3,1fr);*/
-	grid-template-columns: 1fr minmax(auto,1fr) 1fr;
+	grid-template-columns: auto minmax(auto,1fr) auto;
 	grid-gap: 0.2em;
 	     gap: 0.2em;
 	grid-template-areas: "mintemp . dewpoint"
@@ -3086,6 +3086,9 @@ https://codepen.io/lbebber/pen/waGydW
 	background-size: 100% 100%;
 }
 /* Modal */
+.legend summary {
+	font-weight: 700;
+}
 .legend details {
 	vertical-align: top;
 	line-height: normal;
@@ -3125,12 +3128,13 @@ details summary:empty {
 	position: absolute;
 	right: 0;
 	top: 0;
-	height: 5em;
-	width: 5em;
 }
+.ribbon,
 .ribbon svg.svgIcon {
 	height: 5em;
 	width: 5em;
+	-webkit-clip-path: polygon(100% 0%, 100% 100%, 0% 0%);
+	        clip-path: polygon(100% 0%, 100% 100%, 0% 0%);
 }
 .daymode #f_s1{--stateClr:var(--db)}
 .nightmode #f_s1{--stateClr:#000}
