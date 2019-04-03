@@ -1328,7 +1328,7 @@
 			sunCalcline += '<li id="wd_morning">' + goldenMorningHour,
 			sunCalcline += '<li id="wd_evening">' + goldenEveningHour,
 			sunCalcline += '<li id="wd_moonrise">' + moonRises,
-			sunCalcline += '<li id="wd_moonset">' + moonSets;
+			sunCalcline += '<li id="wd_moonset">' + moonSets,
 			sunCalcline += '<li id="wd_spacerCord">' + sunCalcCord,
 			sunCalcline += '<li id="wd_moonphase">' + moonPhaseLine;
 	}
