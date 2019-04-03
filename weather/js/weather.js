@@ -1386,7 +1386,7 @@
 	}
 
 	function wd_hilowtemp(data) {
-		var minTemp, maxTemp, minMaxTemp, hitempdata, lowtempdata, minmaxline;
+		var minTemp, maxTemp, minMaxTemp, highLowTemp, minmaxline;
 
 		switch ( unitsFormat ) {
 			case "metric":
@@ -1404,7 +1404,7 @@
 		// NOTE Check that minTemp and maxTemp is not empty and is not equal
 		minMaxTemp = ( ( minTemp !=null || maxTemp !=null ) && maxTemp != minTemp );
 
-		hitempdata = liPfx + idPfx + 'wd_hightemp' + PfxEnd;
+		/*hitempdata = liPfx + idPfx + 'wd_hightemp' + PfxEnd;
 			hitempdata += useHighTemp;
 			hitempdata += spanTxt;
 			hitempdata += maxTemp;
@@ -1415,7 +1415,17 @@
 			lowtempdata += spanTxt;
 			lowtempdata += minTemp;
 			lowtempdata += tempForm;
-			lowtempdata += spanSfx;
+			lowtempdata += spanSfx;*/
+
+		highLowTemp = liPfx + idPfx + 'wd_lowtemp' + PfxEnd;
+			highLowTemp += useLowTemp;
+			highLowTemp += spanTxt;
+			highLowTemp += maxTemp;
+			highLowTemp += tempForm;
+			highLowTemp += ' / ';
+			highLowTemp += minTemp;
+			highLowTemp += tempForm;
+			highLowTemp += spanSfx;
 
 		if ( minMaxTemp ) details.innerHTML += minmaxline;
 		if (DEVCONSOLE && minMaxTemp) {
@@ -1429,7 +1439,8 @@
 			_csl.groupEnd();
 		}
 
-		return minmaxline = lowtempdata + hitempdata;
+		return minmaxline = highLowTemp;
+		//return minmaxline = lowtempdata + hitempdata;
 	}
 
 	function wd_beaufort(data) {

@@ -388,7 +388,8 @@ summary,
 	grid-template-columns: 1fr minmax(auto,1fr) 1fr;
 	grid-gap: 0.2em;
 	     gap: 0.2em;
-	grid-template-areas: "mintemp . maxtemp"
+	grid-template-areas: "mintemp . dewpoint"
+		/*"dewpoint . ."*/
 		"windspeed . windir"
 		"pressure . humidity"
 		"visibility . cloudiness"
@@ -405,8 +406,9 @@ summary,
 #wd_lowtemp {
 	grid-area: mintemp;
 }
-#wd_hightemp {
+/*#wd_hightemp {
 	grid-area: maxtemp;
+}*/
 #wd_dewpoint {
 	grid-area: dewpoint;
 }
