@@ -1252,7 +1252,7 @@
 			moonPhaseLine += moonPhaseTxt;
 			moonPhaseLine += " (";
 			moonPhaseLine += moonPhaseData;
-			moonPhaseLine += "°)";
+			moonPhaseLine += "%)";
 			//console.log(moonIcon);
 
 		// NOTE Moon up & Down
