@@ -3654,7 +3654,7 @@ footer .svgIcon {
 	-webkit-filter: contrast(var(--moonBright));
 	        filter: contrast(var(--moonBright));
 }
-.moon {
+#moonOrbit .moon {
 	position: absolute;
 	height: 10.625em;
 	width: 10.625em;
@@ -3676,8 +3676,8 @@ footer .svgIcon {
 	-webkit-transform-origin: 40vw 100vh;
 	        transform-origin: 40vw 100vh;
 }
-.moon::before,
-.moon::after {
+#moonOrbit .moon::before,
+#moonOrbit .moon::after {
 	position: absolute;
 	display: block;
 	height: 1.5em;
@@ -3708,7 +3708,7 @@ footer .svgIcon {
 	            1.1875em 1.25em 0 -0.5em  rgba(162, 162, 162, 0.9),
 	            1.3125em 1.25em 0 -0.5em rgba(100, 100, 100, 0.51);
 }
-.moon::before {
+#moonOrbit .moon::before {
 	top: auto;
 	/*bottom: 80px;*/
 	bottom: 2.5em;

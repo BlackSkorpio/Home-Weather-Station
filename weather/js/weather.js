@@ -1187,7 +1187,7 @@
 		if ( mpd0 ) {
 			moonIconHash = "phase_new";
 			moonPhaseTxt = MoonNewTxt;
-			moonPhaseClass = 'new moon';
+			moonPhaseClass = 'new-moon';
 		}
 		if ( mpd1 ) {
 			moonIconHash = "phase_crescent";
@@ -1207,7 +1207,7 @@
 		if ( mpd4 ) {
 			moonIconHash = "phase_full";
 			moonPhaseTxt = MoonFullTxt;
-			moonPhaseClass = 'full moon';
+			moonPhaseClass = 'full-moon';
 		}
 		if ( mpd5 ) {
 			moonIconHash = "phase_gibbous";
