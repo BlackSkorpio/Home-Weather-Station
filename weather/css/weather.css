@@ -3931,7 +3931,53 @@ svg.mist {
 	-webkit-animation-delay: 8038ms;
 	        animation-delay: 8038ms;
 }
-/*390px*/
+/* Pull to refresh */
+.wd--ptr {
+	-webkit-box-shadow: none !important;
+	        box-shadow: none !important;
+	font-size: 0.85em;
+	top: 0;
+	height: 0;
+	/*height: auto !important;*/
+	-webkit-box-align: initial !important;
+	    -ms-flex-align: initial !important;
+	        align-items: initial !important;
+	-ms-flex-line-pack: initial !important;
+	    align-content: initial !important;
+	-webkit-transition: height 0.3s, min-height 0.3s;
+	        transition: height 0.3s, min-height 0.3s;
+}
+.wd--box {
+	padding: 10px;
+	-ms-flex-preferred-size: 100%;
+	    flex-basis: 100%;
+}
+.wd--pull {
+	-webkit-transition: none;
+	        transition: none;
+}
+.wd--text {
+	text-align: center !important;
+	color: var(--pw) !important;
+}
+.wd--icon {
+	font-size: 2em;
+	text-align: center !important;
+	color: var(--pw) !important;
+	-webkit-transition: -webkit-transform 0.3s;
+	        transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+	transition: transform 0.3s, -webkit-transform 0.3s;
+}
+/* When at the top of the page, disable vertical overscroll so passive touch listeners can take over. */
+.wd--top {
+	-ms-touch-action: pan-x pan-down pinch-zoom;
+	    touch-action: pan-x pan-down pinch-zoom;
+}
+.wd--release .wd--icon {
+	-webkit-transform: rotate(180deg);
+	        transform: rotate(180deg);
+}/*390px*/
 @media ( max-width: 24.375em ) {
 	.legend details,
 	.legend summary,

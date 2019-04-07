@@ -149,6 +149,11 @@
 			updateAgoTxt	= " sedan";
 			updatePluralTxt	= "er";
 			updatePlural2Txt = "r";
+			ptrArrow		= "&#8681;";
+			ptrRefreshing	= "&hellip;";
+			ptrPullDownTxt	= "Dra ner för att uppdatera";
+			ptrReleaseTxt	= "Släpp för att uppdatera";
+			ptrRefreshingTxt = "Uppdaterar";
 			months = [
 				"Januari",
 				"Februari",
@@ -285,6 +290,11 @@
 			updateAgoTxt	= " ago";
 			updatePluralTxt	= "s";
 			updatePlural2Txt = "s";
+			ptrArrow		= "&#8681;";
+			ptrRefreshing	= "&hellip;";
+			ptrPullDownTxt	= "Pull down to refresh";
+			ptrReleaseTxt	= "Release to refresh";
+			ptrRefreshingTxt = "Refreshing";
 			months = [
 				"January",
 				"February",
@@ -610,6 +620,17 @@
 
 		toGitHub();
 		//offlineMode();
+		// NOTE PullToRefresh variables
+		PullToRefresh.init({
+			mainElement: '#details',
+			triggerElement: '#clocklayer',
+			classPrefix: 'wd--',
+			iconArrow: ptrArrow,
+			iconRefreshing: ptrRefreshing,
+			instructionsPullToRefresh: ptrPullDownTxt,
+			instructionsReleaseToRefresh: ptrReleaseTxt,
+			instructionsRefreshing: ptrRefreshingTxt
+		});
 	}
 
 	function updateTime() {
