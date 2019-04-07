@@ -410,6 +410,7 @@
 		useMoonSet:		svgPfx + titlePfx + moonSetsTxt + titleSfx + usePfx + "moonset" + useSfx,
 		useHumidity:	svgPfx + titlePfx + humidityTxt + titleSfx + usePfx + "humidity" + useSfx,
 		useWindspeed:	svgPfx + titlePfx + windTxt + titleSfx + usePfx + "windspeed" + useSfx,
+		useGustspeed:	svgPfx + titlePfx + windTxt + titleSfx + usePfx + "gusts" + useSfx,
 		usePressure:	svgPfx + titlePfx + pressureTxt + titleSfx + usePfx + "pressure" + useSfx,
 		useTemprature:	svgPfx + titlePfx + tempForm + titleSfx + usePfx + "temperatur" + useSfx,
 		useLowTemp:		svgPfx + titlePfx + lowTempTxt + titleSfx + usePfx + "hilowtemp" + useSfx,
@@ -429,7 +430,7 @@
 		useTemprature = svgIcon['useTemprature'], useLowTemp = svgIcon['useLowTemp'], useHighTemp = svgIcon['useHighTemp'],
 		useWindRose = svgIcon['useWindRose'], useWeatherDude = svgIcon['useWeatherDude'], useBeaufort = svgIcon['useBeaufort'],
 		useVisibility = svgIcon['useVisibility'], useOvercast = svgIcon['useOvercast'], useUpdated = svgIcon['useUpdated'],
-		useLogosmall = svgIcon['useLogosmall'],
+		useLogosmall = svgIcon['useLogosmall'], useGustspeed = svgIcon['useGustspeed'],
 		useFlatMoon = svgIcon['useFlatMoon'];
 
 	var main, container, sStyles, now, dd, td, dt, details, wd_summary, detailsHeader, infoModal, dtTimeRaw, dtHour, dtMin, dtTime, updatedTime, lat, lon, region, gd, gpsbutton, weatherurl, wd, precipion_wrap, icon, beaufort, weatherdata, weatherminute;
@@ -864,6 +865,7 @@
 		// var dh = JSON.stringify(data);
 		// dh = dh.split(",").join("<br>");
 
+		var gusts = data.wind.speed * 1.4;
 		// NOTE Convert the visibility data to metric or imperial
 		var km = data.visibility / 1000;
 		var miles = data.visibility * 0.0006213712;
@@ -922,6 +924,7 @@
 			windline += useWindspeed;
 			windline += spanTxt;
 			windline += data.wind.speed;
+			windline += useGustspeed + gusts.toFixed(1);
 			windline += windSpeed;
 			windline += spanSfx;
 
