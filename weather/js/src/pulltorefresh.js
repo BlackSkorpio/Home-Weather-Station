@@ -1,4 +1,4 @@
-/* minifyOnSave, checkOutputFileAlreadyExists: false, checkAlreadyMinifiedFile: false, filenamePattern: $1.min.$2 */
+/* minifyOnSave, checkOutputFileAlreadyExists: false, checkAlreadyMinifiedFile: false, filenamePattern: ../$1.min.$2 */
 /*! PullToRefresh pulltorefresh.js
  *  @License: MIT
  *  @author BoxFactura (@BoxFactura)
